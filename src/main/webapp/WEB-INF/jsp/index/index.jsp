@@ -28,14 +28,15 @@
     <![endif]-->
 
 	<script src="js/app/base.js"></script>
-
+	<!-- TODO: continuar migração -->
 	<script src="js/lib/compatibility/sprintf.js"></script>
 	<script src="js/lib/jquery/jquery-1.10.1.min.js"></script>
 	<script src="js/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
 	<script src="js/lib/jquery/jquery-ui-1.7.3.min.js"></script>
 	<script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script>
-	<script src="js/lib/angular/angularjs-1.1.4.min.js"></script>
-	<script src="js/lib/angular/angular-resource-1.1.4.min.js"></script>
+	<script src="js/lib/angular/angular-1.2.0.js"></script>
+	<script src="js/lib/angular/angular-route-1.2.0.js"></script>
+	<script src="js/lib/angular/angular-resource-1.2.0.js"></script>
 	<script src="js/lib/localization/localize.js"></script>
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>

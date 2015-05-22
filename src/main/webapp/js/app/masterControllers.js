@@ -34,20 +34,32 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 
 	$scope.save = function() {
 		$scope.model.$update({param1: $routeParams.id}, function(res) {
+			console.log(actionUpdate);
 			if (actionUpdate) actionUpdate('save', $routeParams.id);
 			$location.path(root);
 		});
-	}
 	
-	console.log($scope.destroy);
-	$scope.destroy = function() {
-		console.log(root);
-		deleteConfirm('Are you sure?', $location, $scope, $routeParams, root, actionUpdate)
 	}
-	console.log($scope.destroy);
+	/*$scope.destroy = function() {
+		console.log(actionUpdate);
+		deleteConfirm('Are you sure?', $location, $scope, $routeParams, root, actionUpdate)
+	}*/
 }
 
-deleteConfirm = function(message, $location, $scope, $routeParams, root, actionUpdate) {
+masterDelete = function($scope, $routeParams, $window, $location, Resource, root){
+	console.log("teste");
+	$scope.destroy = function(){
+		deleteConfirm('Are you sure?')
+		/*if(deleteConfirm('Are you sure?')){
+			$scope.model.$delete({param1: $routeParams.id}, function(res) {
+				if (actionUpdate) actionUpdate('delete', $routeParams.id);
+				$location.path(root);
+			});
+		} */
+	}
+}
+
+deleteConfirm = function(message/*, $location, $scope, $routeParams, root, actionUpdate*/) {
 	"use strict"
 	$(document.createElement('div')).attr({
 		title : 'Warning',
@@ -63,11 +75,6 @@ deleteConfirm = function(message, $location, $scope, $routeParams, root, actionU
 			},
 			"Ok" : function() {
 				
-				$scope.model.$delete({param1: $routeParams.id}, function(res) {
-					console.log(res);
-					if (actionUpdate) actionUpdate('delete', $routeParams.id);
-					$location.path(root);
-				});
 				$(this).remove();
 				return true;
 			}

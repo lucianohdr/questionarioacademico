@@ -18,10 +18,17 @@ ContatoController = (function() {
 	ContatoController.prototype.create.$inject = ['$scope', '$location', 'ContatoResource'];
 
 	ContatoController.prototype.update = function($scope, $routeParams, $window, $location, ContatoResource) {
+		console.log('teste');
 		masterUpdate($scope, $routeParams, $window, $location, ContatoResource, root);
 	};
 	ContatoController.prototype.update.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];
 
+	ContatoController.prototype.destroy = function($scope, $routeParams, $window, $location, ContatoResource){
+		masterDelete($scope,$routeParams,$window,$location,ContatoResource, root, true);
+	};
+	
+	ContatoController.prototype.destroy.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];
+	
 	return ContatoController;
   
 })();
