@@ -24,7 +24,7 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 
 		.otherwise({redirectTo:'/'});
 	
-	$httpProvider.responseInterceptors.push('httpInterceptor');
+	$httpProvider.interceptors.push('httpInterceptor');
 		
 }]);
 

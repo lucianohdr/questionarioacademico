@@ -34,7 +34,6 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 
 	$scope.save = function() {
 		$scope.model.$update({param1: $routeParams.id}, function(res) {
-			console.log(actionUpdate);
 			if (actionUpdate) actionUpdate('save', $routeParams.id);
 			$location.path(root);
 		});
@@ -47,7 +46,6 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 }
 
 masterDelete = function($scope, $routeParams, $window, $location, Resource, root){
-	console.log("teste");
 	$scope.destroy = function(){
 		deleteConfirm('Are you sure?')
 		/*if(deleteConfirm('Are you sure?')){
@@ -58,7 +56,7 @@ masterDelete = function($scope, $routeParams, $window, $location, Resource, root
 		} */
 	}
 }
-
+//TODO: tentar usar o tal do "confirm(mensagem)"
 deleteConfirm = function(message/*, $location, $scope, $routeParams, root, actionUpdate*/) {
 	"use strict"
 	$(document.createElement('div')).attr({
