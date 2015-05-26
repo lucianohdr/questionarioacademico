@@ -1,5 +1,6 @@
 <h2 ng-show="model.contato.id">Alterar Contato</h2>
 <h2 ng-hide="model.contato.id">Adicionar Contato</h2>
+<script src="js/app/controller/contatoController.js"></script>
 <form name="myForm">
 	<div class="control-group" ng-class="{error: myForm.nome.$invalid}">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.contato.nome" required><span ng-show="myForm.nome.$error.required" class="help-inline">Requerido</span>

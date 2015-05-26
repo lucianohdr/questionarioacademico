@@ -21,15 +21,17 @@ ContatoController = (function() {
 
 	ContatoController.prototype.update = function($scope, $routeParams, $window, $location, ContatoResource) {
 		masterUpdate($scope, $routeParams, $window, $location, ContatoResource, root);
+		
+		masterDelete($scope,$routeParams,$window,$location,ContatoResource,root)
 	};
 	
 	ContatoController.prototype.update.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];
 
-	ContatoController.prototype.destroy = function($scope, $routeParams, $window, $location, ContatoResource){
+/*	ContatoController.prototype.destroy = function($scope, $routeParams, $window, $location, ContatoResource){
 		masterDelete($scope,$routeParams,$window,$location,ContatoResource, root, true);
 	};
 	
-	ContatoController.prototype.destroy.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];
+	ContatoController.prototype.destroy.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];*/
 	
 	return ContatoController;
   

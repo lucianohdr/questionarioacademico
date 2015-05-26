@@ -41,7 +41,6 @@
 	<script src="js/lib/angular/angular-route-1.3.15.js"></script>
 	<script src="js/lib/angular/angular-resource-1.3.15.js"></script>
 	
-	<script src="js/lib/localization/localize.js"></script>
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
 
@@ -59,7 +58,6 @@
 	<script src="js/app/controller/contatoController.js"></script>
 	<script src="js/app/controller/tarefaController.js"></script>
 
-
 	<title>Questionário Acadêmico</title>
 
 </head>
@@ -74,7 +72,9 @@
 				<li ng-class="navClass('contato')"><a href="#/contato/">Contato</a></li>
 				<li ng-class="navClass('tarefa')"><a href="#/tarefa/">Tarefa</a></li>
 			</ul>
-			<a class="brand" ng-click="logout()">Sair</a>
+			
+			<a class="brand" ng-click="logout()" href="#/">Sair</a>
+			
 			<!-- <ul class="nav pull-right">
 				<li><a ng-click="setLocale('pt-BR')">{{'PORTUGUESE'|i18n}}</a></li>
 				<li><a ng-click="setLocale('en-US')">{{'ENGLISH'|i18n}}</a></li>

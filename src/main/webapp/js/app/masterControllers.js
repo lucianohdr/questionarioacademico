@@ -45,19 +45,22 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 	}*/
 }
 
-masterDelete = function($scope, $routeParams, $window, $location, Resource, root){
+masterDelete = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate){
 	$scope.destroy = function(){
-		deleteConfirm('Are you sure?')
-		/*if(deleteConfirm('Are you sure?')){
+		/*deleteConfirm('Are you sure?')*/
+		var removeFunction = function(){
 			$scope.model.$delete({param1: $routeParams.id}, function(res) {
 				if (actionUpdate) actionUpdate('delete', $routeParams.id);
 				$location.path(root);
 			});
-		} */
+		}
+		
+		confirm("Tem certeza que deseja deletar os registros?", removeFunction);
 	}
 }
-//TODO: tentar usar o tal do "confirm(mensagem)"
-deleteConfirm = function(message/*, $location, $scope, $routeParams, root, actionUpdate*/) {
+
+/*//TODO: tentar usar o tal do "confirm(mensagem)"
+deleteConfirm = function(message, callback, $location, $scope, $routeParams, root, actionUpdate) {
 	"use strict"
 	$(document.createElement('div')).attr({
 		title : 'Warning',
@@ -68,14 +71,16 @@ deleteConfirm = function(message/*, $location, $scope, $routeParams, root, actio
 		resizable : false,
 		buttons : {
 			"Cancelar" : function() {
+				console.log("cancelar");
 				$(this).remove();
 				return false;
 			},
 			"Ok" : function() {
-				
+				console.log("OK");
 				$(this).remove();
 				return true;
 			}
 		}
 	});
 }
+*/

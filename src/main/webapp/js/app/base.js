@@ -37,3 +37,29 @@ window.alert = function(message) {
 		resizable : false
 	});
 };
+
+window.confirm = function(message, callback) {
+	"use strict"
+	$(document.createElement('div')).attr({
+		title : 'Warning',
+		'class' : 'alert'
+	}).html(message).dialog({
+		width : 'auto',
+		modal : true,
+		resizable : false,
+		buttons : {
+			"Cancelar" : function() {
+				$(this).remove();
+				return false;
+			},
+			"Ok" : function() {
+				//chamando função
+				if(callback && (typeof callback === "function")){
+					callback();
+				} 
+				$(this).remove();
+				return true;
+			}
+		}
+	});
+};
