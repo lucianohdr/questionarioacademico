@@ -21,6 +21,10 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/tarefa/', {controller: tarefaController.read, templateUrl:'view/tarefa/list.html'})
 		.when('/tarefa/new', {controller: tarefaController.create, templateUrl:'view/tarefa/form.html'})
 		.when('/tarefa/edit/:id', {controller: tarefaController.update, templateUrl:'view/tarefa/form.html'})
+		
+		.when('/tipousuario/', {controller: tipoUsuarioController.read, templateUrl:'view/tipousuario/list.html'})
+		.when('/tipousuario/new', {controller: tipoUsuarioController.create, templateUrl:'view/tipousuario/form.html'})
+		.when('/tipousuario/edit/:id', {controller: tipoUsuarioController.update, templateUrl:'view/tipousuario/form.html'})
 
 		.otherwise({redirectTo:'/'});
 	

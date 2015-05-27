@@ -31,3 +31,8 @@ angularContatosServices.factory('TarefaResource', ['$resource',function($resourc
 	var api = $resource(configUrl('tarefas'), params(), values());
     return api;
 }]);
+
+angularContatosServices.factory('TipoUsuarioResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('tipousuarios'), params(), values());
+	return api;
+}]);

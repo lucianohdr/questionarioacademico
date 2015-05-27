@@ -3,10 +3,9 @@ package br.edu.utfpr.pb.questionarioacademico.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+@SuppressWarnings("serial")
 @Entity
 public class TipoUsuario extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity {
-	
-	private static final long serialVersionUID = 1L;
 	
 	/*@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

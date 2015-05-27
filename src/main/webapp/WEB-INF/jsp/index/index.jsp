@@ -57,6 +57,7 @@
 	<script src="js/app/controller/perfilController.js"></script>
 	<script src="js/app/controller/contatoController.js"></script>
 	<script src="js/app/controller/tarefaController.js"></script>
+	<script src="js/app/controller/tipoUsuarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 

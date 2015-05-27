@@ -17,6 +17,7 @@ masterRead = function($scope, $location, Resource) {
 }
 
 masterCreate = function($scope, $location, Resource, root, emptyObj) {
+	
 	$scope.model = new Resource(emptyObj);
 	$scope.save = function() {
 		$scope.model.$save(function(res) {
@@ -28,6 +29,7 @@ masterCreate = function($scope, $location, Resource, root, emptyObj) {
 masterUpdate = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate) {
 	
 	Resource.get({param1: $routeParams.id}, function(res) {
+		console.log(res)
 		$scope.model = res;
 		if (actionUpdate) actionUpdate('get');
 	});
@@ -39,15 +41,11 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 		});
 	
 	}
-	/*$scope.destroy = function() {
-		console.log(actionUpdate);
-		deleteConfirm('Are you sure?', $location, $scope, $routeParams, root, actionUpdate)
-	}*/
+
 }
 
 masterDelete = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate){
 	$scope.destroy = function(){
-		/*deleteConfirm('Are you sure?')*/
 		var removeFunction = function(){
 			$scope.model.$delete({param1: $routeParams.id}, function(res) {
 				if (actionUpdate) actionUpdate('delete', $routeParams.id);
