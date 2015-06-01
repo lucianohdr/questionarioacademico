@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="AngularJsContatosApp" id="ng-app">
+<html ng-app="QuestionarioAcademico" id="ng-app">
 <head>
 
 	<meta charset="utf-8">
@@ -94,7 +94,7 @@
 				<tr><td>Senha:</td><td><input id="pass" type='password' name='pass'/></td></tr>
 			</table>
 			<hr/>
-			<p><b>Login</b>: admin <b>Password</b>: 123 <b>|</b> <b>Login</b>: user <b>Password</b>:123</p>
+			<!-- <p><b>Login</b>: admin <b>Password</b>: 123 <b>|</b> <b>Login</b>: user <b>Password</b>:123</p> -->
         </div>
         <div class="modal-footer"><button class="btn" ng-click="login()">Login</button></div>
 	</div>
