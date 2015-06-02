@@ -1,40 +1,17 @@
-ContatoController = (function() {
+App.controller("ContatoController", ['$scope', '$location', 'ContatoResource' ,'$window', '$routeParams',
+                                     
+	    function($scope, $location, ContatoResource, $window, $routeParams){
+	
+			var root = '/contato/';
+			var emptyObj = {contato: {"id":0, "nome":'', "endereco":''}};
+			
+			$scope.read = masterRead($scope, $location, ContatoResource);
+			
+			$scope.create = masterCreate($scope, $location, ContatoResource, root, emptyObj);
+			
+			$scope.update = masterUpdate($scope, $routeParams, $window, $location, ContatoResource, root);
+			
+			$scope.destroy =  masterDelete($scope,$routeParams,$window, $location, ContatoResource, root);
+		}
 
-	"use strict";
-	
-	var root = '/contato/';
-	var emptyObj = {contato: {"id":0, "nome":'', "endereco":''}};
-	
-	function ContatoController() {}
-
-	ContatoController.prototype.read = function($scope, $location, ContatoResource) {
-		masterRead($scope, $location, ContatoResource);
-	};
-	
-	ContatoController.prototype.read.$inject = ['$scope', '$location', 'ContatoResource'];
-
-	ContatoController.prototype.create = function($scope, $location, ContatoResource) {
-		masterCreate($scope, $location, ContatoResource, root, emptyObj);
-	};
-	
-	ContatoController.prototype.create.$inject = ['$scope', '$location', 'ContatoResource'];
-
-	ContatoController.prototype.update = function($scope, $routeParams, $window, $location, ContatoResource) {
-		masterUpdate($scope, $routeParams, $window, $location, ContatoResource, root);
-		
-		masterDelete($scope,$routeParams,$window,$location,ContatoResource,root)
-	};
-	
-	ContatoController.prototype.update.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];
-
-/*	ContatoController.prototype.destroy = function($scope, $routeParams, $window, $location, ContatoResource){
-		masterDelete($scope,$routeParams,$window,$location,ContatoResource, root, true);
-	};
-	
-	ContatoController.prototype.destroy.$inject = ['$scope', '$routeParams', '$window', '$location', 'ContatoResource'];*/
-	
-	return ContatoController;
-  
-})();
-
-var contatoController = new ContatoController();
+]);

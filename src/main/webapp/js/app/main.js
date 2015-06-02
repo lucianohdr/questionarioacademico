@@ -9,10 +9,13 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/usuario/', {controller: usuarioController.read, templateUrl:'view/usuario/list.html'})
 		.when('/usuario/new', {controller: usuarioController.create, templateUrl:'view/usuario/form.html'})
 		.when('/usuario/edit/:id', {controller: usuarioController.update, templateUrl:'view/usuario/form.html'})
-
-		.when('/contato/', {controller: contatoController.read, templateUrl:'view/contato/list.html'})
-		.when('/contato/new', {controller: contatoController.create, templateUrl:'view/contato/form.html'})
-		.when('/contato/edit/:id', {controller: contatoController.update, templateUrl:'view/contato/form.html'})
+		
+		//TODO: criar controllers separados para edit e list
+		//para resolver problem: 'Error in resource configuration for action `get`. Expected response to contain an object but got an array'
+		
+		.when('/contato/', {controller: 'ContatoController', templateUrl:'view/contato/list.html'})
+		.when('/contato/new', {controller: 'ContatoController', templateUrl:'view/contato/form.html'})
+		.when('/contato/edit/:id', {controller: 'ContatoController', templateUrl:'view/contato/form.html'})
 		
 		.when('/perfil/', {controller: perfilController.read, templateUrl:'view/perfil/list.html'})
 		.when('/perfil/new', {controller: perfilController.create, templateUrl:'view/perfil/form.html'})
