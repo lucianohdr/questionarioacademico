@@ -10,12 +10,9 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/usuario/new', {controller: usuarioController.create, templateUrl:'view/usuario/form.html'})
 		.when('/usuario/edit/:id', {controller: usuarioController.update, templateUrl:'view/usuario/form.html'})
 		
-		//TODO: criar controllers separados para edit e list
-		//para resolver problem: 'Error in resource configuration for action `get`. Expected response to contain an object but got an array'
-		
-		.when('/contato/', {controller: 'ContatoController', templateUrl:'view/contato/list.html'})
-		.when('/contato/new', {controller: 'ContatoController', templateUrl:'view/contato/form.html'})
-		.when('/contato/edit/:id', {controller: 'ContatoController', templateUrl:'view/contato/form.html'})
+		.when('/contato/edit/:id', {controller: 'ContatoControllerEdit', templateUrl:'view/contato/form.html'})
+		.when('/contato/new', {controller: 'ContatoControllerNew', templateUrl:'view/contato/form.html'})
+		.when('/contato/', {controller: 'ContatoControllerList', templateUrl:'view/contato/list.html'})
 		
 		.when('/perfil/', {controller: perfilController.read, templateUrl:'view/perfil/list.html'})
 		.when('/perfil/new', {controller: perfilController.create, templateUrl:'view/perfil/form.html'})
@@ -25,9 +22,9 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/tarefa/new', {controller: tarefaController.create, templateUrl:'view/tarefa/form.html'})
 		.when('/tarefa/edit/:id', {controller: tarefaController.update, templateUrl:'view/tarefa/form.html'})
 		
-		.when('/tipousuario/', {controller: tipoUsuarioController.read, templateUrl:'view/tipousuario/list.html'})
-		.when('/tipousuario/new', {controller: tipoUsuarioController.create, templateUrl:'view/tipousuario/form.html'})
-		.when('/tipousuario/edit/:id', {controller: tipoUsuarioController.update, templateUrl:'view/tipousuario/form.html'})
+		.when('/tipousuario/edit/:id', {controller: 'TipoUsuarioControllerEdit', templateUrl:'view/tipousuario/form.html'})
+		.when('/tipousuario/new', {controller: 'TipoUsuarioControllerNew', templateUrl:'view/tipousuario/form.html'})
+		.when('/tipousuario/', {controller: 'TipoUsuarioControllerList', templateUrl:'view/tipousuario/list.html'})
 
 		.otherwise({redirectTo:'/'});
 	

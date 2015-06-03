@@ -1,15 +1,18 @@
 <h2 ng-show="model.tipousuario.id">Alterar Tipo de Usuário</h2>
 <h2 ng-hide="model.tipousuario.id">Adicionar Tipo de Usuário</h2>
-<form name="myForm">
-	<div class="control-group" ng-class="{error: myForm.nome.$invalid}">
-		<label>Nome</label><input type="text" name="nome" ng-model="model.tipousuario.nome" required><span ng-show="myForm.nome.$error.required" class="help-inline">Requerido</span>
+<form name="mainForm">
+	<div class="control-group" ng-class="{error: mainForm.$invalid}">
+		<label>Nome</label><input type="text" name="nome" ng-model="model.tipousuario.nome" ng-required="true">
+		<span ng-show="mainForm.nome.$invalid && mainForm.nome.$dirty" class="help-inline">Requerido</span>
+		
+		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.tipousuario.descricao" ng-required="true">
+		</input><span ng-show="mainForm.nome.$invalid && mainForm.descricao.$dirty" class="help-inline">Requerido</span>
 	</div>
-	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.tipousuario.descricao"></input>
 	
 	<label>Observação</label> <input type="text" name="observacao" ng-model="model.tipousuario.observacao"> 
 	<br> 
 	<a href="#/tipousuario/" class="btn">Cancelar</a>
 	
-	<button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Salvar</button>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.tipousuario.id" class="btn btn-danger">Deletar</button>
 </form>

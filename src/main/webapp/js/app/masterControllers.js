@@ -19,6 +19,7 @@ masterRead = function($scope, $location, Resource) {
 masterCreate = function($scope, $location, Resource, root, emptyObj) {
 	
 	$scope.model = new Resource(emptyObj);
+	//console.log($scope.model);
 	$scope.save = function() {
 		$scope.model.$save(function(res) {
 			$location.path(root);
@@ -28,8 +29,11 @@ masterCreate = function($scope, $location, Resource, root, emptyObj) {
 
 masterUpdate = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate) {
 	
+	console.log($routeParams.id);
+	
 	Resource.get({param1: $routeParams.id}, function(res) {
-		console.log(res)
+		
+		
 		$scope.model = res;
 		if (actionUpdate) actionUpdate('get');
 	});
@@ -39,7 +43,6 @@ masterUpdate = function($scope, $routeParams, $window, $location, Resource, root
 			if (actionUpdate) actionUpdate('save', $routeParams.id);
 			$location.path(root);
 		});
-	
 	}
 
 }
@@ -56,6 +59,8 @@ masterDelete = function($scope, $routeParams, $window, $location, Resource, root
 		confirm("Tem certeza que deseja deletar os registros?", removeFunction);
 	}
 }
+
+
 
 /*//TODO: tentar usar o tal do "confirm(mensagem)"
 deleteConfirm = function(message, callback, $location, $scope, $routeParams, root, actionUpdate) {

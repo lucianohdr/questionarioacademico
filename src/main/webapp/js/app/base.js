@@ -53,7 +53,7 @@ window.confirm = function(message, callback) {
 				return false;
 			},
 			"Ok" : function() {
-				//chamando função
+				//chamando função callback
 				if(callback && (typeof callback === "function")){
 					callback();
 				} 
