@@ -3,36 +3,35 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Consumes;
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
-import br.edu.utfpr.pb.questionarioacademico.model.Tipousuario;
-import br.edu.utfpr.pb.questionarioacademico.repository.TipoUsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.model.Categoriaquestionario;
+import br.edu.utfpr.pb.questionarioacademico.repository.CategoriaQuestionarioRepository;
 
 @SuppressWarnings("serial")
-@br.com.caelum.vraptor.Controller
-@Path("tipousuarios")
-public class TipoUsuarioController extends Controller{
-
+@Controller
+@Path("categoriaquestionarios")
+public class CategoriaQuestionarioController 
+	extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
+	
 	private Result result;
-	private TipoUsuarioRepository repository;
+	private CategoriaQuestionarioRepository repository;
 	
 	@Inject
-	public TipoUsuarioController(Result result,
-			TipoUsuarioRepository repository) {
+	public CategoriaQuestionarioController(Result result, CategoriaQuestionarioRepository repository) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
 	}
-	
-	protected TipoUsuarioController() {
+
+	protected CategoriaQuestionarioController (){
 		this(null, null);
 	}
-	
 	
 	@Get
 	@Path({"","/"})
@@ -55,23 +54,23 @@ public class TipoUsuarioController extends Controller{
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(Tipousuario tipousuario) {
-		repository.insert(tipousuario);
+	public void insert(Categoriaquestionario categoriaquestionario) {
+		repository.insert(categoriaquestionario);
 		result.nothing();
 	}
 	
 	@Put
-	@Path("/{tipousuario.id}")
+	@Path("/{categoriaquestionario.id}")
 	@Consumes("application/json")
-	public void update(Tipousuario tipousuario) {
-		repository.update(tipousuario);
+	public void update(Categoriaquestionario categoriaquestionario) {
+		repository.update(categoriaquestionario);
 		result.nothing();
 	}
 
 	@Delete
-	@Path("/{tipousuario.id}")
-	public void delete(Tipousuario tipousuario) {
-		repository.delete(tipousuario);
+	@Path("/{categoriaquestionario.id}")
+	public void delete(Categoriaquestionario categoriaquestionario) {
+		repository.delete(categoriaquestionario);
 		result.nothing();
 	}
 }

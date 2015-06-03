@@ -12,6 +12,7 @@ App.controller("TipoUsuarioControllerEdit", ['$scope', '$location', 'TipoUsuario
 	}
 ]).controller("TipoUsuarioControllerNew", ['$scope', '$location', 'TipoUsuarioResource',
     function($scope, $location, TipoUsuarioResource){
+	
 		var root = '/tipousuario/';
 		var emptyObj = { tipousuario: {"id":0, "nome":'', "descricao": '', "observacao" : ''}};
 		

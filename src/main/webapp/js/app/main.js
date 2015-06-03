@@ -25,7 +25,11 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/tipousuario/edit/:id', {controller: 'TipoUsuarioControllerEdit', templateUrl:'view/tipousuario/form.html'})
 		.when('/tipousuario/new', {controller: 'TipoUsuarioControllerNew', templateUrl:'view/tipousuario/form.html'})
 		.when('/tipousuario/', {controller: 'TipoUsuarioControllerList', templateUrl:'view/tipousuario/list.html'})
-
+		
+		.when('/categoriaquestionario/edit/:id', {controller: 'CategoriaQuestionarioControllerEdit', templateUrl:'view/categoriaquestionario/form.html'})
+		.when('/categoriaquestionario/new', {controller: 'CategoriaQuestionarioControllerNew', templateUrl:'view/categoriaquestionario/form.html'})
+		.when('/categoriaquestionario/', {controller: 'CategoriaQuestionarioControllerList', templateUrl:'view/categoriaquestionario/list.html'})
+													   
 		.otherwise({redirectTo:'/'});
 	
 	$httpProvider.interceptors.push('httpInterceptor');

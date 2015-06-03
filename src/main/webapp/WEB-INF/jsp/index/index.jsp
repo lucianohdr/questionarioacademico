@@ -58,6 +58,7 @@
 	<script src="js/app/controller/contatoController.js"></script>
 	<script src="js/app/controller/tarefaController.js"></script>
 	<script src="js/app/controller/tipoUsuarioController.js"></script>
+	<script src="js/app/controller/categoriaQuestionarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -68,18 +69,13 @@
 		<div class="navbar-inner">
 			<a class="brand" href="#/">Questionário Acadêmico</a>
 			<ul class="nav">
-				<li ng-class="navClass('usuario')"><a href="#/usuario/">Usuário</a></li>
-				<li ng-class="navClass('perfil')"><a href="#/perfil/">Perfil</a></li>
+				<li ng-class="navClass('tipousuario')"><a href="#/tipousuario/">Tipo Usuário</a></li>
+				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
 				<li ng-class="navClass('contato')"><a href="#/contato/">Contato</a></li>
-				<li ng-class="navClass('tarefa')"><a href="#/tarefa/">Tarefa</a></li>
 			</ul>
 			
 			<a class="brand" ng-click="logout()" href="#/">Sair</a>
 			
-			<!-- <ul class="nav pull-right">
-				<li><a ng-click="setLocale('pt-BR')">{{'PORTUGUESE'|i18n}}</a></li>
-				<li><a ng-click="setLocale('en-US')">{{'ENGLISH'|i18n}}</a></li>
-			</ul> -->
 		</div>
 	</div>
 	

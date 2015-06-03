@@ -1,22 +1,19 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="tipousuario")
-public class Tipousuario extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity {
-	
-	@Column(name="nome", nullable=false, length=200)
+@Table(name="categoriaquestionario")
+public class Categoriaquestionario extends br.edu.utfpr.pb.questionarioacademico.model.commons. Entity {
+
+	@Column(name = "nome", nullable=false)
 	private String nome;
 	
-	@Column(name="descricao")
+	@Column(name = "descricao")
 	private String descricao;
-	
-	@Column(name="observacao")
-	private String observacao;
 	
 	public String getNome() {
 		return nome;
@@ -29,11 +26,5 @@ public class Tipousuario extends br.edu.utfpr.pb.questionarioacademico.model.com
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public String getObservacao() {
-		return observacao;
-	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
 	}
 }
