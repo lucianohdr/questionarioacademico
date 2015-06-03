@@ -10,7 +10,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
-import br.edu.utfpr.pb.questionarioacademico.model.TipoUsuario;
+import br.edu.utfpr.pb.questionarioacademico.model.Tipousuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.TipoUsuarioRepository;
 //TODO: resolver problema de nomes compostos. Na view deve aparecer tipousuario e nao tipoUsuario
 @br.com.caelum.vraptor.Controller
@@ -54,7 +54,7 @@ public class TipoUsuarioController extends Controller{
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(TipoUsuario tipousuario) {
+	public void insert(Tipousuario tipousuario) {
 		repository.insert(tipousuario);
 		result.nothing();
 	}
@@ -62,14 +62,14 @@ public class TipoUsuarioController extends Controller{
 	@Put
 	@Path("/{tipousuario.id}")
 	@Consumes("application/json")
-	public void update(TipoUsuario tipousuario) {
+	public void update(Tipousuario tipousuario) {
 		repository.update(tipousuario);
 		result.nothing();
 	}
 
 	@Delete
 	@Path("/{tipousuario.id}")
-	public void delete(TipoUsuario tipousuario) {
+	public void delete(Tipousuario tipousuario) {
 		repository.delete(tipousuario);
 		result.nothing();
 	}
