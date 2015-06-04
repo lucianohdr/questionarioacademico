@@ -1,10 +1,19 @@
 <h2 ng-show="model.categoriaquestionario.id">Alterar Categoria de Questionário</h2>
 <h2 ng-hide="model.categoriaquestionario.id">Adicionar Categoria de Questionário</h2>
+<!-- <ui-alert title="Ops, aconteceu um problema">
+	{{error}}
+</ui-alert> -->
 <form name="mainForm">
-	<div class="control-group" ng-class="{error: mainForm.nome.$invalid}">
-		<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" required><span ng-show="mainForm.nome.$error.required" class="help-inline">Requerido</span>
+
+	<div ng-messages="mainForm.nome.$error" ng-if="mainForm.nome.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Requerido</div>
 	</div>
-	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input> <br> <a href="#/categoriaquestionario/" class="btn">Cancelar</a>
-	<button ng-click="save()" ng-disabled="isClean() || mainForm.$invalid" class="btn btn-primary">Salvar</button>
+
+	<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true"><!-- <span ng-show="mainForm.nome.$error.required" class="help-inline">Requerido</span> -->
+	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input> 
+	<br> 
+	
+	<a href="#/categoriaquestionario/" class="btn">Cancelar</a>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.categoriaquestionario.id" class="btn btn-danger">Deletar</button>
 </form>

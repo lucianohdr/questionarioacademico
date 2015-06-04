@@ -15,7 +15,7 @@ App.controller("CategoriaQuestionarioControllerEdit", ['$scope', '$location', 'C
 	
 		var root = '/categoriaquestionario/';
 		var emptyObj = { categoriaquestionario: {"id":0, "nome":'', "descricao": ''}};
-		
+		//$scope.error= "Desculpe aconteceu um erro inesperado";
 		masterCreate($scope, $location, CategoriaQuestionarioResource, root, emptyObj);
 	}
 ]).controller("CategoriaQuestionarioControllerList", ['$scope', '$location', 'CategoriaQuestionarioResource',

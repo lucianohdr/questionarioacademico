@@ -10,6 +10,7 @@
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
+	<link href="css/ui.css" rel="stylesheet">
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -40,6 +41,7 @@
 	<script src="js/lib/angular/angular-1.3.15.js"></script>
 	<script src="js/lib/angular/angular-route-1.3.15.js"></script>
 	<script src="js/lib/angular/angular-resource-1.3.15.js"></script>
+	<script src="js/lib/angular/angula-messages-1.3.15.min.js"></script>
 	
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
