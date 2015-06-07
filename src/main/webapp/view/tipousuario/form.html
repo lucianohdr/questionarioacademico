@@ -3,11 +3,11 @@
 <form name="mainForm">
 
 	<div ng-messages="mainForm.nome.$error" ng-if="mainForm.nome.$dirty">
-		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Requerido</div>
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Obrigatório</div>
 	</div>
 	
 	<div ng-messages="mainForm.descricao.$error" ng-if="mainForm.descricao.$dirty">
-		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Descrição é Requerido</div>
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Descrição é Obrigatório</div>
 	</div>
 	
 	<label>Nome</label><input type="text" name="nome" ng-model="model.tipousuario.nome" ng-required="true">

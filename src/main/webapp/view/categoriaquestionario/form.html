@@ -6,10 +6,10 @@
 <form name="mainForm">
 
 	<div ng-messages="mainForm.nome.$error" ng-if="mainForm.nome.$dirty">
-		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Requerido</div>
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Obrigatório</div>
 	</div>
 
-	<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true"><!-- <span ng-show="mainForm.nome.$error.required" class="help-inline">Requerido</span> -->
+	<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true">
 	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input> 
 	<br> 
 	

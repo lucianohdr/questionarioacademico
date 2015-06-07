@@ -18,7 +18,8 @@
 			<property name="useUnicode" value="true" />
 			<property name="characterEncoding" value="UTF-8" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.import_files" value="sql/init.sql" />
 		</properties>
 	</persistence-unit>
 </persistence>
