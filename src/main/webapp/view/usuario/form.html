@@ -1,0 +1,42 @@
+<h2 ng-show="model.usuario.id">Alterar Usuário</h2>
+<h2 ng-hide="model.usuario.id">Adicionar Usuário</h2>
+<form name="mainForm" class="form-control">
+
+	<div ng-messages="mainForm.nome.$error" ng-if="mainForm.nome.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Obrigatório</div>
+	</div>
+	
+	<div ng-messages="mainForm.descricao.$error" ng-if="mainForm.descricao.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Descrição é Obrigatório</div>
+	</div>
+	
+	<div ng-messages="mainForm.email.$error" ng-if="mainForm.email.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo E-mail é Obrigatório</div>
+	</div>
+	
+	<div ng-messages="mainForm.identificacao.$error" ng-if="mainForm.identificaca.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Identificação é Obrigatório</div>
+	</div>
+	
+	<div ng-messages="mainForm.login.$error" ng-if="mainForm.login.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Login é Obrigatório</div>
+	</div>
+	
+	<div ng-messages="mainForm.tipousuario.$error" ng-if="mainForm.tipousuario.$dirty">
+		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Tipo usuário é Obrigatório</div>
+	</div>
+	
+	<label>Nome</label><input type="text" name="nome" ng-model="model.usuario.nome" ng-required="true">
+	<select id="tipousuarios" ng-model="model.usuario.tipousuario" name="tipousuario" ng-options="t.nome for t in tipousuarios track by t.id" ng-required="true">
+		<option value="">Selecione um valor</option>
+	</select>
+	<label>E-mail</label> <input type="text" name="email" ng-model="model.usuario.email" ng-required="true">
+	<label>Identificação</label> <input type="text" name="identificacao" ng-model="model.usuario.identificacao" ng-required="true"></input> 
+	<label>Login</label> <input type="text" name="login" ng-model="model.usuario.login" ng-required="true"></input>
+	 
+	<br> 
+	<a href="#/usuario/" class="btn">Cancelar</a>
+	
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+	<button ng-click="destroy()" ng-show="model.usuario.id" class="btn btn-danger">Deletar</button>
+</form>

@@ -6,9 +6,9 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		
 		.when('/', {controller: homeController, templateUrl:'view/index.html'})
 		
-		.when('/usuario/', {controller: usuarioController.read, templateUrl:'view/usuario/list.html'})
+		/*.when('/usuario/', {controller: usuarioController.read, templateUrl:'view/usuario/list.html'})
 		.when('/usuario/new', {controller: usuarioController.create, templateUrl:'view/usuario/form.html'})
-		.when('/usuario/edit/:id', {controller: usuarioController.update, templateUrl:'view/usuario/form.html'})
+		.when('/usuario/edit/:id', {controller: usuarioController.update, templateUrl:'view/usuario/form.html'})*/
 		
 		.when('/contato/edit/:id', {controller: 'ContatoControllerEdit', templateUrl:'view/contato/form.html'})
 		.when('/contato/new', {controller: 'ContatoControllerNew', templateUrl:'view/contato/form.html'})
@@ -29,6 +29,10 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/categoriaquestionario/edit/:id', {controller: 'CategoriaQuestionarioControllerEdit', templateUrl:'view/categoriaquestionario/form.html'})
 		.when('/categoriaquestionario/new', {controller: 'CategoriaQuestionarioControllerNew', templateUrl:'view/categoriaquestionario/form.html'})
 		.when('/categoriaquestionario/', {controller: 'CategoriaQuestionarioControllerList', templateUrl:'view/categoriaquestionario/list.html'})
+		
+		.when('/usuario/edit/:id', {controller: 'UsuarioControllerEdit', templateUrl:'view/usuario/form.html'})
+		.when('/usuario/new', {controller: 'UsuarioControllerNew', templateUrl:'view/usuario/form.html'})
+		.when('/usuario/', {controller: 'UsuarioControllerList', templateUrl:'view/usuario/list.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

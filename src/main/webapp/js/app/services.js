@@ -41,3 +41,8 @@ questionarioAcademicoServices.factory('CategoriaQuestionarioResource', ['$resour
 	var api = $resource(configUrl('categoriaquestionarios'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('usuarios'), params(), values());
+	return api;
+}]);

@@ -61,6 +61,7 @@
 	<script src="js/app/controller/tarefaController.js"></script>
 	<script src="js/app/controller/tipoUsuarioController.js"></script>
 	<script src="js/app/controller/categoriaQuestionarioController.js"></script>
+	<script src="js/app/controller/usuarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -71,9 +72,9 @@
 		<div class="navbar-inner">
 			<a class="brand" href="#/">Questionário Acadêmico</a>
 			<ul class="nav">
+				<li ng-class="navClass('usuario')"><a href="#/usuario/">Usuário</a></li>
 				<li ng-class="navClass('tipousuario')"><a href="#/tipousuario/">Tipo Usuário</a></li>
 				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
-				<li ng-class="navClass('contato')"><a href="#/contato/">Contato</a></li>
 			</ul>
 			
 			<a class="brand" ng-click="logout()" href="#/">Sair</a>
