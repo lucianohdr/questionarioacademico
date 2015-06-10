@@ -45,7 +45,7 @@
 	
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
-
+	
 	<script src="js/app/main.js"></script>
 	
 	<script src="js/app/services.js"></script>

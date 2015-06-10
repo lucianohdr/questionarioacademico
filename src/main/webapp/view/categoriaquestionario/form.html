@@ -1,15 +1,10 @@
 <h2 ng-show="model.categoriaquestionario.id">Alterar Categoria de Questionário</h2>
 <h2 ng-hide="model.categoriaquestionario.id">Adicionar Categoria de Questionário</h2>
-<!-- <ui-alert title="Ops, aconteceu um problema">
-	{{error}}
-</ui-alert> -->
 <form name="mainForm">
 
-	<div ng-messages="mainForm.nome.$error" ng-if="mainForm.nome.$dirty">
-		<div ng-message="required"  class="ui-alert ui-alert-message">Campo Nome é Obrigatório</div>
-	</div>
-
 	<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true">
+	<span ng-show="mainForm.nome.$error.required && mainForm.nome.$dirty" class="alert">Campo obrigátorio</span>
+	
 	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input> 
 	<br> 
 	
