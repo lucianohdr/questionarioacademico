@@ -1,6 +1,5 @@
 var App = angular.module('QuestionarioAcademico', ['rest.service','ui.bootstrap','ui.date', 'ngRoute', 'ngMessages']);
 
-
 App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvider) {
 	
 	$routeProvider

@@ -6,17 +6,19 @@
 		<tr><td><table width="98%">
 			<tr>
 				<th width="100">Nome</th>
-				<th width="200">Descrição</th>
-				<th width="200">Observação</th>
+				<th width="200">Identificação</th>
+				<th width="200">E-mail</th>
+				<th width="200">Tipo Usuário</th>
 				<th width="10"><a href="#/usuario/new"><i class="icon-plus-sign"></i></a></th>
 			</tr>
 		</table></td></tr>
 		<tr><td><div class="scroll" do-scroll="load()"><table width="99%">
 			<tr ng-repeat="usuario in list | filter:search | orderBy:'nome'">
 				<td width="100">{{usuario.nome}}</td>
-				<td width="200">{{usuario.descricao}}</td>
-				<td width="200">{{usuario.observacao}}</td>
-				<td width="10"><a href="#/usuario/edit/{{usuario.id}}"><i class="icon-pencil"></i></a></td>
+				<td width="200">{{usuario.identificacao}}</td>
+				<td width="200">{{usuario.email}}</td>
+				<td width="200">{{usuario.tipousuario.nome}}</td>
+				<td width="10"><a href="#/usuario/edit/{{usuario.id}}"><i title="Editar registro" class="icon-pencil"></i></a></td>
 				
 			</tr>
 		</table></div></td></tr>

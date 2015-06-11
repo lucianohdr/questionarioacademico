@@ -1,6 +1,6 @@
 <h2 ng-show="model.usuario.id">Alterar Usuário</h2>
 <h2 ng-hide="model.usuario.id">Adicionar Usuário</h2>
-<form name="mainForm" class="form-control form-group">
+<form name="mainForm" class="form-control">
 
 	<div class="control-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.usuario.nome" ng-required="true">
@@ -12,8 +12,9 @@
 		</select>
 		<span ng-show="mainForm.tipousuario.$error.required && mainForm.tipousuario.$dirty" class="alert">Campo obrigátorio</span>
 		
-		<label>E-mail</label> <input type="text" name="email" ng-model="model.usuario.email" ng-required="true">
+		<label>E-mail</label> <input type="text" name="email" ng-model="model.usuario.email" ng-required="true" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
 		<span ng-show="mainForm.email.$error.required && mainForm.email.$dirty" class="alert">Campo obrigátorio</span>
+		<span ng-show="mainForm.email.$error.pattern && mainForm.email.$dirty" class="alert">E-mail inválido</span>
 		
 		<label>Identificação</label> <input type="text" name="identificacao" ng-model="model.usuario.identificacao" ng-required="true"></input>
 		<span ng-show="mainForm.identificacao.$error.required && mainForm.identificacao.$dirty" class="alert">Campo obrigátorio</span>
