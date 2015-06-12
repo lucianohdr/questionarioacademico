@@ -1,0 +1,16 @@
+<h2 ng-show="model.aluno.id">Alterar Aluno</h2>
+<h2 ng-hide="model.aluno.id">Adicionar Aluno</h2>
+<form name="mainForm">
+	<label>Nome</label><input type="text" name="nome" ng-model="model.aluno.pessoa.nome" required>
+	<span ng-show="mainForm.nome.$error.required && mainForm.nome.$dirty" class="alert">Campo obrigátorio</span>
+	
+	<label>E-mail</label> <input type="text" name="email" ng-model="model.aluno.pessoa.email" ng-required="true" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
+	<span ng-show="mainForm.email.$error.required && mainForm.email.$dirty" class="alert">Campo obrigátorio</span>
+	<span ng-show="mainForm.email.$error.pattern && mainForm.email.$dirty" class="alert">E-mail inválido</span>
+	
+	<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra"></input> 
+	<br> 
+	<a href="#/aluno/" class="btn">Cancelar</a>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+	<button ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
+</form>
