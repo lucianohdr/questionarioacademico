@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -16,7 +17,7 @@ public class Pessoa extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	@Column(name="email", length=60, nullable=false)
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Usuario usuario;
 	
 	public String getNome() {

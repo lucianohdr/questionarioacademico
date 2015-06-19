@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -13,7 +14,7 @@ public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.E
 	@Column(name="ra", length=40)
 	private String ra;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Pessoa pessoa;
 	
 	public String getRa() {

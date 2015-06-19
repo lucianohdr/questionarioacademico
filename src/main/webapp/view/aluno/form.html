@@ -10,6 +10,17 @@
 	
 	<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra"></input> 
 	<br> 
+	<fieldset>
+		<legend>Dados de usuário:</legend>
+		<label>Login:</label> <input type="text" name="login" ng-model="model.aluno.pessoa.usuario.login" ng-required="true">
+		<span ng-show="mainForm.login.$error.required && mainForm.login.$dirty" class="alert">Campo obrigátorio</span>
+		
+		<label>Senha:</label> <input type="password" id="senha" name="senha" ng-model="model.aluno.pessoa.usuario.senha" ng-required="true">
+		<span ng-show="mainForm.senha.$error.required && mainForm.senha.$dirty" class="alert">Campo obrigátorio</span>
+		<label>Confirme sua senha:</label> <input id="confirmsenha" type="password" name="confimsenha" ng-required="true" pw-check="senha">
+		<span ng-show="mainForm.confirmsenha.$error.pwmatch" class="alert">Confirmação de senha </span>
+		
+	</fieldset>
 	<a href="#/aluno/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>

@@ -46,3 +46,8 @@ questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($
 	var api = $resource(configUrl('usuarios'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('AlunoResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('alunos'), params(), values());
+	return api;
+}]);

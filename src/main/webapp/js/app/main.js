@@ -1,4 +1,4 @@
-var App = angular.module('QuestionarioAcademico', ['rest.service','ui.bootstrap','ui.date', 'ngRoute', 'ngMessages']);
+var App = angular.module('QuestionarioAcademico', ['rest.service','ui.bootstrap','ui.date', 'ngRoute', 'ngMessages', 'ngModel']);
 
 App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvider) {
 	
@@ -29,6 +29,10 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/usuario/edit/:id', {controller: 'UsuarioControllerEdit', templateUrl:'view/usuario/form.html'})
 		.when('/usuario/new', {controller: 'UsuarioControllerNew', templateUrl:'view/usuario/form.html'})
 		.when('/usuario/', {controller: 'UsuarioControllerList', templateUrl:'view/usuario/list.html'})
+		
+		.when('/aluno/edit/:id', {controller: 'AlunoControllerEdit', templateUrl:'view/aluno/form.html'})
+		.when('/aluno/new', {controller: 'AlunoControllerNew', templateUrl:'view/aluno/form.html'})
+		.when('/aluno/', {controller: 'AlunoControllerList', templateUrl:'view/aluno/list.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

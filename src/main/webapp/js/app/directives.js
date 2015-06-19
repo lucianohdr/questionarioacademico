@@ -71,6 +71,23 @@ App.directive('doScroll', function() {
 	};
 });
 
+/*
+ * TODO: resolver problema de falha de inicialização
+ */
+App.directive("pwCheck", [function(value){
+	return {
+		require: 'ngModel',
+		link: function(scope, elem, attrs, ctrl){
+			var me = attrs.ngModel;
+			var matchTo = attrs.pwCheck;
+			
+			scope.$watch('[me, matchTo]', function(value){
+				ctrl.$setValidity('pwmatch', scope[me] === scope[matchTo]);
+			});
+		}
+	}
+}]);
+
 App.directive("uiAlert", function(){
 	return {
 		templateUrl: "view/alert.html",
