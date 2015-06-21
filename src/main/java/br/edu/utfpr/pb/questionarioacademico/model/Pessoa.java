@@ -17,7 +17,7 @@ public class Pessoa extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	@Column(name="email", length=60, nullable=false)
 	private String email;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	
 	public String getNome() {

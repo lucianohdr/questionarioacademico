@@ -14,7 +14,7 @@ public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.E
 	@Column(name="ra", length=40)
 	private String ra;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Pessoa pessoa;
 	
 	public String getRa() {

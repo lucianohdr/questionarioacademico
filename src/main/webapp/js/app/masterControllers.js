@@ -18,7 +18,6 @@ masterRead = function($scope, $location, Resource) {
 
 masterCreate = function($scope, $location, Resource, root, emptyObj) {
 	$scope.model = new Resource(emptyObj);
-	
 	$scope.save = function() {
 		$scope.model.$save(function(res) {
 			$location.path(root);
