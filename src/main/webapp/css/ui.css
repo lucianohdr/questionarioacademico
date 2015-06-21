@@ -15,3 +15,17 @@
 .ui-alert-message{
 	color: #AF4341;
 }
+
+.messages{
+	color:  #AF4341;
+	padding-top : 1px;
+	font-size: 13px;
+}
+
+.form-group{
+	padding-bottom: 4px;
+}
+
+.form-group input{
+	margin-bottom: 5px;
+}

@@ -1,11 +1,14 @@
 <h2 ng-show="model.categoriaquestionario.id">Alterar Categoria de Questionário</h2>
 <h2 ng-hide="model.categoriaquestionario.id">Adicionar Categoria de Questionário</h2>
 <form name="mainForm">
-
-	<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true">
-	<span ng-show="mainForm.nome.$error.required && mainForm.nome.$dirty" class="alert">Campo obrigátorio</span>
+	<div class="form-group">
+		<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true">
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+	</div>
 	
-	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input> 
+	<div class="form-group">
+		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.categoriaquestionario.descricao"></input>
+	</div> 
 	<br> 
 	
 	<a href="#/categoriaquestionario/" class="btn">Cancelar</a>

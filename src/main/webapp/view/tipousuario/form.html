@@ -2,13 +2,19 @@
 <h2 ng-hide="model.tipousuario.id">Adicionar Tipo de Usuário</h2>
 <form name="mainForm" class="form-control">
 
-	<label>Nome</label><input type="text" name="nome" ng-model="model.tipousuario.nome" ng-required="true">
-	<span ng-show="mainForm.nome.$error.required && mainForm.nome.$dirty" class="alert">Campo obrigátorio</span>
+	<div class="form-group">
+		<label>Nome</label><input type="text" name="nome" ng-model="model.tipousuario.nome" ng-required="true">
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+	</div>
 	
-	<label>Descrição</label> <input type="text" name="descricao" ng-model="model.tipousuario.descricao" ng-required="true">
-	<span ng-show="mainForm.descricao.$error.required && mainForm.descricao.$dirty" class="alert">Campo obrigátorio</span>
+	<div class="form-group">
+		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.tipousuario.descricao" ng-required="true">
+		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error" ng-messages-include="view/messages.html"></div>
+	</div>
 	
-	<label>Observação</label> <textarea class="" rows="5" name="observacao" ng-model="model.tipousuario.observacao"></textarea> 
+	<div class="form-group">
+		<label>Observação</label> <textarea class="" rows="5" name="observacao" ng-model="model.tipousuario.observacao"></textarea> 
+	</div>
 	<br> 
 	<a href="#/tipousuario/" class="btn">Cancelar</a>
 	
