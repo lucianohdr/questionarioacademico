@@ -33,6 +33,10 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/aluno/edit/:id', {controller: 'AlunoControllerEdit', templateUrl:'view/aluno/form.html'})
 		.when('/aluno/new', {controller: 'AlunoControllerNew', templateUrl:'view/aluno/form.html'})
 		.when('/aluno/', {controller: 'AlunoControllerList', templateUrl:'view/aluno/list.html'})
+		
+		.when('/professor/edit/:id', {controller: 'ProfessorControllerEdit', templateUrl:'view/professor/form.html'})
+		.when('/professor/new', {controller: 'ProfessorControllerNew', templateUrl:'view/professor/form.html'})
+		.when('/professor/', {controller: 'ProfessorControllerList', templateUrl:'view/professor/list.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

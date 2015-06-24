@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="aluno")
 public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 
-	@Column(name="ra", length=40)
+	@Column(name="ra", length=10)
 	private String ra;
 	
 	@OneToOne(cascade=CascadeType.ALL)

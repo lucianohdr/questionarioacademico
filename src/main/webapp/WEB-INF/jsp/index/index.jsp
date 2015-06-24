@@ -63,6 +63,7 @@
 	<script src="js/app/controller/categoriaQuestionarioController.js"></script>
 	<script src="js/app/controller/usuarioController.js"></script>
 	<script src="js/app/controller/alunoController.js"></script>
+	<script src="js/app/controller/professorController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -77,6 +78,7 @@
 				<li ng-class="navClass('tipousuario')"><a href="#/tipousuario/">Tipo Usuário</a></li>
 				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
 				<li ng-class="navClass('aluno')"><a href="#/aluno/">Aluno</a></li>
+				<li ng-class="navClass('professor')"><a href="#/professor/">Professor</a></li>
 			</ul>
 			
 			<a class="brand" ng-click="logout()" href="#/">Sair</a>

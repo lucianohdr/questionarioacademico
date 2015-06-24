@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -10,10 +11,10 @@ import javax.persistence.Table;
 @Table(name="professor")
 public class Professor extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 
-	@Column(name="matricula")
+	@Column(name="matricula", length=10)
 	private String matricula;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Pessoa pessoa;
 	
 	public String getMatricula() {

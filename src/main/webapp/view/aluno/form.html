@@ -7,12 +7,14 @@
 	</div>
 	
 	<div class="form-group">
-		<label>E-mail</label> <input type="email" name="email" ng-model="model.aluno.pessoa.email" ng-required="true" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
+		<!-- TODO: repensar validacao de e-mails -->
+		<label>E-mail</label> <input type="email" name="email" ng-model="model.aluno.pessoa.email" ng-required="true">
 		<div ng-if="mainForm.email.$dirty" ng-messages="mainForm.email.$error" ng-messages-include="view/messages.html"></div>
 	</div>
 	
 	<div class="form-group">
-		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra"></input>
+		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-minlength="10"></input>
+		<div ng-if="mainForm.ra.$dirty" ng-messages="mainForm.ra.$error" ng-messages-include="view/messages.html"></div>
 	</div>
 	 
 	<br> 
