@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="aluno")
 public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
-
-	@Column(name="ra", length=10)
+	
+	@Column(name="ra", length=15)
 	private String ra;
 	
 	@OneToOne(cascade=CascadeType.ALL)

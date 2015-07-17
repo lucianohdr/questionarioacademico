@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="pessoa")
 public class Pessoa extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
-
+	
 	@Column(name="nome", length=60, nullable=false)
 	private String nome;
 	
@@ -20,6 +20,12 @@ public class Pessoa extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	@OneToOne(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public String getNome() {
 		return nome;
 	}

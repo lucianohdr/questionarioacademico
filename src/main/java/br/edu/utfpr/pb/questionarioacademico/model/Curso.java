@@ -1,17 +1,24 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import br.edu.utfpr.pb.questionarioacademico.model.commons.Entity;
 
 @SuppressWarnings("serial")
-@Entity
-@Table(name="departamento")
-public class Departamento extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
+@javax.persistence.Entity
+@Table(name="curso")
+public class Curso extends Entity {
 
 	@OneToOne
+	@NotNull
 	private Professor professor;
+	
+	@OneToOne
+	@NotNull
+	private Departamento departamento;
 	
 	@Column(name="nome", length=60)
 	private String nome;
@@ -25,6 +32,12 @@ public class Departamento extends br.edu.utfpr.pb.questionarioacademico.model.co
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -37,5 +50,4 @@ public class Departamento extends br.edu.utfpr.pb.questionarioacademico.model.co
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
 }

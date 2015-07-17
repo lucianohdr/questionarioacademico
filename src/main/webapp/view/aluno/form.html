@@ -13,7 +13,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-minlength="10"></input>
+		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-maxlength="15"></input>
 		<div ng-if="mainForm.ra.$dirty" ng-messages="mainForm.ra.$error" ng-messages-include="view/messages.html"></div>
 	</div>
 	 

@@ -16,18 +16,20 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @SuppressWarnings("serial")
 public class Entity implements Serializable {
+	//TODO: Repensar forma de gerar os ids
 	
-	@Id @GeneratedValue
-	protected Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Long getId() {
-		return id;
-	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {

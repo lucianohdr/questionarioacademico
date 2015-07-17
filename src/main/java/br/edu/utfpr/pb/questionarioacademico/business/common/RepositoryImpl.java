@@ -95,7 +95,4 @@ public class RepositoryImpl<T extends Entity, I extends Serializable> {
 		ParameterizedType tipoGenerico = (ParameterizedType) clazz.getGenericSuperclass();
 		return (Class<T>) tipoGenerico.getActualTypeArguments()[0];
 	}
-	
-	
-	
 }

@@ -14,7 +14,7 @@
 		<tr><td><div class="scroll" do-scroll="load()"><table width="99%">
 			<tr ng-repeat="professor in list | filter:search | orderBy:'nome'">
 				<td width="100">{{professor.pessoa.nome}}</td>
-				<td width="200">{{professor.ra}}</td>
+				<td width="200">{{professor.matricula}}</td>
 				<td width="200">{{professor.pessoa.email}}</td>
 				<td width="10"><a href="#/professor/edit/{{professor.id}}"><i class="icon-pencil"></i></a></td>
 			</tr>

@@ -1,7 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
-import javax.ws.rs.Produces;
 
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;

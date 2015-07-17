@@ -10,3 +10,4 @@ INSERT INTO categoriaquestionario (id,descricao,nome ) values (1, 'Auto-avaliaç
 INSERT INTO categoriaquestionario (id,descricao,nome ) values (2, 'Auto-avaliação do professor', 'Auto-avaliação professor');
 INSERT INTO categoriaquestionario (id,descricao,nome ) values (3, 'Avaliação da turma', 'Avaliação turma');
 INSERT INTO categoriaquestionario (id,descricao,nome ) values (4, 'Avaliação do professor', 'Avaliação professor');
+
