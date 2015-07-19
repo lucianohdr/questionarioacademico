@@ -1,11 +1,18 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.ManyToAny;
 import org.joda.time.LocalDate;
 
 @SuppressWarnings("serial")
@@ -29,6 +36,18 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	
 	@Column(name="datavalidade")
 	private LocalDate datavalidade;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="alunorespondido",
+			joinColumns=@JoinColumn(name="idaluno"),
+			inverseJoinColumns=@JoinColumn(name="idquestionario"))
+	private Set<Aluno> alunosRespondidos;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="professorrespondido",
+	joinColumns=@JoinColumn(name="idprofessor"),
+	inverseJoinColumns=@JoinColumn(name="idquestionario"))
+	private Set<Professor> professoresRespondidos;
 	
 	public Categoriaquestionario getCategoriaquestionario() {
 		return categoriaquestionario;
@@ -59,5 +78,17 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	}
 	public void setDatavalidade(LocalDate datavalidade) {
 		this.datavalidade = datavalidade;
+	}
+	public Set<Aluno> getAlunosRespondidos() {
+		return alunosRespondidos;
+	}
+	public void setAlunosRespondidos(Set<Aluno> alunosRespondidos) {
+		this.alunosRespondidos = alunosRespondidos;
+	}
+	public Set<Professor> getProfessoresRespondidos() {
+		return professoresRespondidos;
+	}
+	public void setProfessoresRespondidos(Set<Professor> professoresRespondidos) {
+		this.professoresRespondidos = professoresRespondidos;
 	}
 }

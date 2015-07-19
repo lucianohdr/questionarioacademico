@@ -1,8 +1,13 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -10,21 +15,17 @@ import javax.persistence.Table;
 @Table(name="usuario")
 public class Usuario extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 
-	@OneToOne
-	private Tipousuario tipousuario;
-	
 	@Column(name="login", length=60, nullable=false)
 	private String login;
 	
 	@Column(name="senha", nullable=false)
 	private String senha;
 	
-	public Tipousuario getTipousuario() {
-		return tipousuario;
-	}
-	public void setTipousuario(Tipousuario tipousuario) {
-		this.tipousuario = tipousuario;
-	}
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="usuario_perfil",
+			joinColumns=@JoinColumn(name="id_usuario"),
+			inverseJoinColumns=@JoinColumn(name="id_perfil"))
+	private Set<Perfil> perfis;
 	
 	public String getLogin() {
 		return login;
@@ -37,5 +38,12 @@ public class Usuario extends br.edu.utfpr.pb.questionarioacademico.model.commons
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis;
+	}
+	public void setPerfis(Set<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 }

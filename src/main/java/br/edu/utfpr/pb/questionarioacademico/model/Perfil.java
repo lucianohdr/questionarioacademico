@@ -6,9 +6,8 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="tipousuario")
-public class Tipousuario extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
-	
+@Table(name="perfil")
+public class Perfil extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 	
 	@Column(name="nome", nullable=false, length=200)
 	private String nome;

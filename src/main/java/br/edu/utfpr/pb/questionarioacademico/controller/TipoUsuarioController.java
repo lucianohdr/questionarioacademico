@@ -1,4 +1,4 @@
-package br.edu.utfpr.pb.questionarioacademico.controller;
+/*package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
@@ -10,8 +10,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
-import br.edu.utfpr.pb.questionarioacademico.model.Tipousuario;
-import br.edu.utfpr.pb.questionarioacademico.repository.TipoUsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
+import br.edu.utfpr.pb.questionarioacademico.repository.PerfilRepository;
 
 @SuppressWarnings("serial")
 @br.com.caelum.vraptor.Controller
@@ -19,21 +19,20 @@ import br.edu.utfpr.pb.questionarioacademico.repository.TipoUsuarioRepository;
 public class TipoUsuarioController extends Controller{
 
 	private Result result;
-	private TipoUsuarioRepository repository;
+	private PerfilRepository repository;
 	
 	@Inject
 	public TipoUsuarioController(Result result,
-			TipoUsuarioRepository repository) {
+			PerfilRepository repository) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
 	}
 	
-	/*CDI construtor*/	
+	CDI construtor	
 	protected TipoUsuarioController() {
 		this(null, null);
 	}
-	
 	
 	@Get
 	@Path({"","/"})
@@ -56,7 +55,7 @@ public class TipoUsuarioController extends Controller{
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(Tipousuario tipousuario) {
+	public void insert(Perfil tipousuario) {
 		repository.insert(tipousuario);
 		result.nothing();
 	}
@@ -64,15 +63,15 @@ public class TipoUsuarioController extends Controller{
 	@Put
 	@Path("/{tipousuario.id}")
 	@Consumes("application/json")
-	public void update(Tipousuario tipousuario) {
+	public void update(Perfil tipousuario) {
 		repository.update(tipousuario);
 		result.nothing();
 	}
 
 	@Delete
 	@Path("/{tipousuario.id}")
-	public void delete(Tipousuario tipousuario) {
+	public void delete(Perfil tipousuario) {
 		repository.delete(tipousuario);
 		result.nothing();
 	}
-}
+}*/
