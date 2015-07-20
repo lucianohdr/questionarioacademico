@@ -43,11 +43,25 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 			inverseJoinColumns=@JoinColumn(name="idquestionario"))
 	private Set<Aluno> alunosRespondidos;
 	
+	public void addAluno(Aluno aluno){
+		getAlunosRespondidos().add(aluno);
+	}
+	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="professorrespondido",
 	joinColumns=@JoinColumn(name="idprofessor"),
 	inverseJoinColumns=@JoinColumn(name="idquestionario"))
 	private Set<Professor> professoresRespondidos;
+	
+	public void addProfessor(Professor professor){
+		getProfessoresRespondidos().add(professor);
+	}
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="composicaoquestionario",
+	joinColumns=@JoinColumn(name="idpergunta"),
+	inverseJoinColumns=@JoinColumn(name="idquestionario"))
+	private Set<Pergunta> perguntas;
 	
 	public Categoriaquestionario getCategoriaquestionario() {
 		return categoriaquestionario;
