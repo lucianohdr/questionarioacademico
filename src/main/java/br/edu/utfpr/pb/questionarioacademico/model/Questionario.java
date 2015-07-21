@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.ManyToAny;
 import org.joda.time.LocalDate;
 
 @SuppressWarnings("serial")
@@ -31,7 +30,6 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	private String observacao;
 	
 	@Column(name="dataliberacao")
-	
 	private LocalDate dataliberacao;
 	
 	@Column(name="datavalidade")

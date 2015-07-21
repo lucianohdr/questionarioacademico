@@ -37,6 +37,24 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/professor/edit/:id', {controller: 'ProfessorControllerEdit', templateUrl:'view/professor/form.html'})
 		.when('/professor/new', {controller: 'ProfessorControllerNew', templateUrl:'view/professor/form.html'})
 		.when('/professor/', {controller: 'ProfessorControllerList', templateUrl:'view/professor/list.html'})
+		
+		//TODO: usar o resolve nas rotas
+		
+		.when('/curso/edit/:id', {controller: 'CursoControllerEdit', templateUrl:'view/curso/form.html'})
+		.when('/curso/new', {controller: 'CursoControllerNew', templateUrl:'view/curso/form.html'})
+		.when('/curso/', {controller: 'CursoControllerList', templateUrl:'view/curso/list.html'})
+		
+		.when('/departamento/edit/:id', {controller: 'DepartamentoControllerEdit', templateUrl:'view/departamento/form.html'})
+		.when('/departamento/new', {controller: 'DepartamentoControllerNew', templateUrl:'view/departamento/form.html'})
+		.when('/departamento/', {controller: 'DepartamentoControllerList', templateUrl:'view/departamento/list.html'})
+		
+		.when('/turma/edit/:id', {controller: 'TurmaControllerEdit', templateUrl:'view/turma/form.html'})
+		.when('/turma/new', {controller: 'TurmaControllerNew', templateUrl:'view/turma/form.html'})
+		.when('/turma/', {controller: 'TurmaControllerList', templateUrl:'view/turma/list.html'})
+		
+		.when('/disciplina/edit/:id', {controller: 'DisciplinaControllerEdit', templateUrl:'view/disciplina/form.html'})
+		.when('/disciplina/new', {controller: 'DisciplinaControllerNew', templateUrl:'view/disciplina/form.html'})
+		.when('/disciplina/', {controller: 'DisciplinaControllerList', templateUrl:'view/disciplina/list.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

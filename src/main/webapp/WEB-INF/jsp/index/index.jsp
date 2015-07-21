@@ -64,6 +64,10 @@
 	<script src="js/app/controller/usuarioController.js"></script>
 	<script src="js/app/controller/alunoController.js"></script>
 	<script src="js/app/controller/professorController.js"></script>
+	<script src="js/app/controller/departamentoController.js"></script>
+	<script src="js/app/controller/disciplinaController.js"></script>
+	<script src="js/app/controller/turmaController.js"></script>
+	<script src="js/app/controller/cursoController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -79,6 +83,10 @@
 				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
 				<li ng-class="navClass('aluno')"><a href="#/aluno/">Aluno</a></li>
 				<li ng-class="navClass('professor')"><a href="#/professor/">Professor</a></li>
+				<li ng-class="navClass('departamento')"><a href="#/departamento/">Departamento</a></li>
+				<li ng-class="navClass('curso')"><a href="#/curso/">Curso</a></li>
+				<li ng-class="navClass('turma')"><a href="#/turma/">Turma</a></li>
+				<li ng-class="navClass('disciplina')"><a href="#/disciplina/">Disciplina</a></li>
 			</ul>
 			
 			<a class="brand" ng-click="logout()" href="#/">Sair</a>

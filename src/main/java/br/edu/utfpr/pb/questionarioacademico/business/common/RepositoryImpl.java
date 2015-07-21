@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import br.edu.utfpr.pb.questionarioacademico.model.commons.Entity;
 
@@ -84,7 +82,6 @@ public class RepositoryImpl<T extends Entity, I extends Serializable> {
 		return null;
 	}
 	
-	@SuppressWarnings({ "unchecked" })
 	private Class<T> retornaTipo() {
 		Class<?> clazz = this.getClass();
 		

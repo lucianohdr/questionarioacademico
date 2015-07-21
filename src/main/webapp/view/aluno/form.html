@@ -16,7 +16,22 @@
 		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-maxlength="15"></input>
 		<div ng-if="mainForm.ra.$dirty" ng-messages="mainForm.ra.$error" ng-messages-include="view/messages.html"></div>
 	</div>
+	
+	<div class="form-group">
+		<label>Curso</label> 
+		<select id="cursos" ng-model="model.aluno.curso" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
+			<option value="">Selecione um Curso</option>
+		</select>
+		<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error" ng-messages-include="view/messages.html"></div>
+	</div>
 	 
+	<div class="form-group">
+		<label>Turma</label> 
+		<select id="turmas" ng-model="model.aluno.turma" name="turma" ng-options="t.nome for t in turmas track by t.id" ng-required="true">
+			<option value="">Selecione um Turma</option>
+		</select>
+		<div ng-if="mainForm.turma.$dirty" ng-messages="mainForm.turma.$error" ng-messages-include="view/messages.html"></div>
+	</div> 
 	<br> 
 	<fieldset>
 		<legend>Dados de usuário:</legend>

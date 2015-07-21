@@ -1,0 +1,26 @@
+<h2 ng-show="model.departamento.id">Alterar Departamento</h2>
+<h2 ng-hide="model.departamento.id">Adicionar Departamento</h2>
+<form name="mainForm">
+	<div class="form-group">
+		<label>Nome</label><input type="text" name="nome" ng-model="model.departamento.nome" required>
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	
+	<div class="form-group">
+		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.departamento.descricao" ng-required="true">
+		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	
+	<div class="form-group">
+		<label>Chefe de Departamento</label> 
+		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" ng-required="true">
+			<option></option>
+		</select>
+		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	 
+	<br> 
+	<a href="#/departamento/" class="btn">Cancelar</a>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+	<button ng-click="destroy()" ng-show="model.departamento.id" class="btn btn-danger">Deletar</button>
+</form>

@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 @SuppressWarnings("serial")
 @Entity
@@ -17,6 +16,12 @@ public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.E
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Pessoa pessoa;
+
+	@OneToOne
+	private Curso curso;
+	
+	@OneToOne
+	private Turma turma;
 	
 	public String getRa() {
 		return ra;
@@ -29,5 +34,17 @@ public class Aluno extends br.edu.utfpr.pb.questionarioacademico.model.commons.E
 	}
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+	public Curso getCurso() {
+		return curso;
+	}
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+	public Turma getTurma() {
+		return turma;
+	}
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 }

@@ -56,3 +56,23 @@ questionarioAcademicoServices.factory('ProfessorResource', ['$resource',function
 	var api = $resource(configUrl('professors'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('TurmaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('turmas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('DepartamentoResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('departamentos'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('CursoResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('cursos'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('DisciplinaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('disciplinas'), params(), values());
+	return api;
+}]);

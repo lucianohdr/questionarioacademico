@@ -1,0 +1,34 @@
+<h2 ng-show="model.disciplina.id">Alterar Disciplina</h2>
+<h2 ng-hide="model.disciplina.id">Adicionar Disciplina</h2>
+<form name="mainForm">
+	<div class="form-group">
+		<label>Nome</label><input type="text" name="nome" ng-model="model.disciplina.nome" required>
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	
+	<div class="form-group">
+		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.disciplina.descricao" ng-required="true">
+		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	
+	<div class="form-group">
+		<label>Professor</label> 
+		<select id="professores" ng-model="model.disciplina.professor" name="professor" ng-options="p.nome for p in professores track by t.id" ng-required="true">
+			<option value="">Selecione um professor</option>
+		</select>
+		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	
+	<div class="form-group">
+		<label>Curso</label> 
+		<select id="cursos" ng-model="model.disciplina.curso" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
+			<option value="">Selecione um Curso</option>
+		</select>
+		<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error" ng-messages-include="view/messages.html"></div>
+	</div>
+	 
+	<br> 
+	<a href="#/disciplina/" class="btn">Cancelar</a>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+	<button ng-click="destroy()" ng-show="model.disciplina.id" class="btn btn-danger">Deletar</button>
+</form>
