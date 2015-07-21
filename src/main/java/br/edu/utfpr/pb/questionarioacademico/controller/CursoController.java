@@ -27,6 +27,11 @@ public class CursoController extends br.edu.utfpr.pb.questionarioacademico.contr
 		this.result = result;
 		this.repository = repository;
 	}
+	
+	/*CDI only*/
+	protected CursoController() {
+		this(null, null);
+	}
 
 	@Get
 	@Path({"","/"})

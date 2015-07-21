@@ -13,7 +13,7 @@
 	
 	<div class="form-group">
 		<label>Coordenador do Curso</label> 
-		<select id="professores" ng-model="model.curso.professor" name="professor" ng-options="t.nome for t in professores track by t.id" ng-required="true">
+		<select id="professores" ng-model="model.curso.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" ng-required="true">
 			<option value="">Selecione um professor</option>
 		</select>
 		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error" ng-messages-include="view/messages.html"></div>

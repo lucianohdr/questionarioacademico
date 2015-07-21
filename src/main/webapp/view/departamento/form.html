@@ -13,12 +13,13 @@
 	
 	<div class="form-group">
 		<label>Chefe de Departamento</label> 
+		<!-- //TODO: veriricar validacao de selects requeridos -->
 		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" ng-required="true">
-			<option></option>
+			<option value="">Selecione</option>
 		</select>
 		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error" ng-messages-include="view/messages.html"></div>
 	</div>
-	 
+	 <!-- {{mainForm.professor.$error}} -->
 	<br> 
 	<a href="#/departamento/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
