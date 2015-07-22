@@ -20,8 +20,8 @@
 			<option value="">Selecione um curso</option>
 	</select>
 	<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<div ng-messages-include="view/messages.html"></div>
+	</div>
 	<br> 
 	<a href="#/turma/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>

@@ -27,7 +27,7 @@
 	
 	<div class="form-group">
 		<label>Departamento</label> 
-		<select id="departamentos" ng-model="model.curso.departamento" name="departamento" ng-options="d.nome for d in departamentos track by t.id" ng-required="true">
+		<select id="departamentos" ng-model="model.curso.departamento" name="departamento" ng-options="d.nome for d in departamentos track by d.id" ng-required="true">
 			<option value="">Selecione um Departamento</option>
 		</select>
 		<div ng-if="mainForm.departamento.$dirty" ng-messages="mainForm.departamento.$error">

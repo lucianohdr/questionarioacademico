@@ -7,8 +7,10 @@
 			<div ng-messages-include="view/messages.html"></div>
 		</div>
 	</div>
+	<!-- {{model}} -->
 	<div class="form-group">
-		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.departamento.descricao" ng-required="true">
+		<label>Descrição</label> 
+		<input type="text" name="descricao" ng-model="model.departamento.descricao" required>
 		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error">
 			<div ng-messages-include="view/messages.html"></div>
 		</div>
@@ -17,13 +19,13 @@
 	<div class="form-group">
 		<label>Chefe de Departamento</label> 
 		<!-- //TODO: veriricar validacao de selects requeridos -->
-		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id">
+		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" required>
 			<option value="">Selecione</option>
 			<option value="1">Selecione 2</option>
 		</select>
-		<!-- <div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error">
+		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error">
 			<div ng-messages-include="view/messages.html"></div>
-		</div> -->
+		</div>
 	</div>
 	<br> 
 	<a href="#/departamento/" class="btn">Cancelar</a>
