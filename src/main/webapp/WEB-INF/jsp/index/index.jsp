@@ -38,10 +38,17 @@
 	
 	<script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script>
 	
-	<script src="js/lib/angular/angular-1.3.15.js"></script>
-	<script src="js/lib/angular/angular-route-1.3.15.js"></script>
-	<script src="js/lib/angular/angular-resource-1.3.15.js"></script>
-	<script src="js/lib/angular/angula-messages-1.3.15.min.js"></script>
+	<!-- <script src="js/lib/angular/angular-1.3.15.js"></script> -->
+	<script src="js/lib/angular/angular-1.4.3.min.js"></script>
+	
+	<!-- <script src="js/lib/angular/angular-route-1.3.15.js"></script> -->
+	<script src="js/lib/angular/angular-route-1.4.3.min.js"></script>
+	
+	<!-- <script src="js/lib/angular/angular-resource-1.3.15.js"></script> -->
+	<script src="js/lib/angular/angular-resource-1.4.3.min.js"></script>
+	
+	<!-- <script src="js/lib/angular/angula-messages-1.3.15.min.js"></script> -->
+	<script src="js/lib/angular/angular-messages-1.4.3.min.js"></script>
 	
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>

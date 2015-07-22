@@ -3,12 +3,16 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.disciplina.nome" required>
-		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	
 	<div class="form-group">
 		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.disciplina.descricao" ng-required="true">
-		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	
 	<div class="form-group">
@@ -16,7 +20,9 @@
 		<select id="professores" ng-model="model.disciplina.professor" name="professor" ng-options="p.nome for p in professores track by t.id" ng-required="true">
 			<option value="">Selecione um professor</option>
 		</select>
-		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	
 	<div class="form-group">
@@ -24,7 +30,9 @@
 		<select id="cursos" ng-model="model.disciplina.curso" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
 			<option value="">Selecione um Curso</option>
 		</select>
-		<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	 
 	<br> 

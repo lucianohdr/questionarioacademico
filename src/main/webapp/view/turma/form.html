@@ -3,19 +3,25 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.turma.nome" required>
-		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	
 	<div class="form-group">
 		<label>Descrição</label> <input type="text" name="descricao" ng-model="model.turma.descricao" ng-required="true">
-		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error" ng-messages-include="view/messages.html"></div>
+		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	</div>
 	
 	<label>Curso</label>
 	<select id="cursos" ng-model="model.turma.curso" name="curso" ng-options="c.nome for t in cursos track by t.id" ng-required="true">
 			<option value="">Selecione um curso</option>
 	</select>
-	<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error" ng-messages-include="view/messages.html"></div>
+	<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error">
+			<div ng-messages-include="view/messages.html"></div>
+		</div>
 	<br> 
 	<a href="#/turma/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
