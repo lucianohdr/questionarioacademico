@@ -24,10 +24,7 @@ App.controller("DepartamentoControllerEdit", ['$scope', '$location', 'Departamen
 		var emptyObj = {departamento: {
 			"id":0,
 			"nome":"",
-			"descricao":"",
-			professor: {
-				"id":0
-			}
+			"descricao":""
 		}};
 		ProfessorResource.query(function (res) { $scope.professores = res; });
 	 	masterCreate($scope, $location, DepartamentoResource, root, emptyObj);

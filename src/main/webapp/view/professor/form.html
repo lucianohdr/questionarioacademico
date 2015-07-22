@@ -10,11 +10,11 @@
 	
 	<div class="form-group">
 		<label>E-mail</label> <input type="email" name="email" ng-model="model.professor.pessoa.email" ng-required="true">
-		<div ng-if="mainForm.email.$dirty" ng-messages="mainForm.v.$error">
+		<div ng-if="mainForm.email.$dirty" ng-messages="mainForm.email.$error">
 			<div ng-messages-include="view/messages.html"></div>
 		</div>
 	</div>
-	
+{{}}	
 	<div class="form-group">
 		<label>Matrícula</label> <input type="text" name="matricula" ng-model="model.professor.matricula" ng-maxlength="10"></input>
 		<div ng-if="mainForm.matricula.$dirty" ng-messages="mainForm.matricula.$error">
@@ -42,7 +42,7 @@
 		<div class="form-group">
 			<label>Confirme sua senha:</label> 
 			<input type="password" ng-model="model.professor.pessoa.usuario.confirmsenha" name="confirmsenha" ng-required="true" compare-to="model.professor.pessoa.usuario.senha">
-			<div ng-if="mainForm.confirmasenha.$dirty" ng-messages="mainForm.confirmasenha.$error">
+			<div ng-if="mainForm.confirmsenha.$dirty" ng-messages="mainForm.confirmsenha.$error">
 				<div ng-messages-include="view/messages.html">
 				</div>
 			</div>

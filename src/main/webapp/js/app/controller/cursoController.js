@@ -30,13 +30,7 @@ App.controller("CursoControllerEdit", ['$scope', '$location', 'CursoResource', '
 		var emptyObj = {curso: {
 			"id":0,
 			"nome":"",
-			"descricao":"",
-			professor: {
-				"id": 0
-			},
-			departamento: {
-				"id": 0
-			}
+			"descricao":""
 		}};
 		
 		ProfessorResource.query(function (res) { $scope.professores = res; });	

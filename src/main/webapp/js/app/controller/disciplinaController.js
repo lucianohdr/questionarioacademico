@@ -28,13 +28,7 @@ App.controller("DisciplinaControllerEdit", ['$scope', '$location', 'DisciplinaRe
 		var emptyObj = {disciplina: {
 			"id":0,
 			"nome":"",
-			"descricao":"",
-			professor : {
-				"id": 0
-			},
-			curso:{
-				"id": 0
-			}
+			"descricao":""
 		}};
 		CursoResource.query(function (res) { $scope.cursos = res; });
 		ProfessorResource.query(function (res) { $scope.professores = res; });

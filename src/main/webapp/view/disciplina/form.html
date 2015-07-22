@@ -17,7 +17,7 @@
 	
 	<div class="form-group">
 		<label>Professor</label> 
-		<select id="professores" ng-model="model.disciplina.professor" name="professor" ng-options="p.nome for p in professores track by t.id" ng-required="true">
+		<select id="professores" ng-model="model.disciplina.professor" name="professor" ng-options="p.pessoa.nome for p in professores track by p.id" ng-required="true">
 			<option value="">Selecione um professor</option>
 		</select>
 		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error">

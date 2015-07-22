@@ -25,9 +25,6 @@ App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', '
 			"id":0,
 			"nome":"",
 			"descricao":"",
-			curso : {
-				"id" : 0
-			}
 		}};
 		
 		CursoResource.query(function (res) { $scope.cursos = res; });
