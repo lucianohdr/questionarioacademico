@@ -21,7 +21,7 @@
 	
 	<div class="form-group">
 		<label>Curso</label> 
-		<select id="cursos" ng-model="model.disciplina.curso" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
+		<select id="cursos" ng-model="model.disciplina.curso" name="curso" ng-options="c.nome for c in cursos track by c.id" ng-required="true">
 			<option value="">Selecione um Curso</option>
 		</select>
 		<validate-msg-for field="mainForm.curso"></validate-msg-for>
