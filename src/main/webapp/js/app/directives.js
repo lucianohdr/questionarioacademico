@@ -89,7 +89,7 @@ App.directive("compareTo", function() {
             });
         }
     };
-});
+}); 
 
 App.directive("uiAlert", function(){
 	return {
