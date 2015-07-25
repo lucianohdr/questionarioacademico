@@ -71,6 +71,7 @@ App.directive('doScroll', function() {
 	};
 });
 
+//diretiva responsavel por fazer uma comparação de valores entre dois campos
 App.directive("compareTo", function() {
     return {
         require: "ngModel",
@@ -99,5 +100,16 @@ App.directive("uiAlert", function(){
 			title: "@",
 		},
 		transclude: true
+	}
+});
+
+//diretiva responsavel por facilitar a passagem de campos para a validação
+App.directive("validateMsgFor", function(){
+	return{
+		templateUrl : "view/templates/validateMsgFor.html",
+		restrict:  "E",
+		scope: {
+			field : "="
+		}
 	}
 });
