@@ -3,29 +3,21 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.departamento.nome" required>
-		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
 	</div>
-	<!-- {{model}} -->
 	<div class="form-group">
 		<label>Descrição</label> 
 		<input type="text" name="descricao" ng-model="model.departamento.descricao" required>
-		<div ng-if="mainForm.descricao.$dirty" ng-messages="mainForm.descricao.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
 		<label>Chefe de Departamento</label> 
-		<!-- //TODO: veriricar validacao de selects requeridos -->
 		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" required>
 			<option value="">Selecione</option>
 			<option value="1">Selecione 2</option>
 		</select>
-		<div ng-if="mainForm.professor.$dirty" ng-messages="mainForm.professor.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.professor"></validate-msg-for>
 	</div>
 	<br> 
 	<a href="#/departamento/" class="btn">Cancelar</a>

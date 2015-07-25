@@ -4,23 +4,22 @@
 
 	<div class="control-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.usuario.nome" ng-required="true">
-		<span ng-show="mainForm.nome.$error.required && mainForm.nome.$dirty" class="alert">Campo obrigátorio</span>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
 	
 		<label>Tipo usuário</label>
 		<select id="tipousuarios" ng-model="model.usuario.tipousuario" name="tipousuario" ng-options="t.nome for t in tipousuarios track by t.id" ng-required="true">
 			<option value="">Selecione um valor</option>
 		</select>
-		<span ng-show="mainForm.tipousuario.$error.required && mainForm.tipousuario.$dirty" class="alert">Campo obrigátorio</span>
+		<validate-msg-for field="mainForm.tipousuario"></validate-msg-for>
 		
 		<label>E-mail</label> <input type="text" name="email" ng-model="model.usuario.email" ng-required="true" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
-		<span ng-show="mainForm.email.$error.required && mainForm.email.$dirty" class="alert">Campo obrigátorio</span>
-		<span ng-show="mainForm.email.$error.pattern && mainForm.email.$dirty" class="alert">E-mail inválido</span>
+		<validate-msg-for field="mainForm.email"></validate-msg-for>
 		
 		<label>Identificação</label> <input type="text" name="identificacao" ng-model="model.usuario.identificacao" ng-required="true"></input>
-		<span ng-show="mainForm.identificacao.$error.required && mainForm.identificacao.$dirty" class="alert">Campo obrigátorio</span>
+		<validate-msg-for field="mainForm.email"></validate-msg-for>
 		 
 		<label>Login</label> <input type="text" name="login" ng-model="model.usuario.login" ng-required="true"></input>
-		<span ng-show="mainForm.login.$error.required && mainForm.login.$dirty" class="alert">Campo obrigátorio</span>
+		<validate-msg-for field="mainForm.login"></validate-msg-for>
 	 </div>
 	<br> 
 	<a href="#/usuario/" class="btn">Cancelar</a>

@@ -3,9 +3,7 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.categoriaquestionario.nome" ng-required="true">
-		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">

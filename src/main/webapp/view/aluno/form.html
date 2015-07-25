@@ -3,24 +3,17 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label><input type="text" name="nome" ng-model="model.aluno.pessoa.nome" required>
-		<div ng-if="mainForm.nome.$dirty" ng-messages="mainForm.nome.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
-		<!-- TODO: repensar validacao de e-mails -->
 		<label>E-mail</label> <input type="email" name="email" ng-model="model.aluno.pessoa.email" ng-required="true">
-		<div ng-if="mainForm.email.$dirty" ng-messages="mainForm.email.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.email"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
-		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-maxlength="15"></input>
-		<div ng-if="mainForm.ra.$dirty" ng-messages="mainForm.ra.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<label>RA</label> <input type="text" name="ra" ng-model="model.aluno.ra" ng-maxlength="15" required></input>
+		<validate-msg-for field="mainForm.ra"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
@@ -28,9 +21,7 @@
 		<select id="cursos" ng-model="model.aluno.curso" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
 			<option value="">Selecione um Curso</option>
 		</select>
-		<div ng-if="mainForm.curso.$dirty" ng-messages="mainForm.curso.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.curso"></validate-msg-for>
 	</div>
 	 
 	<div class="form-group">
@@ -38,34 +29,23 @@
 		<select id="turmas" ng-model="model.aluno.turma" name="turma" ng-options="t.nome for t in turmas track by t.id" ng-required="true">
 			<option value="">Selecione um Turma</option>
 		</select>
-		<div ng-if="mainForm.turma.$dirty" ng-messages="mainForm.turma.$error">
-			<div ng-messages-include="view/messages.html"></div>
-		</div>
+		<validate-msg-for field="mainForm.turma"></validate-msg-for>
 	</div> 
 	<br> 
 	<fieldset>
 		<legend>Dados de usuário:</legend>
 		<div class="form-group">
 			<label>Login:</label> <input type="text" name="login" ng-model="model.aluno.pessoa.usuario.login" ng-required="true">
-			<div ng-if="mainForm.login.$dirty" ng-messages="mainForm.login.$error">
-				<div ng-messages-include="view/messages.html">
-				</div>
-			</div>
+			<validate-msg-for field="mainForm.login"></validate-msg-for>
 		</div>
 		<div class="form-group">
 			<label>Senha:</label> <input type="password" name="senha" ng-model="model.aluno.pessoa.usuario.senha" ng-required="true">
-			<div ng-if="mainForm.senha.$dirty" ng-messages="mainForm.senha.$error">
-				<div ng-messages-include="view/messages.html">
-				</div>
-			</div>
+			<validate-msg-for field="mainForm.senha"></validate-msg-for>
 		</div>
 		<div class="form-group">
 			<label>Confirme sua senha:</label> 
 			<input type="password" ng-model="model.aluno.pessoa.usuario.confirmsenha" name="confirmsenha" ng-required="true" compare-to="model.aluno.pessoa.usuario.senha">
-			<div ng-if="mainForm.confirmsenha.$dirty" ng-messages="mainForm.confirmsenha.$error">
-				<div ng-messages-include="view/messages.html">
-				</div>
-			</div>
+			<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
 		</div>
 	</fieldset>
 	<a href="#/aluno/" class="btn">Cancelar</a>
