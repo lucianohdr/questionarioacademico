@@ -1,20 +1,17 @@
-<h2 ng-show="model.professor.id">Alterar Professor</h2>
-<h2 ng-hide="model.professor.id">Adicionar Professor</h2>
+<h2 ng-show="model.professor.id">Alterar Questionário</h2>
+<h2 ng-hide="model.professor.id">Adicionar Questionário</h2>
 <form name="mainForm">
 	<div class="form-group">
-		<label>Nome</label><input type="text" name="nome" ng-model="model.professor.pessoa.nome" required>
-		<validate-msg-for field="mainForm.nome"></validate-msg-for>
+		<label>Descrição</label>
+		<input type="text" name="descricao"class="span4" ng-model="model.questionario.descricao" required>
+		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
-		<label>E-mail</label> <input type="email" name="email" ng-model="model.professor.pessoa.email" ng-required="true">
-		<validate-msg-for field="mainForm.email"></validate-msg-for>
+		<label>Observação</label>
+		<textarea name="observacao" rows="4" class="span4" ng-model="model.questionario.observacao">
+		</textarea>
 	</div>
-	<div class="form-group">
-		<label>Matrícula</label> <input type="text" name="matricula" ng-model="model.professor.matricula" ng-maxlength="10"></input>
-		<validate-msg-for field="mainForm.matricula"></validate-msg-for>
-	</div>
-	 
 	<br> 
 	<a href="#/professor/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>

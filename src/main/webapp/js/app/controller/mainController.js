@@ -24,15 +24,8 @@ App.controller("MainController", ['$scope', '$http', '$location', function($scop
 			}
 		});
 	}
-	
-/*	$scope.setLocale = function(language) {
-		console.log(language);
-		localize.setLanguage(language);
-	}*/
-
 	$scope.navClass = function(page) {
 		var currentRoute = $location.path().substring(1).replace('/','') || 'home';
 		return page === currentRoute ? 'active' : '';
 	};
-	
 }]);
