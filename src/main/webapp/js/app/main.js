@@ -55,6 +55,10 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/disciplina/edit/:id', {controller: 'DisciplinaControllerEdit', templateUrl:'view/disciplina/form.html'})
 		.when('/disciplina/new', {controller: 'DisciplinaControllerNew', templateUrl:'view/disciplina/form.html'})
 		.when('/disciplina/', {controller: 'DisciplinaControllerList', templateUrl:'view/disciplina/list.html'})
+		
+		.when('/questionario/edit/:id', {controller: 'QuestionarioControllerEdit', templateUrl:'view/questionario/form.html'})
+		.when('/questionario/new', {controller: 'QuestionarioControllerNew', templateUrl:'view/questionario/form.html'})
+		.when('/questionario/', {controller: 'QuestionarioControllerList', templateUrl:'view/questionario/list.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

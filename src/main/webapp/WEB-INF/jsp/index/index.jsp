@@ -37,19 +37,10 @@
 	<script src="js/lib/jquery/jquery-ui-1.7.3.min.js"></script>
 	
 	<script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script>
-	
-	<!-- <script src="js/lib/angular/angular-1.3.15.js"></script> -->
 	<script src="js/lib/angular/angular-1.4.3.min.js"></script>
-	
-	<!-- <script src="js/lib/angular/angular-route-1.3.15.js"></script> -->
 	<script src="js/lib/angular/angular-route-1.4.3.min.js"></script>
-	
-	<!-- <script src="js/lib/angular/angular-resource-1.3.15.js"></script> -->
 	<script src="js/lib/angular/angular-resource-1.4.3.min.js"></script>
-	
-	<!-- <script src="js/lib/angular/angula-messages-1.3.15.min.js"></script> -->
 	<script src="js/lib/angular/angular-messages-1.4.3.min.js"></script>
-	
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
 	
@@ -75,6 +66,7 @@
 	<script src="js/app/controller/disciplinaController.js"></script>
 	<script src="js/app/controller/turmaController.js"></script>
 	<script src="js/app/controller/cursoController.js"></script>
+	<script src="js/app/controller/questionarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -85,9 +77,10 @@
 		<div class="navbar-inner">
 			<a class="brand" href="#/">Questionário Acadêmico</a>
 			<ul class="nav">
+				<li ng-class="navClass('questionario')"><a href="#/questionario/">Questionário</a></li>
+				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
 				<li ng-class="navClass('usuario')"><a href="#/usuario/">Usuário</a></li>
 				<li ng-class="navClass('tipousuario')"><a href="#/tipousuario/">Tipo Usuário</a></li>
-				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
 				<li ng-class="navClass('aluno')"><a href="#/aluno/">Aluno</a></li>
 				<li ng-class="navClass('professor')"><a href="#/professor/">Professor</a></li>
 				<li ng-class="navClass('departamento')"><a href="#/departamento/">Departamento</a></li>

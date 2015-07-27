@@ -76,3 +76,8 @@ questionarioAcademicoServices.factory('DisciplinaResource', ['$resource',functio
 	var api = $resource(configUrl('disciplinas'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('questionarios'), params(), values());
+	return api;
+}]);
