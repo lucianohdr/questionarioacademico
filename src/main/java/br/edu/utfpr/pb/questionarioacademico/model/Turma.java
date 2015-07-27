@@ -15,12 +15,22 @@ public class Turma extends br.edu.utfpr.pb.questionarioacademico.model.commons.E
 	@NotNull
 	private Curso curso;
 	
+	@OneToOne
+	@NotNull
+	private Periodo periodo;
+	
 	@Column(name="nome", length=60)
 	private String nome;
 	
 	@Column(name="descricao", length=120)
 	private String descricao;
 	
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
 	public Curso getCurso() {
 		return curso;
 	}

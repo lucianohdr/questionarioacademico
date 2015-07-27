@@ -19,6 +19,10 @@ public class Disciplina extends br.edu.utfpr.pb.questionarioacademico.model.comm
 	@NotNull
 	private Professor professor;
 	
+	@OneToOne
+	@NotNull
+	private Periodo periodo;
+	
 	@Column(name="nome", length=60)
 	private String nome;
 	
@@ -36,6 +40,13 @@ public class Disciplina extends br.edu.utfpr.pb.questionarioacademico.model.comm
 	}
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+	
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
 	}
 	public String getNome() {
 		return nome;

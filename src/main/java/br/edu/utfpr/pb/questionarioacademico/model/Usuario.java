@@ -26,7 +26,7 @@ public class Usuario extends br.edu.utfpr.pb.questionarioacademico.model.commons
 			joinColumns=@JoinColumn(name="id_usuario"),
 			inverseJoinColumns=@JoinColumn(name="id_perfil"))
 	private Set<Perfil> perfis;
-	
+
 	public String getLogin() {
 		return login;
 	}

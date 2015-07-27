@@ -38,4 +38,6 @@ public class Pessoa extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 }
