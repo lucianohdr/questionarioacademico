@@ -1,4 +1,4 @@
-<h2 ng-show="model.questionario.id">Compor Questionário</h2>
+<h2 ng-show="model.questionario.id">Editar Questionário</h2>
 <h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
 <form name="mainForm">
 	<div class="form-group">
@@ -24,4 +24,5 @@
 	<a href="#/questionario/" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
+	<a ng-show="model.questionario.id" href="#/questionario/{{model.questionario.id}}/perguntas" class="btn">Adicionar perguntas</a>
 </form>

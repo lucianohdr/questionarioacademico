@@ -24,11 +24,12 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'Questionar
 		CategoriaQuestionarioResource.query(function (res) { $scope.categorias = res; });
 		
 		$scope.model = new QuestionarioResource(emptyObj);
-//		console.log(QuestionarioResource.get());
 		$scope.save = function() {
 			$scope.model.$save(function(res) {
-				var questionario = QuestionarioResource.getLastQuestionario()
-				$scope.model.questionario =  questionario;
+				var questionario = QuestionarioResource.getLastQuestionario(function(){
+					$scope.model.questionario =  questionario;
+					$location.path(root + "edit/" + $scope.model.questionario.id);
+				});
 			});
 		}
  	}

@@ -33,7 +33,6 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 		this(null, null);
 	}
 	
-
 	@Get
 	@Path({"","/"})
 	public void list() {

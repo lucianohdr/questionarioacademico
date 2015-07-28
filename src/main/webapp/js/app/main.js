@@ -59,6 +59,8 @@ App.config(['$routeProvider','$httpProvider',function($routeProvider, $httpProvi
 		.when('/questionario/edit/:id', {controller: 'QuestionarioControllerEdit', templateUrl:'view/questionario/form.html'})
 		.when('/questionario/new', {controller: 'QuestionarioControllerNew', templateUrl:'view/questionario/form.html'})
 		.when('/questionario/', {controller: 'QuestionarioControllerList', templateUrl:'view/questionario/list.html'})
+		
+		.when('/questionario/:id/perguntas', {controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/form.html'})
 													   
 		.otherwise({redirectTo:'/'});
 	

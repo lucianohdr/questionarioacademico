@@ -78,18 +78,27 @@ questionarioAcademicoServices.factory('DisciplinaResource', ['$resource',functio
 }]);
 
 questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',function($resource) {
+	
+	var getLastQuestionario = {
+			'url': baseUrl + 'questionarios/getLastQuestionario',
+			params : {},
+			'method': 'GET', 
+			isArray: false
+		};
+	
 	var api = $resource(configUrl('questionarios'), params(), {
 																'update': {'method': 'PUT'},
-																'getLastQuestionario': {
-																	'url': baseUrl + 'questionarios/getLastQuestionario',
-																	params : {},
-																	'method': 'GET', 
-																	isArray: false}
+																'getLastQuestionario': getLastQuestionario
 															  });
 	return api;
 }]);
 
 questionarioAcademicoServices.factory('PerguntaResource', ['$resource',function($resource) {
 	var api = $resource(configUrl('perguntas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('TipoPerguntaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('tipoperguntas'), params(), values());
 	return api;
 }]);

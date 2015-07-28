@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
+import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 
 @SuppressWarnings("serial")
 @Controller
@@ -20,17 +21,21 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 
 	private Result result;
 	private PerguntaRepository repository;
+	private QuestionarioRepository questionarioRepository;
 	
 	@Inject
-	public PerguntaController(Result result, PerguntaRepository repository) {
+	public PerguntaController(Result result, 
+							  PerguntaRepository repository, 
+							  QuestionarioRepository questionarioRepository) {
 		super(result);
 		this.repository = repository;
+		this.questionarioRepository = questionarioRepository;
 		this.result = result;
 	}
 
 	/*CDI Only*/
 	protected PerguntaController(){
-		this(null, null);
+		this(null, null, null);
 	}
 	
 	@Get
