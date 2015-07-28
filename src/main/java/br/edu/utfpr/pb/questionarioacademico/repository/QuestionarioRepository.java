@@ -5,4 +5,8 @@ import br.edu.utfpr.pb.questionarioacademico.repository.common.Repository;
 
 public interface QuestionarioRepository extends Repository<Questionario, Long> {
 
+	/*
+	 * Método responsável por trazer o último Questionario salvo
+	 */
+	Questionario getLastQuestionario();
 }

@@ -19,12 +19,18 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'Questionar
 			"id":0,
 			"descricao": "",
 			"observacao": "",
-			"dataliberacao": "",
-			"datavalidade": ""
 		}};
 		
 		CategoriaQuestionarioResource.query(function (res) { $scope.categorias = res; });
-	 	masterCreate($scope, $location, QuestionarioResource, root, emptyObj);
+		
+		$scope.model = new QuestionarioResource(emptyObj);
+//		console.log(QuestionarioResource.get());
+		$scope.save = function() {
+			$scope.model.$save(function(res) {
+				var questionario = QuestionarioResource.getLastQuestionario()
+				$scope.model.questionario =  questionario;
+			});
+		}
  	}
 
 ]).controller("QuestionarioControllerList", ['$scope', '$location', 'QuestionarioResource',

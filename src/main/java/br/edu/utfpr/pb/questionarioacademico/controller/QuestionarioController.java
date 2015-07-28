@@ -55,7 +55,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Questionario questionario) {
-		repository.insert(questionario);
+		repository.insert(questionario); 
 		result.nothing();
 	}
 	
@@ -72,5 +72,12 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void delete(Questionario questionario) {
 		repository.delete(questionario);
 		result.nothing();
+	}
+	
+	@Get
+	@Path("/getLastQuestionario")
+	public void getLastQuestionario(){
+		Questionario questionario = repository.getLastQuestionario();
+		serializer(questionario).serialize();
 	}
 }
