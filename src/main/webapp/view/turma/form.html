@@ -17,7 +17,7 @@
 	</select>
 	<validate-msg-for field="mainForm.curso"></validate-msg-for>
 	<br> 
-	<a href="#/turma/" class="btn">Cancelar</a>
+	<a ui-sref="turma" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.turma.id" class="btn btn-danger">Deletar</button>
 </form>

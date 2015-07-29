@@ -20,7 +20,7 @@
 		<validate-msg-for field="mainForm.professor"></validate-msg-for>
 	</div>
 	<br> 
-	<a href="#/departamento/" class="btn">Cancelar</a>
+	<a ui-sref="departamento" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.departamento.id" class="btn btn-danger">Deletar</button>
 </form>

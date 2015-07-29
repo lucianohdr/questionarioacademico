@@ -1,18 +1,20 @@
-App.controller("PerguntaController", ['$scope', '$location', 'PerguntaResource', 'TipoUsuarioResource','$window', '$routeParams',
+App.controller("PerguntaController", ['$scope', '$location', 'PerguntaResource', '$window', '$routeParams',
                                              
-     function($scope, $location, PerguntaResource, TipoUsuarioResource, $window, $routeParams){
+     function($scope, $location, PerguntaResource, $window, $routeParams){
 
 		var root = '/pergunta/';
 		var emptyObj = {pergunta: {
 			"id":0,
-			"matricula":"",
-			"pessoa.usuario.tipousuario": { id: 4},
-			"pessoa.email":"",
-			"pessoa.nome":"",
-			"pessoa.usuario.login":"",
-			"pessoa.usuario.senha":"",
+			"nome" : "",
+			"descricao" : ""
 		}};
  		
+	/*	PerguntaResource.get({param1: $routeParams.id}, function(res) {
+			$scope.model = res;
+			if (actionUpdate) actionUpdate('get');
+		});*/
+		
+		
 	 }
 ])/*.controller("PerguntaControllerNew", ['$scope', '$location', 'PerguntaResource', 'TipoUsuarioResource',
      function($scope, $location, ProfessorResource, TipoUsuarioResource){

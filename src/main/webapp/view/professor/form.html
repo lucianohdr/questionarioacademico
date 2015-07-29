@@ -32,7 +32,7 @@
 			<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
 		</div>
 	</fieldset>
-	<a href="#/professor/" class="btn">Cancelar</a>
+	<a ui-sref="professor" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.professor.id" class="btn btn-danger">Deletar</button>
 </form>

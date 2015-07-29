@@ -38,7 +38,8 @@
 	
 	<script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script>
 	<script src="js/lib/angular/angular-1.4.3.min.js"></script>
-	<script src="js/lib/angular/angular-route-1.4.3.min.js"></script>
+	<!-- <script src="js/lib/angular/angular-route-1.4.3.min.js"></script> -->
+	<script src="js/lib/angular/angular-ui-router.min.js"></script>
 	<script src="js/lib/angular/angular-resource-1.4.3.min.js"></script>
 	<script src="js/lib/angular/angular-messages-1.4.3.min.js"></script>
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
@@ -75,18 +76,18 @@
 
 	<div id="main-menu" class="navbar">
 		<div class="navbar-inner">
-			<a class="brand" href="#/">Questionário Acadêmico</a>
+			<a class="brand" ui-sref="home">Questionário Acadêmico</a>
 			<ul class="nav">
-				<li ng-class="navClass('questionario')"><a href="#/questionario/">Questionário</a></li>
-				<li ng-class="navClass('categoriaquestionario')"><a href="#/categoriaquestionario/">Categoria Questionário</a></li>
-				<li ng-class="navClass('usuario')"><a href="#/usuario/">Usuário</a></li>
-				<li ng-class="navClass('tipousuario')"><a href="#/tipousuario/">Tipo Usuário</a></li>
-				<li ng-class="navClass('aluno')"><a href="#/aluno/">Aluno</a></li>
-				<li ng-class="navClass('professor')"><a href="#/professor/">Professor</a></li>
-				<li ng-class="navClass('departamento')"><a href="#/departamento/">Departamento</a></li>
-				<li ng-class="navClass('curso')"><a href="#/curso/">Curso</a></li>
-				<li ng-class="navClass('turma')"><a href="#/turma/">Turma</a></li>
-				<li ng-class="navClass('disciplina')"><a href="#/disciplina/">Disciplina</a></li>
+				<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
+				<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
+				<li ng-class="navClass('usuario')"><a ui-sref="usuario">Usuário</a></li>
+				<li ng-class="navClass('tipousuario')"><a ui-sref="perfil">Tipo Usuário</a></li>
+				<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
+				<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
+				<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>
+				<li ng-class="navClass('curso')"><a ui-sref="curso">Curso</a></li>
+				<li ng-class="navClass('turma')"><a ui-sref="turma">Turma</a></li>
+				<li ng-class="navClass('disciplina')"><a ui-sref="disciplina">Disciplina</a></li>
 			</ul>
 			
 			<a class="brand" ng-click="logout()" href="#/">Sair</a>
@@ -94,7 +95,7 @@
 	</div>
 	
 	<!-- Aqui é rederizada a view requisitada -->
-	<div class="container" ng-view></div>
+	<div class="container" ui-view></div>
 	
 	<div id="loginModal" class="modal hide fade" tabindex="-1" ng-enter="login()">
         <div class="modal-header"><h4>Autenticação</h4></div>

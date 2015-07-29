@@ -21,7 +21,7 @@
 		</textarea>
 	</div>
 	<br> 
-	<a href="#/questionario/" class="btn">Cancelar</a>
+	<a ui-sref="questionario" class="btn">Cancelar</a>
 	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 	<button ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
 	<a ng-show="model.questionario.id" href="#/questionario/{{model.questionario.id}}/perguntas" class="btn">Adicionar perguntas</a>

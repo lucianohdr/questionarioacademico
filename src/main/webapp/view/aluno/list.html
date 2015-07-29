@@ -9,7 +9,7 @@
 				<th width="10.00%">RA</th>
 				<th width="20.00%">E-mail</th>
 				<th width="20.00%">Curso</th>
-				<th width="15.00%"><a href="#/aluno/new"><i class="icon-plus-sign"></i></a></th>
+				<th width="15.00%"><a ui-sref="alunoNew"><i class="icon-plus-sign"></i></a></th>
 			</tr>
 		</table></td></tr>
 		<tr><td><div class="scroll" do-scroll="load()"><table width="99%">
@@ -18,7 +18,7 @@
 				<td width="10.00%">{{aluno.ra}}</td>
 				<td width="20.00%">{{aluno.pessoa.email}}</td>
 				<td width="20.00%">{{aluno.curso.nome}}</td>
-				<td width="15.00%"><a href="#/aluno/edit/{{aluno.id}}"><i class="icon-pencil"></i></a></td>
+				<td width="15.00%"><a ui-sref="alunoEdit({id:aluno.id})"><i class="icon-pencil"></i></a></td>
 			</tr>
 		</table></div></td></tr>
 	</table>

@@ -1,24 +1,16 @@
 App.controller("DisciplinaControllerEdit", ['$scope', '$location', 'DisciplinaResource', 'CursoResource', 
-                                            'ProfessorResource', '$window', '$routeParams',
+                                            'ProfessorResource', '$window', '$stateParams',
                                              
-     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource, $window, $routeParams){
+     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource, $window, $stateParams){
 
 		var root = '/disciplina/';
-		/*var emptyObj = {disciplina: {
-			"id":0,
-			"ra":"",
-			"pessoa.usuario.tipousuario": { id: 5},
-			"pessoa.email":"",
-			"pessoa.nome":"",
-			"pessoa.usuario.login":"",
-			"pessoa.usuario.senha":"",
-		}};*/
+		
 		CursoResource.query(function (res) { $scope.cursos = res; });	
 		ProfessorResource.query(function (res) { $scope.professores = res; });
 		
-		masterUpdate($scope, $routeParams, $window, $location, DisciplinaResource, root);
+		masterUpdate($scope, $stateParams, $window, $location, DisciplinaResource, root);
 	 		
-		masterDelete($scope,$routeParams,$window, $location, DisciplinaResource, root);
+		masterDelete($scope,$stateParams,$window, $location, DisciplinaResource, root);
  		
 	 }
 ]).controller("DisciplinaControllerNew", ['$scope', '$location', 'DisciplinaResource', 'CursoResource', 'ProfessorResource',

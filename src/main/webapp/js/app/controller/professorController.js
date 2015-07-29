@@ -1,6 +1,6 @@
-App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorResource', 'TipoUsuarioResource','$window', '$routeParams',
+App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorResource', 'TipoUsuarioResource','$window', '$stateParams',
                                              
-     function($scope, $location, ProfessorResource, TipoUsuarioResource, $window, $routeParams){
+     function($scope, $location, ProfessorResource, TipoUsuarioResource, $window, $stateParams){
 
 		var root = '/professor/';
 		var emptyObj = {professor: {
@@ -13,9 +13,9 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
 			"pessoa.usuario.senha":"",
 		}};
 		 TipoUsuarioResource.query(function (res) { $scope.tipousuarios = res; });	
-		 masterUpdate($scope, $routeParams, $window, $location, ProfessorResource, root);
+		 masterUpdate($scope, $stateParams, $window, $location, ProfessorResource, root);
 	 		
-		 masterDelete($scope,$routeParams,$window, $location, ProfessorResource, root);
+		 masterDelete($scope,$stateParams,$window, $location, ProfessorResource, root);
  		
 	 }
 ]).controller("ProfessorControllerNew", ['$scope', '$location', 'ProfessorResource', 'TipoUsuarioResource',

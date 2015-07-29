@@ -1,7 +1,7 @@
 App.controller("CursoControllerEdit", ['$scope', '$location', 'CursoResource', 'ProfessorResource', 
-                                       'DepartamentoResource', '$window', '$routeParams',
+                                       'DepartamentoResource', '$window', '$stateParams',
                                              
-     function($scope, $location, CursoResource, ProfessorResource, DepartamentoResource, $window, $routeParams){
+     function($scope, $location, CursoResource, ProfessorResource, DepartamentoResource, $window, $stateParams){
 
 		var root = '/curso/';
 		/*var emptyObj = {curso: {
@@ -19,8 +19,8 @@ App.controller("CursoControllerEdit", ['$scope', '$location', 'CursoResource', '
 		ProfessorResource.query(function (res) { $scope.professores = res; });	
 		DepartamentoResource.query(function (res) { $scope.departamentos = res; });
 		
-		masterUpdate($scope, $routeParams, $window, $location, CursoResource, root);
-		masterDelete($scope,$routeParams,$window, $location, CursoResource, root);
+		masterUpdate($scope, $stateParams, $window, $location, CursoResource, root);
+		masterDelete($scope,$stateParams,$window, $location, CursoResource, root);
  		
 	 }
 ]).controller("CursoControllerNew", ['$scope', '$location', 'CursoResource', 'ProfessorResource', 'DepartamentoResource',

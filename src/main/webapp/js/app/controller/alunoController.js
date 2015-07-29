@@ -1,6 +1,6 @@
-App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 'TipoUsuarioResource','$window', '$routeParams',
+App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 'TipoUsuarioResource','$window', '$stateParams',
                                              
-     function($scope, $location, AlunoResource, TipoUsuarioResource, $window, $routeParams){
+     function($scope, $location, AlunoResource, TipoUsuarioResource, $window, $stateParams){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -13,9 +13,9 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', '
 			"pessoa.usuario.senha":"",
 		}};
 		 TipoUsuarioResource.query(function (res) { $scope.tipousuarios = res; });	
-		 masterUpdate($scope, $routeParams, $window, $location, AlunoResource, root);
+		 masterUpdate($scope, $stateParams, $window, $location, AlunoResource, root);
 	 		
-		 masterDelete($scope,$routeParams,$window, $location, AlunoResource, root);
+		 masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
  		
 	 }
 ]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'TipoUsuarioResource',

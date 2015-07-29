@@ -1,13 +1,13 @@
-App.controller("CategoriaQuestionarioControllerEdit", ['$scope', '$location', 'CategoriaQuestionarioResource' ,'$window', '$routeParams',
+App.controller("CategoriaQuestionarioControllerEdit", ['$scope', '$location', 'CategoriaQuestionarioResource' ,'$window', '$stateParams',
                                              
-    function($scope, $location, CategoriaQuestionarioResource, $window, $routeParams){
+    function($scope, $location, CategoriaQuestionarioResource, $window, $stateParams){
 
 		var root = '/categoriaquestionario/';
 		var emptyObj = { categoriaquestionario: {"id":0, "nome":'', "descricao": ''}};
 		
-		masterUpdate($scope, $routeParams, $window, $location, CategoriaQuestionarioResource, root);
+		masterUpdate($scope, $stateParams, $window, $location, CategoriaQuestionarioResource, root);
 		
-		masterDelete($scope,$routeParams,$window, $location, CategoriaQuestionarioResource, root);
+		masterDelete($scope,$stateParams,$window, $location, CategoriaQuestionarioResource, root);
 		
 	}
 ]).controller("CategoriaQuestionarioControllerNew", ['$scope', '$location', 'CategoriaQuestionarioResource',

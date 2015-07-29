@@ -1,6 +1,6 @@
-App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', 'CursoResource','$window', '$routeParams',
+App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', 'CursoResource','$window', '$stateParams',
                                              
-     function($scope, $location, TurmaResource, CursoResource, $window, $routeParams){
+     function($scope, $location, TurmaResource, CursoResource, $window, $stateParams){
 
 		var root = '/turma/';
 		/*var emptyObj = {turma: {
@@ -12,9 +12,9 @@ App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', '
 			}
 		}};*/
 		CursoResource.query(function (res) { $scope.cursos = res; });	
-		 masterUpdate($scope, $routeParams, $window, $location, TurmaResource, root);
+		 masterUpdate($scope, $stateParams, $window, $location, TurmaResource, root);
 	 		
-		 masterDelete($scope,$routeParams,$window, $location, TurmaResource, root);
+		 masterDelete($scope,$stateParams,$window, $location, TurmaResource, root);
  		
 	 }
 ]).controller("TurmaControllerNew", ['$scope', '$location', 'TurmaResource', 'CursoResource',
