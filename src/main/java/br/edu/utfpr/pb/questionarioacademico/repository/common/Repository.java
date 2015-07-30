@@ -17,6 +17,8 @@ public interface Repository<T extends Entity, I extends Serializable> {
 	 
 	void insert(T entity);
 	
+	T insertReturn(T entity);
+	
 	T update(T entity);
 	
 	void delete(T entity);

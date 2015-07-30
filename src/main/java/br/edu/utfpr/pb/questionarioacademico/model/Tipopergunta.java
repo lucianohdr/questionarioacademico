@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="tipopergunta")
-public class TipoPergunta extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
+public class Tipopergunta extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 
 	@Column(name="nome", length=60)
 	private String nome;

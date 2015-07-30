@@ -16,7 +16,7 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 
 	@OneToOne
 	@NotNull
-	private TipoPergunta tipoPergunta;
+	private Tipopergunta tipopergunta;
 	
 	@Column(name="nome", length=60)
 	private String nome;
@@ -27,12 +27,12 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	@OneToMany(mappedBy="pergunta")
 	private Set<Alternativa> alternativas;
 
-	public TipoPergunta getTipoPergunta() {
-		return tipoPergunta;
+	public Tipopergunta getTipoPergunta() {
+		return tipopergunta;
 	}
 
-	public void setTipoPergunta(TipoPergunta tipoPergunta) {
-		this.tipoPergunta = tipoPergunta;
+	public void setTipoPergunta(Tipopergunta tipopergunta) {
+		this.tipopergunta = tipopergunta;
 	}
 
 	public String getNome() {

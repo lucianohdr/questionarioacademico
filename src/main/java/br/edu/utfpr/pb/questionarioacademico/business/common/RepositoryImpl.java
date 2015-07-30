@@ -43,6 +43,11 @@ public class RepositoryImpl<T extends Entity, I extends Serializable> {
 		entityManager.persist(entity);
 	}
 	
+	public T insertReturn(T entity){
+		entity.setId(null);
+		return (T) entityManager.merge(entity);
+	}
+	
 	public T update(T entity) {
 		return entityManager.merge(entity);
 	}
