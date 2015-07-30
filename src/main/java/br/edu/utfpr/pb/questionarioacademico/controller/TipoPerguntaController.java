@@ -10,7 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.model.TipoPergunta;
+import br.edu.utfpr.pb.questionarioacademico.model.Tipopergunta;
 import br.edu.utfpr.pb.questionarioacademico.repository.TipoPerguntaRepository;
 
 @SuppressWarnings("serial")
@@ -54,7 +54,7 @@ public class TipoPerguntaController extends br.edu.utfpr.pb.questionarioacademic
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(TipoPergunta tipopergunta) {
+	public void insert(Tipopergunta tipopergunta) {
 		repository.insert(tipopergunta);
 		result.nothing();
 	}
@@ -62,14 +62,14 @@ public class TipoPerguntaController extends br.edu.utfpr.pb.questionarioacademic
 	@Put
 	@Path("/{tipopergunta.id}")
 	@Consumes("application/json")
-	public void update(TipoPergunta tipopergunta) {
+	public void update(Tipopergunta tipopergunta) {
 		repository.update(tipopergunta);
 		result.nothing();
 	}
 
 	@Delete
 	@Path("/{tipopergunta.id}")
-	public void delete(TipoPergunta tipopergunta) {
+	public void delete(Tipopergunta tipopergunta) {
 		repository.delete(tipopergunta);
 		result.nothing();
 	}

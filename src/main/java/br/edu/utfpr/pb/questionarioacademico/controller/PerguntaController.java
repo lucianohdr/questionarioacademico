@@ -60,8 +60,8 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Pergunta pergunta) {
-		repository.insert(pergunta);
-		result.nothing();
+		repository.insertReturn(pergunta);
+		serializer(repository.insertReturn(pergunta)).serialize();
 	}
 	
 	@Put
