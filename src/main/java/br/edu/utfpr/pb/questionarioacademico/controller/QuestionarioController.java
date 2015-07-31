@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 
@@ -55,8 +56,8 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Questionario questionario) {
-		repository.insert(questionario); 
-		result.nothing();
+		serializer(repository.insertReturn(questionario)).serialize(); 
+		
 	}
 	
 	@Put
@@ -74,10 +75,15 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		result.nothing();
 	}
 	
-	@Get
-	@Path("/getLastQuestionario")
-	public void getLastQuestionario(){
-		Questionario questionario = repository.getLastQuestionario();
+	@Post
+	@Path("/addPergunta")
+	@Consumes("application/json")
+	public void addPergunta(Questionario questionario, Pergunta pergunta){
+		
+		questionario.addPergunta(pergunta);
+		
+		repository.update(questionario);
+		
 		serializer(questionario).serialize();
 	}
 }

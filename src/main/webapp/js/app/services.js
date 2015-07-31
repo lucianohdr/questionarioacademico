@@ -79,16 +79,15 @@ questionarioAcademicoServices.factory('DisciplinaResource', ['$resource',functio
 
 questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',function($resource) {
 	
-	var getLastQuestionario = {
-			'url': baseUrl + 'questionarios/getLastQuestionario',
-			params : {},
-			'method': 'GET', 
+	var addPergunta = {
+			'url': baseUrl + 'questionarios/addPergunta',
+			'method': 'POST', 
 			isArray: false
-		};
+	};
 	
 	var api = $resource(configUrl('questionarios'), params(), {
 																'update': {'method': 'PUT'},
-																'getLastQuestionario': getLastQuestionario
+																'addPergunta': addPergunta
 															  });
 	return api;
 }]);

@@ -26,10 +26,7 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'Questionar
 		$scope.model = new QuestionarioResource(emptyObj);
 		$scope.save = function() {
 			$scope.model.$save(function(res) {
-				var questionario = QuestionarioResource.getLastQuestionario(function(){
-					$scope.model.questionario =  questionario;
-					$location.path(root + "edit/" + $scope.model.questionario.id);
-				});
+					$location.path(root + "edit/" + res.id);
 			});
 		}
  	}

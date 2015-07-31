@@ -1,6 +1,6 @@
-App.controller("PerguntaController", ['$scope', '$location', 'PerguntaResource', '$window', '$routeParams',
+App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource', 'QuestionarioResource', '$scope', '$location', '$window', '$stateParams',
                                              
-     function($scope, $location, PerguntaResource, $window, $routeParams){
+     function(PerguntaResource, TipoPerguntaResource, QuestionarioResource, $scope, $location, $window, $stateParams){
 
 		var root = '/pergunta/';
 		var emptyObj = {pergunta: {
@@ -9,39 +9,36 @@ App.controller("PerguntaController", ['$scope', '$location', 'PerguntaResource',
 			"descricao" : ""
 		}};
  		
-	/*	PerguntaResource.get({param1: $routeParams.id}, function(res) {
-			$scope.model = res;
-			if (actionUpdate) actionUpdate('get');
-		});*/
+		TipoPerguntaResource.query(function(res){
+			$scope.tipoperguntas = res;
+		});
 		
+		$scope.model = new PerguntaResource(emptyObj);
 		
-	 }
-])/*.controller("PerguntaControllerNew", ['$scope', '$location', 'PerguntaResource', 'TipoUsuarioResource',
-     function($scope, $location, ProfessorResource, TipoUsuarioResource){
-
-		var root = '/professor/';
-		var emptyObj = {professor: {
-			"id":0,
-			"matricula":"",
-			pessoa : {
-				"nome" : "",
-				"email": "",
-				usuario: {
-					"login" : "",
-					"senha" : "",
-					tipousuario: {
-						"id": 4
-					}
-				}
+		$scope.save  = function(){
+			$scope.model.$save(function(res){
+				var questionario = '';
+				var pergunta = res;
+				
+				QuestionarioResource.get({param1: $stateParams.id}, function(response){
+					
+					questionario = response.questionario;
+					
+					QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(resposta){
+						$scope.mainForm.$setPristine();
+					});
+				});
+			});
+		}
+		
+		$scope.destroy = function(){
+			var removeFunction = function(){
+				$scope.model.$delete({param1: $scope.model.pergunta.id}, function(res) {
+					$scope.mainForm.$setPristine();
+					$scope.model.pergunta = PerguntaResource();
+				});
 			}
-		}};
-		TipoUsuarioResource.query(function (res) { $scope.tipousuarios = res; });
-	 	 masterCreate($scope, $location, ProfessorResource, root, emptyObj);
- 	}
-
-]).controller("ProfessorControllerList", ['$scope', '$location', 'ProfessorResource',
-    function($scope, $location, ProfessorResource){
-
-		masterRead($scope, $location, ProfessorResource);
-	}
-])*/;
+			confirm("Tem certeza que deseja deletar os registros?", removeFunction);
+		}
+	 }
+]);

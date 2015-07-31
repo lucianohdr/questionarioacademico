@@ -25,26 +25,26 @@ masterCreate = function($scope, $location, Resource, root, emptyObj) {
 	}
 }
 
-masterUpdate = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate) {
-	Resource.get({param1: $routeParams.id}, function(res) {
+masterUpdate = function($scope, $stateParams, $window, $location, Resource, root, actionUpdate) {
+	Resource.get({param1: $stateParams.id}, function(res) {
 		$scope.model = res;
 		if (actionUpdate) actionUpdate('get');
 	});
 
 	$scope.save = function() {
-		$scope.model.$update({param1: $routeParams.id}, function(res) {
-			if (actionUpdate) actionUpdate('save', $routeParams.id);
+		$scope.model.$update({param1: $stateParams.id}, function(res) {
+			if (actionUpdate) actionUpdate('save', $stateParams.id);
 			$location.path(root);
 		});
 	}
 
 }
 
-masterDelete = function($scope, $routeParams, $window, $location, Resource, root, actionUpdate){
+masterDelete = function($scope, $stateParams, $window, $location, Resource, root, actionUpdate){
 	$scope.destroy = function(){
 		var removeFunction = function(){
-			$scope.model.$delete({param1: $routeParams.id}, function(res) {
-				if (actionUpdate) actionUpdate('delete', $routeParams.id);
+			$scope.model.$delete({param1: $stateParams.id}, function(res) {
+				if (actionUpdate) actionUpdate('delete', $stateParams.id);
 				$location.path(root);
 			});
 		}

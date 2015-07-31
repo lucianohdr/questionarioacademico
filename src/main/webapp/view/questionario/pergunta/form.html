@@ -1,33 +1,27 @@
-	<h2>Adicionar Pergunta</h2>
-	<form name="mainForm">
-	{{model}}
-		<div class="form-group">
-			<label>Nome</label>
-			<input type="text" name="nome"class="span4" ng-model="model.pergunta.nome" required>
-			<validate-msg-for field="mainForm.nome"></validate-msg-for>
-		</div>
-		
-		<div class="form-group">
-			<label>Descrição</label>
-			<input type="text" name="descricao"class="span4" ng-model="model.pergunta.descricao" required>
-			<validate-msg-for field="mainForm.descricao"></validate-msg-for>
-		</div>
-		
-		<div class="form-group">
-			<label>Categoria</label>
-			<select id="tipopergunta" ng-model="model.pergunta.tipopergunta" name="categoria" ng-options="c.nome for c in categorias track by c.id" required>
-				<option value="">Selecione</option>
-			</select>
-			<validate-msg-for field="mainForm.categoria"></validate-msg-for>
-		</div>
-		
-		<div class="form-group">
-			<label>Observação</label>
-			<textarea name="observacao" rows="4" class="span4" ng-model="model.questionario.observacao">
-			</textarea>
-		</div>
-		<br> 
-		<a href="#/questionario/" class="btn">Cancelar</a>
-		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-		<button ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
-	</form>
+<h2>Adicionar Pergunta</h2>
+<form name="mainForm">
+	{{$stateParams}}
+	<div class="form-group">
+		<label>Nome</label>
+		<input type="text" name="nome"class="span9" ng-model="model.pergunta.nome" required>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
+	</div>
+	
+	<div class="form-group">
+		<label>Descrição</label>
+		<input type="text" name="descricao" class="span9" ng-model="model.pergunta.descricao" required>
+		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+	</div>
+	
+	<div class="form-group">
+		<label>Tipo de Pergunta</label>
+		<select id="tipopergunta" class="span9" ng-model="model.pergunta.tipopergunta" name="tipoperguntas" ng-options="t.nome for t in tipoperguntas track by t.id" required>
+			<option value="">Selecione</option>
+		</select>
+		<validate-msg-for field="mainForm.categoria"></validate-msg-for>
+	</div>
+	<br> 
+	<!-- <a href="#/questionario/" class="btn">Cancelar</a> -->
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Adicionar</button>
+	<button ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
+</form>

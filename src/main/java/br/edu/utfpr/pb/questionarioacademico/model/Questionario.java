@@ -61,6 +61,10 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	inverseJoinColumns=@JoinColumn(name="idquestionario"))
 	private Set<Pergunta> perguntas;
 	
+	public void addPergunta(Pergunta pergunta){
+		getPerguntas().add(pergunta);
+	}
+	
 	public Categoriaquestionario getCategoriaquestionario() {
 		return categoriaquestionario;
 	}
@@ -102,5 +106,11 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	}
 	public void setProfessoresRespondidos(Set<Professor> professoresRespondidos) {
 		this.professoresRespondidos = professoresRespondidos;
+	}
+	public Set<Pergunta> getPerguntas() {
+		return perguntas;
+	}
+	public void setPerguntas(Set<Pergunta> perguntas) {
+		this.perguntas = perguntas;
 	}
 }

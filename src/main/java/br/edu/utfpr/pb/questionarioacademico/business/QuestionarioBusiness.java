@@ -10,9 +10,4 @@ import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 		implements QuestionarioRepository {
 
-	@Override
-	public Questionario getLastQuestionario() {
-		return (Questionario)this.entityManager
-				.createQuery("from Questionario order by id desc").setMaxResults(1).getSingleResult();
-	}
 }

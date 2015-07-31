@@ -68,6 +68,8 @@
 	<script src="js/app/controller/turmaController.js"></script>
 	<script src="js/app/controller/cursoController.js"></script>
 	<script src="js/app/controller/questionarioController.js"></script>
+	<script src="js/app/controller/perguntaController.js"></script>
+	<!-- <script src="js/app/controller/tipoController.js"></script> -->
 
 	<title>Questionário Acadêmico</title>
 

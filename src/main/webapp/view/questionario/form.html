@@ -1,28 +1,38 @@
-<h2 ng-show="model.questionario.id">Editar Questionário</h2>
-<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
-<form name="mainForm">
-	<div class="form-group">
-		<label>Descrição</label>
-		<input type="text" name="descricao"class="span4" ng-model="model.questionario.descricao" required>
-		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+<div class="row-fluid">
+	<div class="span5">
+		<h2 ng-show="model.questionario.id">Editar Questionário</h2>
+		<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
+		<form name="mainForm">
+			<div class="form-group">
+				<label>Descrição</label>
+				<input type="text" name="descricao" class="span9" ng-model="model.questionario.descricao" required>
+				<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+			</div>
+			
+			<div class="form-group">
+				<label>Categoria</label>
+				<select id="categoria" class="span9" ng-model="model.questionario.categoriaquestionario" name="categoria" ng-options="c.nome for c in categorias track by c.id" required>
+					<option value="">Selecione</option>
+				</select>
+				<validate-msg-for field="mainForm.categoria"></validate-msg-for>
+			</div>
+			
+			<div class="form-group">
+				<label>Observação</label>
+				<textarea name="observacao" rows="4" class="span9" ng-model="model.questionario.observacao">
+				</textarea>
+			</div>
+			<br> 
+			<a ui-sref="questionario" class="btn">Cancelar</a>
+			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+			<button ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
+			<!-- <a ng-show="model.questionario.id" href="#/questionario/{{model.questionario.id}}/perguntas" class="btn">Adicionar perguntas</a> -->
+			
+		</form>
 	</div>
-	
-	<div class="form-group">
-		<label>Categoria</label>
-		<select id="categoria" ng-model="model.questionario.categoriaquestionario" name="categoria" ng-options="c.nome for c in categorias track by c.id" required>
-			<option value="">Selecione</option>
-		</select>
-		<validate-msg-for field="mainForm.categoria"></validate-msg-for>
+	<div class="span5">
+		<div ng-show="model.questionario.id">
+			 <div ui-view="pergunta"></div>
+		</div>
 	</div>
-	
-	<div class="form-group">
-		<label>Observação</label>
-		<textarea name="observacao" rows="4" class="span4" ng-model="model.questionario.observacao">
-		</textarea>
-	</div>
-	<br> 
-	<a ui-sref="questionario" class="btn">Cancelar</a>
-	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-	<button ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
-	<a ng-show="model.questionario.id" href="#/questionario/{{model.questionario.id}}/perguntas" class="btn">Adicionar perguntas</a>
-</form>
+</div>

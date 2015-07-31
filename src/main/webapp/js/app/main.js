@@ -33,7 +33,14 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 		.state("disciplinaNew" ,{ url: '/disciplina/new', controller: 'DisciplinaControllerNew', templateUrl:'view/disciplina/form.html'})
 		.state("disciplina" ,{ url: '/disciplina/', controller: 'DisciplinaControllerList', templateUrl:'view/disciplina/list.html'})
 		
-		.state("questionarioEdit" ,{ url: '/questionario/edit/:id', controller: 'QuestionarioControllerEdit', templateUrl:'view/questionario/form.html'})
+/*		.state("questionarioEdit" ,{ url: '/questionario/edit/:id', controller: 'QuestionarioControllerEdit', templateUrl:'view/questionario/form.html'})*/
+		.state("questionarioEdit", { url: '/questionario/edit/:id',
+				views: {
+					'' : {templateUrl: 'view/questionario/form.html', controller : 'QuestionarioControllerEdit'},
+					'pergunta@questionarioEdit' : 	  { controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/form.html'},
+					'perguntaList@questionarioEdit' : { controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/list.html'},
+				}
+		})
 		.state("questionarioNew" ,{ url: '/questionario/new', controller: 'QuestionarioControllerNew', templateUrl:'view/questionario/form.html'})
 		.state("questionario" ,{ url: '/questionario/', controller: 'QuestionarioControllerList', templateUrl:'view/questionario/list.html'})
 		
