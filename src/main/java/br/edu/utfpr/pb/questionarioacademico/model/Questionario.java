@@ -37,8 +37,8 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="alunorespondido",
-			joinColumns=@JoinColumn(name="idaluno"),
-			inverseJoinColumns=@JoinColumn(name="idquestionario"))
+			joinColumns=@JoinColumn(name="idquestionario"),
+			inverseJoinColumns=@JoinColumn(name="idaluno"))
 	private Set<Aluno> alunosRespondidos;
 	
 	public void addAluno(Aluno aluno){
@@ -47,8 +47,8 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="professorrespondido",
-	joinColumns=@JoinColumn(name="idprofessor"),
-	inverseJoinColumns=@JoinColumn(name="idquestionario"))
+	joinColumns=@JoinColumn(name="idquestionario"),
+	inverseJoinColumns=@JoinColumn(name="idprofessor"))
 	private Set<Professor> professoresRespondidos;
 	
 	public void addProfessor(Professor professor){
@@ -57,8 +57,8 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="composicaoquestionario",
-	joinColumns=@JoinColumn(name="idpergunta"),
-	inverseJoinColumns=@JoinColumn(name="idquestionario"))
+	joinColumns=@JoinColumn(name="idquestionario"),
+	inverseJoinColumns=@JoinColumn(name="idpergunta"))
 	private Set<Pergunta> perguntas;
 	
 	public void addPergunta(Pergunta pergunta){
