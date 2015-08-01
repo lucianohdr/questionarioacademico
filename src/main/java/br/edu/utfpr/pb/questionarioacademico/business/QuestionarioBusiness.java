@@ -10,4 +10,9 @@ import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 		implements QuestionarioRepository {
 
+	/*@Override
+	public List<Pergunta> perguntas(long idquestionario) {
+		String hql = "from";
+		return null;
+	}*/
 }

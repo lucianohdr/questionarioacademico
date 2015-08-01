@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
+import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 
 @SuppressWarnings("serial")
@@ -21,17 +22,19 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 
 	private Result result;
 	private QuestionarioRepository repository;
+	private PerguntaRepository perguntaRepository;
 	
 	@Inject
-	public QuestionarioController(Result result, QuestionarioRepository repository) {
+	public QuestionarioController(Result result, QuestionarioRepository repository, PerguntaRepository perguntaRepository) {
 		super(result);
 		this.repository = repository;
+		this.perguntaRepository = perguntaRepository;
 		this.result = result;
 	}
 	
 	/*CDI only*/
 	protected QuestionarioController(){
-		this(null, null);
+		this(null, null, null);
 	}
 	
 	@Get
@@ -85,5 +88,12 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		repository.update(questionario);
 		
 		serializer(questionario).serialize();
+	}
+	
+	@Post
+	@Path("/perguntas")
+	@Consumes("application/json")
+	public void perguntas(long idquestionario){
+		perguntaRepository.perguntasPorQuestionario(idquestionario);
 	}
 }

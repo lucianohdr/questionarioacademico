@@ -24,7 +24,8 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 					
 					questionario = response.questionario;
 					
-					QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(resposta){
+					QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(questionario){
+						$scope.$emit("QuestionarioControllerEdit.addPergunta", pergunta);
 						$scope.mainForm.$setPristine();
 					});
 				});

@@ -85,9 +85,16 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 			isArray: false
 	};
 	
+	var perguntas = {
+			'url': baseUrl + 'questionarios/perguntas',
+			'method': 'POST', 
+			isArray: false
+	};
+	
 	var api = $resource(configUrl('questionarios'), params(), {
 																'update': {'method': 'PUT'},
-																'addPergunta': addPergunta
+																'addPergunta': addPergunta,
+																'perguntas' : perguntas
 															  });
 	return api;
 }]);
