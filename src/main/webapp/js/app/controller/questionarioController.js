@@ -14,9 +14,16 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'Questionar
 			});
 		}
 		
-		$scope.$on("QuestionarioControllerEdit.addPergunta", function(event, pergunta){
-			console.log(angular)
-			$scope.model.questionario.perguntas.push(angular.copy(pergunta));
+		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){
+			//console.log($scope.model.$perguntas);
+			QuestionarioResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
+				$scope.model.questionario.perguntas = res;
+			});
+			/*QuestionarioResource.perguntas(function(res){
+				console.log(res);
+				$scope.model.questionario.perguntas = res.perguntas;
+			});*/
+			//$scope.model.questionario.perguntas.push(angular.copy(pergunta));
 		});
 	 	 
 		 masterUpdate($scope, $stateParams, $window, $location, QuestionarioResource, root);

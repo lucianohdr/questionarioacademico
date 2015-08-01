@@ -33,7 +33,6 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 		.state("disciplinaNew" ,{ url: '/disciplina/new', controller: 'DisciplinaControllerNew', templateUrl:'view/disciplina/form.html'})
 		.state("disciplina" ,{ url: '/disciplina/', controller: 'DisciplinaControllerList', templateUrl:'view/disciplina/list.html'})
 		
-/*		.state("questionarioEdit" ,{ url: '/questionario/edit/:id', controller: 'QuestionarioControllerEdit', templateUrl:'view/questionario/form.html'})*/
 		.state("questionarioEdit", { url: '/questionario/edit/:id',
 				views: {
 					'' : {templateUrl: 'view/questionario/form.html', controller : 'QuestionarioControllerEdit'},

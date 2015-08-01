@@ -1,5 +1,8 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Consumes;
@@ -93,7 +96,10 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Post
 	@Path("/perguntas")
 	@Consumes("application/json")
-	public void perguntas(long idquestionario){
-		perguntaRepository.perguntasPorQuestionario(idquestionario);
+	public void perguntas(Questionario questionario){
+		questionario = repository.find(questionario.getId());
+		List<Pergunta> perguntas = new ArrayList<Pergunta>(questionario.getPerguntas());
+		
+		serializer(perguntas).serialize();
 	}
 }

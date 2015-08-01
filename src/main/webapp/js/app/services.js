@@ -88,7 +88,7 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 	var perguntas = {
 			'url': baseUrl + 'questionarios/perguntas',
 			'method': 'POST', 
-			isArray: false
+			isArray: true
 	};
 	
 	var api = $resource(configUrl('questionarios'), params(), {

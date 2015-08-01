@@ -25,7 +25,7 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 					questionario = response.questionario;
 					
 					QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(questionario){
-						$scope.$emit("QuestionarioControllerEdit.addPergunta", pergunta);
+						$scope.$emit("QuestionarioControllerEdit.getPerguntas");
 						$scope.mainForm.$setPristine();
 					});
 				});
@@ -41,5 +41,11 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 			}
 			confirm("Tem certeza que deseja deletar os registros?", removeFunction);
 		}
+		
+		$scope.$on("PerguntaController.editPergunta", function(event, pergunta){
+			
+			(angular.copy(pergunta));
+		});
+		
 	 }
 ]);
