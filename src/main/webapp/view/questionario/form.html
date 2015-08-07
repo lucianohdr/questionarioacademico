@@ -50,7 +50,7 @@
 				<td width="100">{{pergunta.nome}}</td>
 				<td width="200">{{pergunta.descricao}}</td>
 				<td width="200">{{pergunta.tipopergunta.nome}}</td>
-				<!-- <td width="10"><button ng-click="editar({pergunta.id})"><i class="icon-pencil"></i></button></td> -->
+				<td width="10"><button ng-click="rootScope.$broadcast('PerguntaController.editPergunta', pergunta)"><i class="icon-pencil"></i></button></td>
 			</tr>
 		</table></div></td></tr>
 	</table>

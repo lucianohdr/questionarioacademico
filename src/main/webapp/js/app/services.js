@@ -108,3 +108,22 @@ questionarioAcademicoServices.factory('TipoPerguntaResource', ['$resource',funct
 	var api = $resource(configUrl('tipoperguntas'), params(), values());
 	return api;
 }]);
+
+
+questionarioAcademicoServices.factory('broadcastService', ['$rootScope',function($rootScope) {
+	var broadcastService = {};
+	
+	broadcastService.data = {};
+	
+	broadcastService.prepForBroadcast = function(eventName, data){
+		this.eventName = eventName;
+		this.data = data;
+	};
+	
+	broadcastService.broadcastItem = function(){
+		$rootScope.$broadcast(this.eventName, this.data);
+	}
+	
+	return broadcastService;
+}]);
+

@@ -43,9 +43,8 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		}
 		
 		$scope.$on("PerguntaController.editPergunta", function(event, pergunta){
-			
-			(angular.copy(pergunta));
+			console.log(pergunta);
+			$scope.model.pergunta = pergunta;
 		});
-		
 	 }
 ]);

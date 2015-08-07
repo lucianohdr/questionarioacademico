@@ -1,7 +1,7 @@
-App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'QuestionarioResource', 
+App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', 'broadcastService', '$location', 'QuestionarioResource', 
                                               'CategoriaQuestionarioResource' ,'$window', '$stateParams',
                                              
-     function($scope, $location, QuestionarioResource, CategoriaQuestionarioResource, $window, $stateParams){
+     function($scope, $rootScope, broadcastService, $location, QuestionarioResource, CategoriaQuestionarioResource, $window, $stateParams){
 
 		var root = '/questionario/';
 		
@@ -14,16 +14,14 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$location', 'Questionar
 			});
 		}
 		
+		//$scope.broadcastService = broadcastService;
+		$scope.rootScope = $rootScope;
+		//broadcastService.prepForBroadcast('PerguntaController.editPergunta', data);
+		
 		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){
-			//console.log($scope.model.$perguntas);
 			QuestionarioResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
 				$scope.model.questionario.perguntas = res;
 			});
-			/*QuestionarioResource.perguntas(function(res){
-				console.log(res);
-				$scope.model.questionario.perguntas = res.perguntas;
-			});*/
-			//$scope.model.questionario.perguntas.push(angular.copy(pergunta));
 		});
 	 	 
 		 masterUpdate($scope, $stateParams, $window, $location, QuestionarioResource, root);
