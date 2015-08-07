@@ -86,7 +86,7 @@
 
 	<build>
 		<finalName>questionarioacademico</finalName>
-		<outputDirectory>${project.build.directory}/${project.build.finalName}/src/main/webapp/WEB-INF/classes</outputDirectory>
+		<outputDirectory>${project.build.directory}/${project.build.finalName}/target</outputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
