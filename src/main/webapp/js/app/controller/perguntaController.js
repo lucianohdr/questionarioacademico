@@ -16,20 +16,33 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		$scope.model = new PerguntaResource(emptyObj);
 		
 		$scope.save  = function(){
-			$scope.model.$save(function(res){
-				var questionario = '';
-				var pergunta = res;
-				
-				QuestionarioResource.get({param1: $stateParams.id}, function(response){
+			//console.log($scope.mainForm);
+			if(!this.model.pergunta.id){
+				$scope.model.$save(function(res){
+					var questionario = '';
+					var pergunta = res;
 					
-					questionario = response.questionario;
-					
-					QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(questionario){
-						$scope.$emit("QuestionarioControllerEdit.getPerguntas");
-						$scope.mainForm.$setPristine();
+					QuestionarioResource.get({param1: $stateParams.id}, function(response){
+						
+						questionario = response.questionario;
+						
+						QuestionarioResource.addPergunta({}, {questionario: questionario, pergunta: pergunta}, function(questionario){
+							$scope.$emit("QuestionarioControllerEdit.getPerguntas");
+							$scope.mainForm.$setPristine();
+						});
 					});
 				});
-			});
+			} else {
+				$scope.model.$update({param1: $scope.model.pergunta.id}, function(res) {
+					var questionario = '';
+					var pergunta = res;
+					
+					$scope.$emit("QuestionarioControllerEdit.getPerguntas");
+					$scope.model.pergunta = {};
+					$scope.mainForm.$setPristine();
+					
+				});
+			}
 		}
 		
 		$scope.destroy = function(){
@@ -43,8 +56,8 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		}
 		
 		$scope.$on("PerguntaController.editPergunta", function(event, pergunta){
-			console.log(pergunta);
-			$scope.model.pergunta = pergunta;
+			$scope.model.pergunta = angular.copy(pergunta);
 		});
 	 }
 ]);
+

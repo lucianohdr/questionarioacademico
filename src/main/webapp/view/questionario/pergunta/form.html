@@ -1,4 +1,5 @@
-<h2>Adicionar Pergunta</h2>
+<h2 ng-show="model.pergunta.id">Editar Pergunta</h2>
+<h2 ng-hide="model.pergunta.id">Adicionar Pergunta</h2>
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label>
@@ -21,6 +22,9 @@
 	</div>
 	<br> 
 	<!-- <a href="#/questionario/" class="btn">Cancelar</a> -->
-	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Adicionar</button>
+	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
+		<span ng-hide="model.pergunta.id">Adicionar</span>
+		<span ng-show="model.pergunta.id">Salvar</span>
+	</button>
 	<button ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
 </form>
