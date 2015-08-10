@@ -16,7 +16,6 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		$scope.model = new PerguntaResource(emptyObj);
 		
 		$scope.save  = function(){
-			//console.log($scope.mainForm);
 			if(!this.model.pergunta.id){
 				$scope.model.$save(function(res){
 					var questionario = '';
@@ -47,9 +46,15 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		
 		$scope.destroy = function(){
 			var removeFunction = function(){
-				$scope.model.$delete({param1: $scope.model.pergunta.id}, function(res) {
-					$scope.mainForm.$setPristine();
-					$scope.model.pergunta = PerguntaResource();
+				
+				QuestionarioResource.rmPergunta({}, {questionario: {id: $stateParams.id}, pergunta: $scope.model.pergunta}, function(){
+					$scope.$emit("QuestionarioControllerEdit.getPerguntas");
+					
+					$scope.model.$delete({param1: $scope.model.pergunta.id}, function(res) {
+						$scope.mainForm.$setPristine();
+						$scope.model.pergunta = PerguntaResource();
+						$scope.$emit("QuestionarioControllerEdit.getPerguntas");
+					});
 				});
 			}
 			confirm("Tem certeza que deseja deletar os registros?", removeFunction);

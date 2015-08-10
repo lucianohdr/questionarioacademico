@@ -102,4 +102,17 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		
 		serializer(perguntas).serialize();
 	}
+	
+	@Post
+	@Path("/rmPergunta")
+	@Consumes("application/json")
+	public void rmPergunta(Questionario questionario, Pergunta pergunta){
+		
+		questionario = repository.find(questionario.getId());
+		
+		questionario.rmPergunta(pergunta);
+		repository.update(questionario);
+		
+		result.nothing();
+	}
 }

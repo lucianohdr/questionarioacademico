@@ -26,7 +26,7 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	
 	@OneToMany(mappedBy="pergunta")
 	private Set<Alternativa> alternativas;
-
+	
 	public Tipopergunta getTipoPergunta() {
 		return tipopergunta;
 	}

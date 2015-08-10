@@ -65,6 +65,10 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 		getPerguntas().add(pergunta);
 	}
 	
+	public void rmPergunta(Pergunta pergunta){
+		getPerguntas().remove(pergunta);
+	}
+	
 	public Categoriaquestionario getCategoriaquestionario() {
 		return categoriaquestionario;
 	}
