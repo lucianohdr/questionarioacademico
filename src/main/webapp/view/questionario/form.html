@@ -1,5 +1,4 @@
 <div class="row-fluid">
-{{model}}
 	<div class="span6">
 		<h2 ng-show="model.questionario.id">Editar Questionário</h2>
 		<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
@@ -12,13 +11,13 @@
 			<div class="row-fluid">
 				<div class="span5">
 					<label>Data Liberação</label>
-					<input type="text" name="dataliberacao" ng-model="model.questionario.dataliberacao" ui-date ui-date-format="yy-mm-dd" required>
+					<input type="text" name="dataliberacao" ng-model="model.questionario.dataliberacao" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
 					<validate-msg-for field="mainForm.dataliberacao"></validate-msg-for>
 				</div>
 				
 				<div class="span5">
 					<label>Data Validade</label>
-					<input type="text" name="datavalidade" ng-model="model.questionario.datavalidade" ui-date ui-date-format="yy-mm-dd" required>
+					<input type="text" name="datavalidade" ng-model="model.questionario.datavalidade" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
 					<validate-msg-for field="mainForm.datavalidade"></validate-msg-for>
 				</div>
 			</div>

@@ -6,7 +6,11 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 		var root = '/questionario/';
 		
 	 	CategoriaQuestionarioResource.query(function (res) { $scope.categorias = res; });
-	 	 
+	 	
+	 	$scope.dateOptions = {
+	 			dateFormat : "dd/mm/yy"
+	 	}
+	 	
 		$scope.save = function() {
 			$scope.model.$update({param1: $stateParams.id}, function(res) {
 				if (actionUpdate) actionUpdate('save', $stateParams.id);
