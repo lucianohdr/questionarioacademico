@@ -70,6 +70,11 @@
 		<!-- dependencias do hibernate -->
 		
 		<!-- localdate -->
+		<!-- <dependency>
+		    <groupId>br.com.caelum.vraptor</groupId>
+		    <artifactId>vraptor-jodatime</artifactId>
+		    <version>4.0.0.Final</version>
+		</dependency> -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
