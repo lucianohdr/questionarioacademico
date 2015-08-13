@@ -8,7 +8,9 @@
 
 angular.module('ui.date', [])
 
-.constant('uiDateConfig', {})
+.constant('uiDateConfig', {
+	format: "dd/mm/yy"
+})
 
 .directive('uiDate', ['uiDateConfig', '$timeout', function (uiDateConfig, $timeout) {
   'use strict';
@@ -21,9 +23,10 @@ angular.module('ui.date', [])
       var getOptions = function () {
         return angular.extend({}, uiDateConfig, scope.$eval(attrs.uiDate));
       };
+      
       var initDateWidget = function () {
         var opts = getOptions();
-
+        
         // If we have a controller (i.e. ngModelController) then wire it up
         if (controller) {
           // Override ngModelController's $setViewValue
@@ -34,6 +37,7 @@ angular.module('ui.date', [])
           controller.$setViewValue = function () {
             if ( !settingValue ) {
               settingValue = true;
+              element.datepicker("option", "dateFormat", opts.format);
               element.datepicker("setDate", element.datepicker("getDate"));
               _$setViewValue.call(controller, element.datepicker("getDate"));
               $timeout(function() {settingValue = false;});
@@ -45,6 +49,7 @@ angular.module('ui.date', [])
           var _onSelect = opts.onSelect || angular.noop;
           opts.onSelect = function (value, picker) {
             scope.$apply(function() {
+            	
               controller.$setViewValue(value);
               _onSelect(value, picker);
               element.blur();
@@ -62,7 +67,8 @@ angular.module('ui.date', [])
           controller.$render = function () {
             var date = controller.$viewValue;
             if ( angular.isDefined(date) && date !== null && !angular.isDate(date) ) {
-              throw new Error('ng-Model value must be a Date object - currently it is a ' + typeof date + ' - use ui-date-format to convert it from a string');
+            	console.log(angular.isDate(date));
+            	throw new Error('ng-Model value must be a Date object - currently it is a ' + typeof date + ' - use ui-date-format to convert it from a string');
             }
             element.datepicker("setDate", date);
           };
@@ -90,15 +96,18 @@ angular.module('ui.date', [])
     require:'ngModel',
     link: function(scope, element, attrs, modelCtrl) {
       var dateFormat = attrs.uiDateFormat || uiDateFormatConfig;
+    //  console.log(dateFormat);
       if ( dateFormat ) {
         // Use the datepicker with the attribute value as the dateFormat string to convert to and from a string
         modelCtrl.$formatters.push(function(value) {
           if (angular.isString(value) ) {
+        	  //console.log(jQuery.datepicker.parseDate(dateFormat, value));
             return jQuery.datepicker.parseDate(dateFormat, value);
           }
           return null;
         });
         modelCtrl.$parsers.push(function(value){
+        //	console.log(jQuery.datepicker.formatDate(dateFormat, value));
           if (value) {
             return jQuery.datepicker.formatDate(dateFormat, value);
           }

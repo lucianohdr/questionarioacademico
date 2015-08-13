@@ -16,8 +16,8 @@
 			<tr ng-repeat="questionario in list | filter:search | orderBy:'nome'">
 				<td width="100">{{questionario.descricao}}</td>
 				<td width="200">{{questionario.observacao}}</td>
-				<td width="200">{{questionario.dataliberacao}}</td>
-				<td width="200">{{questionario.datavalidade}}</td>
+				<td width="200">{{questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
+				<td width="200">{{questionario.datavalidade| date : "dd/MM/yyyy"}}</td>
 				<td width="10"><a ui-sref="questionarioEdit({id: questionario.id})"><i class="icon-pencil"></i></a></td>
 			</tr>
 		</table></div></td></tr>
