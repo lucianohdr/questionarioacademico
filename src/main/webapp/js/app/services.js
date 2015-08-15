@@ -107,11 +107,34 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 }]);
 
 questionarioAcademicoServices.factory('PerguntaResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('perguntas'), params(), values());
+	
+	var alternativaByIdPergunta = {
+			'url': baseUrl + 'alternativas/alternativaByIdPergunta',
+			'method': 'POST', 
+			isArray: true
+	};
+	var api = $resource(configUrl('perguntas'), params(), {
+		'update': {'method': 'PUT'},
+		'alternativaByIdPergunta': alternativaByIdPergunta
+	});
 	return api;
 }]);
 
 questionarioAcademicoServices.factory('TipoPerguntaResource', ['$resource',function($resource) {
 	var api = $resource(configUrl('tipoperguntas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('AlternativaResource', ['$resource',function($resource) {
+	
+	var alternativaByIdPergunta = {
+			'url': baseUrl + 'alternativas/alternativaByIdPergunta',
+			'method': 'POST', 
+			isArray: true
+	};
+	var api = $resource(configUrl('alternativas'), params(), {
+		'update': {'method': 'PUT'},
+		'alternativaByIdPergunta': alternativaByIdPergunta
+	});
 	return api;
 }]);

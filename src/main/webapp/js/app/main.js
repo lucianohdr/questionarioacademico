@@ -37,7 +37,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 				views: {
 					'' : {controller : 'QuestionarioControllerEdit', templateUrl: 'view/questionario/form.html'},
 					'pergunta@questionarioEdit' : 	  { controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/form.html'},
-					'perguntaList@questionarioEdit' : { controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/list.html'},
+					'perguntaList@questionarioEdit' : { controller: 'PerguntaController', templateUrl:'view/questionario/pergunta/list.html'}					
 				}
 		})
 		.state("questionarioNew" ,{ url: '/questionario/new', controller: 'QuestionarioControllerNew', templateUrl:'view/questionario/form.html'})

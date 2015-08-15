@@ -1,6 +1,6 @@
-App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource', 'QuestionarioResource', '$scope', '$location', '$window', '$stateParams',
+App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource', 'QuestionarioResource', 'AlternativaResource','$scope', '$location', '$window', '$stateParams',
                                              
-     function(PerguntaResource, TipoPerguntaResource, QuestionarioResource, $scope, $location, $window, $stateParams){
+     function(PerguntaResource, TipoPerguntaResource, QuestionarioResource, AlternativaResource,$scope, $location, $window, $stateParams){
 
 		var root = '/pergunta/';
 		var emptyObj = {pergunta: {
@@ -9,11 +9,35 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 			"descricao" : ""
 		}};
  		
+		$scope.model = new PerguntaResource(emptyObj);
+		
 		TipoPerguntaResource.query(function(res){
 			$scope.tipoperguntas = res;
 		});
+		$scope.model.pergunta.alternativas = [];
+
+		/*AlternativaResource.query({}, {pergunta: $scope.model.pergunta},function(res){
+			$scope.model.pergunta.alternativas = res;
+		})*/
 		
-		$scope.model = new PerguntaResource(emptyObj);
+		$scope.newAlternativa = function(){
+			$scope.model.pergunta.alternativas.push(new AlternativaResource());
+		}
+		
+		$scope.destroyAlternativa = function(index){
+			var alternativaDelete = $scope.model.pergunta.alternativas[index];
+			if(alternativaDelete.id){
+				AlternativaResource.remove({param1: alternativaDelete.id}, function(){
+					$scope.model.pergunta.alternativas.splice(index, 1);
+				})
+			} else {
+				$scope.model.pergunta.alternativas.splice(index, 1);
+			}
+		}
+		
+		/*$scope.saveAlternativa = function(alternativa){
+			$scope.model.pergunta.alternativas.splice(index, 1);
+		}*/
 		
 		$scope.save  = function(){
 			if(!this.model.pergunta.id){
@@ -52,7 +76,8 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 					
 					$scope.model.$delete({param1: $scope.model.pergunta.id}, function(res) {
 						$scope.mainForm.$setPristine();
-						$scope.model.pergunta = PerguntaResource();
+						$scope.model.pergunta = new PerguntaResource();
+						$scope.model.pergunta.alternativas = [];
 						$scope.$emit("QuestionarioControllerEdit.getPerguntas");
 					});
 				});
@@ -61,6 +86,7 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		}
 		
 		$scope.$on("PerguntaController.editPergunta", function(event, pergunta){
+			$scope.model.pergunta = {};
 			$scope.model.pergunta = angular.copy(pergunta);
 		});
 	 }

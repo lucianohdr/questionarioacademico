@@ -15,4 +15,20 @@ public class Alternativa extends br.edu.utfpr.pb.questionarioacademico.model.com
 	
 	@Column(name="descricao")
 	private String descricao;
+
+	public Pergunta getPergunta() {
+		return pergunta;
+	}
+
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 }

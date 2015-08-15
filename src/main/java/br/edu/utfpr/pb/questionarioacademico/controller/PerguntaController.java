@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Alternativa;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
@@ -61,14 +62,21 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Pergunta pergunta) {
-		repository.insertReturn(pergunta);
-		serializer(repository.insertReturn(pergunta)).serialize();
+		System.out.println(pergunta.getAlternativas().size() + " tamanho");
+		repository.setPerguntaInAlternativa(pergunta);
+		
+		//repository.insertReturn(pergunta);
+		pergunta = repository.insertReturn(pergunta);
+		
+		serializer(pergunta).serialize();
 	}
 	
 	@Put
 	@Path("/{pergunta.id}")
 	@Consumes("application/json")
 	public void update(Pergunta pergunta) {
+		repository.setPerguntaInAlternativa(pergunta);
+
 		repository.update(pergunta);
 		result.nothing();
 	}
@@ -78,5 +86,12 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	public void delete(Pergunta pergunta) {
 		repository.delete(pergunta);
 		result.nothing();
+	}
+	
+	@Override
+	protected String[] excludeProps() {
+		return new String[]{
+				"alternativas.pergunta"
+		};
 	}
 }

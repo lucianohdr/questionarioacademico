@@ -49,20 +49,26 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Get
 	@Path("/{start}/{limit}")
 	public void list(Integer start, Integer limit) {
-		serializer(repository.pagination(start, limit, null)).serialize();
+		serializer(repository.pagination(start, limit, null))
+			.exclude("perguntas.alternativas.pergunta")
+			.serialize();
 	}
 
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id),true).serialize();
+		serializer(repository.find(id),true)
+			.exclude("perguntas.alternativas.pergunta")
+			.serialize();
 	}
 
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Questionario questionario) {
-		serializer(repository.insertReturn(questionario)).serialize(); 
+		serializer(repository.insertReturn(questionario))
+			.exclude("perguntas.alternativas.pergunta")
+			.serialize(); 
 		
 	}
 	
@@ -90,7 +96,9 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		
 		repository.update(questionario);
 		
-		serializer(questionario).serialize();
+		serializer(questionario)
+			.exclude("perguntas.alternativas.pergunta")
+			.serialize();
 	}
 	
 	@Post
@@ -100,7 +108,9 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		questionario = repository.find(questionario.getId());
 		List<Pergunta> perguntas = new ArrayList<Pergunta>(questionario.getPerguntas());
 		
-		serializer(perguntas).serialize();
+		serializer(perguntas)
+			.exclude("alternativas.pergunta")
+			.serialize();
 	}
 	
 	@Post
@@ -115,4 +125,5 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		
 		result.nothing();
 	}
+	
 }

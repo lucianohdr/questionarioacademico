@@ -8,4 +8,6 @@ import br.edu.utfpr.pb.questionarioacademico.repository.common.Repository;
 public interface PerguntaRepository extends Repository<Pergunta, Long> {
 
 	List<Pergunta> perguntasPorQuestionario(long idquestionario);
+	
+	void setPerguntaInAlternativa(Pergunta pergunta);
 }
