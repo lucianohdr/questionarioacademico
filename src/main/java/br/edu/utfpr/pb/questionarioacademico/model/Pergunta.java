@@ -1,6 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	private String descricao;
 	
 	@OneToMany(mappedBy="pergunta", cascade=CascadeType.ALL)
-	private Set<Alternativa> alternativas;
+	private List<Alternativa> alternativas;
 	
 	public Tipopergunta getTipopergunta() {
 		return tipopergunta;
@@ -52,11 +52,11 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 		this.descricao = descricao;
 	}
 
-	public Set<Alternativa> getAlternativas() {
+	public List<Alternativa> getAlternativas() {
 		return alternativas;
 	}
 
-	public void setAlternativas(Set<Alternativa> alternativas) {
+	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
 	}
 }
