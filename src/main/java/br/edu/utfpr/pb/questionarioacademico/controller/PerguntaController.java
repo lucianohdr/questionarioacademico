@@ -62,10 +62,6 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Pergunta pergunta) {
-		System.out.println(pergunta.getAlternativas().size() + " tamanho");
-		repository.setPerguntaInAlternativa(pergunta);
-		
-		//repository.insertReturn(pergunta);
 		pergunta = repository.insertReturn(pergunta);
 		
 		serializer(pergunta).serialize();
@@ -75,8 +71,7 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	@Path("/{pergunta.id}")
 	@Consumes("application/json")
 	public void update(Pergunta pergunta) {
-		repository.setPerguntaInAlternativa(pergunta);
-
+		
 		repository.update(pergunta);
 		result.nothing();
 	}

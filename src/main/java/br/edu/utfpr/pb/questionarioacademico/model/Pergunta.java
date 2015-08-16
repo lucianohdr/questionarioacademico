@@ -25,7 +25,7 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	@Column(name="descricao", length=120)
 	private String descricao;
 	
-	@OneToMany(mappedBy="pergunta", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="pergunta", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Alternativa> alternativas;
 	
 	public Tipopergunta getTipopergunta() {

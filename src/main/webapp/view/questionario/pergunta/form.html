@@ -1,7 +1,6 @@
 <h3 ng-show="model.pergunta.id">Editar Pergunta</h3>
 <h3 ng-hide="model.pergunta.id">Adicionar Pergunta</h3>
 <form name="mainForm">
-	{{model}} 
 	<div class="form-group">
 		<label>Nome</label>
 		<input type="text" name="nome"class="span10" ng-model="model.pergunta.nome" required>
@@ -23,22 +22,21 @@
 	</div>
 	
 	<div ng-show="model.pergunta.tipopergunta.id==2">
-		<h5>Alternativas</h5>
 		<button type="button" class="btn btn-primary" ng-click="newAlternativa()">Adicionar alternativa</button>
-		<p>&nbsp;</p>
+		
+		<h5>Alternativas</h5>
 		<div ng-repeat="alternativa in model.pergunta.alternativas | orderBy : '+id'">
 			<div class="input-append">
-				<input type="text" ng-model="alternativa.descricao" value="{{alternativa.descricao}}">
-				<input type="hidden" ng-model="alternativa.pergunta" value="{{alternativa.descricao}}">
-				<button ng-click="destroyAlternativa($index)" class="btn btn-danger btn-small"  type="button"><i class="icon-trash"></i></button>{{alternativa.id}}
+				<input type="text" ng-model="alternativa.descricao" value="{{alternativa.descricao}}" required>
+				<button ng-click="destroyAlternativa($index)" class="btn btn-danger btn-small"  type="button"><i class="icon-trash"></i></button>
 			</div>
 		</div>
 	</div>
 	<br> 
-	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
+	<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
 		<span ng-hide="model.pergunta.id">Adicionar</span>
 		<span ng-show="model.pergunta.id">Salvar</span>
 	</button>
-	<button ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
-	<!-- <button ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button> -->
+	<button type="button" ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
+	<button type="button" ng-click="limparForm()" class="btn">Limpar</button>
 </form>

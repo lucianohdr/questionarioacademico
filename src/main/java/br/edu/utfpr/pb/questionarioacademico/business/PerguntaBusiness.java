@@ -27,4 +27,23 @@ public class PerguntaBusiness extends RepositoryImpl<Pergunta, Long> implements
 			alternativa.setPergunta(pergunta);
 		}
 	}
+	
+	@Override
+	public Pergunta insertReturn(Pergunta pergunta) {
+		
+		if(pergunta.getAlternativas()!=null){
+			setPerguntaInAlternativa(pergunta);
+		}
+		
+		return super.insertReturn(pergunta);
+	}
+	
+	@Override
+	public Pergunta update(Pergunta pergunta) {
+		
+		if(pergunta.getAlternativas()!=null){
+			setPerguntaInAlternativa(pergunta);
+		}
+		return super.update(pergunta);
+	}
 }
