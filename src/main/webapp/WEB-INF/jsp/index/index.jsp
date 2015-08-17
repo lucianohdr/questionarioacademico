@@ -43,6 +43,7 @@
 	<script src="js/lib/angular/angular-resource-1.4.3.min.js"></script>
 	<script src="js/lib/angular/angular-messages-1.4.3.min.js"></script>
 	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
+	<script src="js/lib/angular/ui/ui-bootstrap-tpls-0.13.3.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
 	
 	<script src="js/app/main.js"></script>
@@ -107,7 +108,6 @@
 				<tr><td>Senha:</td><td><input id="pass" type='password' name='pass'/></td></tr>
 			</table>
 			<hr/>
-			<!-- <p><b>Login</b>: admin <b>Password</b>: 123 <b>|</b> <b>Login</b>: user <b>Password</b>:123</p> -->
         </div>
         <div class="modal-footer"><button class="btn" ng-click="login()">Login</button></div>
 	</div>

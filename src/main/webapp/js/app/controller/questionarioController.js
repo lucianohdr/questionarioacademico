@@ -1,7 +1,7 @@
 App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location', 'QuestionarioResource', 
-                                              'CategoriaQuestionarioResource' ,'$window', '$stateParams',
+                                              'CategoriaQuestionarioResource' ,'$window', '$stateParams', '$modal',
                                              
-     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, $window, $stateParams){
+     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, $window, $stateParams, $modal){
 
 		var root = '/questionario/';
 		
@@ -11,14 +11,18 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 			dateFormat : "dd/mm/yy"
 	 	}
 	 	
+	 	$scope.rootScope = $rootScope;
+	 	
+	 	$modal.open({
+	 		templateUrl: ''
+	 	});
+	 	
 		$scope.save = function() {
 			$scope.model.$update({param1: $stateParams.id}, function(res) {
 				if (actionUpdate) actionUpdate('save', $stateParams.id);
 				$location.path(root);
 			});
 		}
-		
-		$scope.rootScope = $rootScope;
 		
 		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){
 			QuestionarioResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
