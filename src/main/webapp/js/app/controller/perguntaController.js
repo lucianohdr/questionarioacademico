@@ -3,31 +3,27 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
      function(PerguntaResource, TipoPerguntaResource, QuestionarioResource, AlternativaResource,$scope, $location, $window, $stateParams){
 
 		var root = '/pergunta/';
-		var emptyObj = {pergunta: {
-			"id":0,
-			"nome" : "",
-			"descricao" : ""
-		}};
+		var Pergunta = function(){
+			return { pergunta: {
+				"id":0,
+				"nome" : "",
+				"descricao" : "",
+				"alternativas": []
+			}};
+		}
  		
-		$scope.model = new PerguntaResource(emptyObj);
+		$scope.model = new PerguntaResource(new Pergunta);
 		
 		TipoPerguntaResource.query(function(res){
 			$scope.tipoperguntas = res;
 		});
 		
-		$scope.model.alternativas = [];
-
 		$scope.newAlternativa = function(){
 			$scope.model.pergunta.alternativas.push(new AlternativaResource());
 		}
 		
 		$scope.destroyAlternativa = function(index){
 			$scope.model.pergunta.alternativas.splice(index, 1);
-		}
-		
-		$scope.addAlternativa = function(){
-			$scope.model.pergunta.alternativas.push(angular.copy($scope.model.alternativa));
-			delete $scope.model['alternativa'];
 		}
 		
 		$scope.save  = function(){
@@ -76,7 +72,7 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 		
 		$scope.limparForm = function(){
 			$scope.mainForm.$setPristine();
-			$scope.model = new PerguntaResource();
+			$scope.model = new PerguntaResource(new Pergunta);
 		}
 		
 		$scope.$on("PerguntaController.editPergunta", function(event, pergunta){
