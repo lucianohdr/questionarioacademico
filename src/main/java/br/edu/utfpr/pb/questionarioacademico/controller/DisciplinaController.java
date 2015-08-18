@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Curso;
 import br.edu.utfpr.pb.questionarioacademico.model.Disciplina;
 import br.edu.utfpr.pb.questionarioacademico.repository.DisciplinaRepository;
 
@@ -72,5 +73,12 @@ public class DisciplinaController extends br.edu.utfpr.pb.questionarioacademico.
 	public void delete(Disciplina disciplina) {
 		repository.delete(disciplina);
 		result.nothing();
+	}
+	
+	@Post
+	@Path("/disciplinaPorCurso")
+	@Consumes("application/json")
+	public void disciplinaPorCurso(Curso curso){
+		serializer(repository.disciplinaPorCurso(curso.getId())).serialize();;
 	}
 }

@@ -3,19 +3,19 @@
 <form name="mainForm">
 	<div class="form-group">
 		<label>Nome</label>
-		<input type="text" name="nome"class="span10" ng-model="model.pergunta.nome" required>
+		<input type="text" name="nome"class="form-control" ng-model="model.pergunta.nome" required>
 		<validate-msg-for field="mainForm.nome"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
 		<label>Descrição</label>
-		<input type="text" name="descricao" class="span10" ng-model="model.pergunta.descricao" required>
+		<input type="text" name="descricao" class="form-control" ng-model="model.pergunta.descricao" required>
 		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
 	</div>
 	
 	<div class="form-group">
 		<label>Tipo de Pergunta</label>
-		<select id="tipopergunta" class="span10" ng-model="model.pergunta.tipopergunta" name="tipoperguntas" ng-options="t.nome for t in tipoperguntas track by t.id" required>
+		<select id="tipopergunta" class="form-control" ng-model="model.pergunta.tipopergunta" name="tipoperguntas" ng-options="t.nome for t in tipoperguntas track by t.id" required>
 			<option value="">Selecione</option>
 		</select>
 		<validate-msg-for field="mainForm.categoria"></validate-msg-for>

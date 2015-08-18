@@ -36,13 +36,13 @@
 	<script src="js/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
 	<script src="js/lib/jquery/jquery-ui-1.7.3.min.js"></script>
 	
-	<script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script>
+	<!-- <script src="js/lib/bootstrap/bootstrap-2.3.2.min.js"></script> -->
 	<script src="js/lib/angular/angular-1.4.3.min.js"></script>
 	<!-- <script src="js/lib/angular/angular-route-1.4.3.min.js"></script> -->
 	<script src="js/lib/angular/angular-ui-router.min.js"></script>
 	<script src="js/lib/angular/angular-resource-1.4.3.min.js"></script>
 	<script src="js/lib/angular/angular-messages-1.4.3.min.js"></script>
-	<script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script>
+	<!-- <script src="js/lib/angular/ui/ui-bootstrap-0.3.0.min.js"></script> -->
 	<script src="js/lib/angular/ui/ui-bootstrap-tpls-0.13.3.min.js"></script>
 	<script src="js/lib/angular/ui/date.js"></script>
 	
@@ -70,37 +70,39 @@
 	<script src="js/app/controller/cursoController.js"></script>
 	<script src="js/app/controller/questionarioController.js"></script>
 	<script src="js/app/controller/perguntaController.js"></script>
-	<!-- <script src="js/app/controller/tipoController.js"></script> -->
+	<script src="js/app/controller/modal/questionario/modalLiberarQuestionarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
 </head>
 <body ng-controller="MainController">
 
-	<div id="main-menu" class="navbar">
-		<div class="navbar-inner">
-			<a class="brand" ui-sref="home">Questionário Acadêmico</a>
-			<ul class="nav">
-				<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
-				<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
-				<li ng-class="navClass('usuario')"><a ui-sref="usuario">Usuário</a></li>
-				<li ng-class="navClass('tipousuario')"><a ui-sref="perfil">Tipo Usuário</a></li>
-				<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
-				<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
-				<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>
-				<li ng-class="navClass('curso')"><a ui-sref="curso">Curso</a></li>
-				<li ng-class="navClass('turma')"><a ui-sref="turma">Turma</a></li>
-				<li ng-class="navClass('disciplina')"><a ui-sref="disciplina">Disciplina</a></li>
-			</ul>
+	<nav id="main-menu" class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
+				<ul class="nav navbar-nav">
+					<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
+					<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
+					<li ng-class="navClass('usuario')"><a ui-sref="usuario">Usuário</a></li>
+					<li ng-class="navClass('tipousuario')"><a ui-sref="perfil">Tipo Usuário</a></li>
+					<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
+					<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
+					<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>
+					<li ng-class="navClass('curso')"><a ui-sref="curso">Curso</a></li>
+					<li ng-class="navClass('turma')"><a ui-sref="turma">Turma</a></li>
+					<li ng-class="navClass('disciplina')"><a ui-sref="disciplina">Disciplina</a></li>
+				</ul>
+			</div>
 			
-			<a class="brand" ng-click="logout()" href="#/">Sair</a>
+			<a class="navbar-brand" ng-click="logout()" href="#/">Sair</a>
 		</div>
-	</div>
+	</nav>
 	
 	<!-- Aqui é rederizada a view requisitada -->
 	<div class="container" ui-view></div>
 	
-	<div id="loginModal" class="modal hide fade" tabindex="-1" ng-enter="login()">
+	<!-- <div id="loginModal" class="modal hide fade" tabindex="-1" ng-enter="login()">
         <div class="modal-header"><h4>Autenticação</h4></div>
         <div class="modal-body">
 			<table>
@@ -111,7 +113,7 @@
         </div>
         <div class="modal-footer"><button class="btn" ng-click="login()">Login</button></div>
 	</div>
-	<script type="text/javascript">$('#loginModal').modal('hide');</script>
+	<script type="text/javascript">$('#loginModal').modal('hide');</script> -->
 	
 </body>
 </html>

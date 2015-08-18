@@ -13,10 +13,6 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 	
 	 	$scope.rootScope = $rootScope;
 	 	
-	 	$modal.open({
-	 		templateUrl: ''
-	 	});
-	 	
 		$scope.save = function() {
 			$scope.model.$update({param1: $stateParams.id}, function(res) {
 				if (actionUpdate) actionUpdate('save', $stateParams.id);
@@ -34,6 +30,17 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 		
 		 masterDelete($scope,$stateParams,$window, $location, QuestionarioResource, root);
 		 
+		 $scope.openModal = function(){
+			 var modalInstance = $modal.open({
+				size: 'lg',
+		 		animation: true,
+		 		templateUrl: 'view/modal/questionario/liberarQuestionario.html',
+		 		controller: 'modalLiberarQuestionarioController',
+		 		resolve : function(){
+		 			//retornar as disciplinas ja cadastradas
+		 		}
+		 	 });
+		 }
 	 }
 ]).controller("QuestionarioControllerNew", ['$scope', '$location', 'QuestionarioResource', 'CategoriaQuestionarioResource',
      function($scope, $location, QuestionarioResource, CategoriaQuestionarioResource){

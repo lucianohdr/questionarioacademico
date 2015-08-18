@@ -73,7 +73,17 @@ questionarioAcademicoServices.factory('CursoResource', ['$resource',function($re
 }]);
 
 questionarioAcademicoServices.factory('DisciplinaResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('disciplinas'), params(), values());
+	var disciplinaPorCurso = {
+			'url': baseUrl + 'disciplinas/disciplinaPorCurso',
+			'method': 'POST', 
+			isArray: true
+	};
+	
+	var api = $resource(configUrl('disciplinas'), params(), {
+		'update': {'method': 'PUT'},
+		'disciplinaPorCurso': disciplinaPorCurso
+	  });
+	
 	return api;
 }]);
 
@@ -98,25 +108,16 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 	};
 	
 	var api = $resource(configUrl('questionarios'), params(), {
-																'update': {'method': 'PUT'},
-																'addPergunta': addPergunta,
-																'rmPergunta': rmPergunta,
-																'perguntas' : perguntas
-															  });
+		'update': {'method': 'PUT'},
+		'addPergunta': addPergunta,
+		'rmPergunta': rmPergunta,
+		'perguntas' : perguntas
+	  });
 	return api;
 }]);
 
 questionarioAcademicoServices.factory('PerguntaResource', ['$resource',function($resource) {
-	
-	var alternativaByIdPergunta = {
-			'url': baseUrl + 'alternativas/alternativaByIdPergunta',
-			'method': 'POST', 
-			isArray: true
-	};
-	var api = $resource(configUrl('perguntas'), params(), {
-		'update': {'method': 'PUT'},
-		'alternativaByIdPergunta': alternativaByIdPergunta
-	});
+	var api = $resource(configUrl('perguntas'), params(), values());
 	return api;
 }]);
 
@@ -127,14 +128,6 @@ questionarioAcademicoServices.factory('TipoPerguntaResource', ['$resource',funct
 
 questionarioAcademicoServices.factory('AlternativaResource', ['$resource',function($resource) {
 	
-	var alternativaByIdPergunta = {
-			'url': baseUrl + 'alternativas/alternativaByIdPergunta',
-			'method': 'POST', 
-			isArray: true
-	};
-	var api = $resource(configUrl('alternativas'), params(), {
-		'update': {'method': 'PUT'},
-		'alternativaByIdPergunta': alternativaByIdPergunta
-	});
+	var api = $resource(configUrl('alternativas'), params(), values());
 	return api;
 }]);
