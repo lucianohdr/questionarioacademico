@@ -1,69 +1,71 @@
-<div class="row">
-	<div class="col-xs-6">
-		<h2 ng-show="model.questionario.id">Editar Questionário</h2>
-		<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
-		<form name="mainForm">
-			<div class="form-group">
-				<label>Descrição</label>
-				<input type="text" name="descricao" class="form-control" ng-model="model.questionario.descricao" required>
-				<validate-msg-for field="mainForm.descricao"></validate-msg-for>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<label>Data Liberação</label>
-					<input type="text" name="dataliberacao" class="form-control" ng-model="model.questionario.dataliberacao" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
-					<validate-msg-for field="mainForm.dataliberacao"></validate-msg-for>
+<div class="form-group">
+	<div class="row form-group">
+		<div class="col-xs-6">
+			<h2 ng-show="model.questionario.id">Editar Questionário</h2>
+			<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
+			<form name="mainForm">
+				<div class="form-group">
+					<label>Descrição</label>
+					<input type="text" name="descricao" class="form-control" ng-model="model.questionario.descricao" required>
+					<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-6">
+						<label>Data Liberação</label>
+						<input type="text" name="dataliberacao" class="form-control" ng-model="model.questionario.dataliberacao" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
+						<validate-msg-for field="mainForm.dataliberacao"></validate-msg-for>
+					</div>
+					
+					<div class="col-xs-6">
+						<label>Data Validade</label>
+						<input type="text" name="datavalidade" class="form-control" ng-model="model.questionario.datavalidade" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
+						<validate-msg-for field="mainForm.datavalidade"></validate-msg-for>
+					</div>
 				</div>
 				
-				<div class="col-xs-6">
-					<label>Data Validade</label>
-					<input type="text" name="datavalidade" class="form-control" ng-model="model.questionario.datavalidade" ui-date-format="yy-mm-dd" ui-date="dateOptions" required>
-					<validate-msg-for field="mainForm.datavalidade"></validate-msg-for>
+				<div class="form-group">
+					<label>Categoria</label>
+					<select id="categoria" class="form-control" ng-model="model.questionario.categoriaquestionario" name="categoria" ng-options="c.nome for c in categorias track by c.id" required>
+						<option value="">Selecione</option>
+					</select>
+					<validate-msg-for field="mainForm.categoria"></validate-msg-for>
 				</div>
+				
+				<div class="form-group">
+					<label>Observação</label>
+					<textarea name="observacao" rows="4" class="form-control" ng-model="model.questionario.observacao">
+					</textarea>
+				</div>
+				<br> 
+				<a ui-sref="questionario" class="btn btn-default">Cancelar</a>
+				<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+				<button type="button" ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
+				<button type="button" ng-click="openModal()" ng-show="model.questionario.id" class="btn btn-info">Liberar para Disciplinas</button>
+			</form>
+		</div>
+		<div class="col-xs-6 form-group">
+			<div ng-show="model.questionario.id">
+				 <div ui-view="pergunta"></div>
 			</div>
-			
-			<div class="form-group">
-				<label>Categoria</label>
-				<select id="categoria" class="form-control" ng-model="model.questionario.categoriaquestionario" name="categoria" ng-options="c.nome for c in categorias track by c.id" required>
-					<option value="">Selecione</option>
-				</select>
-				<validate-msg-for field="mainForm.categoria"></validate-msg-for>
-			</div>
-			
-			<div class="form-group">
-				<label>Observação</label>
-				<textarea name="observacao" rows="4" class="form-control" ng-model="model.questionario.observacao">
-				</textarea>
-			</div>
-			<br> 
-			<a ui-sref="questionario" class="btn btn-default">Cancelar</a>
-			<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-			<button type="button" ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
-			<button type="button" ng-click="openModal()" ng-show="model.questionario.id" class="btn btn-info">Liberar para Disciplinas</button>
-		</form>
-	</div>
-	<div class="col-xs-6">
-		<div ng-show="model.questionario.id">
-			 <div ui-view="pergunta"></div>
 		</div>
 	</div>
-</div>
-<div class="row" ng-show="model.questionario.id">
-	<table width="100%" class="table table-striped table-bordered table-condensed">
-		<tr><td><table width="98%">
-			<tr>
-				<th width="100">Nome</th>
-				<th width="200">Descrição</th>
-				<th width="200">Tipo</th>
-			</tr>
-		</table></td></tr>
-		<tr><td><div class="scroll" do-scroll="load()"><table width="99%">
-			<tr ng-repeat="pergunta in model.questionario.perguntas | orderBy : '+id'">
-				<td width="100">{{pergunta.nome}}</td>
-				<td width="200">{{pergunta.descricao}}</td>
-				<td width="200">{{pergunta.tipopergunta.nome}}</td>
-				<td width="10"><button class="btn btn-default" ng-click="rootScope.$broadcast('PerguntaController.editPergunta', pergunta)"><i class="icon-pencil"></i></button></td>
-			</tr>
-		</table></div></td></tr>
-	</table>
+	<div class="row form-group" ng-show="model.questionario.id">
+		<table width="100%" class="table table-striped table-bordered table-condensed">
+			<tr><td><table width="98%">
+				<tr>
+					<th width="100">Nome</th>
+					<th width="200">Descrição</th>
+					<th width="200">Tipo</th>
+				</tr>
+			</table></td></tr>
+			<tr><td><div class="scroll" do-scroll="load()"><table class="table table-striped table-bordered table-condensed" width="99%">
+				<tr ng-repeat="pergunta in model.questionario.perguntas | orderBy : '+id'">
+					<td width="100">{{pergunta.nome}}</td>
+					<td width="200">{{pergunta.descricao}}</td>
+					<td width="200">{{pergunta.tipopergunta.nome}}</td>
+					<td width="10"><button class="btn btn-default btn-xs" ng-click="rootScope.$broadcast('PerguntaController.editPergunta', pergunta)"><i class="glyphicon glyphicon-pencil"></i></button></td>
+				</tr>
+			</table></div></td></tr>
+		</table>
+	</div>
 </div>
