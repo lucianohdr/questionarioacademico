@@ -2,25 +2,33 @@
 <h2 ng-hide="model.departamento.id">Adicionar Departamento</h2>
 <form name="mainForm">
 	<div class="form-group">
-		<label>Nome</label><input type="text" name="nome" ng-model="model.departamento.nome" required>
-		<validate-msg-for field="mainForm.nome"></validate-msg-for>
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.departamento.nome" required>
+				<validate-msg-for field="mainForm.nome"></validate-msg-for>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Descrição</label> 
+				<input type="text" class="form-control"  name="descricao" ng-model="model.departamento.descricao" required>
+				<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Chefe de Departamento</label> 
+				<select id="professores" class="form-control"  ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" required>
+					<option value="">Selecione</option>
+					<option value="1">Selecione 2</option>
+				</select>
+				<validate-msg-for field="mainForm.professor"></validate-msg-for>
+			</div>
+		</div>
+		<br> 
+		<a ui-sref="departamento" class="btn btn-default">Cancelar</a>
+		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+		<button ng-click="destroy()" ng-show="model.departamento.id" class="btn btn-danger">Deletar</button>
 	</div>
-	<div class="form-group">
-		<label>Descrição</label> 
-		<input type="text" name="descricao" ng-model="model.departamento.descricao" required>
-		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
-	</div>
-	
-	<div class="form-group">
-		<label>Chefe de Departamento</label> 
-		<select id="professores" ng-model="model.departamento.professor" name="professor" ng-options="t.pessoa.nome for t in professores track by t.id" required>
-			<option value="">Selecione</option>
-			<option value="1">Selecione 2</option>
-		</select>
-		<validate-msg-for field="mainForm.professor"></validate-msg-for>
-	</div>
-	<br> 
-	<a ui-sref="departamento" class="btn">Cancelar</a>
-	<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-	<button ng-click="destroy()" ng-show="model.departamento.id" class="btn btn-danger">Deletar</button>
 </form>
