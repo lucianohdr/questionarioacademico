@@ -1,6 +1,7 @@
 package br.edu.utfpr.pb.questionarioacademico.seguranca;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
@@ -21,13 +22,14 @@ import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 @RequestScoped
 public class SecurityInterceptor implements Interceptor {
 
-	//private Login login;
+	private Login login;
 	
 	private Result result;
 	
+	@Inject
 	public SecurityInterceptor(Result result, Login login) {
 		this.result = result;
-		/*this.login = login;*/
+		this.login = login;
 	}
 	
 	/*@Override
@@ -72,9 +74,9 @@ public class SecurityInterceptor implements Interceptor {
 	}*/
 
 	@Override
-	public void intercept(InterceptorStack stack, ControllerMethod method,
-			Object controllerInstance) throws InterceptionException {
-		System.out.println("tes");
+	public void intercept(InterceptorStack stack, ControllerMethod method, Object controllerInstance) 
+			throws InterceptionException {
+		System.out.println("teste");
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-/*package org.angular.security.controller;
+package br.edu.utfpr.pb.questionarioacademico.seguranca.controller;
 
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Get;
@@ -6,17 +6,17 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
+import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.SecurityResponse;
 
-*//**
+/**
  * 
- * @author trgp
- *
  * Classe que define recurso público para logar e deslogar da aplicação
  *
- *//*
+ */
 @br.com.caelum.vraptor.Controller
 @Path("authentication")
 public class LoginController extends Controller {
@@ -35,11 +35,13 @@ public class LoginController extends Controller {
 	@Path("/login/")
 	@Consumes("application/json")
 	public void login(Usuario usuario) {
-		boolean authenticated = false; String message = "";
+		boolean authenticated = false; 
+		String message = "";
 		Usuario u = repository.getByUsernameAndPassword(
-			usuario.getUsername(), 
-			Hasher.get(usuario.getPassword())
-		);
+			usuario.getLogin(), 
+			Hasher.get(usuario.getSenha()
+		));
+		
 		if (u != null) {
 			login.setUsuario(u);
 			authenticated = true;
@@ -59,4 +61,3 @@ public class LoginController extends Controller {
 	}
 	
 }
-*/

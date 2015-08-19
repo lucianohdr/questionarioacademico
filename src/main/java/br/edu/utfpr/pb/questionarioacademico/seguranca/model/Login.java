@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
+
 
 /**
  * 
@@ -18,7 +20,7 @@ import javax.inject.Named;
 @Named("login")
 public class Login implements Serializable{
 
-	/*private Usuario usuario;
+	private Usuario usuario;
 	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
@@ -26,6 +28,5 @@ public class Login implements Serializable{
 	
 	public Usuario getUsuario() {
 		return usuario;
-	}*/
-	
+	}
 }
