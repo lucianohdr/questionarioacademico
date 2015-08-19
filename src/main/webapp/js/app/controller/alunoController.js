@@ -1,6 +1,6 @@
-App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 'TipoUsuarioResource','$window', '$stateParams',
+App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 'PerfilResource','$window', '$stateParams',
                                              
-     function($scope, $location, AlunoResource, TipoUsuarioResource, $window, $stateParams){
+     function($scope, $location, AlunoResource, PerfilResource, $window, $stateParams){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -12,14 +12,14 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', '
 			"pessoa.usuario.login":"",
 			"pessoa.usuario.senha":"",
 		}};
-		 TipoUsuarioResource.query(function (res) { $scope.tipousuarios = res; });	
+		 PerfilResource.query(function (res) { $scope.tipousuarios = res; });	
 		 masterUpdate($scope, $stateParams, $window, $location, AlunoResource, root);
 	 		
 		 masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
  		
 	 }
-]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'TipoUsuarioResource',
-     function($scope, $location, AlunoResource, TipoUsuarioResource){
+]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource',
+     function($scope, $location, AlunoResource, PerfilResource){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -37,7 +37,7 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', '
 				}
 			}
 		}};
-		TipoUsuarioResource.query(function (res) { $scope.tipousuarios = res; });
+		PerfilResource.query(function (res) { $scope.tipousuarios = res; });
 	 	 masterCreate($scope, $location, AlunoResource, root, emptyObj);
  	}
 

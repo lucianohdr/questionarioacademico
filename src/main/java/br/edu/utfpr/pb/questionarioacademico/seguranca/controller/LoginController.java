@@ -1,11 +1,13 @@
 package br.edu.utfpr.pb.questionarioacademico.seguranca.controller;
 
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Consumes;
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
@@ -17,18 +19,25 @@ import br.edu.utfpr.pb.questionarioacademico.seguranca.model.SecurityResponse;
  * Classe que define recurso público para logar e deslogar da aplicação
  *
  */
-@br.com.caelum.vraptor.Controller
+@SuppressWarnings("serial")
+@Controller
 @Path("authentication")
-public class LoginController extends Controller {
+public class LoginController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Login login;
 	
 	private UsuarioRepository repository;
 	
+	@Inject
 	public LoginController(Result result, UsuarioRepository repository, Login login) {
 		super(result);
 		this.repository = repository;
 		this.login = login;
+	}
+	
+	/*CDI Only*/
+	protected LoginController() {
+		this(null, null, null);
 	}
 	
 	@Post
@@ -59,5 +68,4 @@ public class LoginController extends Controller {
 		login.setUsuario(null);
 		serializer(new SecurityResponse(false, "NOT_AUTHENTICATED")).serialize();
 	}
-	
 }

@@ -32,12 +32,6 @@ public class RepositoryImpl<T extends Entity, I extends Serializable> {
 	
 	protected final Class<T> clazz = retornaTipo();
 
-	/*protected RepositoryImpl(EntityManager entityManager) {
-		this.entityManager = entityManager;
-		Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		this.clazz = clazz;
-	}*/
-	
 	public void insert(T entity) {
 		entity.setId(null);
 		entityManager.persist(entity);

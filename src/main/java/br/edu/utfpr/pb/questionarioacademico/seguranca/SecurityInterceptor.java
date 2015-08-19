@@ -31,6 +31,11 @@ public class SecurityInterceptor implements Interceptor {
 		this.result = result;
 		this.login = login;
 	}
+
+	/*CDI only*/
+	protected SecurityInterceptor() {
+		this(null, null);
+	}
 	
 	/*@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object instance) throws InterceptionException {
@@ -76,7 +81,7 @@ public class SecurityInterceptor implements Interceptor {
 	@Override
 	public void intercept(InterceptorStack stack, ControllerMethod method, Object controllerInstance) 
 			throws InterceptionException {
-		System.out.println("teste");
+		stack.next(method, controllerInstance);
 	}
 
 	@Override

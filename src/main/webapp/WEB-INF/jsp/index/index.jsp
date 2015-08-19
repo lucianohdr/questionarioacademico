@@ -57,9 +57,7 @@
 	<script src="js/app/controller/homeController.js"></script>
 	<script src="js/app/controller/usuarioController.js"></script>
 	<script src="js/app/controller/perfilController.js"></script>
-	<script src="js/app/controller/contatoController.js"></script>
 	<script src="js/app/controller/tarefaController.js"></script>
-	<script src="js/app/controller/tipoUsuarioController.js"></script>
 	<script src="js/app/controller/categoriaQuestionarioController.js"></script>
 	<script src="js/app/controller/usuarioController.js"></script>
 	<script src="js/app/controller/alunoController.js"></script>
@@ -85,7 +83,7 @@
 					<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
 					<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
 					<li ng-class="navClass('usuario')"><a ui-sref="usuario">Usuário</a></li>
-					<li ng-class="navClass('tipousuario')"><a ui-sref="perfil">Tipo Usuário</a></li>
+					<li ng-class="navClass('perfil')"><a ui-sref="perfil">Perfil</a></li>
 					<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
 					<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
 					<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>

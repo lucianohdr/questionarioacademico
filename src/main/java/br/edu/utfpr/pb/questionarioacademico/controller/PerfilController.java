@@ -1,4 +1,4 @@
-/*package br.edu.utfpr.pb.questionarioacademico.controller;
+package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
@@ -15,22 +15,22 @@ import br.edu.utfpr.pb.questionarioacademico.repository.PerfilRepository;
 
 @SuppressWarnings("serial")
 @br.com.caelum.vraptor.Controller
-@Path("tipousuarios")
-public class TipoUsuarioController extends Controller{
+@Path("perfis")
+public class PerfilController extends Controller{
 
 	private Result result;
 	private PerfilRepository repository;
 	
 	@Inject
-	public TipoUsuarioController(Result result,
+	public PerfilController(Result result,
 			PerfilRepository repository) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
 	}
 	
-	CDI construtor	
-	protected TipoUsuarioController() {
+	/*CDI construtor	*/
+	protected PerfilController() {
 		this(null, null);
 	}
 	
@@ -55,23 +55,23 @@ public class TipoUsuarioController extends Controller{
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(Perfil tipousuario) {
-		repository.insert(tipousuario);
+	public void insert(Perfil perfil) {
+		repository.insert(perfil);
 		result.nothing();
 	}
 	
 	@Put
-	@Path("/{tipousuario.id}")
+	@Path("/{perfil.id}")
 	@Consumes("application/json")
-	public void update(Perfil tipousuario) {
-		repository.update(tipousuario);
+	public void update(Perfil perfil) {
+		repository.update(perfil);
 		result.nothing();
 	}
 
 	@Delete
-	@Path("/{tipousuario.id}")
-	public void delete(Perfil tipousuario) {
-		repository.delete(tipousuario);
+	@Path("/{perfil.id}")
+	public void delete(Perfil perfil) {
+		repository.delete(perfil);
 		result.nothing();
 	}
-}*/
+}

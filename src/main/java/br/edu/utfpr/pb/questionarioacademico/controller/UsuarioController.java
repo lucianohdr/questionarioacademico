@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 
 @SuppressWarnings("serial")
 @Controller
@@ -54,6 +55,7 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Usuario usuario) {
+		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		repository.insert(usuario);
 		result.nothing();
 	}
@@ -62,6 +64,7 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	@Path("/{usuario.id}")
 	@Consumes("application/json")
 	public void update(Usuario usuario) {
+		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		repository.update(usuario);
 		result.nothing();
 	}
