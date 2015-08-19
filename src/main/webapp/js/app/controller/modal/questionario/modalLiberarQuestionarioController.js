@@ -59,11 +59,10 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		return existe;
 	}
 	$scope.ok = function(){
-		$scope.questionario.$update(function(){
-			
+		$scope.questionario.$update({param1: $scope.questionario.id}, function(){
+			$modalInstance.close();
 		})
 		
-		$modalInstance.close();
 	}
 	
 	$scope.cancel = function () {

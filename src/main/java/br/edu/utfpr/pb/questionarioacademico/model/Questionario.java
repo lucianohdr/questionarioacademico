@@ -69,6 +69,20 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 		getPerguntas().remove(pergunta);
 	}
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="liberacaodisciplina",
+	joinColumns=@JoinColumn(name="idquestionario"),
+	inverseJoinColumns=@JoinColumn(name="iddisciplina"))
+	private Set<Disciplina> disciplinas;
+	
+	public Set<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(Set<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
 	public Categoriaquestionario getCategoriaquestionario() {
 		return categoriaquestionario;
 	}
