@@ -1,6 +1,8 @@
-App.controller('modalLiberarQuestionarioController', function($scope, $modalInstance, DisciplinaResource, CursoResource){
+App.controller('modalLiberarQuestionarioController', function($scope, $modalInstance, DisciplinaResource, 
+				CursoResource, QuestionarioResource, questionario){
 	
-	console.log($scope);
+	$scope.questionario = new QuestionarioResource(questionario);
+	
 	$scope.listaDisciplinas = function(){
 		DisciplinaResource.query(function(res){
 			$scope.disciplinas = res;
@@ -14,7 +16,6 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 	}
 	
 	$scope.disciplinaPorCurso = function(){
-		
 		var idcurso = $scope.model.curso ? $scope.model.curso.id : undefined;
 		if(idcurso){
 			DisciplinaResource.disciplinaPorCurso({}, {curso: {id: idcurso}}, function(res){
@@ -25,8 +26,38 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		}
 	}
 	
+	$scope.addDisciplina = function(disciplina){
+		if(!$scope.questionario.disciplinas){
+			$scope.questionario.disciplinas = [];
+		}
+		
+		if(disciplina){
+			if(!$scope.disciplinaJaExiste(disciplina)){
+				$scope.questionario.disciplinas.push(disciplina);
+			}
+		}
+	}
+	$scope.disciplinaJaExiste = function(disciplina){
+		
+		if($scope.questionario.disciplinas.length != 0){
+			var existe = false;
+			for(var i = 0; i < $scope.questionario.disciplinas.length; i++){
+				if(disciplina.id ===  $scope.questionario.disciplinas[i].id) {
+					existe = true;
+					break;
+				} 
+			}
+		} else {
+			return existe;
+		}
+		
+		return existe;
+	}
 	$scope.ok = function(){
-		//faz algo
+		$scope.questionario.$update(function(){
+			
+		})
+		
 		$modalInstance.close();
 	}
 	
@@ -37,6 +68,5 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 	$scope.listaDisciplinas();
 	
 	$scope.listaCursos();
-	
 	
 });

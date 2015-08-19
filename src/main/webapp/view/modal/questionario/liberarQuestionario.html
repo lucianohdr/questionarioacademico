@@ -1,15 +1,20 @@
 <div id="modalLiberarQuestionario" class="modal-dialog modal-lg">
 	<div class="modal-header"><h4 class="modal-title">Liberar para Disciplinas</h4></div>
 	<div class="modal-body">
-	  		<label>Filtrar por cursos</label>
-		<select id="cursos" class="form-control" ng-change="disciplinaPorCurso()" ng-model="model.curso" name="curso" ng-options="c.nome for c in cursos track by c.id" required>
-			<option value="">Selecione</option>
-		</select>
+		<div class="form-inline form-group">
+			<div class="col-md-5">
+		  		<label>Filtrar por cursos</label>
+				<select id="cursos" class="form-control input-sm" ng-change="disciplinaPorCurso()" ng-model="model.curso" name="curso" ng-options="c.nome for c in cursos track by c.id" required>
+					<option value="">Selecione</option>
+				</select>
+			</div>
 	  		<label>Disciplinas</label>
-		<select id="disciplinas" class="form-control" ng-model="model.disciplina" name="disciplina" ng-options="d.nome for d in disciplinas track by d.id" required>
-			<option value="">Selecione</option>
-		</select>
-		
+			<select id="disciplinas" class="form-control input-sm" ng-model="model.disciplina" name="disciplina" ng-options="d.nome for d in disciplinas track by d.id" required>
+				<option value="">Selecione</option>
+			</select>
+			<button type="button" class="btn btn-primary btn-sm" ng-click="addDisciplina(model.disciplina)" >Adicionar Disciplina <span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+			
 		<table width="100%" class="table table-striped table-bordered table-condensed">
 			<tr><td><table width="98%">
 				<tr>
@@ -17,15 +22,15 @@
 					<th width="200">Descrição</th>
 				</tr>
 			</table></td></tr>
-			<tr><td><div class="scroll" do-scroll="load()"><table width="99%">
-				<tr ng-repeat="disciplina in model.questionario.disciplinas | orderBy : '+id'">
+			<tr><td><div class="scroll" do-scroll="load()"><table class="table table-striped table-bordered table-condensed" width="99%">
+				<tr ng-repeat="disciplina in questionario.disciplinas | orderBy : '+id'">
 					<td width="100">{{disciplina.nome}}</td>
 					<td width="200">{{disciplina.descricao}}</td>
-					<td width="10"><button><i class="icon-pencil"></i></button></td>
+					<td width="10"><button><i class="glyphicon glyphicon-trash"></i></button></td>
 				</tr>
 			</table></div></td></tr>
 		</table>
-	  </div>
+	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
 	    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>

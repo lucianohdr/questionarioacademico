@@ -36,8 +36,10 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 		 		animation: true,
 		 		templateUrl: 'view/modal/questionario/liberarQuestionario.html',
 		 		controller: 'modalLiberarQuestionarioController',
-		 		resolve : function(){
-		 			//retornar as disciplinas ja cadastradas
+		 		resolve : {
+		 			questionario : function(){
+			 			return $scope.model.questionario;
+			 		}
 		 		}
 		 	 });
 		 }
