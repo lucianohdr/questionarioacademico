@@ -26,7 +26,7 @@
 				<tr ng-repeat="disciplina in questionario.disciplinas | orderBy : '+id'">
 					<td width="100">{{disciplina.nome}}</td>
 					<td width="200">{{disciplina.descricao}}</td>
-					<td width="10"><button><i class="glyphicon glyphicon-trash"></i></button></td>
+					<td width="10"><button  class="btn btn-default btn-sm" type="button" ng-click="rmDisciplina($index)"><i class="glyphicon glyphicon-trash"></i></button></td>
 				</tr>
 			</table></div></td></tr>
 		</table>

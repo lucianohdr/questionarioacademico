@@ -8,7 +8,8 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 	CategoriaQuestionarioResource.query(function (res) { $scope.categorias = res; });
 	 	
 	 	$scope.dateOptions = {
-	 			dateFormat : "dd/mm/yy"
+	 			dateFormat : "dd/mm/yy",
+	 			disabled: true
 	 	}
 	 	
 	 	$scope.rootScope = $rootScope;

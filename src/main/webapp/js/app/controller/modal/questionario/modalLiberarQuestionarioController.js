@@ -37,6 +37,11 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 			}
 		}
 	}
+	
+	$scope.rmDisciplina = function(index){
+		$scope.questionario.disciplinas.splice(index, 1);
+	}
+	
 	$scope.disciplinaJaExiste = function(disciplina){
 		
 		if($scope.questionario.disciplinas.length != 0){
