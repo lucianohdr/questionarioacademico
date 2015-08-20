@@ -1,6 +1,6 @@
-App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', 'CursoResource','$window', '$stateParams',
+App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', 'CursoResource', 'PeriodoResource', '$window', '$stateParams',
                                              
-     function($scope, $location, TurmaResource, CursoResource, $window, $stateParams){
+     function($scope, $location, TurmaResource, CursoResource, PeriodoResource, $window, $stateParams){
 
 		var root = '/turma/';
 		/*var emptyObj = {turma: {
@@ -11,14 +11,17 @@ App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', '
 				"id" : 0
 			}
 		}};*/
-		CursoResource.query(function (res) { $scope.cursos = res; });	
-		 masterUpdate($scope, $stateParams, $window, $location, TurmaResource, root);
+		CursoResource.query(function (res) { $scope.cursos = res; });
+		
+		PeriodoResource.query(function (res) { $scope.periodos = res; });
+		
+		masterUpdate($scope, $stateParams, $window, $location, TurmaResource, root);
 	 		
-		 masterDelete($scope,$stateParams,$window, $location, TurmaResource, root);
+		masterDelete($scope,$stateParams,$window, $location, TurmaResource, root);
  		
 	 }
-]).controller("TurmaControllerNew", ['$scope', '$location', 'TurmaResource', 'CursoResource',
-     function($scope, $location, TurmaResource, CursoResource){
+]).controller("TurmaControllerNew", ['$scope', '$location', 'TurmaResource', 'CursoResource', 'PeriodoResource',
+     function($scope, $location, TurmaResource, CursoResource, PeriodoResource){
 
 		var root = '/turma/';
 		var emptyObj = {turma: {
@@ -28,6 +31,8 @@ App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', '
 		}};
 		
 		CursoResource.query(function (res) { $scope.cursos = res; });
+		PeriodoResource.query(function (res) { $scope.periodos = res; });
+		
 	 	masterCreate($scope, $location, TurmaResource, root, emptyObj);
  	}
 

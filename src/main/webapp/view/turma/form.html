@@ -18,6 +18,16 @@
 		
 		<div class="row">
 			<div class="col-xs-6">
+				<label>Período</label>
+				<select id="periodos" class="form-control" ng-model="model.turma.periodo" name="periodo" ng-options="p.nome for p in periodos track by p.id" ng-required="true">
+						<option value="">Selecione um periodo</option>
+				</select>
+				<validate-msg-for field="mainForm.periodo"></validate-msg-for>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-6">
 				<label>Curso</label>
 				<select id="cursos" class="form-control" ng-model="model.turma.curso" name="curso" ng-options="c.nome for c in cursos track by c.id" ng-required="true">
 						<option value="">Selecione um curso</option>
@@ -25,6 +35,7 @@
 				<validate-msg-for field="mainForm.curso"></validate-msg-for>
 			</div>
 		</div>
+		
 		<br> 
 		<a ui-sref="turma" class="btn btn-default">Cancelar</a>
 		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>

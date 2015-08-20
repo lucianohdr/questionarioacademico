@@ -130,3 +130,8 @@ questionarioAcademicoServices.factory('PessoaResource', ['$resource',function($r
 	var api = $resource(configUrl('pessoas'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('PeriodoResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('periodos'), params(), values());
+	return api;
+}]);
