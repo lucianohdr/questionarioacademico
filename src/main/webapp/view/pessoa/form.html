@@ -1,7 +1,6 @@
 <h2 ng-show="model.pessoa.id">Alterar Pessoa</h2>
 <h2 ng-hide="model.pessoa.id">Adicionar Pessoa</h2>
 <form name="mainForm">
-	{{model}}
 	<div class="form-group">
 		<div class="row">
 			<div class="col-xs-6">
@@ -15,7 +14,6 @@
 				<select id="perfis" multiple ng-multiple="true" class="form-control" ng-model="model.pessoa.usuario.perfis" ng-options="p.nome for p in perfis track by p.id" required></select>
 				<validate-msg-for field="mainForm.perfil"></validate-msg-for>
 			</div>
-			
 		</div>
 		<div class="row">
 			<div class="col-xs-6">	

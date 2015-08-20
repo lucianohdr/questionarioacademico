@@ -1,7 +1,7 @@
 App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
-                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams',
+                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams', 'edit',
                                              
-     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, $window, $stateParams){
+     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, $window, $stateParams, edit){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -13,6 +13,8 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 			"pessoa.usuario.login":"",
 			"pessoa.usuario.senha":"",
 		}};
+		
+		$scope.edit = edit;
 		
 		CursoResource.query(function (res) { $scope.cursos = res; });	
 		TurmaResource.query(function (res) { $scope.turmas = res; });	

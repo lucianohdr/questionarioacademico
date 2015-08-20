@@ -1,73 +1,76 @@
-<h2 ng-show="model.aluno.id">Alterar Aluno</h2>
+<h2 ng-show="model.aluno.id && !edit">Visualizar Aluno</h2>
+<h2 ng-show="model.aluno.id && edit">Alterar Aluno</h2>
 <h2 ng-hide="model.aluno.id">Adicionar Aluno</h2>
 <form name="mainForm">
-	<div class="form-group">
-		<div class="row">
-			<div class="col-xs-6">
-				<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.aluno.pessoa.nome" required>
-				<validate-msg-for field="mainForm.nome"></validate-msg-for>
+	<fieldset ng-disabled="!edit">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.aluno.pessoa.nome" required>
+					<validate-msg-for field="mainForm.nome"></validate-msg-for>
+				</div>
 			</div>
-		</div>
-	
-		<div class="row">
-			<div class="col-xs-6">
-				<label>E-mail</label> <input type="email" class="form-control" name="email" ng-model="model.aluno.pessoa.email" ng-required="true">
-				<validate-msg-for field="mainForm.email"></validate-msg-for>
-			</div>
-		</div>
 		
-		<div class="row">
-			<div class="col-xs-6">
-				<label>RA</label> <input type="text" class="form-control" name="ra" ng-model="model.aluno.ra" ng-maxlength="15" required></input>
-				<validate-msg-for field="mainForm.ra"></validate-msg-for>
+			<div class="row">
+				<div class="col-xs-6">
+					<label>E-mail</label> <input type="email" class="form-control" name="email" ng-model="model.aluno.pessoa.email" ng-required="true">
+					<validate-msg-for field="mainForm.email"></validate-msg-for>
+				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<label>RA</label> <input type="text" class="form-control" name="ra" ng-model="model.aluno.ra" ng-maxlength="15" required></input>
+					<validate-msg-for field="mainForm.ra"></validate-msg-for>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Curso</label> 
+					<select id="cursos" ng-model="model.aluno.curso" class="form-control" name="curso" ng-options="c.nome for c in cursos track by c.id" ng-required="true">
+						<option value="">Selecione um Curso</option>
+					</select>
+					<validate-msg-for field="mainForm.curso"></validate-msg-for>
+				</div>
+			</div>
+			 
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Turma</label> 
+					<select id="turmas" ng-model="model.aluno.turma" class="form-control" name="turma" ng-options="t.nome for t in turmas track by t.id" ng-required="true">
+						<option value="">Selecione um Turma</option>
+					</select>
+					<validate-msg-for field="mainForm.turma"></validate-msg-for>
+				</div>
+			</div> 
+			<br> 
+			<fieldset ng-if="edit">
+				<legend>Dados de usuário:</legend>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Login:</label> <input type="text" class="form-control" name="login" ng-model="model.aluno.pessoa.usuario.login" ng-required="edit">
+						<validate-msg-for field="mainForm.login"></validate-msg-for>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Senha:</label> <input type="password" class="form-control" name="senha" ng-model="model.aluno.pessoa.usuario.senha" ng-required="edit">
+						<validate-msg-for field="mainForm.senha"></validate-msg-for>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Confirme sua senha:</label> 
+						<input type="password" class="form-control" ng-model="model.aluno.pessoa.usuario.confirmsenha" name="confirmsenha" ng-required="edit" compare-to="model.aluno.pessoa.usuario.senha">
+						<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
+					</div>
+				</div>
+			</fieldset>
+			<br>
+			<a ui-sref="aluno" class="btn btn-default">Cancelar</a>
+			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+			<button ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
 		</div>
-		
-		<div class="row">
-			<div class="col-xs-6">
-				<label>Curso</label> 
-				<select id="cursos" ng-model="model.aluno.curso" class="form-control" name="curso" ng-options="c.nome for c in cursos track by c.id" ng-required="true">
-					<option value="">Selecione um Curso</option>
-				</select>
-				<validate-msg-for field="mainForm.curso"></validate-msg-for>
-			</div>
-		</div>
-		 
-		<div class="row">
-			<div class="col-xs-6">
-				<label>Turma</label> 
-				<select id="turmas" ng-model="model.aluno.turma" class="form-control" name="turma" ng-options="t.nome for t in turmas track by t.id" ng-required="true">
-					<option value="">Selecione um Turma</option>
-				</select>
-				<validate-msg-for field="mainForm.turma"></validate-msg-for>
-			</div>
-		</div> 
-		<br> 
-		<fieldset>
-			<legend>Dados de usuário:</legend>
-			<div class="row">
-				<div class="col-xs-6">
-					<label>Login:</label> <input type="text" class="form-control" name="login" ng-model="model.aluno.pessoa.usuario.login" ng-required="true">
-					<validate-msg-for field="mainForm.login"></validate-msg-for>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<label>Senha:</label> <input type="password" class="form-control" name="senha" ng-model="model.aluno.pessoa.usuario.senha" ng-required="true">
-					<validate-msg-for field="mainForm.senha"></validate-msg-for>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<label>Confirme sua senha:</label> 
-					<input type="password" class="form-control" ng-model="model.aluno.pessoa.usuario.confirmsenha" name="confirmsenha" ng-required="true" compare-to="model.aluno.pessoa.usuario.senha">
-					<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
-				</div>
-			</div>
-		</fieldset>
-		<br>
-		<a ui-sref="aluno" class="btn btn-default">Cancelar</a>
-		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-		<button ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
-	</div>
+	</fieldset>
 </form>

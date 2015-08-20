@@ -7,11 +7,11 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 		.state("categoriaquestionarioNew" ,{ url: "/categoriaquestionario/new", templateUrl:'view/categoriaquestionario/form.html', controller: 'CategoriaQuestionarioControllerNew'})
 		.state("categoriaquestionarioEdit" ,{ url: "/categoriaquestionario/edit/:id", templateUrl:'view/categoriaquestionario/form.html', controller: 'CategoriaQuestionarioControllerEdit' })
 		
-		.state("alunoEdit" ,{ url: '/aluno/edit/:id', controller: 'AlunoControllerEdit', templateUrl:'view/aluno/form.html'})
+		.state("alunoEdit" ,{ url: '/aluno/edit/:id', controller: 'AlunoControllerEdit', templateUrl:'view/aluno/form.html', resolve :{ edit: function(){return false;}}})
 		.state("alunoNew" ,{ url: '/aluno/new', controller: 'AlunoControllerNew', templateUrl:'view/aluno/form.html'})
 		.state("aluno" ,{ url: '/aluno/', controller: 'AlunoControllerList', templateUrl:'view/aluno/list.html'})
 		
-		.state("professorEdit" ,{ url: '/professor/edit/:id', controller: 'ProfessorControllerEdit', templateUrl:'view/professor/form.html'})
+		.state("professorEdit" ,{ url: '/professor/edit/:id', controller: 'ProfessorControllerEdit', templateUrl:'view/professor/form.html', resolve :{ edit: function(){return false;}}})
 		.state("professorNew" ,{ url: '/professor/new', controller: 'ProfessorControllerNew', templateUrl:'view/professor/form.html'})
 		.state("professor" ,{ url: '/professor/', controller: 'ProfessorControllerList', templateUrl:'view/professor/list.html'})
 		

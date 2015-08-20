@@ -16,11 +16,12 @@
 				<td width="100">{{pessoa.nome}}</td>
 				<td width="200">{{pessoa.email}}</td>
 				<td width="200">
-					<!-- TODO: repensar -->
 					<div class="row">
-						<div class="col-xs-1 col-md-offset-1" ng-repeat="perfil in pessoa.usuario.perfis">
-							<div>{{perfil.nome}} </div>
-						</div>
+						<span ng-repeat="perfil in pessoa.usuario.perfis">
+							
+							<!-- adicionando espaçamento somente nos itens depois do primeiro -->
+							<span class="col-lg-1"  ng-class="{'col-lg-offset-1': $index != 0}">{{'[' + perfil.nome + ']'}}</span>
+						</span>
 					</div>
 				</td>
 				<td width="10"><a ui-sref="pessoaEdit({id: pessoa.id})"><i class="glyphicon glyphicon-pencil"></i></a></td>
