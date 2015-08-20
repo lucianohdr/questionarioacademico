@@ -12,10 +12,10 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
 			"pessoa.usuario.login":"",
 			"pessoa.usuario.senha":"",
 		}};
-		 PerfilResource.query(function (res) { $scope.tipousuarios = res; });	
-		 masterUpdate($scope, $stateParams, $window, $location, ProfessorResource, root);
+		
+		masterUpdate($scope, $stateParams, $window, $location, ProfessorResource, root);
 	 		
-		 masterDelete($scope,$stateParams,$window, $location, ProfessorResource, root);
+		masterDelete($scope,$stateParams,$window, $location, ProfessorResource, root);
  		
 	 }
 ]).controller("ProfessorControllerNew", ['$scope', '$location', 'ProfessorResource', 'PerfilResource',
@@ -37,8 +37,7 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
 				}
 			}
 		}};
-		PerfilResource.query(function (res) { $scope.tipousuarios = res; });
-	 	 masterCreate($scope, $location, ProfessorResource, root, emptyObj);
+	 	masterCreate($scope, $location, ProfessorResource, root, emptyObj);
  	}
 
 ]).controller("ProfessorControllerList", ['$scope', '$location', 'ProfessorResource',

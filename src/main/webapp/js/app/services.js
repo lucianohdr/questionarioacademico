@@ -122,7 +122,11 @@ questionarioAcademicoServices.factory('TipoPerguntaResource', ['$resource',funct
 }]);
 
 questionarioAcademicoServices.factory('AlternativaResource', ['$resource',function($resource) {
-	
 	var api = $resource(configUrl('alternativas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('PessoaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('pessoas'), params(), values());
 	return api;
 }]);

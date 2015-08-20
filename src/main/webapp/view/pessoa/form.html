@@ -1,0 +1,45 @@
+<h2 ng-show="model.pessoa.id">Alterar Pessoa</h2>
+<h2 ng-hide="model.pessoa.id">Adicionar Pessoa</h2>
+<form name="mainForm">
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.pessoa.nome" ng-required="true">
+				<validate-msg-for field="mainForm.nome"></validate-msg-for>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Perfil</label>
+				<select id="perfils" ng-model="model.pessoa.perfil" class="form-control" name="perfil" ng-options="p.nome for p in perfis track by p.id" ng-required="true">
+					<option value="">Selecione um valor</option>
+				</select>
+				<validate-msg-for field="mainForm.perfil"></validate-msg-for>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">	
+				<label>E-mail</label> <input type="text" class="form-control" name="email" ng-model="model.pessoa.email" ng-required="true" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
+				<validate-msg-for field="mainForm.email"></validate-msg-for>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Identificação</label> <input type="text" class="form-control" name="identificacao" ng-model="model.pessoa.identificacao" ng-required="true"></input>
+				<validate-msg-for field="mainForm.email"></validate-msg-for>
+			</div>
+		</div>
+			 
+		<div class="row">
+			<div class="col-xs-6">
+				<label>Login</label> <input type="text" class="form-control" name="login" ng-model="model.pessoa.login" ng-required="true"></input>
+				<validate-msg-for field="mainForm.login"></validate-msg-for>
+			</div>
+		</div>
+		<br> 
+		<a ui-sref="pessoa" class="btn btn-default">Cancelar</a>
+		
+		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+		<button ng-click="destroy()" ng-show="model.pessoa.id" class="btn btn-danger">Deletar</button>
+	 </div>
+</form>
