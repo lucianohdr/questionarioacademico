@@ -12,7 +12,6 @@ App.controller("TurmaControllerEdit", ['$scope', '$location', 'TurmaResource', '
 			}
 		}};*/
 		CursoResource.query(function (res) { $scope.cursos = res; });
-		
 		PeriodoResource.query(function (res) { $scope.periodos = res; });
 		
 		masterUpdate($scope, $stateParams, $window, $location, TurmaResource, root);

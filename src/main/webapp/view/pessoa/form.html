@@ -1,6 +1,7 @@
 <h2 ng-show="model.pessoa.id">Alterar Pessoa</h2>
 <h2 ng-hide="model.pessoa.id">Adicionar Pessoa</h2>
 <form name="mainForm">
+	{{model}}
 	<div class="form-group">
 		<div class="row">
 			<div class="col-xs-6">
@@ -9,13 +10,12 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-sm-6">
 				<label>Perfil</label>
-				<select id="perfils" ng-model="model.pessoa.perfil" class="form-control" name="perfil" ng-options="p.nome for p in perfis track by p.id" ng-required="true">
-					<option value="">Selecione um valor</option>
-				</select>
+				<select id="perfis" multiple ng-multiple="true" class="form-control" ng-model="model.pessoa.usuario.perfis" ng-options="p.nome for p in perfis track by p.id" required></select>
 				<validate-msg-for field="mainForm.perfil"></validate-msg-for>
 			</div>
+			
 		</div>
 		<div class="row">
 			<div class="col-xs-6">	
@@ -23,13 +23,6 @@
 				<validate-msg-for field="mainForm.email"></validate-msg-for>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-6">
-				<label>Identificação</label> <input type="text" class="form-control" name="identificacao" ng-model="model.pessoa.identificacao" ng-required="true"></input>
-				<validate-msg-for field="mainForm.email"></validate-msg-for>
-			</div>
-		</div>
-			 
 		<div class="row">
 			<div class="col-xs-6">
 				<label>Login</label> <input type="text" class="form-control" name="login" ng-model="model.pessoa.login" ng-required="true"></input>
