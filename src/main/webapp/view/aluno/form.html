@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<label>Curso</label> 
-				<select id="cursos" ng-model="model.aluno.curso" class="form-control" name="curso" ng-options="c.nome for c in cursos track by t.id" ng-required="true">
+				<select id="cursos" ng-model="model.aluno.curso" class="form-control" name="curso" ng-options="c.nome for c in cursos track by c.id" ng-required="true">
 					<option value="">Selecione um Curso</option>
 				</select>
 				<validate-msg-for field="mainForm.curso"></validate-msg-for>

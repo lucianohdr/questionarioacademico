@@ -1,6 +1,7 @@
-App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 'PerfilResource','$window', '$stateParams',
+App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
+                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams',
                                              
-     function($scope, $location, AlunoResource, PerfilResource, $window, $stateParams){
+     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, $window, $stateParams){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -12,14 +13,18 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', '
 			"pessoa.usuario.login":"",
 			"pessoa.usuario.senha":"",
 		}};
-		 PerfilResource.query(function (res) { $scope.tipousuarios = res; });	
-		 masterUpdate($scope, $stateParams, $window, $location, AlunoResource, root);
+		
+		CursoResource.query(function (res) { $scope.cursos = res; });	
+		TurmaResource.query(function (res) { $scope.turmas = res; });	
+		PerfilResource.query(function (res) { $scope.tipousuarios = res; });
+		
+		masterUpdate($scope, $stateParams, $window, $location, AlunoResource, root);
 	 		
-		 masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
+		masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
  		
 	 }
-]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource',
-     function($scope, $location, AlunoResource, PerfilResource){
+]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource','CursoResource', 'TurmaResource',
+     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -37,8 +42,11 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', '
 				}
 			}
 		}};
+		CursoResource.query(function (res) { $scope.cursos = res; });	
+		TurmaResource.query(function (res) { $scope.turmas = res; });	
 		PerfilResource.query(function (res) { $scope.tipousuarios = res; });
-	 	 masterCreate($scope, $location, AlunoResource, root, emptyObj);
+		
+	 	masterCreate($scope, $location, AlunoResource, root, emptyObj);
  	}
 
 ]).controller("AlunoControllerList", ['$scope', '$location', 'AlunoResource',

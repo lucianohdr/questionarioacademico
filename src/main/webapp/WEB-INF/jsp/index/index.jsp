@@ -81,8 +81,8 @@
 				<ul class="nav navbar-nav">
 					<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
 					<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
-					<li ng-class="navClass('pessoa')"><a ui-sref="pessoa">Pessoa</a></li>
 					<li ng-class="navClass('perfil')"><a ui-sref="perfil">Perfil</a></li>
+					<li ng-class="navClass('pessoa')"><a ui-sref="pessoa">Pessoa</a></li>
 					<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
 					<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
 					<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>

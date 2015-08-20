@@ -19,8 +19,6 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 		.state("pessoaNew" ,{ url: '/pessoa/new', controller: 'PessoaControllerNew', templateUrl:'view/pessoa/form.html'})
 		.state("pessoa" ,{ url: '/pessoa/', controller: 'PessoaControllerList', templateUrl:'view/pessoa/list.html'})
 		
-		//TODO: usar o resolve nas rotas
-		
 		.state("cursoEdit" ,{ url: '/curso/edit/:id', controller: 'CursoControllerEdit', templateUrl:'view/curso/form.html'})
 		.state("cursoNew" ,{ url: '/curso/new', controller: 'CursoControllerNew', templateUrl:'view/curso/form.html'})
 		.state("curso" ,{ url: '/curso/', controller: 'CursoControllerList', templateUrl:'view/curso/list.html'})
