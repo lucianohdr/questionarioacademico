@@ -6,4 +6,6 @@ import br.edu.utfpr.pb.questionarioacademico.repository.common.Repository;
 public interface UsuarioRepository extends Repository<Usuario, Long>{
 
 	Usuario getByUsernameAndPassword(String login, String senha);
+	
+	boolean loginDisponivel(String login);
 }

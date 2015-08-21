@@ -89,7 +89,60 @@ App.directive("compareTo", function() {
             });
         }
     };
-}); 
+});
+
+/*App.directive("userAvailability", ['UsuarioResource', function(UsuarioResource) {
+	return {
+		require: "ngModel",
+		scope: {
+			login: "=userAvailability"
+		},
+		link: function(scope, element, attributes, ngModel) {
+			
+			var checkUser = function(login){
+				
+				console.log("checkUser" + login);
+				
+				UsuarioResource.loginDisponivel({login : login}, function(res){
+					//console.log(result);
+					scope.available = res.result;
+				});
+			}
+			
+			
+			ngModel.$validators.userAvailability = function(login) {
+				console.log("$validators" + scope.available);
+				return !scope.available;
+			};
+			
+			scope.$watch("login", function() {
+				console.log("$watch" + scope.available);
+				checkUser(scope.login);
+				scope.$watch("available", function() {
+					ngModel.$validate();
+				});
+			});
+			
+		}
+	};
+}]);*/
+
+
+App.directive('userAvailability', ['$q', '$http', function ($q, $http) {
+    return {
+        require: 'ngModel',
+        scope: {
+        	login: "=userAvailability"
+        },
+        link: function (scope, elem, attrs, ngModel) {
+        	var deferred = $q.defer();
+        	
+        	ngModel.$asyncValidators.userAvailability = function(modelValue, viewValue){
+    			return $http.get(baseUrl + 'usuarios/loginDisponivel/', { params : { login: modelValue}});
+        	}
+        }
+    }
+}]);
 
 App.directive("uiAlert", function(){
 	return {

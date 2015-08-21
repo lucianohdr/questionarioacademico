@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
@@ -74,5 +75,26 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	public void delete(Usuario usuario) {
 		repository.delete(usuario);
 		result.nothing();
+	}
+	
+	@Get
+	@Path("/loginDisponivel/")
+	public void loginDisponivel(String login) {
+		//Resolve resolve = new Resolve();
+		
+		boolean disponivel = repository.loginDisponivel(login);
+		
+		if(disponivel){
+			result.use(Results.status()).ok();
+		} else {
+			result.use(Results.status()).forbidden("Usuario já existe");
+		}
+	}
+	
+	class Resolve{
+		boolean result;
+		public void setResult(boolean result){
+			this.result = result;
+		}
 	}
 }

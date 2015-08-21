@@ -38,7 +38,15 @@ questionarioAcademicoServices.factory('CategoriaQuestionarioResource', ['$resour
 }]);
 
 questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('usuarios'), params(), values());
+	var loginDisponivel = {
+			'url': baseUrl + 'usuarios/loginDisponivel',
+			'method': 'GET', 
+			isArray: false
+	};
+	var api = $resource(configUrl('usuarios'), params(), {
+		'update': {'method': 'PUT'},
+		loginDisponivel : loginDisponivel
+	});
 	return api;
 }]);
 

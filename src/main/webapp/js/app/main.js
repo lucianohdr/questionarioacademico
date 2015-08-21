@@ -2,13 +2,15 @@ var App = angular.module('QuestionarioAcademico', ['rest.service','ui.bootstrap'
 
 App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$stateProvider
-		.state("home", { url: "/", templateUrl:'view/index.html', controller: homeController})
+		.state("home", { url: "/", templateUrl:'view/index.html', controller: "MainController"})
+		.state("login", { url: "/login", templateUrl:'view/login.html', controller: "MainController"})
+		
 		.state("categoriaquestionario" ,{ url: "/categoriaquestionario/", templateUrl:'view/categoriaquestionario/list.html', controller: 'CategoriaQuestionarioControllerList'})
 		.state("categoriaquestionarioNew" ,{ url: "/categoriaquestionario/new", templateUrl:'view/categoriaquestionario/form.html', controller: 'CategoriaQuestionarioControllerNew'})
 		.state("categoriaquestionarioEdit" ,{ url: "/categoriaquestionario/edit/:id", templateUrl:'view/categoriaquestionario/form.html', controller: 'CategoriaQuestionarioControllerEdit' })
 		
 		.state("alunoEdit" ,{ url: '/aluno/edit/:id', controller: 'AlunoControllerEdit', templateUrl:'view/aluno/form.html', resolve :{ edit: function(){return false;}}})
-		.state("alunoNew" ,{ url: '/aluno/new', controller: 'AlunoControllerNew', templateUrl:'view/aluno/form.html'})
+		.state("alunoNew" ,{ url: '/aluno/new', controller: 'AlunoControllerNew', templateUrl:'view/aluno/form.html', resolve :{ edit: function(){return true;}}})
 		.state("aluno" ,{ url: '/aluno/', controller: 'AlunoControllerList', templateUrl:'view/aluno/list.html'})
 		
 		.state("professorEdit" ,{ url: '/professor/edit/:id', controller: 'ProfessorControllerEdit', templateUrl:'view/professor/form.html', resolve :{ edit: function(){return false;}}})

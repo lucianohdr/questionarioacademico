@@ -13,17 +13,17 @@ import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements UsuarioRepository{
 
 	@Override
-	public Usuario getByUsernameAndPassword(String username, String password) {
+	public Usuario getByUsernameAndPassword(String login, String senha) {
 
 		/*
 		 * Mais uma vez, esse código não toca no sql nativo, por isso pode ser chamado de Repository pattern
 		 */
-		StringBuilder queryString = new StringBuilder("from Usuario where username = ? and password = ?");
+		StringBuilder queryString = new StringBuilder("from Usuario where login = ? and senha = ?");
 
 		Query query = entityManager.createQuery(queryString.toString());
 		
-		query.setParameter(1, username);
-		query.setParameter(2, password);
+		query.setParameter(1, login);
+		query.setParameter(2, senha);
 		
 		List<Usuario> list = query.getResultList();
 		
@@ -31,6 +31,21 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 			return list.get(0);
 		} else {
 			return null;
+		}
+	}
+
+	@Override
+	public boolean loginDisponivel(String login) {
+		
+		StringBuilder queryString = new StringBuilder("from Usuario where login = :login");
+		Query query = entityManager.createQuery(queryString.toString());
+		
+		query.setParameter("login", login);
+		
+		if(query.getResultList().isEmpty()){
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

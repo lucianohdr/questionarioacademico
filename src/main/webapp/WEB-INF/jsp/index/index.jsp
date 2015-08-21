@@ -74,10 +74,9 @@
 </head>
 <body ng-controller="MainController">
 
-	<nav id="main-menu" class="navbar navbar-default">
-		<div class="container-fluid">
+	<nav id="main-menu" class="navbar navbar-default" ng-show="false">
 			<div class="navbar-header">
-			<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
+				<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
 				<ul class="nav navbar-nav">
 					<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
 					<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
@@ -93,7 +92,6 @@
 			</div>
 			
 			<a class="navbar-brand" ng-click="logout()" href="#/">Sair</a>
-		</div>
 	</nav>
 	
 	<!-- Aqui é rederizada a view requisitada -->

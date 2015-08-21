@@ -1,6 +1,8 @@
 App.controller("MainController", ['$scope', '$http', '$location', function($scope, $http, $location){
+	
+	
+	
 	$scope.login = function () {
-
 		$http.post(loginUrl, {usuario: {
 			username : $('#user').val(),
 			password : $('#pass').val()
@@ -24,6 +26,7 @@ App.controller("MainController", ['$scope', '$http', '$location', function($scop
 			}
 		});
 	}
+	
 	$scope.navClass = function(page) {
 		var currentRoute = $location.path().substring(1).replace('/','') || 'home';
 		return page === currentRoute ? 'active' : '';

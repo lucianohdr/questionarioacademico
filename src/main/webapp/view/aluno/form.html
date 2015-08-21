@@ -49,13 +49,18 @@
 				<legend>Dados de usuário:</legend>
 				<div class="row">
 					<div class="col-xs-6">
-						<label>Login:</label> <input type="text" class="form-control" name="login" ng-model="model.aluno.pessoa.usuario.login" ng-required="edit">
-						<validate-msg-for field="mainForm.login"></validate-msg-for>
+						<label>Login:</label> <input type="text" class="form-control" name="login"  ng-model-options="{ debounce: 300 }"  ng-minlength="6" user-availability ng-model="model.aluno.pessoa.usuario.login" ng-required="edit">
+						<!-- não é possivel usar a diretiva "validate-msg-for", porque por algum motivo o erro assincrono nao é passado -->
+						<div ng-if="mainForm.login.$dirty" ng-messages="mainForm.login.$error" class="messages">
+							<div ng-message="required">Campo Obrigatório</div>
+						    <div ng-message="minlength">Necessário mais caracteres</div>
+						    <div ng-message="userAvailability">Nome de usuário não está disponível</div>
+						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-6">
-						<label>Senha:</label> <input type="password" class="form-control" name="senha" ng-model="model.aluno.pessoa.usuario.senha" ng-required="edit">
+						<label>Senha:</label> <input type="password" class="form-control" name="senha" ng-minlength="6" ng-model="model.aluno.pessoa.usuario.senha" ng-required="edit">
 						<validate-msg-for field="mainForm.senha"></validate-msg-for>
 					</div>
 				</div>
@@ -68,7 +73,7 @@
 				</div>
 			</fieldset>
 			<br>
-			<a ui-sref="aluno" class="btn btn-default">Cancelar</a>
+			<a ui-sref="login" class="btn btn-default">Cancelar</a>
 			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 			<button ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
 		</div>
