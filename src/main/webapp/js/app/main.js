@@ -1,8 +1,8 @@
 var App = angular.module('QuestionarioAcademico', ['rest.service','ui.bootstrap','ui.date', 'ui.router', 'ngMessages']);
 
-App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($stateProvider, $urlRouterProvider, $httpProvider) {
+App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$stateProvider
-		.state("home", { url: "/", templateUrl:'view/index.html', controller: "MainController"})
+		.state("home", { url: "/", templateUrl:'view/index.html', controller: "HomeController"})
 		.state("login", { url: "/login", templateUrl:'view/login.html', controller: "MainController"})
 		
 		.state("categoriaquestionario" ,{ url: "/categoriaquestionario/", templateUrl:'view/categoriaquestionario/list.html', controller: 'CategoriaQuestionarioControllerList'})
@@ -50,14 +50,19 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',function($st
 		.state("perfilEdit" ,{ url: '/perfil/edit/:id', controller: 'PerfilControllerEdit', templateUrl:'view/perfil/form.html'})
 		.state("perfilNew" ,{ url: '/perfil/new', controller: 'PerfilControllerNew', templateUrl:'view/perfil/form.html'})
 		.state("perfil" ,{ url: '/perfil/', controller: 'PerfilControllerList', templateUrl:'view/perfil/list.html'});
+	
+	
+		$httpProvider.interceptors.push('httpInterceptor');
+	
 }]);
 
 App.factory('httpInterceptor', ['$q','$window', function ($q, $window) {
 	return function (promise) {
 		return promise.then(function (response) {
 			try {
+				console.log("authenticated");
 				if (response.data.authenticated == false) {
-					$('#loginModal').modal('show');
+					console.log("authenticated");
 					return $q.reject(response);
 				} else {
 					return response;

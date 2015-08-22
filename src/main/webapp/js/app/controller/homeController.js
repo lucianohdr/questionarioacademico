@@ -1,9 +1,6 @@
-var homeController = function ($scope, $location) {
-	$scope.contatos = [];
-	/*ContatoResource.query({param1: string(0), param2: 10}, function (res) {
-		$.each(res, function(index, item) {
-			$scope.contatos.push(item);
-		});
-	});*/
-};
-homeController.$inject = ['$scope', '$location'];
+App.controller("HomeController", ['$scope', '$location', '$window', '$stateParams', '$state', 
+                                             
+     function($scope, $location, $window, $stateParams, $state){
+	
+	 }
+]);
