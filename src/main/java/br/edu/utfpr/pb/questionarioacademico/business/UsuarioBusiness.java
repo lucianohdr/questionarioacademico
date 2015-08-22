@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 
 @Stateless
 public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements UsuarioRepository{
@@ -47,5 +48,17 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void insert(Usuario usuario) {
+		usuario.setSenha(Hasher.get(usuario.getSenha()));
+		super.insert(usuario);
+	}
+	
+	@Override
+	public Usuario insertReturn(Usuario usuario) {
+		usuario.setSenha(Hasher.get(usuario.getSenha()));
+		return super.insertReturn(usuario);
 	}
 }

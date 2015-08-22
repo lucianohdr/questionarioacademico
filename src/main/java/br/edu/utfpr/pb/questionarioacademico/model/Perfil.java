@@ -18,6 +18,30 @@ public class Perfil extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	@Column(name="observacao")
 	private String observacao;
 	
+	public Perfil(String descricao){
+		switch (descricao) {
+		case "ADMINISTRADOR":
+			super.setId(Long.valueOf(1));
+			break;
+		case "COORDENADOR":
+			super.setId(Long.valueOf(2));
+			break;
+		case "CHEFE":
+			super.setId(Long.valueOf(3));
+			break;
+		case "PROFESSOR":
+			super.setId(Long.valueOf(4));
+			break;
+		case "ALUNO":
+			super.setId(Long.valueOf(5));
+			break;
+		}
+	}
+
+	/*hibernate only*/
+	public Perfil(){
+	}
+	
 	public String getNome() {
 		return nome;
 	}

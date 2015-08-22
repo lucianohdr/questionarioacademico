@@ -1,10 +1,10 @@
-App.controller("MainController", ['$scope', '$http', '$location', function($scope, $http, $location){
+App.controller("MainController", ['$scope', '$http', '$state', function($scope, $http, $state){
 	
 	$scope.login = function () {
+		
 		$http.post(loginUrl, {usuario: $scope.model.usuario}).success(function(data) {
 			if (data.authenticated) {
-				$location.path(baseUrl);
-				$('#loginModal').modal('hide');
+				$state.go('home');
 			} else {
 				$scope.title = "Usuário não encontrado";
 				$scope.mensagem = "O login ou a senha podem estar errados!";
@@ -15,7 +15,7 @@ App.controller("MainController", ['$scope', '$http', '$location', function($scop
 	$scope.logout = function(){
 		$http.get(logoutUrl).success(function(data) {
 			if (data.authenticated == false) {
-				$location.path(baseUrl);
+				$state.path(baseUrl);
 			} else {
 				alert(data.message);
 			}
@@ -23,7 +23,7 @@ App.controller("MainController", ['$scope', '$http', '$location', function($scop
 	}
 	
 	$scope.navClass = function(page) {
-		var currentRoute = $location.path().substring(1).replace('/','') || 'home';
+		var currentRoute = $state.current.url.substring(1).replace('/','') || 'home';
 		return page === currentRoute ? 'active' : '';
 	};
 }]);

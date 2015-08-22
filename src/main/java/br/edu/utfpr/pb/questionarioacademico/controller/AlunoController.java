@@ -11,7 +11,11 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Aluno;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.AlunoRepositoty;
+import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 
 @SuppressWarnings("serial")
 @Controller
@@ -20,17 +24,19 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 
 	private Result result;
 	private AlunoRepositoty repository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Inject
-	public AlunoController(Result result, AlunoRepositoty repository) {
+	public AlunoController(Result result, AlunoRepositoty repository, UsuarioRepository usuarioRepository) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
+		this.usuarioRepository = usuarioRepository;
 	}
 
 	/*CDI construtor*/
 	protected AlunoController(){
-		this(null, null);
+		this(null, null, null);
 	}
 	
 	@Get
@@ -55,6 +61,13 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Aluno aluno) {
+		
+		//setando o perfil aluno em usuario
+		aluno.getPessoa().getUsuario().getPerfis().add(new Perfil("ALUNO"));
+		
+		//fazendo criptografia da senha
+		aluno.getPessoa().getUsuario().setSenha(Hasher.get(aluno.getPessoa().getUsuario().getSenha()));
+		
 		repository.insert(aluno);
 		result.nothing();
 	}

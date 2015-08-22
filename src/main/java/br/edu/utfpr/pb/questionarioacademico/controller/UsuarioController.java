@@ -56,7 +56,6 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Usuario usuario) {
-		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		repository.insert(usuario);
 		result.nothing();
 	}
@@ -65,7 +64,6 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	@Path("/{usuario.id}")
 	@Consumes("application/json")
 	public void update(Usuario usuario) {
-		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		repository.update(usuario);
 		result.nothing();
 	}

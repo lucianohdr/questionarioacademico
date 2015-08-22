@@ -1,7 +1,10 @@
 App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
-                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams', 'edit', '$state',
+                                       'PerfilResource', 'CursoResource', 'TurmaResource', 'UsuarioResource', 
+                                       '$window', '$stateParams', 'edit', 
+                                       '$state', 
                                              
-     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, 
+     function($scope, $location, AlunoResource, 
+    		 PerfilResource, CursoResource, TurmaResource, UsuarioResource, 
     		 $window, $stateParams, edit, $state){
 
 		var root = '/aluno/';
@@ -25,9 +28,14 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
  		
 	 }
-]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource','CursoResource', 
-                                     'TurmaResource', 'UsuarioResource', 'edit', '$state',
-     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, UsuarioResource, edit, $state){
+]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 
+                                     'PerfilResource','CursoResource', 'UsuarioResource',  
+                                     'PessoaResource', 'TurmaResource', 'edit', 
+                                     '$state',
+     function($scope, $location, AlunoResource, 
+    		 PerfilResource, CursoResource, UsuarioResource, 
+    		 PessoaResource, TurmaResource, edit, 
+    		 $state){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -38,7 +46,8 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 				"email": "",
 				usuario: {
 					"login" : "",
-					"senha" : ""
+					"senha" : "",
+					"perfis": []
 				}
 			}
 		}};
@@ -52,11 +61,22 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		$scope.model = new AlunoResource(emptyObj);
 		
 		$scope.save = function() {
+			
 			$scope.model.$save(function(res) {
 				$state.go('login')
 			});
+			
+			/*//Salvando usuario
+			UsuarioResource.save({}, {usuario: $scope.model.aluno.pessoa.usuario}, function(usuarioResponse){
+				$scope.model.aluno.pessoa.usuario = usuarioResponse;
+				//Salvando pessoa
+				PessoaResource.save({}, {pessoa: $scope.model.pessoa}, function(pessoaResponse){
+					$scope.model.aluno.pessoa = pessoaResponse;
+					
+					//salvando Aluno
+				});
+			});*/
 		}
-	 	
  	}
 
 ]).controller("AlunoControllerList", ['$scope', '$location', 'AlunoResource',
