@@ -1,18 +1,13 @@
 App.controller("MainController", ['$scope', '$http', '$location', function($scope, $http, $location){
 	
-	
-	
 	$scope.login = function () {
-		$http.post(loginUrl, {usuario: {
-			username : $('#user').val(),
-			password : $('#pass').val()
-	    }}).success(function(data) {
+		$http.post(loginUrl, {usuario: $scope.model.usuario}).success(function(data) {
 			if (data.authenticated) {
 				$location.path(baseUrl);
 				$('#loginModal').modal('hide');
 			} else {
-				$('#loginModal').modal('hide');
-				alert(data.message);
+				$scope.title = "Usuário não encontrado";
+				$scope.mensagem = "O login ou a senha podem estar errados!";
 			}
 		});
 	}

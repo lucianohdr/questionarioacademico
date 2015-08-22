@@ -49,7 +49,8 @@
 				<legend>Dados de usuário:</legend>
 				<div class="row">
 					<div class="col-xs-6">
-						<label>Login:</label> <input type="text" class="form-control" name="login"  ng-model-options="{ debounce: 300 }"  ng-minlength="6" user-availability ng-model="model.aluno.pessoa.usuario.login" ng-required="edit">
+						<label>Login:</label> 
+						<input autocomplete="off" type="text" class="form-control" name="login"  ng-model-options="{ debounce: 300 }"  ng-minlength="6" user-availability ng-model="model.aluno.pessoa.usuario.login" ng-required="edit">
 						<!-- não é possivel usar a diretiva "validate-msg-for", porque por algum motivo o erro assincrono nao é passado -->
 						<div ng-if="mainForm.login.$dirty" ng-messages="mainForm.login.$error" class="messages">
 							<div ng-message="required">Campo Obrigatório</div>

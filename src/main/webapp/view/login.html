@@ -1,10 +1,13 @@
 <div class="container">
 	<div class="row text-center">
 		<div class="col-lg-4 col-lg-offset-4">
-			<form class="form-group">
-				<h2 class="form-signin-heading">Entrar</h2>
-				<input type="text" class="form-control" name="login">
-				<input type="password" class="form-control" name="senha">
+			<ui-alert ng-show="title" class="alert alert-warning" title="{{title}}">
+				<p>{{mensagem}}</p>
+			</ui-alert>
+			<form name="loginForm" class="form-group">
+				<h2 class="form-signin-heading">Login</h2>
+				<input type="text" name="login" ng-model="model.usuario.login" class="form-control" name="login">
+				<input type="password" name="senha" ng-model="model.usuario.senha" class="form-control" name="senha">
 				<button class="btn btn-lg btn-primary btn-block" ng-click="login()" type="button">Entrar</button>
 				<a ui-sref="alunoNew">Ainda não está cadastrado?</a>
 			</form>

@@ -80,7 +80,6 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	@Get
 	@Path("/loginDisponivel/")
 	public void loginDisponivel(String login) {
-		//Resolve resolve = new Resolve();
 		
 		boolean disponivel = repository.loginDisponivel(login);
 		
@@ -88,13 +87,6 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 			result.use(Results.status()).ok();
 		} else {
 			result.use(Results.status()).forbidden("Usuario já existe");
-		}
-	}
-	
-	class Resolve{
-		boolean result;
-		public void setResult(boolean result){
-			this.result = result;
 		}
 	}
 }

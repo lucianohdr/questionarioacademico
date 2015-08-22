@@ -1,7 +1,8 @@
 App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
-                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams', 'edit',
+                                       'PerfilResource', 'CursoResource', 'TurmaResource', '$window', '$stateParams', 'edit', '$state',
                                              
-     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, $window, $stateParams, edit){
+     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, 
+    		 $window, $stateParams, edit, $state){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -24,8 +25,9 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		masterDelete($scope,$stateParams,$window, $location, AlunoResource, root);
  		
 	 }
-]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource','CursoResource', 'TurmaResource', 'UsuarioResource', 'edit',
-     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, UsuarioResource, edit){
+]).controller("AlunoControllerNew", ['$scope', '$location', 'AlunoResource', 'PerfilResource','CursoResource', 
+                                     'TurmaResource', 'UsuarioResource', 'edit', '$state',
+     function($scope, $location, AlunoResource, PerfilResource, CursoResource, TurmaResource, UsuarioResource, edit, $state){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -51,7 +53,7 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		
 		$scope.save = function() {
 			$scope.model.$save(function(res) {
-				$location.path('login');
+				$state.go('login')
 			});
 		}
 	 	
