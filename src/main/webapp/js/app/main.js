@@ -39,6 +39,16 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			},
 		})
 		
+		.state("acessonegado", { 
+			url: "/acessonegado",
+			views: {
+				'content@': {
+					templateUrl:'view/acessonegado.html', 
+					controller: "MainController"
+				}
+			},
+		})
+		
 		.state("categoriaquestionario" , {
 			parent: 'app',
 			url: "/categoriaquestionario/", 

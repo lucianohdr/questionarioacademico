@@ -105,7 +105,7 @@ App.factory('authService', ['$q', '$http', '$timeout',
             var isAuthenticated = authService.isAuthenticated();
 
             if ($rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !authService.isInAnyRole($rootScope.toState.data.roles)) {
-              if (isAuthenticated) $state.go('accessdenied'); // user is signed in but not authorized for desired state
+              if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
               else {
                 // user is not authenticated. stow the state they wanted before you
                 // send them to the signin state, so you can return them when you're done
