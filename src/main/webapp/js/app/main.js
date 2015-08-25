@@ -47,6 +47,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: "MainController"
 				}
 			},
+			data: {
+				roles: ["ALUNO", "ADMINISTRADOR", "COORDENADOR", "CHEFE", "PROFESSOR"]
+			} 
 		})
 		
 		.state("categoriaquestionario" , {
@@ -59,7 +62,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				}
 			},
 			data: {
-				roles: ["ALUNO"]
+				roles: ["ADMINISTRADOR"]
 			} 
 		})
 		.state("categoriaquestionarioNew" , {
@@ -108,13 +111,20 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			}
 		})
 		.state("alunoNew" ,{
-			url: '/aluno/new', 
-			controller: 'AlunoControllerNew', 
-			templateUrl:'view/aluno/form.html',  
+			url: '/aluno/new',
+			views: {
+				'content@': {
+					controller: 'AlunoControllerNew', 
+					templateUrl:'view/aluno/form.html',  
+				}
+			},
 			resolve :{ 
 				edit: function(){
 					return true;
 				}
+			},
+			data: {
+				roles: []
 			}
 		})
 		.state("aluno" ,{ 
@@ -145,7 +155,10 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				edit: function(){
 					return false;
 				}
-			}
+			},
+			data: {
+				roles: ["ADMINISTRADOR", "COORDENADOR", "PROFESSOR", "CHEFE"]
+			} 
 		})
 		.state("professorNew" ,{ 
 			parent: 'app',
@@ -156,6 +169,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					templateUrl:'view/professor/form.html',
 				}
 			},
+			data :{
+				roles: []
+			}
 		})
 		.state("professor" ,{ 
 			parent: 'app',
@@ -166,6 +182,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					templateUrl:'view/professor/list.html',
 				}
 			},
+			data :{
+				roles: []
+			}
 		})
 		
 		.state("pessoaEdit" ,{ 
@@ -177,6 +196,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					templateUrl:'view/pessoa/form.html',
 				}
 			},
+			data :{
+				roles: []
+			}
 		})
 		.state("pessoaNew" ,{
 			parent: 'app',
@@ -187,6 +209,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					templateUrl:'view/pessoa/form.html',
 				}
 			},
+			data :{
+				roles: ["ADMINISTRADOR"]
+			}
 		})
 		.state("pessoa" ,{ 
 			parent: 'app',
@@ -196,6 +221,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'PessoaControllerList', 
 					templateUrl:'view/pessoa/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		
@@ -207,6 +235,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'CursoControllerEdit', 
 					templateUrl:'view/curso/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("cursoNew" ,{ 
@@ -217,6 +248,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'CursoControllerNew', 
 					templateUrl:'view/curso/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("curso" ,{ 
@@ -227,6 +261,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'CursoControllerList', 
 					templateUrl:'view/curso/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		
@@ -238,6 +275,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DepartamentoControllerEdit', 
 					templateUrl:'view/departamento/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("departamentoNew" ,{ 
@@ -248,6 +288,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DepartamentoControllerNew', 
 					templateUrl:'view/departamento/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("departamento" ,{ 
@@ -258,6 +301,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DepartamentoControllerList', 
 					templateUrl:'view/departamento/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		
@@ -269,6 +315,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'TurmaControllerEdit', 
 					templateUrl:'view/turma/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
 		.state("turmaNew" ,{ 
@@ -280,6 +329,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					templateUrl:'view/turma/form.html',
 				}
 			}
+			,data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
+			}
 		})
 		.state("turma" ,{ 
 			parent: 'app',
@@ -289,6 +341,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'TurmaControllerList', 
 					templateUrl:'view/turma/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
 		
@@ -300,6 +355,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DisciplinaControllerEdit', 
 					templateUrl:'view/disciplina/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("disciplinaNew" ,{ 
@@ -310,6 +368,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DisciplinaControllerNew', 
 					templateUrl:'view/disciplina/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("disciplina" ,{ 
@@ -320,6 +381,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'DisciplinaControllerList',
 					templateUrl:'view/disciplina/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		//revisar
@@ -327,7 +391,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			parent: 'app',
 			url: '/questionario/edit/:id',
 			views: {
-					'' : 							  { 
+					'content@' : 							  { 
 						controller: 'QuestionarioControllerEdit', 
 						templateUrl: 'view/questionario/form.html'
 					},
@@ -340,6 +404,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 						templateUrl:'view/questionario/pergunta/list.html'
 						}					
 			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
+			}
 		})
 		.state("questionarioNew" ,{ 
 			parent: 'app',
@@ -349,6 +416,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'QuestionarioControllerNew', 
 					templateUrl:'view/questionario/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
 		.state("questionario" ,{ 
@@ -359,6 +429,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'QuestionarioControllerList', 
 					templateUrl:'view/questionario/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
 		
@@ -370,6 +443,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'PerfilControllerEdit', 
 					templateUrl:'view/perfil/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("perfilNew" ,{ 
@@ -380,6 +456,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'PerfilControllerNew', 
 					templateUrl:'view/perfil/form.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("perfil" ,{ 
@@ -390,6 +469,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: 'PerfilControllerList',
 					templateUrl:'view/perfil/list.html',
 				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR"]
 			}
 		});
 	
