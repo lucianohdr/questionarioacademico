@@ -1,4 +1,4 @@
-package br.edu.utfpr.pb.questionarioacademico.seguranca;
+/*package br.edu.utfpr.pb.questionarioacademico.seguranca;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -9,15 +9,18 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.controller.ControllerMethod;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
+import br.com.caelum.vraptor.view.Results;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.model.SecurityResponse;
 
-/**
+*//**
  * 
  * @author trgp
  *
  * Interceptador que contém a lógica de segurança da aplicação
  *
- */
+ *//*
 @Intercepts
 @RequestScoped
 public class SecurityInterceptor implements Interceptor {
@@ -32,12 +35,12 @@ public class SecurityInterceptor implements Interceptor {
 		this.login = login;
 	}
 
-	/*CDI only*/
+	CDI only
 	protected SecurityInterceptor() {
 		this(null, null);
 	}
 	
-	/*@Override
+	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object instance) throws InterceptionException {
 		boolean authenticated = false;
 		String[] rolesArr = null;
@@ -67,21 +70,26 @@ public class SecurityInterceptor implements Interceptor {
 		} else {
 			result.use(Results.json()).withoutRoot().from(new SecurityResponse(authenticated, "")).recursive().serialize();
 		}
-	}*/
+	}
 
-	/**
+	*//**
 	 * Método que define que somente os recursos anotados com @SecRole serão interceptados
-	 */
-	/*@Override
+	 *//*
+	@Override
 	public boolean accepts(ResourceMethod method) {
 		return method.getMethod().isAnnotationPresent(SecRole.class)
 			|| method.getResource().getType().isAnnotationPresent(SecRole.class);
-	}*/
+	}
 
 	@Override
 	public void intercept(InterceptorStack stack, ControllerMethod method, Object controllerInstance) 
 			throws InterceptionException {
-		stack.next(method, controllerInstance);
+		Usuario u = login.getUsuario();
+		if(u != null){
+			stack.next(method, controllerInstance);
+		} else {
+			result.use(Results.json()).withoutRoot().from(new SecurityResponse(false, "")).recursive().serialize();
+		}
 	}
 
 	@Override
@@ -90,4 +98,4 @@ public class SecurityInterceptor implements Interceptor {
 		return true;
 	}
 
-}
+}*/

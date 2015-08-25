@@ -1,10 +1,17 @@
-App.controller("MainController", ['$scope', '$http', '$state', function($scope, $http, $state){
+App.controller("MainController", ['$scope', '$http', '$state', 'authService', '$location' ,function($scope, $http, $state, authService, $location){
 	
 	$scope.login = function () {
-		
 		$http.post(loginUrl, {usuario: $scope.model.usuario}).success(function(data) {
 			if (data.authenticated) {
-				$state.go('home');
+				console.log(data);
+				authService.authenticate({
+					login : data.usuario.login,
+					roles: data.roles
+				});
+				
+				if ($scope.returnToState) $state.go($scope.returnToState.name, $scope.returnToStateParams);
+		        else $state.go('home');
+				
 			} else {
 				$scope.title = "Usuário não encontrado";
 				$scope.mensagem = "O login ou a senha podem estar errados!";
@@ -14,8 +21,10 @@ App.controller("MainController", ['$scope', '$http', '$state', function($scope, 
 	
 	$scope.logout = function(){
 		$http.get(logoutUrl).success(function(data) {
+			authService.authenticate(null);
+			
 			if (data.authenticated == false) {
-				$state.path(baseUrl);
+				$state.go('login');
 			} else {
 				alert(data.message);
 			}

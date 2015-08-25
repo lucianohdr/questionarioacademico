@@ -48,6 +48,8 @@
 	
 	<script src="js/app/main.js"></script>
 	
+	<script src="js/app/authServices.js"></script>
+	
 	<script src="js/app/services.js"></script>
 	<script src="js/app/masterControllers.js"></script>
 
@@ -67,35 +69,17 @@
 	<script src="js/app/controller/cursoController.js"></script>
 	<script src="js/app/controller/questionarioController.js"></script>
 	<script src="js/app/controller/perguntaController.js"></script>
+	<script src="js/app/controller/menuController.js"></script>
 	<script src="js/app/controller/modal/questionario/modalLiberarQuestionarioController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
 </head>
 <body ng-controller="MainController">
-
-	<nav id="main-menu" class="navbar navbar-default" ng-show="false">
-			<div class="navbar-header">
-				<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
-				<ul class="nav navbar-nav">
-					<li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
-					<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
-					<li ng-class="navClass('perfil')"><a ui-sref="perfil">Perfil</a></li>
-					<li ng-class="navClass('pessoa')"><a ui-sref="pessoa">Pessoa</a></li>
-					<li ng-class="navClass('aluno')"><a ui-sref="aluno">Aluno</a></li>
-					<li ng-class="navClass('professor')"><a ui-sref="professor">Professor</a></li>
-					<li ng-class="navClass('departamento')"><a ui-sref="departamento">Departamento</a></li>
-					<li ng-class="navClass('curso')"><a ui-sref="curso">Curso</a></li>
-					<li ng-class="navClass('turma')"><a ui-sref="turma">Turma</a></li>
-					<li ng-class="navClass('disciplina')"><a ui-sref="disciplina">Disciplina</a></li>
-				</ul>
-			</div>
-			
-			<a class="navbar-brand" ng-click="logout()" href="#/">Sair</a>
-	</nav>
 	
-	<!-- Aqui é rederizada a view requisitada -->
-	<div class="container" ui-view></div>
+	<!-- Aqui é rederizada a view home -->
+	<div ui-view="menu"></div>
+	<div ui-view="content" class="container"></div>
 	
 	<!-- <div id="loginModal" class="modal hide fade" tabindex="-1" ng-enter="login()">
         <div class="modal-header"><h4>Autenticação</h4></div>
