@@ -1,11 +1,13 @@
 package br.edu.utfpr.pb.questionarioacademico.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
@@ -60,5 +62,16 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 	public Usuario insertReturn(Usuario usuario) {
 		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		return super.insertReturn(usuario);
+	}
+
+	@Override
+	public List<String> getRoles(Usuario usuario) {
+		List<Perfil> perfis = new ArrayList<Perfil>(usuario.getPerfis());
+		List<String> retorno = new ArrayList<String>();
+		
+		for(Perfil perfil: perfis){
+			retorno.add(perfil.getNome().toUpperCase());
+		}
+		return retorno;
 	}
 }

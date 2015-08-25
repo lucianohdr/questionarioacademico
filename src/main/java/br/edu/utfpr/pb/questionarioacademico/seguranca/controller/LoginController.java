@@ -1,18 +1,23 @@
 package br.edu.utfpr.pb.questionarioacademico.seguranca.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.SecurityResponse;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 /**
  * 
@@ -50,16 +55,17 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 			usuario.getLogin(), 
 			Hasher.get(usuario.getSenha()
 		));
-		
+		List<String> roles = null;
 		if (u != null) {
 			login.setUsuario(u);
 			authenticated = true;
 			message = "AUTHENTICATED";
+			roles = repository.getRoles(login.getUsuario());
 		} else {
 			authenticated = false;
 			message = "NOT_AUTHENTICATED";
 		}
-		serializer(new SecurityResponse(authenticated, message)).serialize();
+		serializer(new SecurityResponse(authenticated, message, u, roles)).exclude("usuario.senha", "usuario.perfis").serialize();
 	}
 
 	@Get
@@ -67,5 +73,19 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 	public void logout() {
 		login.setUsuario(null);
 		serializer(new SecurityResponse(false, "NOT_AUTHENTICATED")).serialize();
+	}
+	
+	@Get
+	@Path("/identity")
+	public void identity(){
+		if(login.getUsuario() != null){
+			List<String> roles = repository.getRoles(login.getUsuario());
+			serializer(new SecurityResponse(true, 
+											"AUTHENTICATED", 
+											login.getUsuario(),
+											roles)).exclude("usuario.senha", "usuario.perfis", "usuario.id").serialize();
+		} else {
+			result.use(Results.status()).forbidden("Not Authorized");
+		}
 	}
 }
