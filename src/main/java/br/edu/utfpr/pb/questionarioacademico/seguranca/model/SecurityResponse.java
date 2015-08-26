@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.questionarioacademico.seguranca.model;
 
 import java.util.List;
 
+import br.edu.utfpr.pb.questionarioacademico.model.Tela;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 
 /**
@@ -15,6 +16,14 @@ public class SecurityResponse {
 	private String message;
 	private Usuario  usuario;
 	private List<String> roles;
+	private List<Tela> telas;
+	
+	public SecurityResponse(boolean authenticated, Usuario  usuario, List<String> roles, List<Tela> telas) {
+		this.authenticated = authenticated;
+		this.usuario = usuario;
+		this.roles = roles;
+		this.telas = telas;
+	}
 	
 	public SecurityResponse(boolean authenticated, String message, Usuario  usuario, List<String> roles) {
 		this.authenticated = authenticated;
@@ -48,5 +57,13 @@ public class SecurityResponse {
 	
 	public List<String> getRoles(){
 		return roles;
+	}
+
+	public List<Tela> getTelas() {
+		return telas;
+	}
+
+	public void setTelas(List<Tela> telas) {
+		this.telas = telas;
 	}
 }

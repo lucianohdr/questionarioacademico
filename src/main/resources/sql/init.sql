@@ -13,12 +13,12 @@ INSERT INTO categoriaquestionario (id,descricao,nome ) values (4, 'Avaliação d
 /*criando uma base de alunos, professores, turmas e cursos*/
 
 /*professores*/
-INSERT INTO usuario (id, login, senha) values (1, 'user1', 'senha');
-INSERT INTO usuario (id, login, senha) values (2, 'user2', 'senha');
-INSERT INTO usuario (id, login, senha) values (3, 'user3', 'senha');
-INSERT INTO usuario (id, login, senha) values (4, 'user4', 'senha');
-INSERT INTO usuario (id, login, senha) values (5, 'user5', 'senha');
-INSERT INTO usuario (id, login, senha) values (6, 'user6', 'senha');
+INSERT INTO usuario (id, login, senha) values (1, 'user001', 'senha');/*admin*/
+INSERT INTO usuario (id, login, senha) values (2, 'user002', 'senha');
+INSERT INTO usuario (id, login, senha) values (3, 'user003', 'senha');
+INSERT INTO usuario (id, login, senha) values (4, 'user004', 'senha');
+INSERT INTO usuario (id, login, senha) values (5, 'user005', 'senha');
+INSERT INTO usuario (id, login, senha) values (6, 'user006', 'senha');
 
 INSERT INTO pessoa (id, usuario_id, nome, email) values (1, 1, 'João da silva', 'joao@joao.com');
 INSERT INTO pessoa (id, usuario_id, nome, email) values (2, 2, 'Pedro da silva', 'pedro@pedro.com');
@@ -118,3 +118,61 @@ INSERT INTO aluno (id, pessoa_id, curso_id, turma_id, ra) values (9 , 15, 2, 2, 
 INSERT INTO aluno (id, pessoa_id, curso_id, turma_id, ra) values (10, 16, 2, 2, '123'); 
 INSERT INTO aluno (id, pessoa_id, curso_id, turma_id, ra) values (11, 17, 2, 2, '123'); 
 /*alunos*/
+
+/*Telas*/
+INSERT INTO tela (id, nome) values (1,  'questionario',	'Questionário');
+INSERT INTO tela (id, nome) values (2,  'categoriaquestionario', 'Categoria Questionário');
+INSERT INTO tela (id, nome) values (3,  'perfil', 'Perfil');
+INSERT INTO tela (id, nome) values (4,  'pessoa', 'Pessoa');
+INSERT INTO tela (id, nome) values (5,  'aluno', 'Aluno');
+INSERT INTO tela (id, nome) values (6,  'professor', 'Professor');
+INSERT INTO tela (id, nome) values (7,  'departamento', 'Departamento');
+INSERT INTO tela (id, nome) values (8,  'curso', 'Curso');
+INSERT INTO tela (id, nome) values (9,  'turma', 'Turma');
+INSERT INTO tela (id, nome) values (10, 'disciplina', 'Disciplina');
+INSERT INTO tela (id, nome) values (11, 'resultado', 'Resultado');
+INSERT INTO tela (id, nome) values (12, 'questionarioresponder', 'Responder');
+INSERT INTO tela (id, nome) values (13, 'cadastro', 'Cadastro');
+
+/*configuração administrador*/
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 1);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 2);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 3);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 4);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 5);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 6);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 7);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 8);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 9);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 10);
+INSERT INTO perfil_tela (idperfil, idtela) values (1, 13);
+/*configuração administrador*/
+
+/*configuração coordenador*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 5);/*aluno*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 6);/*professor*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 9);/*turma*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 11);/*resultado*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 12);/*questionarioresponder*/
+INSERT INTO perfil_tela (idperfil, idtela) values (2, 13);/*cadastro*/
+/*configuração coordenador*/
+
+/*configuração chefe departamento*/
+INSERT INTO perfil_tela (idperfil, idtela) values (3, 11);/*resultado*/
+INSERT INTO perfil_tela (idperfil, idtela) values (3, 12);/*questionarioresponder*/
+INSERT INTO perfil_tela (idperfil, idtela) values (3, 13);/*cadastro*/
+/*configuração chefe departamento*/
+
+/*configuração professor*/
+INSERT INTO perfil_tela (idperfil, idtela) values (4, 11);/*resultado*/
+INSERT INTO perfil_tela (idperfil, idtela) values (4, 12);/*questionarioresponder*/
+INSERT INTO perfil_tela (idperfil, idtela) values (4, 13);/*cadastro*/
+/*configuração professor*/
+
+/*configuração aluno*/
+INSERT INTO perfil_tela (idperfil, idtela) values (5, 11);/*resultado*/
+INSERT INTO perfil_tela (idperfil, idtela) values (5, 12);/*questionarioresponder*/
+INSERT INTO perfil_tela (idperfil, idtela) values (5, 13);/*cadastro*/
+/*configuração aluno*/
+
+/*Telas*/

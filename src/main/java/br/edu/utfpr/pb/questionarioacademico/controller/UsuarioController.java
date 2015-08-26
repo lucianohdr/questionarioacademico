@@ -13,7 +13,6 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 
 @SuppressWarnings("serial")
 @Controller

@@ -1,7 +1,13 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -17,6 +23,12 @@ public class Perfil extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	
 	@Column(name="observacao")
 	private String observacao;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="perfil_tela",
+	joinColumns=@JoinColumn(name="idperfil"),
+	inverseJoinColumns=@JoinColumn(name="idtela"))
+	private Set<Tela> telas;
 	
 	public Perfil(String descricao){
 		switch (descricao) {
@@ -59,5 +71,13 @@ public class Perfil extends br.edu.utfpr.pb.questionarioacademico.model.commons.
 	}
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Set<Tela> getTelas() {
+		return telas;
+	}
+
+	public void setTelas(Set<Tela> telas) {
+		this.telas = telas;
 	}
 }

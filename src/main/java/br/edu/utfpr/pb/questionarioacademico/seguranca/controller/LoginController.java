@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+import br.edu.utfpr.pb.questionarioacademico.model.Tela;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
@@ -56,16 +57,18 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 			Hasher.get(usuario.getSenha()
 		));
 		List<String> roles = null;
+		List<Tela> telas = null;
 		if (u != null) {
 			login.setUsuario(u);
 			authenticated = true;
 			message = "AUTHENTICATED";
 			roles = repository.getRoles(login.getUsuario());
+			telas = repository.getTelas(login.getUsuario());
 		} else {
 			authenticated = false;
 			message = "NOT_AUTHENTICATED";
 		}
-		serializer(new SecurityResponse(authenticated, message, u, roles)).exclude("usuario.senha", "usuario.perfis").serialize();
+		serializer(new SecurityResponse(authenticated, u, roles, telas)).exclude("usuario.senha", "usuario.perfis").serialize();
 	}
 
 	@Get
@@ -80,10 +83,11 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 	public void identity(){
 		if(login.getUsuario() != null){
 			List<String> roles = repository.getRoles(login.getUsuario());
+			List<Tela> telas = repository.getTelas(login.getUsuario());
 			serializer(new SecurityResponse(true, 
-											"AUTHENTICATED", 
 											login.getUsuario(),
-											roles)).exclude("usuario.senha", "usuario.perfis", "usuario.id").serialize();
+											roles,
+											telas)).exclude("usuario.senha", "usuario.perfis","usuario.id").serialize();
 		} else {
 			result.use(Results.status()).forbidden("Not Authorized");
 		}

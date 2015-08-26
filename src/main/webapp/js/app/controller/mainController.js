@@ -3,10 +3,11 @@ App.controller("MainController", ['$scope', '$http', '$state', 'authService', '$
 	$scope.login = function () {
 		$http.post(loginUrl, {usuario: $scope.model.usuario}).success(function(data) {
 			if (data.authenticated) {
-				console.log(data);
+				
 				authService.authenticate({
 					login : data.usuario.login,
-					roles: data.roles
+					roles: data.roles,
+					telas: data.telas
 				});
 				
 				if ($scope.returnToState) $state.go($scope.returnToState.name, $scope.returnToStateParams);
@@ -24,7 +25,7 @@ App.controller("MainController", ['$scope', '$http', '$state', 'authService', '$
 			authService.authenticate(null);
 			
 			if (data.authenticated == false) {
-				$state.go('login');
+				$location.path('/login');
 			} else {
 				alert(data.message);
 			}

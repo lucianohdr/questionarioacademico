@@ -14,8 +14,12 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			resolve: { 
 	          authorize: function(authorization) {
                         return authorization.authorize();
-            }
-		}})
+	          },
+	          identity: function(authService){
+	        	  return authService.identity();
+	          }
+			}
+		})
 		.state("home", {
 			parent: 'app',
 			url: "/", 
@@ -37,6 +41,9 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: "MainController"
 				}
 			},
+			data: {
+				roles: []
+			}
 		})
 		
 		.state("acessonegado", { 
@@ -63,6 +70,19 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			},
 			data: {
 				roles: ["ADMINISTRADOR"]
+			} 
+		})
+		.state("cadastro" , {
+			parent: 'app',
+			url: "/home", 
+			views: {
+				'content@': {
+					templateUrl:'view/home', 
+					controller: 'HomeController',
+				}
+			},
+			data: {
+				roles: ["ALUNO"]
 			} 
 		})
 		.state("categoriaquestionarioNew" , {
@@ -161,7 +181,6 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			} 
 		})
 		.state("professorNew" ,{ 
-			parent: 'app',
 			url: '/professor/new',
 			views: {
 				'content@': {
@@ -183,7 +202,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				}
 			},
 			data :{
-				roles: []
+				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
 		
@@ -197,7 +216,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				}
 			},
 			data :{
-				roles: []
+				roles: ["ADMINISTRADOR"]
 			}
 		})
 		.state("pessoaNew" ,{
