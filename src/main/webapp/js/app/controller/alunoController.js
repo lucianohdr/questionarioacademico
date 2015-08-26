@@ -65,17 +65,6 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 			$scope.model.$save(function(res) {
 				$state.go('login')
 			});
-			
-			/*//Salvando usuario
-			UsuarioResource.save({}, {usuario: $scope.model.aluno.pessoa.usuario}, function(usuarioResponse){
-				$scope.model.aluno.pessoa.usuario = usuarioResponse;
-				//Salvando pessoa
-				PessoaResource.save({}, {pessoa: $scope.model.pessoa}, function(pessoaResponse){
-					$scope.model.aluno.pessoa = pessoaResponse;
-					
-					//salvando Aluno
-				});
-			});*/
 		}
  	}
 

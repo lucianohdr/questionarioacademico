@@ -10,7 +10,7 @@
 			<!-- <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/questionarioacademico" />
 			<property name="hibernate.connection.username" value="postgres" />
-			<property name="hibernate.connection.password" value="w2k3brspots$" /> -->
+			<property name="hibernate.connection.password" value="" /> -->
 			
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="useUnicode" value="true" />

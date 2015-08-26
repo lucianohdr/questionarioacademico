@@ -18,7 +18,6 @@ App.factory('authService', ['$q', '$http', '$timeout',
       },
       isInRole: function(role) {
         if (!_authenticated || !_identity.roles) return false;
-
         return _identity.roles.indexOf(role) != -1;
       },
       isInAnyRole: function(roles) {
@@ -96,8 +95,8 @@ App.factory('authService', ['$q', '$http', '$timeout',
 // route, the app resolves your identity before it does an authorize check. after that,
 // authorize is called from $stateChangeStart to make sure the authService is allowed to change to
 // the desired state
-.factory('authorization', ['$rootScope', '$state', 'authService',
-  function($rootScope, $state, authService) {
+.factory('authorization', ['$rootScope', '$state', 'authService', '$location',
+  function($rootScope, $state, authService, $location) {
     return {
       authorize: function() {
         return authService.identity()
@@ -108,12 +107,15 @@ App.factory('authService', ['$q', '$http', '$timeout',
               if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
               else {
                 // user is not authenticated. stow the state they wanted before you
-                // send them to the signin state, so you can return them when you're done
-                $rootScope.returnToState = $rootScope.toState;
-                $rootScope.returnToStateParams = $rootScope.toStateParams;
+                // send them to the signin state, so you can return them when you're done, but only if the user 
+            	// had permissions for that
+            	 if(authService.isInAnyRole($rootScope.toState.data.roles)){
+            		 $rootScope.returnToState = $rootScope.toState;
+            		 $rootScope.returnToStateParams = $rootScope.toStateParams;
+            	 }
 
                 // now, send them to the signin state so they can log in
-                $state.go('login');
+                $state.go('login'); 
               }
             }
           });

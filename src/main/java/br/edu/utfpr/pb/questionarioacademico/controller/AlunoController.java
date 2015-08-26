@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 import javax.inject.Inject;
 
 import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -24,7 +25,6 @@ import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 @Controller
 @CustomBrutauthRules(LoggedAccessRule.class)
 @Path("alunos")
-@SecRole(roles={"ADMIN", "COORDENADOR"})
 public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;
@@ -65,6 +65,7 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
+	@Public
 	public void insert(Aluno aluno) {
 		
 		//setando o perfil aluno em usuario
