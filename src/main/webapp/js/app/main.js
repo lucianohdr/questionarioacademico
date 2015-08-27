@@ -199,7 +199,6 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			}
 		})
 		
-		//TODO: alterar forma de filtrar edicao dos cadastros de aluno e professor
 		.state("professorEdit" ,{ 
 			parent: 'app',
 			url: '/professor/edit/:id',
