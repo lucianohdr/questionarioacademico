@@ -1,7 +1,6 @@
 App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
                                        'PerfilResource', 'CursoResource', 'TurmaResource', 'UsuarioResource', 
-                                       '$window', '$stateParams', 'isAluno', 
-                                       '$state', 
+                                       '$window', '$stateParams', '$state', 
                                              
      function($scope, $location, AlunoResource, 
     		 PerfilResource, CursoResource, TurmaResource, UsuarioResource, 
@@ -89,7 +88,7 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		$scope.getAluno();
 		
 		$scope.isAluno = authService.isInRole("ALUNO");
-		
+		console.log($scope.isAluno);
 		CursoResource.query(function (res) { $scope.cursos = res; });
 		
 		TurmaResource.query(function (res) { $scope.turmas = res; });

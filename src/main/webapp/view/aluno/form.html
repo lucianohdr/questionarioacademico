@@ -1,6 +1,6 @@
 <h2 ng-show="model.aluno.id && !isAluno">Alterar Aluno</h2>
 <h2 ng-show="isAluno">Meu Cadastro</h2>
-<h2 ng-hide="model.aluno.id && isAluno">Adicionar Aluno</h2>
+<h2 ng-show="!model.aluno.id && !isAluno">Adicionar Aluno</h2> 
 <form name="mainForm">
 		<div class="form-group">
 			<div class="row">
@@ -75,6 +75,7 @@
 			</fieldset>
 			<br>
 			<a ng-if="alunoNew" ui-sref="login" class="btn btn-default">Cancelar</a>
+			<a ng-if="!isAluno" ui-sref="aluno" class="btn btn-default">Cancelar</a>
 			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 			<button ng-if="isAluno" type="text" ng-click="alterarSenha()" class="btn btn-primary">Alterar Senha</button>
 			<button ng-if="!isAluno" ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
