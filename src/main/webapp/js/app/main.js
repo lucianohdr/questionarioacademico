@@ -115,7 +115,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			url: '/cadastro/professor',
 			views:{
 				'content@':{
-					templateUrl:'view/professor/form.html', 
+					templateUrl:'view/professor/formCadastro.html', 
 					controller: 'ProfessorControllerCadastro'
 				}
 			},

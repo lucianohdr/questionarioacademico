@@ -64,7 +64,15 @@ questionarioAcademicoServices.factory('AlunoResource', ['$resource',function($re
 }]);
 
 questionarioAcademicoServices.factory('ProfessorResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('professors'), params(), values());
+	var professorPorUsuario = {
+			'url': baseUrl + 'professors/professorPorUsuario',
+			'method': 'POST', 
+			isArray: false
+	};
+	var api = $resource(configUrl('professors'), params(), {
+		'update': {'method': 'PUT'},
+		professorPorUsuario : professorPorUsuario	
+	});
 	return api;
 }]);
 

@@ -1,6 +1,6 @@
-App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorResource', 'PerfilResource','$window', '$stateParams', 'edit',
+App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorResource', 'PerfilResource', '$window', '$stateParams',
                                              
-     function($scope, $location, ProfessorResource, PerfilResource, $window, $stateParams, edit){
+     function($scope, $location, ProfessorResource, PerfilResource, $window, $stateParams){
 
 		var root = '/professor/';
 		var emptyObj = {professor: {
@@ -12,8 +12,6 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
 			"pessoa.usuario.login":"",
 			"pessoa.usuario.senha":"",
 		}};
-		
-		$scope.edit = edit;
 		
 		masterUpdate($scope, $stateParams, $window, $location, ProfessorResource, root);
 	 		
@@ -46,5 +44,27 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
     function($scope, $location, ProfessorResource){
 
 		masterRead($scope, $location, ProfessorResource);
+	}
+])
+.controller("ProfessorControllerCadastro", ['$scope', '$location', 'ProfessorResource', 'UsuarioResource', 'authService',
+                                          function($scope, $location, ProfessorResource, UsuarioResource, authService){
+	
+		var usuario = authService.identity().$$state.value.usuario;
+		
+		$scope.model = {};
+		
+		$scope.getProfessor = function(){
+			ProfessorResource.professorPorUsuario({}, {usuario: usuario}, function(res){
+				$scope.model.professor = new ProfessorResource(res);
+			});
+		}
+		
+		$scope.save = function() {
+			$scope.model.professor.$update({param1: $scope.model.professor.id}, function(res) {
+				$scope.getProfessor();
+			});
+		}
+		
+		$scope.getProfessor();
 	}
 ]);

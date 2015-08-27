@@ -1,8 +1,6 @@
-<h2 ng-show="model.professor.id && !edit">Visualizar Professor</h2>
-<h2 ng-show="model.professor.id && edit">Alterar Professor</h2>
+<h2 ng-show="model.professor.id">Alterar Professor</h2>
 <h2 ng-hide="model.professor.id">Adicionar Professor</h2>
 <form name="mainForm">
-	<fieldset ng-disabled="!edit">
 		<div class="form-group">
 			<div class="row">
 				<div class="col-xs-6">
@@ -24,7 +22,6 @@
 				</div>
 			</div>
 			<br> 
-			<fieldset ng-if="edit">
 				<legend>Dados de usuário:</legend>
 				<div class="row">
 					<div class="col-xs-6">
@@ -45,11 +42,9 @@
 						<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
 					</div>
 				</div>
-			</fieldset>
 			<br> 
-			<a ui-sref="professor" class="btn btn-default" ng-disabled="edit">Cancelar</a>
+			<a ui-sref="professor" class="btn btn-default">Cancelar</a>
 			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 			<button ng-click="destroy()" ng-show="model.professor.id" class="btn btn-danger">Deletar</button>
 		</div>
-	</fieldset>
 </form>

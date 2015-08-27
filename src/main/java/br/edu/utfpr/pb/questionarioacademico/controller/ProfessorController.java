@@ -10,7 +10,9 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Aluno;
 import br.edu.utfpr.pb.questionarioacademico.model.Professor;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.ProfessorRepository;
 
 @SuppressWarnings("serial")
@@ -63,6 +65,10 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	@Path("/{professor.id}")
 	@Consumes("application/json")
 	public void update(Professor professor) {
+		Professor professorAux = repository.find(professor.getId());
+		//setando novamente a senha ainda presente no banco
+		
+		professor.getPessoa().getUsuario().setSenha(professorAux.getPessoa().getUsuario().getSenha());
 		repository.update(professor);
 		result.nothing();
 	}
@@ -72,5 +78,13 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	public void delete(Professor professor) {
 		repository.delete(professor);
 		result.nothing();
+	}
+	
+	@Post
+	@Path("/professorPorUsuario")
+	@Consumes("application/json")
+	public void professorPorUsuario(Usuario usuario) {
+		Professor professor = repository.professorPorUsuario(usuario);
+		serializer(professor).exclude("pessoa.usuario.senha").serialize();
 	}
 }
