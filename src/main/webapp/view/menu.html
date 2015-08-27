@@ -2,7 +2,7 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
 			<ul class="nav navbar-nav">
-				<li ng-repeat="tela in telas" ng-class="navClass('{{tela.nome}}')"><a ui-sref="{{tela.nome}}">{{tela.nomeExibicao}}</a></li>
+				<li ng-repeat="tela in telas"  ui-sref-active="active"><a ui-sref="{{tela.nome}}">{{tela.nomeExibicao}}</a></li>
 				<!-- <li ng-class="navClass('questionario')"><a ui-sref="questionario">Questionário</a></li>
 				<li ng-class="navClass('categoriaquestionario')"><a ui-sref="categoriaquestionario">Categoria Questionário</a></li>
 				<li ng-class="navClass('perfil')"><a ui-sref="perfil">Perfil</a></li>

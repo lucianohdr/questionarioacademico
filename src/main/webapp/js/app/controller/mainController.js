@@ -5,7 +5,7 @@ App.controller("MainController", ['$scope', '$http', '$state', 'authService', '$
 			if (data.authenticated) {
 				
 				authService.authenticate({
-					login : data.usuario.login,
+					usuario: data.usuario,
 					roles: data.roles,
 					telas: data.telas
 				});

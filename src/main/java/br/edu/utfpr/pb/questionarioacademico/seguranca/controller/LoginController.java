@@ -87,7 +87,7 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 			serializer(new SecurityResponse(true, 
 											login.getUsuario(),
 											roles,
-											telas)).exclude("usuario.senha", "usuario.perfis","usuario.id").serialize();
+											telas)).exclude("usuario.senha", "usuario.perfis").serialize();
 		} else {
 			result.use(Results.status()).forbidden("Not Authorized");
 		}

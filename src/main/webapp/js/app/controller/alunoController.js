@@ -1,11 +1,11 @@
 App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource', 
                                        'PerfilResource', 'CursoResource', 'TurmaResource', 'UsuarioResource', 
-                                       '$window', '$stateParams', 'edit', 
+                                       '$window', '$stateParams', 'isAluno', 
                                        '$state', 
                                              
      function($scope, $location, AlunoResource, 
     		 PerfilResource, CursoResource, TurmaResource, UsuarioResource, 
-    		 $window, $stateParams, edit, $state){
+    		 $window, $stateParams, isAluno, $state){
 
 		var root = '/aluno/';
 		var emptyObj = {aluno: {
@@ -18,9 +18,8 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 			"pessoa.usuario.senha":"",
 		}};
 		
-		$scope.edit = edit;
+		CursoResource.query(function (res) { $scope.cursos = res; });
 		
-		CursoResource.query(function (res) { $scope.cursos = res; });	
 		TurmaResource.query(function (res) { $scope.turmas = res; });	
 		
 		masterUpdate($scope, $stateParams, $window, $location, AlunoResource, root);
@@ -52,7 +51,7 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 			}
 		}};
 		
-		$scope.edit = edit;
+		$scope.alunoNew = true;
 		
 		CursoResource.query(function (res) { $scope.cursos = res; });
 		
@@ -73,4 +72,38 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 
 		masterRead($scope, $location, AlunoResource);
 	}
+
+]).controller("AlunoControllerCadastro", ['$scope', '$location', 'AlunoResource', 'CursoResource', 'TurmaResource', 'authService', 
+                                      function($scope, $location, AlunoResource, CursoResource, TurmaResource, authService, identity){
+	
+	/*authService.identity().then(function(identity){
+		AlunoResource.alunoPorUsuario({}, {usuario: identity.usuario}, function(res){
+			$scope.model = new AlunoResource(res);
+		});
+	});*/
+	$scope.model = {};
+	
+	var usuario = authService.identity().$$state.value.usuario;
+	
+	$scope.getAluno = function(){
+		AlunoResource.alunoPorUsuario({}, {usuario: usuario}, function(res){
+			$scope.model.aluno = new AlunoResource(res);
+		});
+	}
+	
+	$scope.getAluno();
+	
+	$scope.isAluno = authService.isInRole("ALUNO");
+	
+	CursoResource.query(function (res) { $scope.cursos = res; });
+	
+	TurmaResource.query(function (res) { $scope.turmas = res; });
+	
+	$scope.save = function() {
+		$scope.model.aluno.$update({param1: $scope.model.aluno.id}, function(res) {
+			$scope.getAluno();
+		});
+	}
+
+}
 ]);

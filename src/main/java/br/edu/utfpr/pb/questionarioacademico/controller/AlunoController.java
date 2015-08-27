@@ -82,6 +82,11 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 	@Path("/{aluno.id}")
 	@Consumes("application/json")
 	public void update(Aluno aluno) {
+		
+		Aluno alunoAux = repository.find(aluno.getId());
+		//setando novamente a senha ainda presente no banco
+		
+		aluno.getPessoa().getUsuario().setSenha(alunoAux.getPessoa().getUsuario().getSenha());
 		repository.update(aluno);
 		result.nothing();
 	}
@@ -91,5 +96,13 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 	public void delete(Aluno aluno) {
 		repository.delete(aluno);
 		result.nothing();
+	}
+	
+	@Post
+	@Path("/alunoPorUsuario")
+	@Consumes("application/json")
+	public void alunoPorUsuario(Usuario usuario) {
+		Aluno aluno = repository.alunoPorUsuario(usuario);
+		serializer(aluno).exclude("pessoa.usuario.senha").serialize();
 	}
 }

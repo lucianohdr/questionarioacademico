@@ -72,18 +72,56 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR"]
 			} 
 		})
-		.state("cadastro" , {
+		/*.state("cadastro" , {
 			parent: 'app',
-			url: "/home", 
+			abstract : true,
 			views: {
 				'content@': {
-					templateUrl:'view/home', 
-					controller: 'HomeController',
+					templateProvider:function($http, authService){
+						
+						//verificando se roles contem "ALUNO"
+						if(authService.isInRole("ALUNO")){
+							console.log(authService.isInRole("ALUNO"));
+							return $http.get("view/aluno/form.html").then(function(response){
+								return response.data;
+							});
+						} else {
+							return $http.get("view/professor/form.html").then(function(response){
+								return response.data;
+							});
+						}
+					}
+				}
+			},
+			data: {
+				roles: ["ALUNO", "PROFESSOR", "COORDENADOR", "CHEFE", "ADMINISTRADOR"]
+			} 
+		})*/
+		.state("cadastro-aluno" , {
+			parent: 'app',
+			url: '/cadastro/aluno',
+			views:{
+				'content@':{
+					templateUrl:'view/aluno/form.html', 
+					controller: 'AlunoControllerCadastro'
 				}
 			},
 			data: {
 				roles: ["ALUNO"]
-			} 
+			}
+		})
+		.state("cadastro-professor" , {
+			parent: 'app',
+			url: '/cadastro/professor',
+			views:{
+				'content@':{
+					templateUrl:'view/professor/form.html', 
+					controller: 'ProfessorControllerCadastro'
+				}
+			},
+			data: {
+				roles: ["PROFESSOR"]
+			}
 		})
 		.state("categoriaquestionarioNew" , {
 			parent: 'app',
@@ -499,9 +537,29 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
       $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
 	      $rootScope.toState = toState;
 	      $rootScope.toStateParams = toStateParams;
-	
+	      
+	      //console.log('$stateChangeStart to '+toState.to+'- fired when the transition begins. toState,toParams : \n',toState, toStateParams);
+	      
 	      if (authService.isIdentityResolved()) authorization.authorize();
     });
+      
+      /*$rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams){
+    	  console.log('$stateChangeError - fired when an error occurs during transition.');
+    	  console.log(arguments);
+    	});
+
+    	$rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+    	  console.log('$stateChangeSuccess to '+toState.name+'- fired once the state transition is complete.');
+    	});
+
+    	$rootScope.$on('$viewContentLoaded',function(event){
+    	  console.log('$viewContentLoaded - fired after dom rendered',event);
+    	});
+
+    	$rootScope.$on('$stateNotFound',function(event, unfoundState, fromState, fromParams){
+    	  console.log('$stateNotFound '+unfoundState.to+'  - fired when a state cannot be found by its name.');
+    	  console.log(unfoundState, fromState, fromParams);
+    	});*/
   }
 ]);
 
