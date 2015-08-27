@@ -1,0 +1,55 @@
+<h2 ng-show="model.professor.id && !edit">Visualizar Professor</h2>
+<h2 ng-show="model.professor.id && edit">Alterar Professor</h2>
+<h2 ng-hide="model.professor.id">Adicionar Professor</h2>
+<form name="mainForm">
+	<fieldset ng-disabled="!edit">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.professor.pessoa.nome" required>
+					<validate-msg-for field="mainForm.nome"></validate-msg-for>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<label>E-mail</label> <input type="email" class="form-control"  name="email" ng-model="model.professor.pessoa.email" ng-required="true">
+					<validate-msg-for field="mainForm.email"></validate-msg-for>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Matrícula</label> <input type="text" class="form-control"  name="matricula" ng-model="model.professor.matricula" ng-maxlength="10"></input>
+					<validate-msg-for field="mainForm.matricula"></validate-msg-for>
+				</div>
+			</div>
+			<br> 
+			<fieldset ng-if="edit">
+				<legend>Dados de usuário:</legend>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Login:</label> <input type="text" class="form-control"  name="login" ng-model="model.professor.pessoa.usuario.login" ng-required="true">
+						<validate-msg-for field="mainForm.login"></validate-msg-for>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Senha:</label> <input type="password" class="form-control"  name="senha" ng-model="model.professor.pessoa.usuario.senha" ng-required="true">
+						<validate-msg-for field="mainForm.senha"></validate-msg-for>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Confirme sua senha:</label> 
+						<input type="password" class="form-control"  ng-model="model.professor.pessoa.usuario.confirmsenha" name="confirmsenha" ng-required="true" compare-to="model.professor.pessoa.usuario.senha">
+						<validate-msg-for field="mainForm.confirmsenha"></validate-msg-for>
+					</div>
+				</div>
+			</fieldset>
+			<br> 
+			<a ui-sref="professor" class="btn btn-default" ng-disabled="edit">Cancelar</a>
+			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+			<button ng-click="destroy()" ng-show="model.professor.id" class="btn btn-danger">Deletar</button>
+		</div>
+	</fieldset>
+</form>
