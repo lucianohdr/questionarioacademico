@@ -132,12 +132,19 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 			isArray: false
 	};
 	
+	var porUsuarioEporStatus = {
+			'url': baseUrl + 'questionarios/porUsuarioEporStatus',
+			'method': 'POST', 
+			isArray: true
+	};
+	
 	var api = $resource(configUrl('questionarios'), params(), {
 		'update': {'method': 'PUT'},
 		'addPergunta': addPergunta,
 		'rmPergunta': rmPergunta,
 		'perguntas' : perguntas,
-		'liberarQuestionario' : liberarQuestionario
+		'liberarQuestionario' : liberarQuestionario,
+		'porUsuarioEporStatus' : porUsuarioEporStatus
 	  });
 	return api;
 }]);

@@ -77,22 +77,9 @@
 </head>
 <body ng-controller="MainController">
 	
-	<!-- Aqui é rederizada a view home -->
+	<!-- Aqui é rederizada as views menu e o conteudo requisitado-->
 	<div ui-view="menu"></div>
 	<div ui-view="content" class="container"></div>
-	
-	<!-- <div id="loginModal" class="modal hide fade" tabindex="-1" ng-enter="login()">
-        <div class="modal-header"><h4>Autenticação</h4></div>
-        <div class="modal-body">
-			<table>
-				<tr><td>Login:</td><td><input id="user" type='text' name='user'/></td></tr>
-				<tr><td>Senha:</td><td><input id="pass" type='password' name='pass'/></td></tr>
-			</table>
-			<hr/>
-        </div>
-        <div class="modal-footer"><button class="btn" ng-click="login()">Login</button></div>
-	</div>
-	<script type="text/javascript">$('#loginModal').modal('hide');</script> -->
 	
 </body>
 </html>
