@@ -4,12 +4,13 @@
 	    <h3 class="panel-title">Questionários a Responder</h3>
 	  </div>
 	  <div class="panel-body">
-		<ul class="list-group">
-		  <li class="list-group-item" ng-repeat="questionario in questionarios">
+		<div class="panel panel-default">
+		  <div class="panel-body" ng-repeat="questionario in questionarios">
 		  	<span>{{questionario.descricao}}</span>
-		  </li>
-		  <span ng-if="!questionarios">Sem Questionários para responder!</span>
-		</ul>
+		  	<a class="btn btn-default pull-right" ui-sref="responder">Responder</a>
+		  </div>
+		  <div class="panel-body" ng-if="questionarios.length===0 || !questionarios">Sem Questionários para responder!</div>
+		</div>
 	  </div>
 	</div>
 </div>
