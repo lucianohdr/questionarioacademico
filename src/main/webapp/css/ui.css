@@ -29,3 +29,11 @@
 .form-group input{
 	margin-bottom: 5px;
 }
+
+.container{
+	padding-top: 35px;
+}
+
+.home .panel{
+	margin-top: 15px;
+}
