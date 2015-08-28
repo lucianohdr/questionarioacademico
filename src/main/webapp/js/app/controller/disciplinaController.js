@@ -1,11 +1,14 @@
 App.controller("DisciplinaControllerEdit", ['$scope', '$location', 'DisciplinaResource', 'CursoResource', 
-                                            'ProfessorResource', '$window', '$stateParams',
+                                            'ProfessorResource', 'PeriodoResource', '$window', '$stateParams',
                                              
-     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource, $window, $stateParams){
+     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource, PeriodoResource, $window, $stateParams){
 
 		var root = '/disciplina/';
 		
-		CursoResource.query(function (res) { $scope.cursos = res; });	
+		CursoResource.query(function (res) { $scope.cursos = res; });
+		
+		PeriodoResource.query(function (res) { $scope.periodos = res; });
+		
 		ProfessorResource.query(function (res) { $scope.professores = res; });
 		
 		masterUpdate($scope, $stateParams, $window, $location, DisciplinaResource, root);
@@ -13,8 +16,8 @@ App.controller("DisciplinaControllerEdit", ['$scope', '$location', 'DisciplinaRe
 		masterDelete($scope,$stateParams,$window, $location, DisciplinaResource, root);
  		
 	 }
-]).controller("DisciplinaControllerNew", ['$scope', '$location', 'DisciplinaResource', 'CursoResource', 'ProfessorResource',
-     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource){
+]).controller("DisciplinaControllerNew", ['$scope', '$location', 'DisciplinaResource', 'CursoResource', 'ProfessorResource', 'PeriodoResource',
+     function($scope, $location, DisciplinaResource, CursoResource, ProfessorResource, PeriodoResource){
 
 		var root = '/disciplina/';
 		var emptyObj = {disciplina: {
@@ -23,6 +26,9 @@ App.controller("DisciplinaControllerEdit", ['$scope', '$location', 'DisciplinaRe
 			"descricao":""
 		}};
 		CursoResource.query(function (res) { $scope.cursos = res; });
+		
+		PeriodoResource.query(function (res) { $scope.periodos = res; });
+		
 		ProfessorResource.query(function (res) { $scope.professores = res; });
 		
 	 	masterCreate($scope, $location, DisciplinaResource, root, emptyObj);
