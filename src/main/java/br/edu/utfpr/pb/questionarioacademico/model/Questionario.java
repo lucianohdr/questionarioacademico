@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -13,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.joda.time.LocalDate;
+
+import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
 
 @SuppressWarnings("serial")
 @Entity
@@ -34,6 +38,15 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	
 	@Column(name="datavalidade")
 	private LocalDate datavalidade;
+	
+	@Column(name="status")
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	
+	//inicializando status como salvo
+	public Questionario(){
+		this.status = Status.SALVO;
+	}
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="alunorespondido",
@@ -110,6 +123,15 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	public LocalDate getDatavalidade() {
 		return datavalidade;
 	}
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public void setDatavalidade(LocalDate datavalidade) {
 		this.datavalidade = datavalidade;
 	}

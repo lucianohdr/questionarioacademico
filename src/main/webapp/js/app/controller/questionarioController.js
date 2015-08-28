@@ -43,7 +43,15 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 			 		}
 		 		}
 		 	 });
-		 }
+		 } 
+		 
+		 $scope.liberarQuestionario = function(){
+			 confirm("Tem certeza que deseja liberar questionario para ser respondido?", function(){
+				 QuestionarioResource.liberarQuestionario({}, {questionario: $scope.model.questionario}, function(res){
+					 $scope.model.questionario = new QuestionarioResource(res);
+				 });
+			 });
+		 } 
 	 }
 ]).controller("QuestionarioControllerNew", ['$scope', '$location', 'QuestionarioResource', 'CategoriaQuestionarioResource',
      function($scope, $location, QuestionarioResource, CategoriaQuestionarioResource){

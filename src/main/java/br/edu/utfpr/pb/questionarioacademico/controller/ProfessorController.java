@@ -67,8 +67,8 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	public void update(Professor professor) {
 		Professor professorAux = repository.find(professor.getId());
 		//setando novamente a senha ainda presente no banco
-		
 		professor.getPessoa().getUsuario().setSenha(professorAux.getPessoa().getUsuario().getSenha());
+		
 		repository.update(professor);
 		result.nothing();
 	}

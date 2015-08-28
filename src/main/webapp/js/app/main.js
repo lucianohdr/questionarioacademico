@@ -72,31 +72,6 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR"]
 			} 
 		})
-		/*.state("cadastro" , {
-			parent: 'app',
-			abstract : true,
-			views: {
-				'content@': {
-					templateProvider:function($http, authService){
-						
-						//verificando se roles contem "ALUNO"
-						if(authService.isInRole("ALUNO")){
-							console.log(authService.isInRole("ALUNO"));
-							return $http.get("view/aluno/form.html").then(function(response){
-								return response.data;
-							});
-						} else {
-							return $http.get("view/professor/form.html").then(function(response){
-								return response.data;
-							});
-						}
-					}
-				}
-			},
-			data: {
-				roles: ["ALUNO", "PROFESSOR", "COORDENADOR", "CHEFE", "ADMINISTRADOR"]
-			} 
-		})*/
 		.state("cadastro-aluno" , {
 			parent: 'app',
 			url: '/cadastro/aluno',

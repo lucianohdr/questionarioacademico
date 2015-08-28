@@ -179,6 +179,6 @@ INSERT INTO perfil_tela (idperfil, idtela) values (5, 14);/*cadastro*/
 /*Telas*/
 
 /*tipo pergunta*/
-INSERT INTO tipopergunta (id, descricao, nome) values (1, 'Descritiva';'descritiva');
-INSERT INTO tipopergunta (id, descricao, nome) values (2, 'Múltipla escolha', 'multiplaescolha');
+INSERT INTO tipopergunta (id, descricao, nome) values (1, 'Descritiva', 'Descritiva');
+INSERT INTO tipopergunta (id, descricao, nome) values (2, 'Múltipla escolha', 'Múltipla escolha');
 /*tipo pergunta*/

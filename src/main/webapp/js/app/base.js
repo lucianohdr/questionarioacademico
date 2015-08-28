@@ -21,7 +21,7 @@ function string(val) {
 
 window.alert = function(message) {
 	$(document.createElement('div')).attr({
-		title : 'Warning',
+		title : 'Alerta',
 		'class' : 'alert'
 	}).html(message).dialog({
 		buttons : {
@@ -41,7 +41,7 @@ window.alert = function(message) {
 window.confirm = function(message, callback) {
 	"use strict"
 	$(document.createElement('div')).attr({
-		title : 'Warning',
+		title : 'Alerta',
 		'class' : 'alert'
 	}).html(message).dialog({
 		width : 'auto',

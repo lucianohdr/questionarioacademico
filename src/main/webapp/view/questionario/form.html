@@ -1,9 +1,15 @@
 <div class="form-group">
 	<div class="row form-group">
 		<div class="col-xs-6">
-			<h2 ng-show="model.questionario.id">Editar Questionário</h2>
+			<h3 ng-show="model.questionario.id">Editar Questionário</h3>
 			<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
 			<form name="mainForm">
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label>Status</label>
+						<input type="text" name="status" class="form-control" ng-model="model.questionario.status" readonly>
+					</div>
+				</div>
 				<div class="form-group">
 					<label>Descrição</label>
 					<input type="text" name="descricao" class="form-control" ng-model="model.questionario.descricao" required>
@@ -36,11 +42,16 @@
 					<textarea name="observacao" rows="4" class="form-control" ng-model="model.questionario.observacao">
 					</textarea>
 				</div>
-				<br> 
-				<a ui-sref="questionario" class="btn btn-default">Cancelar</a>
-				<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
-				<button type="button" ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
-				<button type="button" ng-click="openModal()" ng-show="model.questionario.id" class="btn btn-info">Disciplinas</button>
+				<br>
+				<div class="row">
+					<a ui-sref="questionario" class="btn btn-default">Cancelar</a>
+					<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+					<button type="button" ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
+					<div class="pull-right">
+						<button type="button" ng-click="openModal()" ng-show="model.questionario.id" class="btn btn-info">Disciplinas</button>
+						<button type="button" ng-click="liberarQuestionario()" ng-show="model.questionario.id" class="btn btn-info">Liberar</button>
+					</div>
+				</div> 
 			</form>
 		</div>
 		<div class="col-xs-6 form-group">

@@ -126,11 +126,18 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 			isArray: true
 	};
 	
+	var liberarQuestionario = {
+			'url': baseUrl + 'questionarios/liberarQuestionario',
+			'method': 'POST', 
+			isArray: false
+	};
+	
 	var api = $resource(configUrl('questionarios'), params(), {
 		'update': {'method': 'PUT'},
 		'addPergunta': addPergunta,
 		'rmPergunta': rmPergunta,
-		'perguntas' : perguntas
+		'perguntas' : perguntas,
+		'liberarQuestionario' : liberarQuestionario
 	  });
 	return api;
 }]);

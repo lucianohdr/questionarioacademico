@@ -125,4 +125,14 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		
 		result.nothing();
 	}
+	
+	@Post
+	@Path("/liberarQuestionario")
+	@Consumes("application/json")
+	public void liberarQuestionario(Questionario questionario) {
+		questionario = repository.liberarQuestionario(questionario);
+		serializer(questionario)
+		.exclude("perguntas.alternativas.pergunta")
+		.serialize();
+	}
 }
