@@ -6,13 +6,13 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 @Dependent
-public class GerarChave {
+public class KeyPairGenerator {
 	
 	private KeyPairGeneratorFactory factory; 
 	private KeyPair keyPair;
 	
 	@Inject
-	public GerarChave(KeyPairGeneratorFactory factory){
+	public KeyPairGenerator(KeyPairGeneratorFactory factory){
 		this.factory = factory;
 	}
 	

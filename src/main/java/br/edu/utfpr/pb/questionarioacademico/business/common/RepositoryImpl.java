@@ -14,8 +14,6 @@ import br.edu.utfpr.pb.questionarioacademico.model.commons.Entity;
 
 /**
  * 
- * @author trgp
- *
  * @param <Entity>
  * @param <Id>
  * 

@@ -2,6 +2,8 @@ package br.edu.utfpr.pb.questionarioacademico.repository;
 
 import java.util.List;
 
+import javax.crypto.spec.PBEKeySpec;
+
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
@@ -22,5 +24,6 @@ public interface QuestionarioRepository extends Repository<Questionario, Long> {
 	 * @return
 	 */
 	List<Questionario> porUsuarioEporStatus(Usuario usuario, Status status);
+	
 	
 }

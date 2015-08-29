@@ -131,7 +131,7 @@ INSERT INTO tela (id, nome) values (8,  'curso', 'Curso');
 INSERT INTO tela (id, nome) values (9,  'turma', 'Turma');
 INSERT INTO tela (id, nome) values (10, 'disciplina', 'Disciplina');
 INSERT INTO tela (id, nome) values (11, 'resultado', 'Resultado');
-INSERT INTO tela (id, nome) values (12, 'questionarioresponder', 'Responder');
+INSERT INTO tela (id, nome) values (12, 'questionarioresposta', 'Responder');
 INSERT INTO tela (id, nome) values (13, 'cadastro.professor', 'Cadastro');
 INSERT INTO tela (id, nome) values (14, 'cadastro.aluno', 'Cadastro');
 

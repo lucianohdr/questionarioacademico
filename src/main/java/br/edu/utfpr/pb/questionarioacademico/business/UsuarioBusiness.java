@@ -14,15 +14,15 @@ import br.edu.utfpr.pb.questionarioacademico.model.Tela;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.criptografia.GerarChave;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.criptografia.KeyPairGenerator;
 
 @Stateless
 public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements UsuarioRepository{
 
-	private final GerarChave gerarChave;
+	private final KeyPairGenerator gerarChave;
 	
 	@Inject
-	public UsuarioBusiness(GerarChave gerarChave){
+	public UsuarioBusiness(KeyPairGenerator gerarChave){
 		this.gerarChave = gerarChave; 
 	}
 	

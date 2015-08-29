@@ -465,6 +465,32 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR", "COORDENADOR"]
 			}
 		})
+		.state("questionarioresposta" ,{ 
+			parent: 'app',
+			url: '/questionarioresposta/',
+			views: {
+				'content@': {
+					controller: 'QuestionariorespostaControllerList', 
+					templateUrl:'view/questionarioresposta/list.html',
+				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR", "ALUNO", "PROFESSOR"]
+			}
+		})
+		.state("questionariorespostaEdit" ,{ 
+			parent: 'app',
+			url: '/questionarioresposta/:id',
+			views: {
+				'content@': {
+					controller: 'QuestionariorespostaControllerEdit', 
+					templateUrl:'view/questionarioresposta/form.html',
+				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR", "ALUNO", "PROFESSOR"]
+			}
+		})
 		
 		.state("perfilEdit" ,{
 			parent: 'app',

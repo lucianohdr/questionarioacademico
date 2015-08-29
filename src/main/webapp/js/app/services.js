@@ -173,3 +173,13 @@ questionarioAcademicoServices.factory('PeriodoResource', ['$resource',function($
 	var api = $resource(configUrl('periodos'), params(), values());
 	return api;
 }]);
+
+questionarioAcademicoServices.factory('QuestionariorespostaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('questionariorespostas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('RespostaResource', ['$resource',function($resource) {
+	var api = $resource(configUrl('respostas'), params(), values());
+	return api;
+}]);

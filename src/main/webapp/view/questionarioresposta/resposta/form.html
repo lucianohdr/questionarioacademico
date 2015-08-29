@@ -1,0 +1,44 @@
+<h3 ng-show="model.pergunta.id">Editar Pergunta</h3>
+<h3 ng-hide="model.pergunta.id">Adicionar Pergunta</h3>
+<form name="mainForm">
+	<div class="form-group">
+		<label>Nome</label>
+		<input type="text" name="nome"class="form-control" ng-model="model.pergunta.nome" required>
+		<validate-msg-for field="mainForm.nome"></validate-msg-for>
+	</div>
+	
+	<div class="form-group">
+		<label>Descrição</label>
+		<input type="text" name="descricao" class="form-control" ng-model="model.pergunta.descricao" required>
+		<validate-msg-for field="mainForm.descricao"></validate-msg-for>
+	</div>
+	
+	<div class="form-group">
+		<label>Tipo de Pergunta</label>
+		<select id="tipopergunta" class="form-control" ng-model="model.pergunta.tipopergunta" name="tipoperguntas" ng-options="t.nome for t in tipoperguntas track by t.id" required>
+			<option value="">Selecione</option>
+		</select>
+		<validate-msg-for field="mainForm.categoria"></validate-msg-for>
+	</div>
+	
+	<div ng-show="model.pergunta.tipopergunta.id==2">
+		<button type="button" class="btn btn-primary" ng-click="newAlternativa()">Adicionar alternativa</button>
+		
+		<h5>Alternativas</h5>
+		<div class="form-group" ng-repeat="alternativa in model.pergunta.alternativas | orderBy : '+id'">
+			<div class="input-group input-group-sm">
+				<input type="text" class="form-control" ng-model="alternativa.descricao" value="{{alternativa.descricao}}" required>
+				<span class="input-group-btn">
+					<button ng-click="destroyAlternativa($index)" class="btn btn-default btn-sm"  type="button"><i class="glyphicon glyphicon-trash"></i></button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<br> 
+	<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
+		<span ng-hide="model.pergunta.id">Adicionar</span>
+		<span ng-show="model.pergunta.id">Salvar</span>
+	</button>
+	<button type="button" ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
+	<button type="button" ng-click="limparForm()" class="btn">Limpar</button>
+</form>
