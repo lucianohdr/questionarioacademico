@@ -21,6 +21,12 @@ public class Usuario extends br.edu.utfpr.pb.questionarioacademico.model.commons
 	@Column(name="senha", nullable=false)
 	private String senha;
 	
+	@Column(name="privatekey")
+	private byte[] privatekey;
+	
+	@Column(name="publickey")
+	private byte[] publickey;
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="usuario_perfil",
 			joinColumns=@JoinColumn(name="id_usuario"),
@@ -38,6 +44,19 @@ public class Usuario extends br.edu.utfpr.pb.questionarioacademico.model.commons
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public byte[] getPrivatekey() {
+		return privatekey;
+	}
+	public void setPrivatekey(byte[] privatekey) {
+		this.privatekey = privatekey;
+	}
+	public byte[] getPublickey() {
+		return publickey;
+	}
+	public void setPublickey(byte[] publickey) {
+		this.publickey = publickey;
 	}
 	
 	public Set<Perfil> getPerfis() {

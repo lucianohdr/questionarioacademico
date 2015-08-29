@@ -72,9 +72,15 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 		aluno.getPessoa().getUsuario().getPerfis().add(new Perfil("ALUNO"));
 		
 		//fazendo criptografia da senha
-		aluno.getPessoa().getUsuario().setSenha(Hasher.get(aluno.getPessoa().getUsuario().getSenha()));
+		//aluno.getPessoa().getUsuario().setSenha(Hasher.get(aluno.getPessoa().getUsuario().getSenha()));
+		//Usuario usuario = usuarioRepository.insertReturn(aluno.getPessoa().getUsuario());
 		
-		repository.insert(aluno);
+		aluno.getPessoa()
+		.setUsuario(
+				usuarioRepository.insertReturn(aluno.getPessoa().getUsuario())
+				);
+		
+		repository.insertReturn(aluno);
 		result.nothing();
 	}
 	

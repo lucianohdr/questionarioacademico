@@ -75,7 +75,7 @@
 			</fieldset>
 			<br>
 			<a ng-if="alunoNew" ui-sref="login" class="btn btn-default">Cancelar</a>
-			<a ng-if="!isAluno" ui-sref="aluno" class="btn btn-default">Cancelar</a>
+			<a ng-if="!isAluno && !alunoNew" ui-sref="aluno" class="btn btn-default">Cancelar</a>
 			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
 			<button ng-if="isAluno" type="text" ng-click="alterarSenha()" class="btn btn-primary">Alterar Senha</button>
 			<button ng-if="!isAluno" ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
