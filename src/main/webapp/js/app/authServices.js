@@ -37,6 +37,10 @@ App.factory('authService', ['$q', '$http', '$timeout',
         if (identity) localStorage.setItem("questionarioacademico.identity", angular.toJson(identity));
         else localStorage.removeItem("questionarioacademico.identity");
       },
+      getUsuario: function(){
+    	  console.log(_identity);
+    	return  _identity.usuario; 
+      },
       identity: function(force) {
         var deferred = $q.defer();
 

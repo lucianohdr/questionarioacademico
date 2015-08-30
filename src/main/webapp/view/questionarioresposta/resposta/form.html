@@ -35,10 +35,10 @@
 		</div>
 	</div>
 	<br> 
-	<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
+	<!-- <button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
 		<span ng-hide="model.pergunta.id">Adicionar</span>
 		<span ng-show="model.pergunta.id">Salvar</span>
-	</button>
+	</button> -->
 	<button type="button" ng-click="destroy()" ng-show="model.pergunta.id" class="btn btn-danger">Deletar</button>
-	<button type="button" ng-click="limparForm()" class="btn">Limpar</button>
+	<a ui-sref="questionarioresposta" class="btn btn-default">Cancelar</a>
 </form>

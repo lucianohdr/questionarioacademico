@@ -6,6 +6,6 @@ App.controller("HomeController", ['$scope', '$location', '$window', '$stateParam
 			
 			QuestionarioResource.porUsuarioEporStatus({}, {usuario: usuario}, function(res){
 				$scope.questionarios = res;
-			})
+			});
 	 }
 ]);

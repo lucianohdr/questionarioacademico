@@ -1,24 +1,22 @@
 App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'QuestionariorespostaResource', 
-                                                      'QuestionarioResource', '$window', '$stateParams',
+                                                      'QuestionarioResource',  'authService', '$window', '$stateParams',
                                              
-     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, $window, $stateParams){
+     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, authService, $window, $stateParams){
 
-		var root = '/curso/';
-		/*var emptyObj = {curso: {
-			"id":0,
-			"nome":"",
-			"descricao":"",
-			professor: {
-				"id": 0
-			},
-			departamento: {
-				"id": 0
-			}
-		}};*/
+		var usuario = authService.getUsuario();
 		
-		masterUpdate($scope, $stateParams, $window, $location, QuestionariorespostaResource, root);
-		masterDelete($scope,$stateParams,$window, $location, QuestionariorespostaResource, root);
- 		
+		var emptyObj = {questionarioresposta: {
+			"id":0,
+			"cryptid":"",
+			"questionario": {}
+		}};
+		
+		$scope.model = new QuestionariorespostaResource(emptyObj);
+		
+		QuestionarioResource.get({param1: $stateParams.id}, function(res){
+			$scope.model.questionarioresposta.questionario = new QuestionarioResource(res.questionario);
+			console.log($scope.model.questionarioresposta);
+		});
 	 }
 ]).controller('QuestionariorespostaControllerNew', ['$scope', '$location', 'QuestionariorespostaResource', 
         		'QuestionarioResource', '$window', '$stateParams',
@@ -31,12 +29,18 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 			"descricao":""
 		}};
 		
-		
 	 	masterCreate($scope, $location, QuestionariorespostaResource, root, emptyObj);
  	}
 
-]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource',
-    function($scope, $location, QuestionariorespostaResource){
+]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource', 'QuestionarioResource', 'authService',
+    function($scope, $location, QuestionariorespostaResource, QuestionarioResource, authService){
+	
+		var usuario = authService.getUsuario();
+		
+		QuestionarioResource.porUsuarioEporStatus({}, {usuario: usuario}, function(res){
+			$scope.questionarios = res;
+		});
+		
 		masterRead($scope, $location, QuestionariorespostaResource);
 	}
 ]);
