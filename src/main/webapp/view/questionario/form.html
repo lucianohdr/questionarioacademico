@@ -3,7 +3,7 @@
 		<div class="col-xs-6">
 			<h3 ng-show="model.questionario.id">Editar Questionário</h3>
 			<h2 ng-hide="model.questionario.id">Adicionar Questionário</h2>
-			<form name="mainForm">
+			<form name="mainForm" ng-submit="save()">
 				<div class="form-group row">
 					<div class="col-xs-4">
 						<label>Status</label>
@@ -45,7 +45,7 @@
 				<br>
 				<div class="row">
 					<a ui-sref="questionario" class="btn btn-default">Cancelar</a>
-					<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
 					<button type="button" ng-click="destroy()" ng-show="model.questionario.id" class="btn btn-danger">Deletar</button>
 					<div class="pull-right">
 						<button type="button" ng-click="openModal()" ng-show="model.questionario.id" class="btn btn-info">Disciplinas</button>

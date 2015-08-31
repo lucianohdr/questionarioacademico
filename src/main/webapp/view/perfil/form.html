@@ -1,6 +1,6 @@
 <h2 ng-show="model.perfil.id">Alterar Perfil</h2>
 <h2 ng-hide="model.perfil.id">Adicionar Perfil</h2>
-<form name="mainForm">
+<form name="mainForm" ng-submit="save()">
 	<div class="form-group">
 		<div class="row">
 			<div class="col-xs-6">

@@ -1,6 +1,6 @@
 <h2 ng-show="model.turma.id">Alterar Turma</h2>
 <h2 ng-hide="model.turma.id">Adicionar Turma</h2>
-<form name="mainForm">
+<form name="mainForm" ng-submit="save()">
 	<div class="form-group">
 		<div class="row">
 			<div class="col-xs-6">
@@ -38,7 +38,7 @@
 		
 		<br> 
 		<a ui-sref="turma" class="btn btn-default">Cancelar</a>
-		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+		<button type="submit" class="btn btn-primary">Salvar</button>
 		<button ng-click="destroy()" ng-show="model.turma.id" class="btn btn-danger">Deletar</button>
 	</div>
 </form>

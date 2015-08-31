@@ -1,6 +1,6 @@
 <h2 ng-show="model.categoriaquestionario.id">Alterar Categoria de Questionário</h2>
 <h2 ng-hide="model.categoriaquestionario.id">Adicionar Categoria de Questionário</h2>
-<form name="mainForm">
+<form name="mainForm" ng-submit="save()">
 	<div class="form-group">
 		<div class="row">
 			<div class="col-xs-6">
@@ -17,7 +17,7 @@
 		
 		<br> 
 		<a ui-sref="categoriaquestionario" class="btn btn-default">Cancelar</a>
-		<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+		<button type="submit" class="btn btn-primary">Salvar</button>
 		<button ng-click="destroy()" ng-show="model.categoriaquestionario.id" class="btn btn-danger">Deletar</button>
 	</div>
 	

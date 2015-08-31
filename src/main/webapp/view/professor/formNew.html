@@ -1,7 +1,7 @@
 <h2 ng-show="model.professor.id && !edit">Visualizar Professor</h2>
 <h2 ng-show="model.professor.id && edit">Alterar Professor</h2>
 <h2 ng-hide="model.professor.id">Adicionar Professor</h2>
-<form name="mainForm">
+<form name="mainForm" ng-submit="save()">
 	<fieldset ng-disabled="!edit">
 		<div class="form-group">
 			<div class="row">
@@ -48,7 +48,7 @@
 			</fieldset>
 			<br> 
 			<a ui-sref="professor" class="btn btn-default" ng-disabled="edit">Cancelar</a>
-			<button ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">Salvar</button>
+			<button type="submit" class="btn btn-primary">Salvar</button>
 			<button ng-click="destroy()" ng-show="model.professor.id" class="btn btn-danger">Deletar</button>
 		</div>
 	</fieldset>

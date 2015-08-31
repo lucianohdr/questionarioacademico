@@ -1,6 +1,6 @@
 <h3 ng-show="model.pergunta.id">Editar Pergunta</h3>
 <h3 ng-hide="model.pergunta.id">Adicionar Pergunta</h3>
-<form name="mainForm">
+<form name="mainForm" ng-submit="save()">
 	<div class="form-group">
 		<label>Nome</label>
 		<input type="text" name="nome"class="form-control" ng-model="model.pergunta.nome" required>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<br> 
-	<button type="button" ng-click="save()" ng-disabled="mainForm.$invalid" class="btn btn-primary">
+	<button type="submit" class="btn btn-primary">
 		<span ng-hide="model.pergunta.id">Adicionar</span>
 		<span ng-show="model.pergunta.id">Salvar</span>
 	</button>
