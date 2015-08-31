@@ -10,10 +10,11 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.model.Aluno;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Professor;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.ProfessorRepository;
+import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 
 @SuppressWarnings("serial")
 @Controller
@@ -22,17 +23,21 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 
 	private Result result;
 	private ProfessorRepository repository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Inject
-	public ProfessorController(Result result, ProfessorRepository repository) {
+	public ProfessorController(Result result, 
+							   ProfessorRepository repository, 
+							   UsuarioRepository usuarioRepository) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
+		this.usuarioRepository = usuarioRepository;
 	}
 	
 	/*CDI construtor*/
 	protected ProfessorController(){
-		this(null, null);
+		this(null, null, null);
 	}
 	
 	@Get
@@ -57,7 +62,16 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	@Path({"","/"})
 	@Consumes("application/json")
 	public void insert(Professor professor) {
-		repository.insert(professor);
+		
+		//setando o perfil professor em usuario
+		professor.getPessoa().getUsuario().getPerfis().add(new Perfil("PROFESSOR"));
+		
+		professor.getPessoa()
+		.setUsuario(
+				usuarioRepository.insertReturn(professor.getPessoa().getUsuario())
+				);
+		
+		repository.insertReturn(professor);
 		result.nothing();
 	}
 	
@@ -65,6 +79,7 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	@Path("/{professor.id}")
 	@Consumes("application/json")
 	public void update(Professor professor) {
+		
 		Professor professorAux = repository.find(professor.getId());
 		//setando novamente a senha ainda presente no banco
 		professor.getPessoa().getUsuario().setSenha(professorAux.getPessoa().getUsuario().getSenha());

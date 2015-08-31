@@ -31,9 +31,7 @@ App.controller("ProfessorControllerEdit", ['$scope', '$location', 'ProfessorReso
 				usuario: {
 					"login" : "",
 					"senha" : "",
-					tipousuario: {
-						"id": 4
-					}
+					"perfis": []
 				}
 			}
 		}};
