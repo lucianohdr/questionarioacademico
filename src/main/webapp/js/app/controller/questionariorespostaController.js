@@ -4,19 +4,38 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
      function($scope, $location, QuestionariorespostaResource, QuestionarioResource, authService, $window, $stateParams){
 
 		var usuario = authService.getUsuario();
+
+		$scope.respostaFlag = false;
 		
 		var emptyObj = {questionarioresposta: {
 			"id":0,
 			"cryptid":"",
-			"questionario": {}
+			"questionario": {},
+			"respostas": []
 		}};
 		
 		$scope.model = new QuestionariorespostaResource(emptyObj);
 		
+		//TODO: Mudar para pegar um objeto customizado no servidor, e trazer somente a disciplina que convem mostrar
 		QuestionarioResource.get({param1: $stateParams.id}, function(res){
 			$scope.model.questionarioresposta.questionario = new QuestionarioResource(res.questionario);
-			console.log($scope.model.questionarioresposta);
+			
+			$.each($scope.model.questionarioresposta.questionario.perguntas, function(index, pergunta){
+				var resposta = {
+						"id": 0,
+						"pergunta": pergunta,
+						respostaFlag : false
+				}
+				$scope.model.questionarioresposta.respostas.push(resposta);
+			})
 		});
+		
+		
+		$scope.abrirResposta = function(resposta){
+			console.log(resposta);
+			resposta.respostaFlag = !resposta.respostaFlag
+			return resposta.respostaFlag;
+		}
 	 }
 ]).controller('QuestionariorespostaControllerNew', ['$scope', '$location', 'QuestionariorespostaResource', 
         		'QuestionarioResource', '$window', '$stateParams',

@@ -15,10 +15,10 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 	$scope.rootScope = $rootScope;
 	 	
 		$scope.save = function() {
-			$scope.model.$update({param1: $stateParams.id}, function(res) {
-				if (actionUpdate) actionUpdate('save', $stateParams.id);
-				$location.path(root);
-			});
+				$scope.model.$update({param1: $stateParams.id}, function(res) {
+					if (actionUpdate) actionUpdate('save', $stateParams.id);
+					$location.path(root);
+				});
 		}
 		
 		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){

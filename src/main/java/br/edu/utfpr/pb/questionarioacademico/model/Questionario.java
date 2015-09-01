@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -72,7 +73,7 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	@JoinTable(name="composicaoquestionario",
 	joinColumns=@JoinColumn(name="idquestionario"),
 	inverseJoinColumns=@JoinColumn(name="idpergunta"))
-	private Set<Pergunta> perguntas;
+	private List<Pergunta> perguntas;
 	
 	public void addPergunta(Pergunta pergunta){
 		getPerguntas().add(pergunta);
@@ -147,10 +148,10 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	public void setProfessoresRespondidos(Set<Professor> professoresRespondidos) {
 		this.professoresRespondidos = professoresRespondidos;
 	}
-	public Set<Pergunta> getPerguntas() {
+	public List<Pergunta> getPerguntas() {
 		return perguntas;
 	}
-	public void setPerguntas(Set<Pergunta> perguntas) {
+	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
 	}
 }
