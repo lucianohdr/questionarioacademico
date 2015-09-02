@@ -1,7 +1,5 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
-import javax.inject.Inject;
-
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -10,29 +8,29 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.model.Alternativa;
-import br.edu.utfpr.pb.questionarioacademico.repository.AlternativaRepository;
+import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
+import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
 
 @SuppressWarnings("serial")
 @Controller
-@Path("alternativas")
-public class AlternativaController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
+@Path("questionariodisponivels")
+public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;
-	private AlternativaRepository repository;
+	private QuestionariodisponivelRepository repository;
 	
-	@Inject
-	public AlternativaController(Result result, AlternativaRepository repository) {
+	public QuestionariodisponivelController(Result result,
+											QuestionariodisponivelRepository repository) {
 		super(result);
-		this.repository = repository;
 		this.result = result;
+		this.repository = repository;
 	}
-	
-	/*CDI Constructor*/
-	protected AlternativaController(){
+
+	/*CDI only*/
+	public QuestionariodisponivelController() {
 		this(null, null);
 	}
-	
+
 	@Get
 	@Path({"","/"})
 	public void list() {
@@ -54,23 +52,23 @@ public class AlternativaController extends br.edu.utfpr.pb.questionarioacademico
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
-	public void insert(Alternativa alternativa) {
-		repository.insert(alternativa);
+	public void insert(Questionariodisponivel questionariodisponivel) {
+		repository.insert(questionariodisponivel);
 		result.nothing();
 	}
 	
 	@Put
-	@Path("/{alternativa.id}")
+	@Path("/{questionariodisponivel.id}")
 	@Consumes("application/json")
-	public void update(Alternativa alternativa) {
-		repository.update(alternativa);
+	public void update(Questionariodisponivel questionariodisponivel) {
+		repository.update(questionariodisponivel);
 		result.nothing();
 	}
 
 	@Delete
-	@Path("/{alternativa.id}")
-	public void delete(Alternativa alternativa) {
-		repository.delete(alternativa);
+	@Path("/{questionariodisponivel.id}")
+	public void delete(Questionariodisponivel questionariodisponivel) {
+		repository.delete(questionariodisponivel);
 		result.nothing();
 	}
 }

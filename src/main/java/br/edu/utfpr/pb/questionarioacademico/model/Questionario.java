@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -83,18 +84,16 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 		getPerguntas().remove(pergunta);
 	}
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="liberacaodisciplina",
-	joinColumns=@JoinColumn(name="idquestionario"),
-	inverseJoinColumns=@JoinColumn(name="iddisciplina"))
-	private Set<Disciplina> disciplinas;
+	@OneToMany(mappedBy="questionario")
+	private List<Questionariodisponivel> questionariodisponivels;
 	
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public List<Questionariodisponivel> getQuestionariodisponivels() {
+		return questionariodisponivels;
 	}
 
-	public void setDisciplinas(Set<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setQuestionariodisponivels(
+			List<Questionariodisponivel> questionariodisponivels) {
+		this.questionariodisponivels = questionariodisponivels;
 	}
 
 	public Categoriaquestionario getCategoriaquestionario() {

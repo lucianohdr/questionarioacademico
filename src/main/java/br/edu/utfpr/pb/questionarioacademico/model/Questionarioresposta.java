@@ -26,6 +26,9 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 	@Column(name="publickey")
 	private byte[] publickey;
 	
+	@OneToOne
+	private Questionariodisponivel questionariodisponivel;
+	
 	@OneToMany(mappedBy="questionarioresposta", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Resposta> respostas;
 	
@@ -59,6 +62,14 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 
 	public void setPublickey(byte[] publickey) {
 		this.publickey = publickey;
+	}
+
+	public Questionariodisponivel getQuestionariodisponivel() {
+		return questionariodisponivel;
+	}
+
+	public void setQuestionariodisponivel(Questionariodisponivel questionariodisponivel) {
+		this.questionariodisponivel = questionariodisponivel;
 	}
 
 	public List<Resposta> getRespostas() {
