@@ -138,13 +138,20 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 			isArray: true
 	};
 	
+	var responder = {
+			'url': baseUrl + 'questionarios/responder',
+			'method': 'POST', 
+			isArray: false
+	};
+	
 	var api = $resource(configUrl('questionarios'), params(), {
 		'update': {'method': 'PUT'},
 		'addPergunta': addPergunta,
 		'rmPergunta': rmPergunta,
 		'perguntas' : perguntas,
 		'liberarQuestionario' : liberarQuestionario,
-		'porUsuarioEporStatus' : porUsuarioEporStatus
+		'porUsuarioEporStatus' : porUsuarioEporStatus,
+		'responder' : responder
 	  });
 	return api;
 }]);
@@ -175,11 +182,35 @@ questionarioAcademicoServices.factory('PeriodoResource', ['$resource',function($
 }]);
 
 questionarioAcademicoServices.factory('QuestionariorespostaResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('questionariorespostas'), params(), values());
+	var finalizaAvaliacao = {
+			'url': baseUrl + 'questionariorespostas/finalizaAvaliacao',
+			'method': 'POST', 
+			isArray: false
+	};
+	
+	var api = $resource(configUrl('questionariorespostas'), params(), {
+		'update': {'method': 'PUT'},
+		'finalizaAvaliacao' : finalizaAvaliacao
+	});
+	
 	return api;
 }]);
 
 questionarioAcademicoServices.factory('RespostaResource', ['$resource',function($resource) {
 	var api = $resource(configUrl('respostas'), params(), values());
+	return api;
+}]);
+
+questionarioAcademicoServices.factory('QuestionariodisponivelResource', ['$resource',function($resource) {
+	var porIdquestionario = {
+			'url': baseUrl + 'questionariodisponivels/porIdquestionario/:idquestionario',
+			'method': 'GET', 
+			isArray: true
+	};
+	
+	var api = $resource(configUrl('questionariodisponivels'), params(), {
+		'update': {'method': 'PUT'},
+		'porIdquestionario' : porIdquestionario
+	  });
 	return api;
 }]);

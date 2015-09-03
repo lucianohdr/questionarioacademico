@@ -17,6 +17,7 @@ import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 
 @Stateless
+@SuppressWarnings("unchecked")
 public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 		implements QuestionarioRepository {
 
@@ -73,8 +74,8 @@ public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 	private List<Questionario> porAlunoEporStatus(Usuario usuario, Status status){
 		
 		List<Questionario> retorno = new ArrayList<Questionario>();
-		String hql = "select distinct questionario from Questionario questionario"
-				+ " inner join questionario.disciplinas disciplina"
+		String hql = "select questionario from Questionario questionario"
+				+ " left outer join questionario.disciplinas disciplina"
 				+ " join disciplina.curso curso"
 				+ " join disciplina.professor professor"
 				+ " where curso.id in (select curso.id from"
@@ -93,5 +94,26 @@ public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 		retorno = query.getResultList();
 		
 		return retorno;
+	}
+
+	@Override
+	public Questionario responder(Questionario questionario, Usuario usuario) {
+		Questionario retorno = null;
+		Status status = Status.EMCURSO;
+		String hql = "select questionario from Questionario questionario"
+				+ " left outer join questionario.disciplinas disciplina"
+				+ " join disciplina.curso curso"
+				+ " join disciplina.professor professor"
+				
+				+ " where questionario.id = :idquestionario";
+		
+		Query query = this.entityManager.createQuery(hql);
+		query.setParameter("idquestionario", questionario.getId());
+		List<Questionario> list = query.getResultList(); 
+		if (!list.isEmpty()) {
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 }

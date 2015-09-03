@@ -1,5 +1,10 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -8,6 +13,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
 
@@ -19,6 +25,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	private Result result;
 	private QuestionariodisponivelRepository repository;
 	
+	@Inject
 	public QuestionariodisponivelController(Result result,
 											QuestionariodisponivelRepository repository) {
 		super(result);
@@ -70,5 +77,16 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	public void delete(Questionariodisponivel questionariodisponivel) {
 		repository.delete(questionariodisponivel);
 		result.nothing();
+	}
+	
+	@Get
+	@Path("/porIdquestionario/{idquestionario}")
+	public void porIdquestionario(Long idquestionario) {
+		List<Questionariodisponivel> questionariodisponivels = 
+				new ArrayList<Questionariodisponivel>(repository.porIdquestionario(idquestionario));
+		
+		serializer(questionariodisponivels)
+		.exclude("questionario.questionariodisponivels.questionario")
+		.serialize();
 	}
 }

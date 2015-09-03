@@ -74,4 +74,16 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 		repository.delete(questionarioresposta);
 		result.nothing();
 	}
+	
+	@Post
+	@Path({"/finalizaAvaliacao"})
+	@Consumes("application/json")
+	public void finalizaAvaliacao(Questionarioresposta questionarioresposta) {
+		//chamar método que criptografa respostas
+		
+		//salvar usuario entres os alunos respondidos, ou entre os professores respondidos caso nao for um usuario "ALUNO"
+		
+		
+		result.nothing();
+	}
 }

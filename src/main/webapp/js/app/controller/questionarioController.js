@@ -1,7 +1,7 @@
 App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location', 'QuestionarioResource', 
-                                              'CategoriaQuestionarioResource' ,'$window', '$stateParams', '$modal',
+                                              'CategoriaQuestionarioResource', 'QuestionariodisponivelResource', '$window', '$stateParams', '$modal',
                                              
-     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, $window, $stateParams, $modal){
+     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, QuestionariodisponivelResource, $window, $stateParams, $modal){
 
 		var root = '/questionario/';
 		
@@ -16,10 +16,18 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 	 	
 		$scope.save = function() {
 				$scope.model.$update({param1: $stateParams.id}, function(res) {
-					if (actionUpdate) actionUpdate('save', $stateParams.id);
 					$location.path(root);
 				});
 		}
+		// masterUpdate($scope, $stateParams, $window, $location, QuestionarioResource, root);
+		QuestionarioResource.get({param1: $stateParams.id}, function(res) {
+			$scope.model = res;
+			$.each($scope.model.questionario.questionariodisponivels, function(index, questionariodisponivel){
+				questionariodisponivel.questionario = {
+						"id": res.questionario.id
+				}
+			})
+		});
 		
 		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){
 			QuestionarioResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
@@ -27,8 +35,6 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 			});
 		});
 		
-		 masterUpdate($scope, $stateParams, $window, $location, QuestionarioResource, root);
-	 		
 		 masterDelete($scope,$stateParams,$window, $location, QuestionarioResource, root);
 		 
 		 $scope.openModal = function(){

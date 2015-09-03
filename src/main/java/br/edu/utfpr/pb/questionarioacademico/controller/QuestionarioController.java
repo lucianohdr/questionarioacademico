@@ -14,9 +14,11 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
+import br.edu.utfpr.pb.questionarioacademico.model.Disciplina;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
+import br.edu.utfpr.pb.questionarioacademico.repository.DisciplinaRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
@@ -29,23 +31,26 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	private Result result;
 	private QuestionarioRepository repository;
 	private PerguntaRepository perguntaRepository;
+	private DisciplinaRepository disciplinaRepository;
 	private UsuarioRepository usuarioRepository;
 	
 	@Inject
 	public QuestionarioController(Result result, 
 								  QuestionarioRepository repository, 
 								  PerguntaRepository perguntaRepository,
-								  UsuarioRepository usuarioRepository) {
+								  UsuarioRepository usuarioRepository,
+								  DisciplinaRepository disciplinaRepository) {
 		super(result);
 		this.repository = repository;
 		this.perguntaRepository = perguntaRepository;
 		this.result = result;
 		this.usuarioRepository = usuarioRepository;
+		this.disciplinaRepository = disciplinaRepository;
 	}
 	
 	/*CDI only*/
 	protected QuestionarioController(){
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 	
 	@Get
@@ -59,14 +64,17 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void list(Integer start, Integer limit) {
 		serializer(repository.pagination(start, limit, null))
 			.exclude("perguntas.alternativas.pergunta")
+			.exclude("questionariodisponivels.questionario")
 			.serialize();
 	}
 
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id),true)
+		Questionario questionario = repository.find(id);
+		serializer(repository.find(id), true)
 			.exclude("perguntas.alternativas.pergunta")
+			.exclude("questionariodisponivels.questionario")
 			.serialize();
 	}
 
@@ -76,6 +84,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void insert(Questionario questionario) {
 		serializer(repository.insertReturn(questionario))
 			.exclude("perguntas.alternativas.pergunta")
+			.exclude("questionariodisponivels.questionario")
 			.serialize(); 
 		
 	}
@@ -106,6 +115,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		
 		serializer(questionario)
 			.exclude("perguntas.alternativas.pergunta")
+			.exclude("questionariodisponivels.questionario")
 			.serialize();
 	}
 	
@@ -141,6 +151,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		questionario = repository.liberarQuestionario(questionario);
 		serializer(questionario)
 		.exclude("perguntas.alternativas.pergunta")
+		.exclude("questionariodisponivels.questionario")
 		.serialize();
 	}
 	
@@ -153,6 +164,24 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		List<Questionario> questionarios = repository.porUsuarioEporStatus(usuario, Status.EMCURSO);
 		serializer(questionarios)
 		.exclude("perguntas.alternativas.pergunta")
+		.exclude("questionariodisponivels.questionario")
+		.serialize();
+	}
+	
+	@Post
+	@Path("/responder")
+	@Consumes("application/json")
+	public void responder(Questionario questionario, Usuario usuario) {
+		usuario = usuarioRepository.find(usuario.getId());
+		
+		questionario = repository.responder(questionario, usuario);
+		
+		//filtrar disciplinas por usuario e questionario
+		 
+		
+		serializer(questionario, true)
+		.exclude("perguntas.alternativas.pergunta")
+		.exclude("questionariodisponivels.questionario")
 		.serialize();
 	}
 }

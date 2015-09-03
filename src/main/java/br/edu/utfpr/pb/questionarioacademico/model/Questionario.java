@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.questionarioacademico.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -84,7 +85,7 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 		getPerguntas().remove(pergunta);
 	}
 	
-	@OneToMany(mappedBy="questionario")
+	@OneToMany(mappedBy="questionario", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Questionariodisponivel> questionariodisponivels;
 	
 	public List<Questionariodisponivel> getQuestionariodisponivels() {

@@ -5,9 +5,13 @@
 	  </div>
 	  <div class="panel-body">
 		<div class="panel panel-default">
-		  <div class="panel-body" ng-repeat="questionario in questionarios">
-		  	<span>{{questionario.descricao}}</span>
-		  	<a class="btn btn-default pull-right" ui-sref="responder">Responder</a>
+		  <div class="panel-body">
+		  	<div class="list-group">
+		  		<div class="list-group-item" ng-repeat="questionario in questionarios">
+				  	{{questionario.descricao}}
+				  	<a class="btn btn-default btn-xs pull-right" ui-sref="responder">Responder</a>
+		  		</div>
+		  	</div>
 		  </div>
 		  <div class="panel-body" ng-if="questionarios.length===0 || !questionarios">Sem Questionários para responder!</div>
 		</div>

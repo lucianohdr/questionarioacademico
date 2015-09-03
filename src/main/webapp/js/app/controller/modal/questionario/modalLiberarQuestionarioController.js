@@ -1,7 +1,10 @@
 App.controller('modalLiberarQuestionarioController', function($scope, $modalInstance, DisciplinaResource, 
-				CursoResource, QuestionarioResource, questionario){
+				CursoResource, QuestionarioResource, questionario, QuestionariodisponivelResource){
 	
 	$scope.questionario = new QuestionarioResource(questionario);
+	
+	$scope.questionariodisponivel = {};
+	$scope.questionariodisponivel.questionariodisponivel = new QuestionarioResource(questionario);
 	
 	$scope.listaDisciplinas = function(){
 		DisciplinaResource.query(function(res){
@@ -26,28 +29,31 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		}
 	}
 	
-	$scope.addDisciplina = function(disciplina){
-		if(!$scope.questionario.disciplinas){
-			$scope.questionario.disciplinas = [];
+	$scope.addQuestionariodisponivel = function(questionariodisponivel){
+		if(!$scope.questionario.questionariodisponivels){
+			$scope.questionario.questionariodisponivels = [];
 		}
 		
-		if(disciplina){
-			if(!$scope.disciplinaJaExiste(disciplina)){
-				$scope.questionario.disciplinas.push(disciplina);
+		if(questionariodisponivel){
+			if(!$scope.disciplinaJaExiste(questionariodisponivel)){
+				questionariodisponivel.questionario = {};
+				questionariodisponivel.questionario.id = $scope.questionario.id;
+				$scope.questionario.questionariodisponivels.push(questionariodisponivel);
 			}
 		}
 	}
 	
-	$scope.rmDisciplina = function(index){
-		$scope.questionario.disciplinas.splice(index, 1);
+	$scope.rmQuestionariodisponivel = function(index){
+		$scope.questionario.questionariodisponivels.splice(index, 1);
 	}
 	
-	$scope.disciplinaJaExiste = function(disciplina){
+	$scope.disciplinaJaExiste = function(questionariodisponivel){
 		
-		if($scope.questionario.disciplinas.length != 0){
+		if($scope.questionario.questionariodisponivels.length != 0){
 			var existe = false;
-			for(var i = 0; i < $scope.questionario.disciplinas.length; i++){
-				if(disciplina.id ===  $scope.questionario.disciplinas[i].id) {
+			for(var i = 0; i < $scope.questionario.questionariodisponivels.length; i++){
+				
+				if(questionariodisponivel.disciplina.id ===  $scope.questionario.questionariodisponivels[i].disciplina.id) {
 					existe = true;
 					break;
 				} 
@@ -55,14 +61,12 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		} else {
 			return existe;
 		}
-		
 		return existe;
 	}
 	$scope.ok = function(){
 		$scope.questionario.$update({param1: $scope.questionario.id}, function(){
 			$modalInstance.close();
 		})
-		
 	}
 	
 	$scope.cancel = function () {
