@@ -19,6 +19,8 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		QuestionariodisponivelResource.get({param1: $stateParams.id}, function(res){
 			$scope.model.questionarioresposta.questionario = new QuestionarioResource(res.questionariodisponivel.questionario);
 			
+			$scope.model.questionarioresposta.questionariodisponivel = res.questionariodisponivel;
+			
 			$.each($scope.model.questionarioresposta.questionario.perguntas, function(index, pergunta){
 				var resposta = {
 						"id": 0,

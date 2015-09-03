@@ -25,7 +25,7 @@ public class QuestionarioBusiness extends RepositoryImpl<Questionario, Long>
 		return questionario;
 	}
 
-	/*@Override //TODO: terminar
+	/*@Override 
 	public Questionario responder(Questionario questionario, Usuario usuario) {
 		Questionario retorno = null;
 		Status status = Status.EMCURSO;
