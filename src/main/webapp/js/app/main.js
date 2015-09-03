@@ -480,7 +480,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 		})
 		.state("questionariorespostaEdit" ,{ 
 			parent: 'app',
-			url: '/responder/:id/usuario/:idusuario',
+			url: '/responder/:id',
 			views: {
 				'content@': {
 					controller: 'QuestionariorespostaControllerEdit', 

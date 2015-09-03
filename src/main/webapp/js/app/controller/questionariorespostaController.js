@@ -1,7 +1,7 @@
 App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'QuestionariorespostaResource', 
-                                                      'QuestionarioResource',  'authService', '$window', '$stateParams',
+                                                      'QuestionarioResource',  'QuestionariodisponivelResource', 'authService', '$window', '$stateParams',
                                              
-     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, authService, $window, $stateParams){
+     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService, $window, $stateParams){
 
 		var usuario = authService.getUsuario();
 		$scope.usuario = usuario;
@@ -16,9 +16,8 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		
 		$scope.model = new QuestionariorespostaResource(emptyObj);
 		
-		//TODO: Mudar para pegar um objeto customizado no servidor, e trazer somente a disciplina que convem mostrar
-		QuestionarioResource.responder({}, {questionario: {id: $stateParams.id}, usuario: {id: $stateParams.idusuario}}, function(res){
-			$scope.model.questionarioresposta.questionario = new QuestionarioResource(res.questionario);
+		QuestionariodisponivelResource.get({param1: $stateParams.id}, function(res){
+			$scope.model.questionarioresposta.questionario = new QuestionarioResource(res.questionariodisponivel.questionario);
 			
 			$.each($scope.model.questionarioresposta.questionario.perguntas, function(index, pergunta){
 				var resposta = {
@@ -54,13 +53,13 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 	 	masterCreate($scope, $location, QuestionariorespostaResource, root, emptyObj);
  	}
 
-]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource', 'QuestionarioResource', 'authService',
-    function($scope, $location, QuestionariorespostaResource, QuestionarioResource, authService){
+]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource', 'QuestionarioResource', 'QuestionariodisponivelResource', 'authService',
+    function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService){
 	
 		var usuario = authService.getUsuario();
 		$scope.usuario = usuario;
-		QuestionarioResource.porUsuarioEporStatus({}, {usuario: usuario}, function(res){
-			$scope.questionarios = res;
+		QuestionariodisponivelResource.porUsuario({}, {usuario: usuario}, function(res){
+			$scope.questionariodisponivels = res;
 		});
 		
 		masterRead($scope, $location, QuestionariorespostaResource);

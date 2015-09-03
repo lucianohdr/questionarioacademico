@@ -1,11 +1,11 @@
-App.controller("HomeController", ['$scope', '$location', '$window', '$stateParams', '$state', 'QuestionarioResource', 'authService',
+App.controller("HomeController", ['$scope', '$location', '$window', '$stateParams', '$state', 'QuestionarioResource', 'QuestionariodisponivelResource', 'authService',
                                              
-     function($scope, $location, $window, $stateParams, $state, QuestionarioResource, authService){
+     function($scope, $location, $window, $stateParams, $state, QuestionarioResource, QuestionariodisponivelResource, authService){
 			
 			var usuario = authService.identity().$$state.value.usuario;
 			
-			QuestionarioResource.porUsuarioEporStatus({}, {usuario: usuario}, function(res){
-				$scope.questionarios = res;
+			QuestionariodisponivelResource.porUsuario({}, {usuario: usuario}, function(res){
+				$scope.questionariodisponivels = res;
 			});
 	 }
 ]);

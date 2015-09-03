@@ -2,7 +2,9 @@ package br.edu.utfpr.pb.questionarioacademico.repository;
 
 import java.util.List;
 
+import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.common.Repository;
 
 public interface QuestionariodisponivelRepository extends
@@ -14,5 +16,13 @@ public interface QuestionariodisponivelRepository extends
 	 * @return
 	 */
 	List<Questionariodisponivel> porIdquestionario(Long idquestionario);
+
+	/**
+	 * Método responsável por retornar uma lista de questionariodisponivel por usuario
+	 * @param usuario
+	 * @return
+	 */
+	List<Questionariodisponivel> porUsuarioEporStatus(Usuario usuario,
+			Status status);
 
 }

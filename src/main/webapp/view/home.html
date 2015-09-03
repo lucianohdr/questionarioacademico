@@ -7,13 +7,13 @@
 		<div class="panel panel-default">
 		  <div class="panel-body">
 		  	<div class="list-group">
-		  		<div class="list-group-item" ng-repeat="questionario in questionarios">
-				  	{{questionario.descricao}}
+		  		<div class="list-group-item" ng-repeat="questionariodisponivel in questionariodisponivels">
+				  	{{questionariodisponivel.questionario.descricao}} | {{questionariodisponivel.disciplina.nome}} 
 				  	<a class="btn btn-default btn-xs pull-right" ui-sref="responder">Responder</a>
 		  		</div>
 		  	</div>
 		  </div>
-		  <div class="panel-body" ng-if="questionarios.length===0 || !questionarios">Sem Questionários para responder!</div>
+		  <div class="panel-body" ng-if="questionariodisponivels.length===0 || !questionariodisponivels">Sem Questionários para responder!</div>
 		</div>
 	  </div>
 	</div>

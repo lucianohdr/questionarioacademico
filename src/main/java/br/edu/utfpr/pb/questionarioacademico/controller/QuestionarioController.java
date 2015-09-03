@@ -155,33 +155,4 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		.serialize();
 	}
 	
-	@Post
-	@Path("/porUsuarioEporStatus")
-	@Consumes("application/json")
-	public void porUsuarioEporStatus(Usuario usuario) {
-		usuario = usuarioRepository.find(usuario.getId());
-		
-		List<Questionario> questionarios = repository.porUsuarioEporStatus(usuario, Status.EMCURSO);
-		serializer(questionarios)
-		.exclude("perguntas.alternativas.pergunta")
-		.exclude("questionariodisponivels.questionario")
-		.serialize();
-	}
-	
-	@Post
-	@Path("/responder")
-	@Consumes("application/json")
-	public void responder(Questionario questionario, Usuario usuario) {
-		usuario = usuarioRepository.find(usuario.getId());
-		
-		questionario = repository.responder(questionario, usuario);
-		
-		//filtrar disciplinas por usuario e questionario
-		 
-		
-		serializer(questionario, true)
-		.exclude("perguntas.alternativas.pergunta")
-		.exclude("questionariodisponivels.questionario")
-		.serialize();
-	}
 }
