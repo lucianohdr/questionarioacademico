@@ -5,8 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
-
 /**
  * 
  * @author trgp

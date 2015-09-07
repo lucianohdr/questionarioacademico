@@ -1,11 +1,9 @@
 package br.edu.utfpr.pb.questionarioacademico.business;
 
-import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.Query;
 
 import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
@@ -14,17 +12,10 @@ import br.edu.utfpr.pb.questionarioacademico.model.Tela;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.criptografia.KeyPairGenerator;
 
 @Stateless
+@SuppressWarnings("unchecked")
 public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements UsuarioRepository{
-
-	private final KeyPairGenerator gerarChave;
-	
-	@Inject
-	public UsuarioBusiness(KeyPairGenerator gerarChave){
-		this.gerarChave = gerarChave; 
-	}
 	
 	@Override
 	public Usuario getByUsernameAndPassword(String login, String senha) {
@@ -67,32 +58,12 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 	public void insert(Usuario usuario) {
 		usuario.setSenha(Hasher.get(usuario.getSenha()));
 		
-		//gerando chaves
-		gerarChave.geraKeyPair();
-		
-		//armazenando par de chaves
-		KeyPair keyPair = gerarChave.getKeyPair();
-		
-		//setando em usuario para ser salvos
-		usuario.setPrivatekey(keyPair.getPrivate().getEncoded());
-		usuario.setPublickey(keyPair.getPublic().getEncoded());
-		
 		super.insert(usuario);
 	}
 	
 	@Override
 	public Usuario insertReturn(Usuario usuario) {
 		usuario.setSenha(Hasher.get(usuario.getSenha()));
-		
-		//gerando chaves
-		gerarChave.geraKeyPair();
-		
-		//armazenando par de chaves
-		KeyPair keyPair = gerarChave.getKeyPair();
-		
-		//setando em usuario para ser salvos
-		usuario.setPrivatekey(keyPair.getPrivate().getEncoded());
-		usuario.setPublickey(keyPair.getPublic().getEncoded());
 		
 		return super.insertReturn(usuario);
 	}
@@ -121,7 +92,6 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 				}
 			}
 		}
-		
 		return retorno;
 	}
 }

@@ -14,7 +14,6 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
-import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
@@ -111,20 +110,4 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
 	}
-	
-	/*@Post
-	@Path("/responder")
-	@Consumes("application/json")
-	public void responder(Questionario questionario, Usuario usuario) {
-		usuario = usuarioRepository.find(usuario.getId());
-		
-		questionario = repository.responder(questionario, usuario);
-		
-		//filtrar disciplinas por usuario e questionario
-		
-		serializer(questionario, true)
-		.exclude("perguntas.alternativas.pergunta")
-		.exclude("questionariodisponivels.questionario")
-		.serialize();
-	}*/
 }

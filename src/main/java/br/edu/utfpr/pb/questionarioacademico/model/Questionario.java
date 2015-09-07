@@ -1,7 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,26 +48,6 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	//inicializando status como salvo
 	public Questionario(){
 		this.status = Status.SALVO;
-	}
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="alunorespondido",
-			joinColumns=@JoinColumn(name="idquestionario"),
-			inverseJoinColumns=@JoinColumn(name="idaluno"))
-	private Set<Aluno> alunosRespondidos;
-	
-	public void addAluno(Aluno aluno){
-		getAlunosRespondidos().add(aluno);
-	}
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="professorrespondido",
-	joinColumns=@JoinColumn(name="idquestionario"),
-	inverseJoinColumns=@JoinColumn(name="idprofessor"))
-	private Set<Professor> professoresRespondidos;
-	
-	public void addProfessor(Professor professor){
-		getProfessoresRespondidos().add(professor);
 	}
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -136,18 +115,7 @@ public class Questionario extends br.edu.utfpr.pb.questionarioacademico.model.co
 	public void setDatavalidade(LocalDate datavalidade) {
 		this.datavalidade = datavalidade;
 	}
-	public Set<Aluno> getAlunosRespondidos() {
-		return alunosRespondidos;
-	}
-	public void setAlunosRespondidos(Set<Aluno> alunosRespondidos) {
-		this.alunosRespondidos = alunosRespondidos;
-	}
-	public Set<Professor> getProfessoresRespondidos() {
-		return professoresRespondidos;
-	}
-	public void setProfessoresRespondidos(Set<Professor> professoresRespondidos) {
-		this.professoresRespondidos = professoresRespondidos;
-	}
+
 	public List<Pergunta> getPerguntas() {
 		return perguntas;
 	}

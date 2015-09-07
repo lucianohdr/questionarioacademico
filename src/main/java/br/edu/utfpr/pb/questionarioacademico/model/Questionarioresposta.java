@@ -17,15 +17,6 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 	@Column(name="cryptid")
 	private String cryptid;
 	
-	/*@OneToOne
-	private Questionario questionario;*/
-	
-	@Column(name="privatekey")
-	private byte[] privatekey;
-	
-	@Column(name="publickey")
-	private byte[] publickey;
-	
 	@OneToOne
 	private Questionariodisponivel questionariodisponivel;
 	
@@ -38,30 +29,6 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 
 	public void setCryptid(String cryptid) {
 		this.cryptid = cryptid;
-	}
-
-/*	public Questionario getQuestionario() {
-		return questionario;
-	}
-
-	public void setQuestionario(Questionario questionario) {
-		this.questionario = questionario;
-	}*/
-
-	public byte[] getPrivatekey() {
-		return privatekey;
-	}
-
-	public void setPrivatekey(byte[] privatekey) {
-		this.privatekey = privatekey;
-	}
-
-	public byte[] getPublickey() {
-		return publickey;
-	}
-
-	public void setPublickey(byte[] publickey) {
-		this.publickey = publickey;
 	}
 
 	public Questionariodisponivel getQuestionariodisponivel() {

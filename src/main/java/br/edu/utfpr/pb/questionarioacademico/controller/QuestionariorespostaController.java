@@ -79,10 +79,11 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 	@Path({"/finalizaAvaliacao"})
 	@Consumes("application/json")
 	public void finalizaAvaliacao(Questionarioresposta questionarioresposta) {
-		//chamar método que criptografa respostas
+		
+		//salva objeto com as respostas
+		questionarioresposta = repository.insertReturn(questionarioresposta);
 		
 		//salvar usuario entres os alunos respondidos, ou entre os professores respondidos caso nao for um usuario "ALUNO"
-		
 		
 		result.nothing();
 	}

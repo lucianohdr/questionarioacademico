@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -18,7 +17,6 @@ import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.SecurityResponse;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 /**
  * 

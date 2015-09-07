@@ -4,8 +4,6 @@ import java.security.MessageDigest;
 
 /**
  * 
- * @author trgp
- *
  * Classe que se encarrega de fazer o parse da palavra usando hash encode
  * 
  */

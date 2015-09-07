@@ -1,9 +1,12 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @SuppressWarnings("serial")
 @Entity
@@ -19,6 +22,8 @@ public class Resposta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	@ManyToOne
 	private Questionarioresposta questionarioresposta;
 	
+	@Type(type="encryptedString")
+	@Column(name="respostadescritiva")
 	private String respostadescritiva;
 
 
