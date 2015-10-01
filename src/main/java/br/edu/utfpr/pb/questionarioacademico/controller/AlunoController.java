@@ -109,4 +109,11 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 		Aluno aluno = repository.alunoPorUsuario(usuario);
 		serializer(aluno).exclude("pessoa.usuario.senha").serialize();
 	}
+	
+	@Override
+	protected String[] excludeProps() {
+		return new String[]{
+				"pessoa.usuario.senha",
+		};
+	}
 }

@@ -10,8 +10,6 @@ import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 
 /**
  * 
- * @author trgp
- *
  * Classe que define o objeto a ser persistido em sessão para auntentição na aplicação
  *
  */

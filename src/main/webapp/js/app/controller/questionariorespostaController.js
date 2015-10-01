@@ -38,7 +38,7 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		
 		$scope.finalizarAvaliacao = function(){
 			QuestionariorespostaResource.finalizaAvaliacao({}, {questionarioresposta: $scope.model.questionarioresposta}, function(res){
-				
+				$stateParams.go('questionarioresposta');
 			});
 		}
 		

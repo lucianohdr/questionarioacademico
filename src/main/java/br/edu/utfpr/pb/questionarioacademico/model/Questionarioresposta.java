@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -17,7 +17,7 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 	@Column(name="cryptid")
 	private String cryptid;
 	
-	@OneToOne
+	@ManyToOne
 	private Questionariodisponivel questionariodisponivel;
 	
 	@OneToMany(mappedBy="questionarioresposta", cascade=CascadeType.ALL, orphanRemoval=true)

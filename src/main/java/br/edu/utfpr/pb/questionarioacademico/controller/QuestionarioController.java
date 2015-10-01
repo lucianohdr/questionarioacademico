@@ -65,16 +65,17 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		serializer(repository.pagination(start, limit, null))
 			.exclude("perguntas.alternativas.pergunta")
 			.exclude("questionariodisponivels.questionario")
+			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize();
 	}
 
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		Questionario questionario = repository.find(id);
 		serializer(repository.find(id), true)
 			.exclude("perguntas.alternativas.pergunta")
 			.exclude("questionariodisponivels.questionario")
+			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize();
 	}
 
@@ -85,6 +86,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		serializer(repository.insertReturn(questionario))
 			.exclude("perguntas.alternativas.pergunta")
 			.exclude("questionariodisponivels.questionario")
+			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize(); 
 		
 	}
@@ -116,6 +118,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		serializer(questionario)
 			.exclude("perguntas.alternativas.pergunta")
 			.exclude("questionariodisponivels.questionario")
+			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize();
 	}
 	
@@ -152,6 +155,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 		serializer(questionario)
 		.exclude("perguntas.alternativas.pergunta")
 		.exclude("questionariodisponivels.questionario")
+		.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 		.serialize();
 	}
 	

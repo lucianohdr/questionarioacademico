@@ -11,7 +11,10 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
+import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariorespostaRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 
 @SuppressWarnings("serial")
 @Controller
@@ -19,19 +22,25 @@ import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariorespostaRepo
 public class QuestionariorespostaController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private QuestionariorespostaRepository repository;
-	private Result result; 
+	private QuestionariodisponivelRepository questionariodisponivelRepository;
+	private Result result;
+	private Login login;
 	
 	@Inject
 	public QuestionariorespostaController(Result result,
-										  QuestionariorespostaRepository repository) {
+										  QuestionariorespostaRepository repository,
+										  QuestionariodisponivelRepository questionariodisponivelRepository,
+										  Login login) {
 		super(result);
 		this.result = result;
 		this.repository = repository;
+		this.questionariodisponivelRepository = questionariodisponivelRepository;
+		this.login = login;
 	}
 	
 	/*CDI construtor	*/
 	public QuestionariorespostaController(){
-		this(null, null);
+		this(null, null, null, null);
 	}
 	
 	@Get
@@ -79,11 +88,14 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 	@Path({"/finalizaAvaliacao"})
 	@Consumes("application/json")
 	public void finalizaAvaliacao(Questionarioresposta questionarioresposta) {
+		Usuario usuario = login.getUsuario();
 		
 		//salva objeto com as respostas
 		questionarioresposta = repository.insertReturn(questionarioresposta);
 		
-		//salvar usuario entres os alunos respondidos, ou entre os professores respondidos caso nao for um usuario "ALUNO"
+		//salvar usuario entre os usuarios que responderam questionario
+		questionarioresposta.getQuestionariodisponivel().addUsuario(usuario);
+		questionariodisponivelRepository.update(questionarioresposta.getQuestionariodisponivel());
 		
 		result.nothing();
 	}

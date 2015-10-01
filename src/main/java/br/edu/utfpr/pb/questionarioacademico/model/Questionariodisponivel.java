@@ -1,13 +1,16 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,26 +25,19 @@ public class Questionariodisponivel extends br.edu.utfpr.pb.questionarioacademic
 	@ManyToOne
 	private Questionario questionario;
 	
+	@OneToMany(mappedBy="questionariodisponivel", cascade=CascadeType.ALL, orphanRemoval=true)
+	private List<Questionarioresposta> questionariorespostas;
+	
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="alunorespondido",
+	@JoinTable(name="usuariosrespondido",
 			joinColumns=@JoinColumn(name="idquestionariodisponivel"),
-			inverseJoinColumns=@JoinColumn(name="idaluno"))
-	private Set<Aluno> alunosRespondidos;
+			inverseJoinColumns=@JoinColumn(name="idusuario"))
+	private Set<Usuario> usuariosRespondidos;
 	
-	public void addAluno(Aluno aluno){
-		getAlunosRespondidos().add(aluno);
+	public void addUsuario(Usuario usuario){
+		getUsuariosRespondidos().add(usuario);
 	}
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="professorrespondido",
-	joinColumns=@JoinColumn(name="idquestionariodisponivel"),
-	inverseJoinColumns=@JoinColumn(name="idprofessor"))	
-	private Set<Professor> professoresRespondidos;
-	
-	public void addProfessor(Professor professor){
-		getProfessoresRespondidos().add(professor);
-	}
-
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
@@ -57,20 +53,21 @@ public class Questionariodisponivel extends br.edu.utfpr.pb.questionarioacademic
 	public void setQuestionario(Questionario questionario) {
 		this.questionario = questionario;
 	}
-
-	public Set<Aluno> getAlunosRespondidos() {
-		return alunosRespondidos;
+	
+	public List<Questionarioresposta> getQuestionariorespostas() {
+		return questionariorespostas;
 	}
 
-	public void setAlunosRespondidos(Set<Aluno> alunosRespondidos) {
-		this.alunosRespondidos = alunosRespondidos;
+	public void setQuestionariorespostas(
+			List<Questionarioresposta> questionariorespostas) {
+		this.questionariorespostas = questionariorespostas;
 	}
 
-	public Set<Professor> getProfessoresRespondidos() {
-		return professoresRespondidos;
+	public Set<Usuario> getUsuariosRespondidos() {
+		return usuariosRespondidos;
 	}
 
-	public void setProfessoresRespondidos(Set<Professor> professoresRespondidos) {
-		this.professoresRespondidos = professoresRespondidos;
+	public void setUsuariosRespondidos(Set<Usuario> usuariosRespondidos) {
+		this.usuariosRespondidos = usuariosRespondidos;
 	}
 }

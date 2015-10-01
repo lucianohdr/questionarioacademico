@@ -60,6 +60,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	public void find(Long id) {
 		serializer(repository.find(id),true)
 		.exclude("questionario.questionariodisponivels")
+		.exclude("questionariorespostas.questionariodisponivel")
 		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
 	}

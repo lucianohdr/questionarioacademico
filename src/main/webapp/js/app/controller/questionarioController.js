@@ -52,11 +52,18 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 		 } 
 		 
 		 $scope.liberarQuestionario = function(){
-			 confirm("Tem certeza que deseja liberar questionario para ser respondido?", function(){
-				 QuestionarioResource.liberarQuestionario({}, {questionario: $scope.model.questionario}, function(res){
-					 $scope.model.questionario = new QuestionarioResource(res);
+			 var disponiveisLength = $scope.model.questionario.questionariodisponivels.length;
+			 
+			 if(disponiveisLength > 0){
+				 confirm("Tem certeza que deseja liberar questionario para ser respondido?", function(){
+					 QuestionarioResource.liberarQuestionario({}, {questionario: $scope.model.questionario}, function(res){
+						 $scope.model.questionario = new QuestionarioResource(res);
+					 });
 				 });
-			 });
+			 } else {
+				 alert("Antes de disponibilizar este Questionário para ser respondido, é necessário adicionar uma ou mais disciplinas!");
+			 }
+			 
 		 } 
 	 }
 ]).controller("QuestionarioControllerNew", ['$scope', '$location', 'QuestionarioResource', 'CategoriaQuestionarioResource',
