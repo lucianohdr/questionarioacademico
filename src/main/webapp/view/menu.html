@@ -1,6 +1,6 @@
 <nav id="main-menu" class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" ui-sref="home">Questionário Acadêmico</a>
+			<a class="navbar-brand glyphicon glyphicon-home " id="home" ui-sref="home"></a>
 			<ol class="nav navbar-nav" reversed>
 				<li ng-repeat="tela in telas" ui-sref-active="active"><a ui-sref="{{tela.nome}}">{{tela.nomeExibicao}}</a></li>
 			</ol>

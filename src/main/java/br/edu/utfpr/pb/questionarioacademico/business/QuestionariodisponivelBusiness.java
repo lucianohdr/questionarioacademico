@@ -70,32 +70,36 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 		query.setParameter("idusuario", usuario.getId());
 		query.setParameter("status", status);
 		
-		retorno = query.getResultList();
-		*/
+		retorno = query.getResultList();*/
+		
 		return retorno;
 	}
 	
 	private List<Questionariodisponivel> porAlunoEporStatus(Usuario usuario, Status status){
 		
+		//selecionando curso do aluno
 		Query idCurso = idCursoPorUsuarioAluno(usuario);
 		
+		//selecionando disciplinas com base no curso selecionado anteriormente
 		Query idDisciplinas = idDisciplinaPorCurso();
 		idDisciplinas.setParameter("idcurso", idCurso.getSingleResult());
 		
+		//filtrando questionariodisponives através das disciplinas 
 		Query idQuestDispDisc = idQuestionariosDisponivelPorIdDisciplina();
 		idQuestDispDisc.setParameter("idDisciplinas", idDisciplinas.getResultList());
 		
+		//filtrando questionariodisponives por status
 		Query idQuestPorStatus = idQuestPorStatus(status);
 		idQuestPorStatus.setParameter("idQuestDispDisc", idQuestDispDisc.getResultList());
 
+		//filtrando questionariodisponives por categoria referentes a alunos
 		Query idQuestPorCategAluno = idQuestPorCategAluno();
 		idQuestPorCategAluno.setParameter("idQuestPorStatus", idQuestPorStatus.getResultList());
-		
+
+		//pegando questionariodisponives já respondidos pelo usuario 
 		Query idQuestRepondido = idQuestRespondido(usuario);
 		
-		List<Long> lista = idQuestRepondido.getResultList();
-		
-		
+		//filtrando todos os questionarios anteriores que não foram respondidos
 		Query idQuestNaoRespondido = idQuestNaoRespondido();
 		idQuestNaoRespondido.setParameter("idQuestRepondido", idQuestRepondido.getResultList());
 		idQuestNaoRespondido.setParameter("idQuestPorCategAluno", idQuestPorCategAluno.getResultList());

@@ -41,3 +41,17 @@
 .underline{
 	text-decoration: underline;
 }
+
+@media (max-width: 1491px){
+	/* escondendo brand de menu, para nao quebrar a view */
+	/* #home {
+		font-size: 0;
+		height: 0;
+		padding: 0 0;
+		content: "\e021";
+	} */
+	
+	.nav li a {
+		padding: 15px 10px;
+	}
+}
