@@ -86,39 +86,43 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 		Query idQuestDispDisc = idQuestionariosDisponivelPorIdDisciplina();
 		idQuestDispDisc.setParameter("idDisciplinas", idDisciplinas.getResultList());
 		
-		//filtrando questionariodisponives por status
-		Query idQuestPorStatus = idQuestPorStatus(status);
-		idQuestPorStatus.setParameter("idQuestDispDisc", idQuestDispDisc.getResultList());
-
-		//filtrando questionariodisponives por categoria referentes a alunos
-		Query idQuestPorCategAluno = idQuestPorCategAluno();
-		idQuestPorCategAluno.setParameter("idQuestPorStatus", idQuestPorStatus.getResultList());
-
-		//pegando questionariodisponives já respondidos pelo usuario 
-		Query idQuestRepondido = idQuestRespondido(usuario);
+		List<Long> listIdsQuestDispDisc = idQuestDispDisc.getResultList();
+		List<Questionariodisponivel> retorno = new ArrayList<Questionariodisponivel>();
 		
-		//filtrando todos os questionarios anteriores que não foram respondidos
-		Query idQuestNaoRespondido = idQuestNaoRespondido();
-		idQuestNaoRespondido.setParameter("idQuestRepondido", idQuestRepondido.getResultList());
-		idQuestNaoRespondido.setParameter("idQuestPorCategAluno", idQuestPorCategAluno.getResultList());
+		if(listIdsQuestDispDisc.size()>0){
+			
+			//filtrando questionariodisponives por status
+			Query idQuestPorStatus = idQuestPorStatus(status);
+			idQuestPorStatus.setParameter("idQuestDispDisc", idQuestDispDisc.getResultList());
+			
+			List<Long> listIdQuestPorStatus = idQuestPorStatus.getResultList();
+			if(listIdQuestPorStatus.size() > 0){
+				
+				//filtrando questionariodisponives por categoria referentes a alunos
+				Query idQuestPorCategAluno = idQuestPorCategAluno();
+				idQuestPorCategAluno.setParameter("idQuestPorStatus", listIdQuestPorStatus);
 		
-		List<Questionariodisponivel> retorno = idQuestNaoRespondido.getResultList();
-		
+				//pegando questionariodisponives já respondidos pelo usuario 
+				Query idQuestRepondido = idQuestRespondido(usuario);
+			
+				//filtrando todos os questionarios anteriores que não foram respondidos
+				Query idQuestNaoRespondido = idQuestNaoRespondido();
+				idQuestNaoRespondido.setParameter("idQuestRepondido", idQuestRepondido.getResultList());
+				idQuestNaoRespondido.setParameter("idQuestPorCategAluno", idQuestPorCategAluno.getResultList());
+				
+				retorno = idQuestNaoRespondido.getResultList();
+			}
+		}
 		return retorno;
 	}
 	
 	private Query idQuestPorCategAluno() {
-		
-		StringBuilder hql = new StringBuilder();
-		
-		/*StringBuilder hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
+		String hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
 				   + " join questionariodisponivel.questionario questionario"
 				   + " join questionario.categoriaquestionario categoria"
-				   + " where (categoria.id = 1 or categoria.id = 4) and questionariodisponivel.id in :idQuestPorStatus";*/
-		hql.append("select questionariodisponivel.id from Questionariodisponivel questionariodisponivel");
-		hql.append(" join questionariodisponivel.questionario questionario");
-		hql.append(" join questionario.categoriaquestionario categoria");
-		Query query = this.entityManager.createQuery(hql.toString());
+				   + " where (categoria.id = 1 or categoria.id = 4) and questionariodisponivel.id in :idQuestPorStatus";
+				   
+		Query query = this.entityManager.createQuery(hql);
 		
 		return query;
 	}
@@ -209,7 +213,6 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 			
 			retorno = questResp.getResultList();
 		}
-		
 		return retorno;
 	}
 }
