@@ -106,9 +106,7 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 				Query idQuestRepondido = idQuestRespondido(usuario);
 			
 				//filtrando todos os questionarios anteriores que não foram respondidos
-				Query idQuestNaoRespondido = idQuestNaoRespondido();
-				idQuestNaoRespondido.setParameter("idQuestRepondido", idQuestRepondido.getResultList());
-				idQuestNaoRespondido.setParameter("idQuestPorCategAluno", idQuestPorCategAluno.getResultList());
+				Query idQuestNaoRespondido = idQuestNaoRespondido(idQuestPorCategAluno.getResultList(), idQuestRepondido.getResultList());
 				
 				retorno = idQuestNaoRespondido.getResultList();
 			}
@@ -127,12 +125,26 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 		return query;
 	}
 
-	private Query idQuestNaoRespondido() {
-		String hql = "select questionariodisponivel from Questionariodisponivel questionariodisponivel"
-				   + " where questionariodisponivel.id in :idQuestPorCategAluno and questionariodisponivel.id not in :idQuestRepondido";
+	private Query idQuestNaoRespondido(List<Long> idQuestPorCategAluno, List<Long> idQuestRepondido) {
 		
-		Query query = this.entityManager.createQuery(hql);
+		StringBuilder hql = new StringBuilder();
 		
+		Query query;
+		
+		hql.append("select questionariodisponivel from Questionariodisponivel questionariodisponivel");
+		if(idQuestRepondido.size() > 0){
+			
+			hql.append(" where questionariodisponivel.id in :idQuestPorCategAluno and questionariodisponivel.id not in :idQuestRepondido");
+			query = this.entityManager.createQuery(hql.toString());
+			query.setParameter("idQuestPorCategAluno", idQuestPorCategAluno);
+			query.setParameter("idQuestRepondido", idQuestRepondido);
+			
+		} else {
+			
+			hql.append(" where questionariodisponivel.id in :idQuestPorCategAluno");
+			query = this.entityManager.createQuery(hql.toString());
+			query.setParameter("idQuestPorCategAluno", idQuestPorCategAluno);
+		}
 		return query;
 	}
 
