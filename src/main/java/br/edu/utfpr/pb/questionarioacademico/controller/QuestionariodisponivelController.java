@@ -120,7 +120,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 		
 		List<Questionariodisponivel> questionariodisponivels = repository.respondidos(usuario);
 		serializer(questionariodisponivels)
-		.exclude("questionario.questionariodisponivels")
+		.exclude("questionario.questionariodisponivels.questionario")
 		.exclude("questionariorespostas.questionariodisponivel.questionariorespostas")
 		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();

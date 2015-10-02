@@ -108,12 +108,17 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 	}
 	
 	private Query idQuestPorCategAluno() {
-		String hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
+		
+		StringBuilder hql = new StringBuilder();
+		
+		/*StringBuilder hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
 				   + " join questionariodisponivel.questionario questionario"
 				   + " join questionario.categoriaquestionario categoria"
-				   + " where (categoria.id = 1 or categoria.id = 4) and questionariodisponivel.id in :idQuestPorStatus";
-				   
-		Query query = this.entityManager.createQuery(hql);
+				   + " where (categoria.id = 1 or categoria.id = 4) and questionariodisponivel.id in :idQuestPorStatus";*/
+		hql.append("select questionariodisponivel.id from Questionariodisponivel questionariodisponivel");
+		hql.append(" join questionariodisponivel.questionario questionario");
+		hql.append(" join questionario.categoriaquestionario categoria");
+		Query query = this.entityManager.createQuery(hql.toString());
 		
 		return query;
 	}

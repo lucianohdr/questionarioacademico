@@ -61,7 +61,9 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id), true)
+		Questionario questionario = repository.find(id);
+		questionario.getQuestionariodisponivels();
+		serializer(questionario, true)
 			.serialize();
 	}
 

@@ -38,7 +38,7 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 			if(!$scope.disciplinaJaExiste(questionariodisponivel)){
 				questionariodisponivel.questionario = {};
 				questionariodisponivel.questionario.id = $scope.questionario.id;
-				$scope.questionario.questionariodisponivels.push(questionariodisponivel);
+				$scope.questionario.questionariodisponivels.push(angular.copy(questionariodisponivel));
 			}
 		}
 	}
@@ -65,9 +65,14 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		return existe;
 	}
 	$scope.ok = function(){
-		$scope.questionario.$save(function(){
+		QuestionarioResource.update({param1: $scope.questionario.id}, {questionario: $scope.questionario}, function(res){
+			 $scope.questionario = res;
 			$modalInstance.close();
-		})
+		});
+		
+		/*$scope.questionario.update(function(){
+			$modalInstance.close();
+		});*/
 	}
 	
 	$scope.cancel = function () {

@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.questionarioacademico.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class Questionariodisponivel extends br.edu.utfpr.pb.questionarioacademic
 	private Questionario questionario;
 	
 	@OneToMany(mappedBy="questionariodisponivel", cascade=CascadeType.ALL, orphanRemoval=true)
-	private List<Questionarioresposta> questionariorespostas;
+	private List<Questionarioresposta> questionariorespostas = new ArrayList<Questionarioresposta>();
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="usuariosrespondido",
@@ -60,7 +61,8 @@ public class Questionariodisponivel extends br.edu.utfpr.pb.questionarioacademic
 
 	public void setQuestionariorespostas(
 			List<Questionarioresposta> questionariorespostas) {
-		this.questionariorespostas = questionariorespostas;
+		this.questionariorespostas.clear();
+		this.questionariorespostas.addAll(questionariorespostas);
 	}
 
 	public Set<Usuario> getUsuariosRespondidos() {
