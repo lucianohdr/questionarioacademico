@@ -47,6 +47,7 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		$scope.questionario.questionariodisponivels.splice(index, 1);
 	}
 	
+	/*Verifica se já existe uma disciplina adicionada*/
 	$scope.disciplinaJaExiste = function(questionariodisponivel){
 		
 		if($scope.questionario.questionariodisponivels.length != 0){
@@ -64,7 +65,7 @@ App.controller('modalLiberarQuestionarioController', function($scope, $modalInst
 		return existe;
 	}
 	$scope.ok = function(){
-		$scope.questionario.$update({param1: $scope.questionario.id}, function(){
+		$scope.questionario.$save(function(){
 			$modalInstance.close();
 		})
 	}

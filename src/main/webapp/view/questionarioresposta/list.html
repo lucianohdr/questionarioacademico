@@ -13,7 +13,7 @@
 			</tr>
 		</table></td></tr>
 		<tr><td><div  class="scroll" do-scroll="load()"><table class="table table-striped table-bordered table-condensed table-hover" width="99%">
-				<tr ng-repeat="questionariodisponivel in questionariodisponivels | filter:search | orderBy:'nome'">
+				<tr ng-repeat="questionariodisponivel in questionariodisponivels | filter:search">
 					<td width="160">{{questionariodisponivel.questionario.descricao}}</td>
 					<td width="160">{{questionariodisponivel.disciplina.nome}}</td>
 					<td width="60">{{questionariodisponivel.questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
@@ -27,16 +27,18 @@
 	<table width="100%" class="table table-striped table-bordered table-condensed">
 		<tr><td><table width="98%">
 			<tr>
-				<th width="46.5%">Descrição</th>
-				<th width="23%">Dt. Liberação</th>
-				<th width="30.5%">Dt. Validade</th>
+				<th width="30.5%">Descrição</th>
+				<th width="30.5%">Disciplina</th>
+				<th width="16%">Dt. Liberação</th>
+				<th width="20%">Dt. Validade</th>
 			</tr>
 		</table></td></tr>
 		<tr><td><div  class="scroll" do-scroll="load()"><table class="table table-striped table-bordered table-condensed table-hover" width="99%">
-				<tr ng-repeat="questionario in questionariosrespondidos | filter:search | orderBy:'nome'">
-					<td width="160">{{questionario.descricao}}</td>
-					<td width="60">{{questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
-					<td width="60">{{questionario.datavalidade| date : "dd/MM/yyyy"}}</td>
+				<tr ng-repeat="questionariodisponivel in questionariosrespondidos | filter:search | orderBy:'nome'">
+					<td width="160">{{questionariodisponivel.questionario.descricao}}</td>
+					<td width="160">{{questionariodisponivel.disciplina.nome}}</td>
+					<td width="60">{{questionariodisponivel.questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
+					<td width="60">{{questionariodisponivel.questionario.datavalidade| date : "dd/MM/yyyy"}}</td>
 					<td title="Editar" width="10"><a ui-sref="questionariorespostaEdit({id: questionario.id, idusuario: usuario.id})"><i class="glyphicon glyphicon-pencil"></i></a></td>
 				</tr>
 		</table></div></td></tr>

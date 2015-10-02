@@ -140,6 +140,7 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 	
 	var api = $resource(configUrl('questionarios'), params(), {
 		'update': {'method': 'PUT'},
+		'update': {'method': 'POST'},
 		'addPergunta': addPergunta,
 		'rmPergunta': rmPergunta,
 		'perguntas' : perguntas,
@@ -150,7 +151,16 @@ questionarioAcademicoServices.factory('QuestionarioResource', ['$resource',funct
 }]);
 
 questionarioAcademicoServices.factory('PerguntaResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('perguntas'), params(), values());
+	var perguntas = {
+			'url': baseUrl + 'perguntas/perguntasPorQuestionario',
+			'method': 'POST', 
+			isArray: true
+	};
+	
+	var api = $resource(configUrl('perguntas'), params(), {
+		'update': {'method': 'PUT'},
+		'perguntas': perguntas
+	});
 	return api;
 }]);
 
@@ -207,10 +217,17 @@ questionarioAcademicoServices.factory('QuestionariodisponivelResource', ['$resou
 			isArray: true
 	};
 	
+	var respondidos = {
+			'url': baseUrl + 'questionariodisponivels/respondidos',
+			'method': 'POST', 
+			isArray: true
+	};
+	
 	var api = $resource(configUrl('questionariodisponivels'), params(), {
 		'update': {'method': 'PUT'},
 		'porIdquestionario' : porIdquestionario,
-		'porUsuario' : porUsuario
+		'porUsuario' : porUsuario,
+		'respondidos': respondidos
 	  });
 	return api;
 }]);

@@ -1,7 +1,7 @@
 App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'QuestionariorespostaResource', 
-                                                      'QuestionarioResource',  'QuestionariodisponivelResource', 'authService', '$window', '$stateParams',
+                                                      'QuestionarioResource',  'QuestionariodisponivelResource', 'authService', '$window', '$stateParams', '$state', 
                                              
-     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService, $window, $stateParams){
+     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService, $window, $stateParams, $state){
 
 		var usuario = authService.getUsuario();
 		$scope.usuario = usuario;
@@ -38,7 +38,7 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		
 		$scope.finalizarAvaliacao = function(){
 			QuestionariorespostaResource.finalizaAvaliacao({}, {questionarioresposta: $scope.model.questionarioresposta}, function(res){
-				$stateParams.go('questionarioresposta');
+				$state.go('questionarioresposta');
 			});
 		}
 		
@@ -66,6 +66,11 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 			$scope.questionariodisponivels = res;
 		});
 		
-		masterRead($scope, $location, QuestionariorespostaResource);
+		QuestionariodisponivelResource.respondidos({}, {usuario: usuario}, function(res){
+			$scope.questionariosrespondidos = res
+		});
+		
+		
+		//masterRead($scope, $location, QuestionariorespostaResource);
 	}
 ]);

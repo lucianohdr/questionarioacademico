@@ -24,5 +24,12 @@ public interface QuestionariodisponivelRepository extends
 	 */
 	List<Questionariodisponivel> porUsuarioEporStatus(Usuario usuario,
 			Status status);
+	
+	/**
+	 * Método responsável por retornar os questionarios respondidos por usuário
+	 * @param usuario
+	 * @return
+	 */
+	List<Questionariodisponivel> respondidos(Usuario usuario);
 
 }

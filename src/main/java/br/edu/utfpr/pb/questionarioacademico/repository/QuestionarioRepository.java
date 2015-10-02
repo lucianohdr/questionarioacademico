@@ -11,4 +11,5 @@ public interface QuestionarioRepository extends Repository<Questionario, Long> {
 	 * @return
 	 */
 	Questionario liberarQuestionario(Questionario questionario);
+	
 }

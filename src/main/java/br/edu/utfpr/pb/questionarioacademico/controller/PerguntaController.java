@@ -1,5 +1,8 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Consumes;
@@ -11,6 +14,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
+import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
 
@@ -79,6 +83,16 @@ public class PerguntaController extends br.edu.utfpr.pb.questionarioacademico.co
 	public void delete(Pergunta pergunta) {
 		repository.delete(pergunta);
 		result.nothing();
+	}
+	
+	@Post
+	@Path("/perguntasPorQuestionario")
+	@Consumes("application/json")
+	public void perguntasPorQuestionario(Questionario questionario){
+		questionario = questionarioRepository.find(questionario.getId());
+		List<Pergunta> perguntas = new ArrayList<Pergunta>(questionario.getPerguntas());
+		
+		serializer(perguntas).serialize();
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location', 'QuestionarioResource', 
-                                              'CategoriaQuestionarioResource', 'QuestionariodisponivelResource', '$window', '$stateParams', '$modal',
+                                              'CategoriaQuestionarioResource', 'QuestionariodisponivelResource', 'PerguntaResource', '$window', '$stateParams', '$modal',
                                              
-     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, QuestionariodisponivelResource, $window, $stateParams, $modal){
+     function($scope, $rootScope, $location, QuestionarioResource, CategoriaQuestionarioResource, QuestionariodisponivelResource, PerguntaResource, $window, $stateParams, $modal){
 
 		var root = '/questionario/';
 		
@@ -30,7 +30,7 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 		});
 		
 		$scope.$on("QuestionarioControllerEdit.getPerguntas", function(event){
-			QuestionarioResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
+			PerguntaResource.perguntas({}, {questionario: {id:$stateParams.id}}, function(res){
 				$scope.model.questionario.perguntas = res;
 			});
 		});
@@ -75,6 +75,11 @@ App.controller("QuestionarioControllerEdit", ['$scope', '$rootScope', '$location
 			"descricao": "",
 			"observacao": ""
 		}};
+		
+		$scope.dateOptions = {
+	 			dateFormat : "dd/mm/yy",
+	 			disabled: true
+	 	}
 		
 		CategoriaQuestionarioResource.query(function (res) { $scope.categorias = res; });
 		

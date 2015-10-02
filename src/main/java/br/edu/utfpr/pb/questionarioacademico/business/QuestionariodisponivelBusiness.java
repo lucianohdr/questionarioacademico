@@ -8,8 +8,6 @@ import javax.persistence.Query;
 
 import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
-import br.edu.utfpr.pb.questionarioacademico.model.Categoriaquestionario;
-import br.edu.utfpr.pb.questionarioacademico.model.Disciplina;
 import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
@@ -187,61 +185,26 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 		return retorno;
 	}
 
-	/*private Query idsNaoRespondidosPorUsuario(Usuario usuario){
-		String hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
-				   + " join questionariodisponivel.questionario questionario"
-				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos"
-				   + " where usuariosRespondidos.id <> :idusuario";
+	@Override
+	public List<Questionariodisponivel> respondidos(Usuario usuario) {
+		List<Questionariodisponivel> retorno = new ArrayList<Questionariodisponivel>();
 		
-		Query query = this.entityManager.createQuery(hql);
+		//selecionando questionarios respondidos
+		Query idsQuestRespondidos = idQuestRespondido(usuario);
 		
-		query.setParameter("idusuario", usuario.getId());
-		return query;
+		List<Long> idQuestRespondido = idsQuestRespondidos.getResultList();
+		
+		if(idQuestRespondido.size()>0){
+			StringBuilder hql = new StringBuilder();
+			hql.append("select questionariodisponivel from Questionariodisponivel questionariodisponivel");
+			hql.append(" where questionariodisponivel.id in :idsQuestRespondidos");
+			
+			Query questResp = this.entityManager.createQuery(hql.toString());
+			questResp.setParameter("idsQuestRespondidos", idsQuestRespondidos.getResultList());
+			
+			retorno = questResp.getResultList();
+		}
+		
+		return retorno;
 	}
-	
-	private Query idsPorStatusEUsuario(Status status){
-		
-		String hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
-				   + " join questionariodisponivel.questionario questionario"
-				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos"
-				   + " where questionario.status = :status and questionariodisponivel.id in (:questionariodisponivelIdList)";
-		
-		Query query = this.entityManager.createQuery(hql);
-		query.setParameter("status", status);
-		return query;
-	}
-	
-	private Query idsPorCategoriaEUsuarioAluno(){
-		 
-		String hql = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
-				   + " join questionariodisponivel.questionario questionario"
-				   + " join questionario.categoriaquestionario categoria"
-				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos"
-				   + " where (categoria.id = 1 or categoria = 4) and questionariodisponivel.id in (:questionariodisponivelIdList)";
-		
-		Query query = this.entityManager.createQuery(hql);
-		return query;
-	}
-	
-	private Query idsDeDisciplinasPorAluno(Usuario usuario){
-		 
-		String hql = "select questionariodisponivel from Questionariodisponivel questionariodisponivel"
-				   + " join questionariodisponivel.questionario questionario"
-				   + " join questionariodisponivel.disciplina disciplina"
-				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos"
-				   + " where disciplina.id in ("
-				   			+ " select disciplinaAluno.id from Aluno aluno"
-				   			+ " join aluno.pessoa pessoa"
-				   			+ " join pessoa.usuario usuario"
-				   			+ " join aluno.turma turma"
-				   			+ " join turma.periodo periodo"
-				   			+ " join turma.curso curso"
-				   			+ " join curso.disciplinas disciplinaAluno"
-				   			+ " where usuario.id = :idusuario "
-				   + ") and questionariodisponivel.id in (:questionariodisponivelIdList)";
-		
-		Query query = this.entityManager.createQuery(hql);
-		query.setParameter("idusuario", usuario.getId());
-		return query;
-	}*/
 }

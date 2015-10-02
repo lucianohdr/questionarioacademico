@@ -13,15 +13,9 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
-import br.edu.utfpr.pb.questionarioacademico.model.Disciplina;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
-import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
-import br.edu.utfpr.pb.questionarioacademico.repository.DisciplinaRepository;
-import br.edu.utfpr.pb.questionarioacademico.repository.PerguntaRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
-import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 
 @SuppressWarnings("serial")
 @Controller
@@ -30,27 +24,24 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 
 	private Result result;
 	private QuestionarioRepository repository;
-	private PerguntaRepository perguntaRepository;
-	private DisciplinaRepository disciplinaRepository;
-	private UsuarioRepository usuarioRepository;
+	//private PerguntaRepository perguntaRepository;
+	//private DisciplinaRepository disciplinaRepository;
+	//private UsuarioRepository usuarioRepository;
 	
 	@Inject
 	public QuestionarioController(Result result, 
-								  QuestionarioRepository repository, 
-								  PerguntaRepository perguntaRepository,
-								  UsuarioRepository usuarioRepository,
-								  DisciplinaRepository disciplinaRepository) {
+								  QuestionarioRepository repository) {
 		super(result);
 		this.repository = repository;
-		this.perguntaRepository = perguntaRepository;
+		//this.perguntaRepository = perguntaRepository;
 		this.result = result;
-		this.usuarioRepository = usuarioRepository;
-		this.disciplinaRepository = disciplinaRepository;
+		//this.usuarioRepository = usuarioRepository;
+		//this.disciplinaRepository = disciplinaRepository;
 	}
 	
 	/*CDI only*/
 	protected QuestionarioController(){
-		this(null, null, null, null, null);
+		this(null, null);
 	}
 	
 	@Get
@@ -62,10 +53,8 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Get
 	@Path("/{start}/{limit}")
 	public void list(Integer start, Integer limit) {
-		serializer(repository.pagination(start, limit, null))
-			.exclude("perguntas.alternativas.pergunta")
-			.exclude("questionariodisponivels.questionario")
-			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
+		List<Questionario> list = repository.pagination(start, limit, null);
+		serializer(list)
 			.serialize();
 	}
 
@@ -73,9 +62,6 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Path("/{id}")
 	public void find(Long id) {
 		serializer(repository.find(id), true)
-			.exclude("perguntas.alternativas.pergunta")
-			.exclude("questionariodisponivels.questionario")
-			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize();
 	}
 
@@ -84,11 +70,7 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	@Consumes("application/json")
 	public void insert(Questionario questionario) {
 		serializer(repository.insertReturn(questionario))
-			.exclude("perguntas.alternativas.pergunta")
-			.exclude("questionariodisponivels.questionario")
-			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize(); 
-		
 	}
 	
 	@Put
@@ -97,6 +79,14 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void update(Questionario questionario) {
 		repository.update(questionario);
 		result.nothing();
+	}
+	
+	@Post
+	@Path("/{questionario.id}")
+	@Consumes("application/json")
+	public void updateReturn(Questionario questionario) {
+		questionario = repository.update(questionario);
+		serializer(questionario).serialize();
 	}
 
 	@Delete
@@ -112,13 +102,9 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void addPergunta(Questionario questionario, Pergunta pergunta){
 		
 		questionario.addPergunta(pergunta);
-		
 		repository.update(questionario);
 		
 		serializer(questionario)
-			.exclude("perguntas.alternativas.pergunta")
-			.exclude("questionariodisponivels.questionario")
-			.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 			.serialize();
 	}
 	
@@ -140,7 +126,6 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void rmPergunta(Questionario questionario, Pergunta pergunta){
 		
 		questionario = repository.find(questionario.getId());
-		
 		questionario.rmPergunta(pergunta);
 		repository.update(questionario);
 		
@@ -153,10 +138,17 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 	public void liberarQuestionario(Questionario questionario) {
 		questionario = repository.liberarQuestionario(questionario);
 		serializer(questionario)
-		.exclude("perguntas.alternativas.pergunta")
-		.exclude("questionariodisponivels.questionario")
-		.exclude("questionariodisponivels.questionariorespostas.questionariodisponivel")
 		.serialize();
+	}
+	
+	@Override
+	protected String[] excludeProps() {
+		return new String[]{
+				"perguntas.alternativas.pergunta",
+				"questionariodisponivels.questionario",
+				"questionariodisponivels.questionariorespostas.questionariodisponivel",
+				"questionariodisponivels.questionariorespostas.questionariodisponivel.questionariorespostas"
+		};
 	}
 	
 }

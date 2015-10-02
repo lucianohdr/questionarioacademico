@@ -111,4 +111,18 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
 	}
+	
+	@Post
+	@Path("/respondidos")
+	@Consumes("application/json")
+	public void respondidos(Usuario usuario){
+		usuario = usuarioRepository.find(usuario.getId());
+		
+		List<Questionariodisponivel> questionariodisponivels = repository.respondidos(usuario);
+		serializer(questionariodisponivels)
+		.exclude("questionario.questionariodisponivels")
+		.exclude("questionariorespostas.questionariodisponivel.questionariorespostas")
+		.exclude("questionario.perguntas.alternativas.pergunta")
+		.serialize();
+	}
 }
