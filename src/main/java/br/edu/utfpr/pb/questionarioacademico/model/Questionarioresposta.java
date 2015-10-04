@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Table(name="questionarioresposta")
 public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.model.commons.Entity{
 
-	@Column(name="cryptid")
-	private String cryptid;
+	@Column(name="hashid")
+	private String hashid;
 	
 	@ManyToOne
 	private Questionariodisponivel questionariodisponivel;
@@ -23,12 +23,12 @@ public class Questionarioresposta extends br.edu.utfpr.pb.questionarioacademico.
 	@OneToMany(mappedBy="questionarioresposta", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Resposta> respostas;
 	
-	public String getCryptid() {
-		return cryptid;
+	public String getHashid() {
+		return hashid;
 	}
 
-	public void setCryptid(String cryptid) {
-		this.cryptid = cryptid;
+	public void setHashid(String hashid) {
+		this.hashid = hashid;
 	}
 
 	public Questionariodisponivel getQuestionariodisponivel() {

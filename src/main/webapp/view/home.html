@@ -5,11 +5,11 @@
 	  </div>
 	  <div class="panel-body">
 		<div class="panel panel-default">
-		  <div class="panel-body">
+		  <div class="panel-body" ng-if="questionariodisponivels.length!==0">
 		  	<div class="list-group">
 		  		<div class="list-group-item" ng-repeat="questionariodisponivel in questionariodisponivels">
 				  	{{questionariodisponivel.questionario.descricao}} | {{questionariodisponivel.disciplina.nome}} 
-				  	<a class="btn btn-default btn-xs pull-right" ui-sref="responder">Responder</a>
+				  	<a class="btn btn-default btn-xs pull-right" ui-sref="questionariorespostaEdit({id: questionariodisponivel.id})">Responder</a>
 		  		</div>
 		  	</div>
 		  </div>

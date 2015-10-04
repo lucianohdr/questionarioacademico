@@ -58,7 +58,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id),true)
+		serializer(repository.find(id), true)
 		.exclude("questionario.questionariodisponivels")
 		.exclude("questionariorespostas.questionariodisponivel")
 		.exclude("questionario.perguntas.alternativas.pergunta")
@@ -108,6 +108,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 		List<Questionariodisponivel> questionariodisponivels = repository.porUsuarioEporStatus(usuario, Status.EMCURSO);
 		serializer(questionariodisponivels)
 		.exclude("questionario.questionariodisponivels")
+		.exclude("questionariorespostas.questionariodisponivel.questionariorespostas")
 		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
 	}
