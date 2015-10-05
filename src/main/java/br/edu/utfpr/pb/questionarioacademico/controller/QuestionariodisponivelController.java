@@ -60,7 +60,6 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	@Path("/{id}")
 	public void find(Long id) {
 		Questionariodisponivel questionariodisponivel = repository.find(id);
-		
 		serializer(questionariodisponivel, true)
 		.serialize();
 	}

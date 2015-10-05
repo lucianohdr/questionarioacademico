@@ -199,9 +199,16 @@ questionarioAcademicoServices.factory('QuestionariorespostaResource', ['$resourc
 			isArray: false
 	};
 	
+	var carregaResultado = {
+			'url': baseUrl + 'questionariorespostas/carregaResultado',
+			'method': 'POST', 
+			isArray: true
+	}
+	
 	var api = $resource(configUrl('questionariorespostas'), params(), {
 		'update': {'method': 'PUT'},
-		'finalizaAvaliacao' : finalizaAvaliacao
+		'finalizaAvaliacao': finalizaAvaliacao,
+		'carregaResultado' : carregaResultado
 	});
 	
 	return api;

@@ -25,7 +25,7 @@
 					<td width="160">{{questionariodisponivel.disciplina.nome}}</td>
 					<td width="60">{{questionariodisponivel.questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
 					<td width="60">{{questionariodisponivel.questionario.datavalidade| date : "dd/MM/yyyy"}}</td>
-					<td title="Visualizar Resultados" width="10"><a ui-sref="questionariorespostaEdit({id: questionariodisponivel.id})"><i class="glyphicon glyphicon-pencil"></i></a></td>
+					<td title="Visualizar Resultados" width="10"><a ui-sref="visualizarResultado({id: questionariodisponivel.id})"><i class="glyphicon glyphicon-pencil"></i></a></td>
 				</tr>
 		</table></div></td></tr>
 	</table>

@@ -15,6 +15,17 @@ public class Tipopergunta extends br.edu.utfpr.pb.questionarioacademico.model.co
 	@Column(name="descricao", length=120)
 	private String descricao;
 	
+	public Tipopergunta(String descricao){
+		switch (descricao) {
+		case "DESCRITIVA":
+			super.setId(Long.valueOf(1));
+			break;
+		case "MULTIPLA":
+			super.setId(Long.valueOf(2));
+			break;
+		}
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

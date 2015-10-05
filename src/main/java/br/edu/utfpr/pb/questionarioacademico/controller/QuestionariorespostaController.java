@@ -12,9 +12,9 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
-import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
+import br.edu.utfpr.pb.questionarioacademico.model.commons.Resultado;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariorespostaRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
@@ -61,7 +61,8 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id),true).serialize();
+		Questionarioresposta questionarioresposta = repository.find(id); 
+		serializer(questionarioresposta, true).serialize();
 	}
 
 	@Post
@@ -101,5 +102,31 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 		questionariodisponivelRepository.update(questionarioresposta.getQuestionariodisponivel());
 		
 		result.nothing();
+	}
+	
+	/*@Post
+	@Path({"/respostasPorIdQuestDisponivel"})
+	@Consumes("application/json")
+	public void respostasPorIdQuestDisponivel(Long idquestionariodisponivel) {
+		
+		List<Questionarioresposta> questionariorespostas = repository.respostasPorIdQuestDisponivel(idquestionariodisponivel);
+		
+		serializer(questionariorespostas).serialize();
+	}*/
+	
+	@Post
+	@Path({"/carregaResultado"})
+	@Consumes("application/json")
+	public void carregaResultado(Long idquestionariodisponivel){
+		List<Questionarioresposta> questionariorespostas = repository.respostasPorIdQuestDisponivel(idquestionariodisponivel);
+		Resultado resultado = repository.carregaResultado(questionariorespostas);
+	}
+	
+	@Override
+	protected String[] excludeProps() {
+		return new String[]{
+				"questionariodisponivel.questionariorespostas.questionariodisponivel",
+				"respostas.questionarioresposta"
+		};
 	}
 }

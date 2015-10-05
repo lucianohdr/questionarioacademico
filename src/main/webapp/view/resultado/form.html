@@ -1,0 +1,62 @@
+<div class="well well-sm text-center">
+	<h4>Visualizar Resultados</h4>
+</div>
+<!-- <pre>{{questionariodisponivel | json}}</pre> -->
+<form name="mainForm" ng-submit="finalizarAvaliacao()">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Questionário</h3>
+	  </div>
+	  <div class="panel-body">
+	  	<div class="row">
+	  		<div class="col-sm-4">
+	  			<label>Descrição</label>
+	  			<p>{{questionariodisponivel.questionario.descricao}}</p>
+	  		</div>
+	  		<div class="col-sm-4">
+	  			<label>Tipo de Questionário</label>
+	  			<p>{{questionariodisponivel.questionario.categoriaquestionario.descricao}}</p>
+	  		</div>
+	  		<!-- quando for avaliação de professor -->
+	  		<div ng-show="questionariodisponivel.questionario.categoriaquestionario.id==4" class="col-sm-4">
+	  			<label>Professor</label>
+	  			<p>{{questionariodisponivel.disciplina.professor.pessoa.nome}}</p>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Perguntas</h3>
+		</div>
+		<div class="panel-body">
+	  		<div class="list-group">
+	  			<div class="list-group-item" ng-repeat="resposta in questionarioresposta.respostas">
+		  			<h4 class="list-group-item-heading underline">{{$index + 1 + "-"}}{{resposta.pergunta.nome}}</h4>
+		  			<div class="list-group-item-text" >
+			  			{{resposta.pergunta.descricao}}
+			  			<button type="button" class="btn pull-right btn-default btn-xs glyphicon glyphicon-pencil" ng-click="abrirResposta(resposta)"> 
+			  				{{resposta.respostaFlag ? 'Recolher': 'Responder'}}
+			  			</button>
+		  			</div>
+		  			<div ng-show="resposta.respostaFlag">
+		  				<hr>
+		  				<p>Resposta:</p>
+		  				<textarea ng-if="resposta.pergunta.tipopergunta.id == 1" ng-model="resposta.respostadescritiva" rows="5" class="form-control" ng-required="true"></textarea>
+		  				<div ng-if="resposta.pergunta.tipopergunta.id != 1" class="radio">
+		  					<div class="radio" ng-repeat="alternativa in resposta.pergunta.alternativas">
+							     <label>
+								    <input type="radio" ng-model="resposta.alternativa.id" value="{{alternativa.id}}" aria-label="{{alternativa.descricao}}" ng-required="!resposta.alternativa.id">
+								    {{alternativa.descricao}}
+			     				 </label>
+		  					</div>
+		  				</div>
+	  				</div>
+	  			</div>
+			</div>
+		 	<!-- <button type="button" ui-sref="questionarioresposta" class="btn btn-default">Cancelar</button>
+		 	<button type="submit" class="btn" ng-class="{'btn-danger': mainForm.$invalid, 'btn-success' : !mainForm.$invalid}">Finalizar Avaliação</button> -->
+	 	</div>
+	</div>
+</form>

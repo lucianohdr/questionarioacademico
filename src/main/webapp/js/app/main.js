@@ -504,13 +504,13 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR", "COORDENADOR", "PROFESSOR"]
 			}
 		})
-		.state("visualizarresultado" ,{ 
+		.state("visualizarResultado" ,{ 
 			parent: 'app',
-			url: '/resultado/',
+			url: '/resultado/visualizar/:id',
 			views: {
 				'content@': {
-					controller: 'ResultadoControllerList', 
-					templateUrl:'view/resultado/list.html',
+					controller: 'VisualizarResultadoController', 
+					templateUrl:'view/resultado/form.html',
 				}
 			},
 			data :{
