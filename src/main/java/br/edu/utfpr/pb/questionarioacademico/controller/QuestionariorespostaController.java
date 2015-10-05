@@ -1,5 +1,7 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Consumes;
@@ -10,6 +12,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;

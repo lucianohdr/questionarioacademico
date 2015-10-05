@@ -1,0 +1,33 @@
+<div class="row form-group">
+	<h2>Questionários</h2>
+	<input type="text" ng-model="search" class="form-control" placeholder="Busca">
+	<p>&nbsp;</p>
+	<div class="form-inline col-xs-6">
+		<label>Visualizar resultados como:</label> 
+		<select id="perfis" ng-model="perfil" class="form-control" name="perfis" ng-options="p.nome for p in perfis track by p.id">
+			<option value="">Selecione um Perfil</option>
+		</select>
+		<button type="button" ng-click="questRespostaPorUsuarioEPorPerfil()" class="btn btn-primary">Listar</button>
+	</div>
+	<br>
+	<table width="100%" class="table table-striped table-bordered table-condensed">
+		<tr><td><table width="98%">
+			<tr>
+				<th width="30.5%">Descrição</th>
+				<th width="30.5%">Disciplina</th>
+				<th width="16%">Dt. Liberação</th>
+				<th width="20%">Dt. Validade</th>
+			</tr>
+		</table></td></tr>
+		<tr><td><div  class="scroll" do-scroll="load()"><table class="table table-striped table-bordered table-condensed table-hover" width="99%">
+				<tr ng-repeat="questionariodisponivel in questionariodisponivels | filter:search">
+					<td width="160">{{questionariodisponivel.questionario.descricao}}</td>
+					<td width="160">{{questionariodisponivel.disciplina.nome}}</td>
+					<td width="60">{{questionariodisponivel.questionario.dataliberacao | date : "dd/MM/yyyy"}}</td>
+					<td width="60">{{questionariodisponivel.questionario.datavalidade| date : "dd/MM/yyyy"}}</td>
+					<td title="Visualizar Resultados" width="10"><a ui-sref="questionariorespostaEdit({id: questionariodisponivel.id})"><i class="glyphicon glyphicon-pencil"></i></a></td>
+				</tr>
+		</table></div></td></tr>
+	</table>
+</div>
+<hr>

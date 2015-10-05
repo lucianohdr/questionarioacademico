@@ -130,7 +130,7 @@ INSERT INTO tela (id, nome) values (7,  'departamento', 'Departamento');
 INSERT INTO tela (id, nome) values (8,  'curso', 'Curso');
 INSERT INTO tela (id, nome) values (9,  'turma', 'Turma');
 INSERT INTO tela (id, nome) values (10, 'disciplina', 'Disciplina');
-INSERT INTO tela (id, nome) values (11, 'resultado', 'Resultado');
+INSERT INTO tela (id, nome) values (11, 'resultado', 'Resultados');
 INSERT INTO tela (id, nome) values (12, 'questionarioresposta', 'Responder');
 INSERT INTO tela (id, nome) values (13, 'cadastro.professor', 'Cadastro');
 INSERT INTO tela (id, nome) values (14, 'cadastro.aluno', 'Cadastro');
@@ -171,7 +171,7 @@ INSERT INTO perfil_tela (idperfil, idtela) values (4, 13);/*cadastro*/
 /*configuração professor*/
 
 /*configuração aluno*/
-INSERT INTO perfil_tela (idperfil, idtela) values (5, 11);/*resultado*/
+/*INSERT INTO perfil_tela (idperfil, idtela) values (5, 11);resultado*/
 INSERT INTO perfil_tela (idperfil, idtela) values (5, 12);/*questionarioresponder*/
 INSERT INTO perfil_tela (idperfil, idtela) values (5, 14);/*cadastro*/
 /*configuração aluno*/

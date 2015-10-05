@@ -45,4 +45,5 @@ public class QuestionariorespostaBusiness extends RepositoryImpl<Questionariores
 			resposta.setQuestionarioresposta(questionarioresposta);
 		}
 	}
+
 }

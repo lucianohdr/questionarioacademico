@@ -1,5 +1,8 @@
 package br.edu.utfpr.pb.questionarioacademico.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Consumes;
@@ -11,8 +14,10 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 
 @SuppressWarnings("serial")
 @Controller
@@ -21,16 +26,18 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	
 	private Result result;
 	private UsuarioRepository repository;
+	private Login login;
 
 	@Inject
-	public UsuarioController(Result result, UsuarioRepository repository) {
+	public UsuarioController(Result result, UsuarioRepository repository, Login login) {
 		super(result);
 		this.repository = repository;
 		this.result = result;
+		this.login = login;
 	}
 	
 	protected UsuarioController() {
-		this(null, null);
+		this(null, null, null);
 	}
 
 	@Get
@@ -86,4 +93,14 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 			result.use(Results.status()).forbidden("Usuario já existe");
 		}
 	}
-}
+	
+	@Get
+	@Path("/perfis")
+	public void perfis(){
+		Usuario usuario = login.getUsuario();
+		
+		List<Perfil> perfis = new ArrayList<Perfil>(usuario.getPerfis());
+		
+		serializer(perfis).exclude("telas").serialize();
+	}
+}	

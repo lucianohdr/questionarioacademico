@@ -4,20 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.Query;
 
 import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
 import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
+import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
 
 @Stateless
 @SuppressWarnings("unchecked")
 public class QuestionariodisponivelBusiness extends
 		RepositoryImpl<Questionariodisponivel, Long> implements
 		QuestionariodisponivelRepository {
+	
+	private Login login;
+	
+	@Inject
+	public QuestionariodisponivelBusiness(Login login) {
+		this.login = login;
+	}
+	
+	public QuestionariodisponivelBusiness() {
+		this(null);
+	}
 
 	@Override
 	public List<Questionariodisponivel> porIdquestionario(Long idquestionario) {
@@ -207,7 +221,7 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 	}
 
 	@Override
-	public List<Questionariodisponivel> respondidos(Usuario usuario) {
+	public List<Questionariodisponivel> respondidosPorUsuario(Usuario usuario) {
 		List<Questionariodisponivel> retorno = new ArrayList<Questionariodisponivel>();
 		
 		//selecionando questionarios respondidos
@@ -225,6 +239,34 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 			
 			retorno = questResp.getResultList();
 		}
+		return retorno;
+	}
+
+	@Override
+	public List<Questionariodisponivel> porUsuarioEPorPerfil(Perfil perfil) {
+		List<Questionariodisponivel> retorno = null;
+		Usuario usuario = login.getUsuario();
+		
+		//verificando perfil de usuario
+		if(perfil.equals(new Perfil("ADMINISTRADOR"))){
+			retorno = todosRespondidos();
+		}
+		
+		
+		return retorno;
+	}
+
+	private List<Questionariodisponivel> todosRespondidos() {
+		List<Questionariodisponivel> retorno = null;
+		
+		String hql = "select questionariodisponivel from Questionariodisponivel questionariodisponivel"
+				   + " inner join questionariodisponivel.questionariorespostas questionariorespostas"
+				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos";
+		
+		Query query = this.entityManager.createQuery(hql);
+		
+		retorno = query.getResultList();
+		
 		return retorno;
 	}
 }

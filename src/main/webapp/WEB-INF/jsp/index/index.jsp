@@ -73,6 +73,7 @@
 	<script src="js/app/controller/modal/questionario/modalLiberarQuestionarioController.js"></script>
 	<script src="js/app/controller/questionariorespostaController.js"></script>
 	<script src="js/app/controller/respostaController.js"></script>
+	<script src="js/app/controller/resultadoController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 

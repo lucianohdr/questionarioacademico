@@ -43,9 +43,17 @@ questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($
 			'method': 'GET', 
 			isArray: false
 	};
+	
+	var perfis = {
+			'url': baseUrl + 'usuarios/perfis',
+			'method': 'GET', 
+			isArray: true
+	};
+	
 	var api = $resource(configUrl('usuarios'), params(), {
 		'update': {'method': 'PUT'},
-		loginDisponivel : loginDisponivel
+		loginDisponivel : loginDisponivel,
+		'perfis' : perfis
 	});
 	return api;
 }]);
@@ -223,11 +231,18 @@ questionarioAcademicoServices.factory('QuestionariodisponivelResource', ['$resou
 			isArray: true
 	};
 	
+	var respostasPorUsuarioEPorPerfil = {
+			'url': baseUrl + 'questionariodisponivels/respostasPorUsuarioEPorPerfil',
+			'method': 'POST', 
+			isArray: true
+	};
+	
 	var api = $resource(configUrl('questionariodisponivels'), params(), {
 		'update': {'method': 'PUT'},
 		'porIdquestionario' : porIdquestionario,
 		'porUsuario' : porUsuario,
-		'respondidos': respondidos
+		'respondidos': respondidos,
+		'respostasPorUsuarioEPorPerfil' : respostasPorUsuarioEPorPerfil
 	  });
 	return api;
 }]);

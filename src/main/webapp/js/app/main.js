@@ -491,6 +491,32 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR", "COORDENADOR", "ALUNO", "PROFESSOR"]
 			}
 		})
+		.state("resultado" ,{ 
+			parent: 'app',
+			url: '/resultado/',
+			views: {
+				'content@': {
+					controller: 'ResultadoControllerList', 
+					templateUrl:'view/resultado/list.html',
+				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR", "PROFESSOR"]
+			}
+		})
+		.state("visualizarresultado" ,{ 
+			parent: 'app',
+			url: '/resultado/',
+			views: {
+				'content@': {
+					controller: 'ResultadoControllerList', 
+					templateUrl:'view/resultado/list.html',
+				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR", "PROFESSOR"]
+			}
+		})
 		
 		.state("perfilEdit" ,{
 			parent: 'app',

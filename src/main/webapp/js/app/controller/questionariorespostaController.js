@@ -43,20 +43,6 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		}
 		
 	 }
-]).controller('QuestionariorespostaControllerNew', ['$scope', '$location', 'QuestionariorespostaResource', 
-        		'QuestionarioResource', '$window', '$stateParams',
-     function($scope, $location, QuestionariorespostaResource, ProfessorResource, DepartamentoResource){
-
-		var root = '/curso/';
-		var emptyObj = {curso: {
-			"id":0,
-			"nome":"",
-			"descricao":""
-		}};
-		
-	 	masterCreate($scope, $location, QuestionariorespostaResource, root, emptyObj);
- 	}
-
 ]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource', 'QuestionarioResource', 'QuestionariodisponivelResource', 'authService',
     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService){
 	
@@ -69,8 +55,5 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		QuestionariodisponivelResource.respondidos({}, {usuario: usuario}, function(res){
 			$scope.questionariosrespondidos = res
 		});
-		
-		
-		//masterRead($scope, $location, QuestionariorespostaResource);
 	}
 ]);

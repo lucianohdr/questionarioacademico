@@ -14,6 +14,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
+import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
@@ -58,10 +59,9 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	@Get
 	@Path("/{id}")
 	public void find(Long id) {
-		serializer(repository.find(id), true)
-		.exclude("questionario.questionariodisponivels")
-		.exclude("questionariorespostas.questionariodisponivel")
-		.exclude("questionario.perguntas.alternativas.pergunta")
+		Questionariodisponivel questionariodisponivel = repository.find(id);
+		
+		serializer(questionariodisponivel, true)
 		.serialize();
 	}
 
@@ -89,7 +89,7 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	}
 	
 	@Get
-	@Path("/porIdquestionario/{idquestionario}")
+	@Path("/porIdquestionario/{idquestionario}")/*ainda não usado*/
 	public void porIdquestionario(Long idquestionario) {
 		List<Questionariodisponivel> questionariodisponivels = 
 				new ArrayList<Questionariodisponivel>(repository.porIdquestionario(idquestionario));
@@ -107,9 +107,6 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 		
 		List<Questionariodisponivel> questionariodisponivels = repository.porUsuarioEporStatus(usuario, Status.EMCURSO);
 		serializer(questionariodisponivels)
-		.exclude("questionario.questionariodisponivels")
-		.exclude("questionariorespostas.questionariodisponivel.questionariorespostas")
-		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
 	}
 	
@@ -119,11 +116,29 @@ public class QuestionariodisponivelController extends br.edu.utfpr.pb.questionar
 	public void respondidos(Usuario usuario){
 		usuario = usuarioRepository.find(usuario.getId());
 		
-		List<Questionariodisponivel> questionariodisponivels = repository.respondidos(usuario);
+		List<Questionariodisponivel> questionariodisponivels = repository.respondidosPorUsuario(usuario);
 		serializer(questionariodisponivels)
-		.exclude("questionario.questionariodisponivels")
-		.exclude("questionariorespostas.questionariodisponivel.questionariorespostas")
-		.exclude("questionario.perguntas.alternativas.pergunta")
 		.serialize();
+	}
+	
+	@Post
+	@Path({"/respostasPorUsuarioEPorPerfil"})
+	@Consumes("application/json")
+	public void respostasPorUsuarioEPorPerfil(Perfil perfil) {
+		
+		List<Questionariodisponivel> list = repository.porUsuarioEPorPerfil(perfil);
+		
+		serializer(list)
+		.serialize();
+	}
+	
+	@Override
+	protected String[] excludeProps() {
+		return new String[]{
+				"questionariorespostas.questionariodisponivel.questionariorespostas",
+				"questionario.questionariodisponivels",
+				"questionario.perguntas.alternativas.pergunta",
+				"usuariosRespondidos"
+		};
 	}
 }
