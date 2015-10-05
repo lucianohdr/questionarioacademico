@@ -2,12 +2,10 @@ package br.edu.utfpr.pb.questionarioacademico.controller.commons;
 
 import java.io.Serializable;
 
-import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.serialization.JSONSerialization;
 import br.com.caelum.vraptor.serialization.Serializer;
 import br.com.caelum.vraptor.view.Results;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 /**
  * 

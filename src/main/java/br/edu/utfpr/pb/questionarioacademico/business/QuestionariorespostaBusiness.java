@@ -14,7 +14,7 @@ import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Resposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Tipopergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.commons.Resultado;
-import br.edu.utfpr.pb.questionarioacademico.model.commons.ResultadoPergunta;
+import br.edu.utfpr.pb.questionarioacademico.model.commons.ResultadoResposta;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariorespostaRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.Hasher;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
@@ -87,10 +87,11 @@ public class QuestionariorespostaBusiness extends RepositoryImpl<Questionariores
 			
 			//percorrendo perguntas e adicionando em Resultado pergunta  
 			List<Pergunta> perguntas = questionariodisponivel.getQuestionario().getPerguntas();
-			List<ResultadoPergunta> resultadoPerguntas = new ArrayList<ResultadoPergunta>();
+			List<ResultadoResposta> resultadoPerguntas = new ArrayList<ResultadoResposta>();
+			retorno.setResultadoRespostas(resultadoPerguntas);
 			
 			for(Pergunta pergunta: perguntas){
-				ResultadoPergunta resultadoPergunta = new ResultadoPergunta();
+				ResultadoResposta resultadoPergunta = new ResultadoResposta();
 				resultadoPergunta.setPergunta(pergunta);
 				
 				resultadoPerguntas.add(resultadoPergunta);
@@ -102,10 +103,10 @@ public class QuestionariorespostaBusiness extends RepositoryImpl<Questionariores
 		return retorno;
 	}
 
-	private List<ResultadoPergunta> addRespostas(List<Questionarioresposta> questionariorespostas,
-												 List<ResultadoPergunta> resultadoPerguntas) {
+	private List<ResultadoResposta> addRespostas(List<Questionarioresposta> questionariorespostas,
+												 List<ResultadoResposta> resultadoPerguntas) {
 		
-		for(ResultadoPergunta resultadoPergunta: resultadoPerguntas ){
+		for(ResultadoResposta resultadoPergunta: resultadoPerguntas ){
 			Pergunta pergunta = resultadoPergunta.getPergunta();
 			
 			//percorrendo todos os questioanarios resposta, que sao as respostas a todas pergunta separaras por usuario
@@ -116,16 +117,18 @@ public class QuestionariorespostaBusiness extends RepositoryImpl<Questionariores
 					//verificando se a pergunta é igual a pergunta do resultado, caso for, adiciona como resposta a pergunta
 					//dessa forma é agrupada todas as respostas de determinada pergunta
 					if(pergunta.equals(resposta.getPergunta())){
+						//verificando tipo de pergunta, se for descritiva somentente adiciona a resposta, senão soma o contador de alternativas
 						if(pergunta.getTipopergunta().equals(new Tipopergunta("DESCRITIVA"))){
 							resultadoPergunta.getRespostas().add(resposta);
 						} else {
-							
+							resultadoPergunta.getRespostas().add(resposta);
+							resultadoPergunta.addAlternativa(resposta.getAlternativa());
 						}
 						
 					}
 				}
 			}
 		}
-		return null;
+		return resultadoPerguntas;
 	}
 }

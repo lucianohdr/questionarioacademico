@@ -15,8 +15,6 @@ public class PerguntaBusiness extends RepositoryImpl<Pergunta, Long> implements
 
 	@Override
 	public List<Pergunta> perguntasPorQuestionario(long idquestionario) {
-		String hql = "from Pergunta pergunta "
-				+ "inner join pergunta";
 		return null;
 	}
 

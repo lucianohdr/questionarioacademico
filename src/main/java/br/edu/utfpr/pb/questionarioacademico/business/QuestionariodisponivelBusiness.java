@@ -11,7 +11,6 @@ import br.edu.utfpr.pb.questionarioacademico.business.common.RepositoryImpl;
 import br.edu.utfpr.pb.questionarioacademico.enums.questionario.Status;
 import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
-import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariodisponivelRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
@@ -149,6 +148,7 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 		if(idQuestRepondido.size() > 0){
 			
 			hql.append(" where questionariodisponivel.id in :idQuestPorCategAluno and questionariodisponivel.id not in :idQuestRepondido");
+			
 			query = this.entityManager.createQuery(hql.toString());
 			query.setParameter("idQuestPorCategAluno", idQuestPorCategAluno);
 			query.setParameter("idQuestRepondido", idQuestRepondido);
@@ -257,16 +257,25 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 	}
 
 	private List<Questionariodisponivel> todosRespondidos() {
+		
+		List<Long> idsQuest = null;
 		List<Questionariodisponivel> retorno = null;
 		
-		String hql = "select questionariodisponivel from Questionariodisponivel questionariodisponivel"
+		String hqlIdsQuest = "select questionariodisponivel.id from Questionariodisponivel questionariodisponivel"
 				   + " inner join questionariodisponivel.questionariorespostas questionariorespostas"
 				   + " inner join questionariodisponivel.usuariosRespondidos usuariosRespondidos";
 		
-		Query query = this.entityManager.createQuery(hql);
+		Query query = this.entityManager.createQuery(hqlIdsQuest);
+		
+		idsQuest = query.getResultList();
+		
+		String hql = "select questionariodisponivel from Questionariodisponivel questionariodisponivel"
+				   + " where questionariodisponivel.id in (:idsQuest)";
+		
+		query = this.entityManager.createQuery(hql);
+		query.setParameter("idsQuest", idsQuest);
 		
 		retorno = query.getResultList();
-		
 		return retorno;
 	}
 }

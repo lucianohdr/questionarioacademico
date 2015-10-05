@@ -120,13 +120,20 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 	public void carregaResultado(Long idquestionariodisponivel){
 		List<Questionarioresposta> questionariorespostas = repository.respostasPorIdQuestDisponivel(idquestionariodisponivel);
 		Resultado resultado = repository.carregaResultado(questionariorespostas);
+		
+		serializer(resultado)
+		.exclude("questionariodisponivel.questionariorespostas.questionariodisponivel")
+		.exclude("questionariodisponivel.questionario.questionariodisponivels")
+		.exclude("resultadoRespostas.respostas.questionarioresposta")
+		.exclude("resultadoRespostas.pergunta.alternativas.pergunta")
+		.serialize();
 	}
 	
-	@Override
+	/*@Override
 	protected String[] excludeProps() {
 		return new String[]{
 				"questionariodisponivel.questionariorespostas.questionariodisponivel",
 				"respostas.questionarioresposta"
 		};
-	}
+	}*/
 }

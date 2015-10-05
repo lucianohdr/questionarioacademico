@@ -202,7 +202,7 @@ questionarioAcademicoServices.factory('QuestionariorespostaResource', ['$resourc
 	var carregaResultado = {
 			'url': baseUrl + 'questionariorespostas/carregaResultado',
 			'method': 'POST', 
-			isArray: true
+			isArray: false
 	}
 	
 	var api = $resource(configUrl('questionariorespostas'), params(), {

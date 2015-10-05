@@ -71,6 +71,7 @@
 	<script src="js/app/controller/perguntaController.js"></script>
 	<script src="js/app/controller/menuController.js"></script>
 	<script src="js/app/controller/modal/questionario/modalLiberarQuestionarioController.js"></script>
+	<script src="js/app/controller/modal/resultado/modalRespostasController.js"></script>
 	<script src="js/app/controller/questionariorespostaController.js"></script>
 	<script src="js/app/controller/respostaController.js"></script>
 	<script src="js/app/controller/resultadoController.js"></script>

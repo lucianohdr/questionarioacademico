@@ -23,7 +23,7 @@ public class Resposta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	private Questionarioresposta questionarioresposta;
 	
 	@Type(type="encryptedString")
-	@Column(name="respostadescritiva")
+	@Column(name="respostadescritiva", length=5000)
 	private String respostadescritiva;
 
 

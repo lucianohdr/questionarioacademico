@@ -7,7 +7,7 @@ import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 public class Resultado {
 
 	private Questionariodisponivel questionariodisponivel;
-	private List<ResultadoPergunta> resultadoRespostas;
+	private List<ResultadoResposta> resultadoRespostas;
 	private Integer countUsuariosResp;
 	
 	public Questionariodisponivel getQuestionariodisponivel() {
@@ -17,10 +17,10 @@ public class Resultado {
 			Questionariodisponivel questionariodisponivel) {
 		this.questionariodisponivel = questionariodisponivel;
 	}
-	public List<ResultadoPergunta> getResultadoRespostas() {
+	public List<ResultadoResposta> getResultadoRespostas() {
 		return resultadoRespostas;
 	}
-	public void setResultadoRespostas(List<ResultadoPergunta> resultadoRespostas) {
+	public void setResultadoRespostas(List<ResultadoResposta> resultadoRespostas) {
 		this.resultadoRespostas = resultadoRespostas;
 	}
 	public Integer getCountUsuariosResp() {

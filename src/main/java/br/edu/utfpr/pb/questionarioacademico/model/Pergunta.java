@@ -22,7 +22,7 @@ public class Pergunta extends br.edu.utfpr.pb.questionarioacademico.model.common
 	@Column(name="nome", length=60)
 	private String nome;
 	
-	@Column(name="descricao", length=120)
+	@Column(name="descricao", length=500)
 	private String descricao;
 	
 	@OneToMany(mappedBy="pergunta", cascade=CascadeType.ALL, orphanRemoval=true)

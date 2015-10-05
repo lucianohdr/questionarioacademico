@@ -1,0 +1,69 @@
+<div id="modalRespostas" class="modal-dialog modal-lg">
+	<div class="modal-header"><h4 class="modal-title">Visualizar Respostas</h4></div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+					    <h3 class="panel-title">Pergunta</h3>
+				 	</div>
+				 	<div class="panel-body">
+				 		<div class="row">
+				 			<div class="col-sm-3">
+								<label>Nome</label>
+								<p>{{resultadoResposta.pergunta.nome}}</p>
+							</div>
+							<div class="col-sm-3">
+								<label>Tipo Pergunta</label>
+								<p>{{resultadoResposta.pergunta.tipopergunta.descricao}}</p>
+							</div>
+				 		</div>
+				 		<div class="row">
+				 			<div class="col-sm-10">
+								<label>Descrição</label>
+								<p>{{resultadoResposta.pergunta.descricao}}</p>
+							</div>
+				 		</div>
+				 	</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+					    <h3 class="panel-title">{{resultadoResposta.pergunta.tipopergunta.id === 1 ? 'Respostas' : 'Alternativas'}}</h3>
+				 	</div>
+				 	<div class="panel-body">
+				 		<!-- caso for descritiva -->
+				 		<div ng-show="resultadoResposta.pergunta.tipopergunta.id===1">
+				 				<div class="list-group">
+				 					<div class="list-group-item" ng-repeat="resposta in resultadoResposta.respostas">
+				 						{{resposta.respostadescritiva}} 
+				 						
+				 					</div>
+				 				</div>
+				 		</div>
+				 		<!-- caso for multipla escolha -->
+				 		<div ng-show="resultadoResposta.pergunta.tipopergunta.id===2">
+					 		<div class="panel panel-default">
+								<div class="panel-body">
+							  		<div class="list-group">
+							  			<div class="list-group-item" ng-repeat="alternativaCounter in resultadoResposta.alternativaCounters">
+							  				{{alternativaCounter.alternativa.descricao}}
+							  				<span class="badge">{{alternativaCounter.counter}}</span>
+							  			</div>
+							  		</div>
+								</div>
+							</div>
+				 		</div>
+			 		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+	</div>
+</div>
+</div>

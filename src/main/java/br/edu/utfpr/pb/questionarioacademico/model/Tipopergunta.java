@@ -26,6 +26,11 @@ public class Tipopergunta extends br.edu.utfpr.pb.questionarioacademico.model.co
 		}
 	}
 	
+	/*hibernate*/
+	public Tipopergunta() {
+	
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
