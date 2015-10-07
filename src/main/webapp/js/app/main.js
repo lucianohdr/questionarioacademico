@@ -491,12 +491,25 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["ADMINISTRADOR", "COORDENADOR", "ALUNO", "PROFESSOR"]
 			}
 		})
+		.state("questionariorespostaVisualizar" ,{ 
+			parent: 'app',
+			url: '/visualizar/:id',
+			views: {
+				'content@': {
+					controller: 'QuestionariorespostaControllerVisualizar', 
+					templateUrl:'view/questionarioresposta/visualizar.html',
+				}
+			},
+			data :{
+				roles: ["ADMINISTRADOR", "COORDENADOR", "ALUNO", "PROFESSOR"]
+			}
+		})
 		.state("resultado" ,{ 
 			parent: 'app',
 			url: '/resultado/',
 			views: {
 				'content@': {
-					controller: 'ResultadoControllerList', 
+					controller: 'ResultadoControllerList',
 					templateUrl:'view/resultado/list.html',
 				}
 			},

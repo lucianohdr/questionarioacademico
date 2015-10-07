@@ -205,10 +205,17 @@ questionarioAcademicoServices.factory('QuestionariorespostaResource', ['$resourc
 			isArray: false
 	}
 	
+	var repostaPorUsuarioEidquestionarioresposta = {
+			'url': baseUrl + 'questionariorespostas/repostaPorUsuarioEidquestionarioresposta',
+			'method': 'POST', 
+			isArray: false
+	}
+	
 	var api = $resource(configUrl('questionariorespostas'), params(), {
 		'update': {'method': 'PUT'},
 		'finalizaAvaliacao': finalizaAvaliacao,
-		'carregaResultado' : carregaResultado
+		'carregaResultado' : carregaResultado,
+		'repostaPorUsuarioEidquestionarioresposta': repostaPorUsuarioEidquestionarioresposta
 	});
 	
 	return api;

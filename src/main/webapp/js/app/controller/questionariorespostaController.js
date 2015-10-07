@@ -1,8 +1,9 @@
-App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'QuestionariorespostaResource', 
-                                                      'QuestionarioResource',  'QuestionariodisponivelResource', 'authService', '$window', '$stateParams', '$state', 
+App.controller("QuestionariorespostaControllerEdit", ['$scope', 'QuestionariorespostaResource', 
+                                                      'QuestionarioResource',  'QuestionariodisponivelResource', 'authService', '$stateParams', '$state', 
                                              
-     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService, $window, $stateParams, $state){
-
+     function($scope, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService, $stateParams, $state){
+		$scope.title = "Responder Questionário";
+		
 		var usuario = authService.getUsuario();
 		$scope.usuario = usuario;
 		$scope.respostaFlag = false;
@@ -43,6 +44,16 @@ App.controller("QuestionariorespostaControllerEdit", ['$scope', '$location', 'Qu
 		}
 		
 	 }
+]).controller("QuestionariorespostaControllerVisualizar", ['$scope', 'QuestionariorespostaResource', '$stateParams',
+        function($scope, QuestionariorespostaResource, $stateParams){
+			$scope.model = {};
+		
+			QuestionariorespostaResource.repostaPorUsuarioEidquestionarioresposta({idquestionariodisponivel: $stateParams.id}, function(questionarioresposta){
+				$scope.model.questionarioresposta;
+				$scope.model.questionarioresposta = questionarioresposta;
+			});
+			
+        }
 ]).controller("QuestionariorespostaControllerList", ['$scope', '$location', 'QuestionariorespostaResource', 'QuestionarioResource', 'QuestionariodisponivelResource', 'authService',
     function($scope, $location, QuestionariorespostaResource, QuestionarioResource, QuestionariodisponivelResource, authService){
 	

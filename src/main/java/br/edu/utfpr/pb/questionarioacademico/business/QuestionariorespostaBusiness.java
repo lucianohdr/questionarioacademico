@@ -13,6 +13,7 @@ import br.edu.utfpr.pb.questionarioacademico.model.Questionariodisponivel;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Resposta;
 import br.edu.utfpr.pb.questionarioacademico.model.Tipopergunta;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.model.commons.Resultado;
 import br.edu.utfpr.pb.questionarioacademico.model.commons.ResultadoResposta;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionariorespostaRepository;
@@ -130,5 +131,27 @@ public class QuestionariorespostaBusiness extends RepositoryImpl<Questionariores
 			}
 		}
 		return resultadoPerguntas;
+	}
+
+	@Override
+	public Questionarioresposta repostaPorUsuarioEidquestionariodisponivel(
+			Long idquestionariodisponivel,
+			Usuario usuario) {
+		
+		Questionarioresposta retorno = null;
+		
+		String hashid = Hasher.get(String.valueOf(usuario.getId()));
+		
+		String hql = "select questionarioresposta from Questionarioresposta questionarioresposta"
+				   + " join questionarioresposta.questionariodisponivel questionariodisponivel"
+				   + " where questionarioresposta.hashid = :hashid and questionariodisponivel.id = :idquestionariodisponivel";
+		
+		Query query = this.entityManager.createQuery(hql);
+		query.setParameter("hashid", hashid);
+		query.setParameter("idquestionariodisponivel", idquestionariodisponivel);
+		
+		retorno = (Questionarioresposta) query.getSingleResult();
+		
+		return retorno;
 	}
 }

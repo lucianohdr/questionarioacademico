@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.questionarioacademico.repository;
 import java.util.List;
 
 import br.edu.utfpr.pb.questionarioacademico.model.Questionarioresposta;
+import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.model.commons.Resultado;
 import br.edu.utfpr.pb.questionarioacademico.repository.common.Repository;
 
@@ -22,5 +23,9 @@ public interface QuestionariorespostaRepository extends
 	 * @return
 	 */
 	Resultado carregaResultado(List<Questionarioresposta> questionariorespostas);
+
+	Questionarioresposta repostaPorUsuarioEidquestionariodisponivel(
+			Long idquestionariodisponivel,
+			Usuario usuario);
 
 }

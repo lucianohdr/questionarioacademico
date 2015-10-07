@@ -1,0 +1,58 @@
+<div class="well well-sm text-center">
+	<h4>Visualizar resposta</h4>
+</div>
+<!-- <pre>{{model | json}}</pre> -->
+<form name="mainForm" ng-submit="finalizarAvaliacao()">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Questionário</h3>
+	  </div>
+	  <div class="panel-body">
+	  	<div class="row">
+	  		<div class="col-sm-4">
+	  			<label>Descrição</label>
+	  			<p>{{model.questionarioresposta.questionariodisponivel.questionario.descricao}}</p>
+	  		</div>
+	  		<div class="col-sm-4">
+	  			<label>Tipo de Questionário</label>
+	  			<p>{{model.questionarioresposta.questionariodisponivel.questionario.categoriaquestionario.descricao}}</p>
+	  		</div>
+	  		<!-- quando for avaliação de professor -->
+	  		<div ng-show="model.questionarioresposta.questionariodisponivel.questionario.categoriaquestionario.id==4" class="col-sm-4">
+	  			<label>Professor</label>
+	  			<p>{{model.questionarioresposta.questionariodisponivel.disciplina.professor.pessoa.nome}}</p>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Perguntas</h3>
+		</div>
+		<div class="panel-body">
+	  		<div class="list-group">
+	  			<div class="list-group-item" ng-repeat="resposta in model.questionarioresposta.respostas">
+		  			<h4 class="list-group-item-heading underline">{{$index + 1 + "-"}}{{resposta.pergunta.nome}}</h4>
+		  			<div class="list-group-item-text" >
+			  			{{resposta.pergunta.descricao}}
+		  			</div>
+	  				<hr>
+	  				<p>Resposta:</p>
+	  				<div ng-if="resposta.pergunta.tipopergunta.id == 1" rows="5" class="well" ng-required="true">
+	  					{{resposta.respostadescritiva}}
+	  				</div>
+	  				<div ng-if="resposta.pergunta.tipopergunta.id != 1" class="radio">
+	  					<div class="radio" ng-repeat="alternativa in resposta.pergunta.alternativas">
+						     <label>
+							    <input type="radio" ng-model="resposta.alternativa.id" value="{{alternativa.id}}" aria-label="{{alternativa.descricao}}" disabled="disabled" ng-required="!resposta.alternativa.id">
+							    {{alternativa.descricao}}
+		     				 </label>
+	  					</div>
+	  				</div>
+	  			</div>
+			</div>
+		 	<button type="button" ui-sref="questionarioresposta" class="btn btn-default btn-primary">Voltar</button>
+	 	</div>
+	</div>
+</form>

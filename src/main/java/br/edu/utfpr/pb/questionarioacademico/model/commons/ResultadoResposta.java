@@ -1,9 +1,7 @@
 package br.edu.utfpr.pb.questionarioacademico.model.commons;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import br.edu.utfpr.pb.questionarioacademico.model.Alternativa;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;

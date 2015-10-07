@@ -104,16 +104,6 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 		result.nothing();
 	}
 	
-	/*@Post
-	@Path({"/respostasPorIdQuestDisponivel"})
-	@Consumes("application/json")
-	public void respostasPorIdQuestDisponivel(Long idquestionariodisponivel) {
-		
-		List<Questionarioresposta> questionariorespostas = repository.respostasPorIdQuestDisponivel(idquestionariodisponivel);
-		
-		serializer(questionariorespostas).serialize();
-	}*/
-	
 	@Post
 	@Path({"/carregaResultado"})
 	@Consumes("application/json")
@@ -129,11 +119,24 @@ public class QuestionariorespostaController extends br.edu.utfpr.pb.questionario
 		.serialize();
 	}
 	
-	/*@Override
-	protected String[] excludeProps() {
-		return new String[]{
-				"questionariodisponivel.questionariorespostas.questionariodisponivel",
-				"respostas.questionarioresposta"
-		};
-	}*/
+	@Post
+	@Path({"/repostaPorUsuarioEidquestionarioresposta"})
+	@Consumes("application/json")
+	public void repostaPorUsuarioEidquestionariodisponivel(Long idquestionariodisponivel){
+		Usuario usuario = login.getUsuario();
+		
+		if(usuario != null){
+			Questionarioresposta questionarioresposta = repository.repostaPorUsuarioEidquestionariodisponivel(idquestionariodisponivel, usuario);
+			serializer(questionarioresposta)
+			.exclude("questionariodisponivel.questionariorespostas")
+			.exclude("questionariodisponivel.questionario.questionariodisponivels")
+			.exclude("questionariodisponivel.disciplina.curso")
+			.exclude("questionariodisponivel.disciplina.professor.pessoa.usuario")
+			.exclude("questionariodisponivel.usuariosRespondidos")
+			.exclude("respostas.questionarioresposta")
+			.exclude("respostas.alternativa.pergunta")
+			.exclude("hashid")
+			.serialize();
+		}
+	}
 }
