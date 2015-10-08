@@ -17,11 +17,13 @@ import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.AlunoRepositoty;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.AdminAccessRule;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.CoordenadorAccessRule;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
-@CustomBrutauthRules(LoggedAccessRule.class)
+@CustomBrutauthRules({LoggedAccessRule.class})
 @Path("alunos")
 public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
@@ -69,14 +71,8 @@ public class AlunoController extends br.edu.utfpr.pb.questionarioacademico.contr
 		//setando o perfil aluno em usuario
 		aluno.getPessoa().getUsuario().getPerfis().add(new Perfil("ALUNO"));
 		
-		//fazendo criptografia da senha
-		//aluno.getPessoa().getUsuario().setSenha(Hasher.get(aluno.getPessoa().getUsuario().getSenha()));
-		//Usuario usuario = usuarioRepository.insertReturn(aluno.getPessoa().getUsuario());
-		
 		aluno.getPessoa()
-		.setUsuario(
-				usuarioRepository.insertReturn(aluno.getPessoa().getUsuario())
-				);
+		.setUsuario(usuarioRepository.insertReturn(aluno.getPessoa().getUsuario()));
 		
 		repository.insertReturn(aluno);
 		result.nothing();

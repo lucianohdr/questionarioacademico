@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -18,10 +20,12 @@ import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.model.Login;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("usuarios")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 	
 	private Result result;
@@ -83,6 +87,7 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	
 	@Get
 	@Path("/loginDisponivel/")
+	@Public
 	public void loginDisponivel(String login) {
 		
 		boolean disponivel = repository.loginDisponivel(login);

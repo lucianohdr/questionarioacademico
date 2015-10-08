@@ -2,6 +2,8 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -12,10 +14,12 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Curso;
 import br.edu.utfpr.pb.questionarioacademico.repository.CursoRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("cursos")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class CursoController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;
@@ -35,6 +39,7 @@ public class CursoController extends br.edu.utfpr.pb.questionarioacademico.contr
 
 	@Get
 	@Path({"","/"})
+	@Public
 	public void list() {
 		serializer(repository.findAll()).serialize();
 	}

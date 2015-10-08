@@ -95,14 +95,14 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				}
 			},
 			data: {
-				roles: ["PROFESSOR"]
+				roles: ["PROFESSOR", "COORDENADOR"]
 			}
 		})
 		.state("categoriaquestionarioNew" , {
 			parent: 'app',
 			url: "/categoriaquestionario/new",
 			views: {
-				'contend@':{
+				'content@':{
 					templateUrl:'view/categoriaquestionario/form.html', 
 					controller: 'CategoriaQuestionarioControllerNew',
 				}

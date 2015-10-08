@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -12,10 +13,12 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Periodo;
 import br.edu.utfpr.pb.questionarioacademico.repository.PeriodoRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("periodos")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class PeriodoController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;

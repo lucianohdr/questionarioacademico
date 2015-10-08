@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -12,10 +13,12 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Categoriaquestionario;
 import br.edu.utfpr.pb.questionarioacademico.repository.CategoriaQuestionarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("categoriaquestionarios")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class CategoriaQuestionarioController 
 	extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 	

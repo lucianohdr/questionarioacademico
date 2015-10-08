@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -12,10 +13,12 @@ import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller;
 import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.repository.PerfilRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @br.com.caelum.vraptor.Controller
 @Path("perfis")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class PerfilController extends Controller{
 
 	private Result result;

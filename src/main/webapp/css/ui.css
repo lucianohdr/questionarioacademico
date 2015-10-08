@@ -29,3 +29,9 @@
 		padding: 15px 10px;
 	}
 }
+
+@media (max-width: 1165px){
+	.nav li a {
+		padding: 15px 5px;
+	}
+}

@@ -2,6 +2,8 @@ package br.edu.utfpr.pb.questionarioacademico.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -15,10 +17,12 @@ import br.edu.utfpr.pb.questionarioacademico.model.Professor;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.ProfessorRepository;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("professors")
+@CustomBrutauthRules(LoggedAccessRule.class)
 public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;
@@ -61,6 +65,7 @@ public class ProfessorController extends br.edu.utfpr.pb.questionarioacademico.c
 	@Post
 	@Path({"","/"})
 	@Consumes("application/json")
+	@Public
 	public void insert(Professor professor) {
 		
 		//setando o perfil professor em usuario

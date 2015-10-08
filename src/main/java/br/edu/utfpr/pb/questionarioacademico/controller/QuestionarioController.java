@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -16,27 +17,24 @@ import br.com.caelum.vraptor.Result;
 import br.edu.utfpr.pb.questionarioacademico.model.Pergunta;
 import br.edu.utfpr.pb.questionarioacademico.model.Questionario;
 import br.edu.utfpr.pb.questionarioacademico.repository.QuestionarioRepository;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.AdminAccessRule;
+import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
 @Controller
 @Path("questionarios")
+@CustomBrutauthRules({LoggedAccessRule.class, AdminAccessRule.class})
 public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademico.controller.commons.Controller{
 
 	private Result result;
 	private QuestionarioRepository repository;
-	//private PerguntaRepository perguntaRepository;
-	//private DisciplinaRepository disciplinaRepository;
-	//private UsuarioRepository usuarioRepository;
 	
 	@Inject
 	public QuestionarioController(Result result, 
 								  QuestionarioRepository repository) {
 		super(result);
 		this.repository = repository;
-		//this.perguntaRepository = perguntaRepository;
 		this.result = result;
-		//this.usuarioRepository = usuarioRepository;
-		//this.disciplinaRepository = disciplinaRepository;
 	}
 	
 	/*CDI only*/
@@ -152,5 +150,4 @@ public class QuestionarioController extends br.edu.utfpr.pb.questionarioacademic
 				"questionariodisponivels.questionariorespostas.questionariodisponivel.questionariorespostas"
 		};
 	}
-	
 }
