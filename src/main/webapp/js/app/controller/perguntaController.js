@@ -67,7 +67,7 @@ App.controller("PerguntaController", ['PerguntaResource', 'TipoPerguntaResource'
 					});
 				});
 			}
-			confirm("Tem certeza que deseja deletar esta Pergunta?", removeFunction);
+			confirm("Tem certeza que deseja excluir esta Pergunta?", removeFunction);
 		}
 		
 		$scope.limparForm = function(){

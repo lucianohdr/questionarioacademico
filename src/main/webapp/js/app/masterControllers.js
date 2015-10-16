@@ -48,6 +48,6 @@ masterDelete = function($scope, $stateParams, $window, $location, Resource, root
 				$location.path(root);
 			});
 		}
-		confirm("Tem certeza que deseja deletar este registro?", removeFunction);
+		confirm("Tem certeza que deseja excluir este registro?", removeFunction);
 	}
 }

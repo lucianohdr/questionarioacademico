@@ -78,6 +78,6 @@
 			<a ng-if="!isAluno && !alunoNew" ui-sref="aluno" class="btn btn-default">Cancelar</a>
 			<button type="submit" class="btn btn-primary">Salvar</button>
 			<button ng-if="isAluno" type="text" ng-click="alterarSenha()" class="btn btn-primary">Alterar Senha</button>
-			<button type="button" ng-if="!isAluno" ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Deletar</button>
+			<button type="button" ng-if="!isAluno" ng-click="destroy()" ng-show="model.aluno.id" class="btn btn-danger">Excluir</button>
 		</div>
 </form>
