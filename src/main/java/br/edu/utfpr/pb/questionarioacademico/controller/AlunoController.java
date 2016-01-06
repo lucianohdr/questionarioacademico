@@ -17,8 +17,6 @@ import br.edu.utfpr.pb.questionarioacademico.model.Perfil;
 import br.edu.utfpr.pb.questionarioacademico.model.Usuario;
 import br.edu.utfpr.pb.questionarioacademico.repository.AlunoRepositoty;
 import br.edu.utfpr.pb.questionarioacademico.repository.UsuarioRepository;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.AdminAccessRule;
-import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.CoordenadorAccessRule;
 import br.edu.utfpr.pb.questionarioacademico.seguranca.regras.LoggedAccessRule;
 
 @SuppressWarnings("serial")
