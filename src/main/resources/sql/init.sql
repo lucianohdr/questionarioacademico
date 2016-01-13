@@ -13,12 +13,12 @@ INSERT INTO categoriaquestionario (id,descricao,nome ) values (4, 'Avaliação d
 /*criando uma base de alunos, professores, turmas e cursos*/
 
 /*professores*/
-INSERT INTO usuario (id, login, senha) values (1, 'user001', 'senha');/*admin*/
-INSERT INTO usuario (id, login, senha) values (2, 'user002', 'senha');
-INSERT INTO usuario (id, login, senha) values (3, 'user003', 'senha');
-INSERT INTO usuario (id, login, senha) values (4, 'user004', 'senha');
-INSERT INTO usuario (id, login, senha) values (5, 'user005', 'senha');
-INSERT INTO usuario (id, login, senha) values (6, 'user006', 'senha');
+INSERT INTO usuario (id, login, senha) values (1, 'user001', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');/*admin*/
+INSERT INTO usuario (id, login, senha) values (2, 'user002', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (3, 'user003', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (4, 'user004', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (5, 'user005', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (6, 'user006', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
 
 INSERT INTO pessoa (id, usuario_id, nome, email) values (1, 1, 'João da silva', 'joao@joao.com');
 INSERT INTO pessoa (id, usuario_id, nome, email) values (2, 2, 'Pedro da silva', 'pedro@pedro.com');
@@ -70,17 +70,17 @@ insert into disciplina(id, curso_id, professor_id, periodo_id, nome, descricao) 
 /*disciplinas*/
 
 /*alunos*/
-INSERT INTO usuario (id, login, senha) values (7 , 'user7', 'senha');
-INSERT INTO usuario (id, login, senha) values (8 , 'user8', 'senha');
-INSERT INTO usuario (id, login, senha) values (9 , 'user9', 'senha');
-INSERT INTO usuario (id, login, senha) values (10, 'user10', 'senha');
-INSERT INTO usuario (id, login, senha) values (11, 'user11', 'senha');
-INSERT INTO usuario (id, login, senha) values (12, 'user12', 'senha');
-INSERT INTO usuario (id, login, senha) values (13, 'user13', 'senha');
-INSERT INTO usuario (id, login, senha) values (14, 'user14', 'senha');
-INSERT INTO usuario (id, login, senha) values (15, 'user15', 'senha');
-INSERT INTO usuario (id, login, senha) values (16, 'user16', 'senha');
-INSERT INTO usuario (id, login, senha) values (17, 'user17', 'senha');
+INSERT INTO usuario (id, login, senha) values (7 , 'user7', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (8 , 'user8', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (9 , 'user9', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (10, 'user10', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (11, 'user11', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (12, 'user12', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (13, 'user13', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (14, 'user14', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (15, 'user15', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (16, 'user16', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
+INSERT INTO usuario (id, login, senha) values (17, 'user17', 'B7E94BE513E96E8C45CD23D162275E5A12EBDE9100A425C4EBCDD7FA4DCD897C');
 
 INSERT INTO pessoa (id, usuario_id, nome, email) values (7 , 7 , 'Mateus da Souza', 'mateus@mateus.com');
 INSERT INTO pessoa (id, usuario_id, nome, email) values (8 , 8 , 'Roberto da Santos', 'roberto@roberto.com');
@@ -120,20 +120,20 @@ INSERT INTO aluno (id, pessoa_id, curso_id, turma_id, ra) values (11, 17, 2, 2, 
 /*alunos*/
 
 /*Telas*/
-INSERT INTO tela (id, nome) values (1,  'questionario',	'Questionário');
-INSERT INTO tela (id, nome) values (2,  'categoriaquestionario', 'Categoria Questionário');
-INSERT INTO tela (id, nome) values (3,  'perfil', 'Perfil');
-INSERT INTO tela (id, nome) values (4,  'pessoa', 'Pessoa');
-INSERT INTO tela (id, nome) values (5,  'aluno', 'Aluno');
-INSERT INTO tela (id, nome) values (6,  'professor', 'Professor');
-INSERT INTO tela (id, nome) values (7,  'departamento', 'Departamento');
-INSERT INTO tela (id, nome) values (8,  'curso', 'Curso');
-INSERT INTO tela (id, nome) values (9,  'turma', 'Turma');
-INSERT INTO tela (id, nome) values (10, 'disciplina', 'Disciplina');
-INSERT INTO tela (id, nome) values (11, 'resultado', 'Resultados');
-INSERT INTO tela (id, nome) values (12, 'questionarioresposta', 'Responder');
-INSERT INTO tela (id, nome) values (13, 'cadastro.professor', 'Cadastro');
-INSERT INTO tela (id, nome) values (14, 'cadastro.aluno', 'Cadastro');
+INSERT INTO tela (id, nome, nomeexibicao) values (1,  'questionario',	'Questionário');
+INSERT INTO tela (id, nome, nomeexibicao) values (2,  'categoriaquestionario', 'Categoria Questionário');
+INSERT INTO tela (id, nome, nomeexibicao) values (3,  'perfil', 'Perfil');
+INSERT INTO tela (id, nome, nomeexibicao) values (4,  'pessoa', 'Pessoa');
+INSERT INTO tela (id, nome, nomeexibicao) values (5,  'aluno', 'Aluno');
+INSERT INTO tela (id, nome, nomeexibicao) values (6,  'professor', 'Professor');
+INSERT INTO tela (id, nome, nomeexibicao) values (7,  'departamento', 'Departamento');
+INSERT INTO tela (id, nome, nomeexibicao) values (8,  'curso', 'Curso');
+INSERT INTO tela (id, nome, nomeexibicao) values (9,  'turma', 'Turma');
+INSERT INTO tela (id, nome, nomeexibicao) values (10, 'disciplina', 'Disciplina');
+INSERT INTO tela (id, nome, nomeexibicao) values (11, 'resultado', 'Resultados');
+INSERT INTO tela (id, nome, nomeexibicao) values (12, 'questionarioresposta', 'Responder');
+INSERT INTO tela (id, nome, nomeexibicao) values (13, 'cadastro.professor', 'Cadastro');
+INSERT INTO tela (id, nome, nomeexibicao) values (14, 'cadastro.aluno', 'Cadastro');
 
 /*configuração administrador*/
 INSERT INTO perfil_tela (idperfil, idtela) values (1, 1);

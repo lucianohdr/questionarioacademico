@@ -23,12 +23,12 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 		/*
 		 * Mais uma vez, esse código não toca no sql nativo, por isso pode ser chamado de Repository pattern
 		 */
-		StringBuilder queryString = new StringBuilder("from Usuario where login = ? and senha = ?");
+		StringBuilder queryString = new StringBuilder("from Usuario where login = :login and senha = :senha");
 
 		Query query = entityManager.createQuery(queryString.toString());
 		
-		query.setParameter(1, login);
-		query.setParameter(2, senha);
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
 		
 		List<Usuario> list = query.getResultList();
 		
