@@ -51,11 +51,11 @@
 						<label>Login:</label> 
 						<input ng-if="alunoNew" autocomplete="off" type="text" class="form-control" name="login"  ng-minlength="6" user-availability ng-model="model.aluno.pessoa.usuario.login" ng-required="true">
 						<input ng-if="isAluno" autocomplete="off" type="text" class="form-control" name="login"  ng-minlength="6" ng-model="model.aluno.pessoa.usuario.login" ng-required="true">
-						<!-- nÃ£o Ã© possivel usar a diretiva "validate-msg-for", porque por algum motivo o erro assincrono nao Ã© passado para a diretiva -->
+						<!-- não Ã© possivel usar a diretiva "validate-msg-for", porque por algum motivo o erro assincrono nao Ã© passado para a diretiva -->
 						<div ng-if="mainForm.login.$dirty" ng-messages="mainForm.login.$error" class="messages">
 							<div ng-message="required">Campo ObrigatÃ³rio</div>
 						    <div ng-message="minlength">Necessário mais caracteres</div>
-						    <div ng-message="userAvailability">Nome de usuário nÃ£o está disponível</div>
+						    <div ng-message="userAvailability">Nome de usuário não está disponível</div>
 						</div>
 					</div>
 				</div>
