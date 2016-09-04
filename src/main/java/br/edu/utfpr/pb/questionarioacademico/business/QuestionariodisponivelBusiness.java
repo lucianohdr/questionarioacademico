@@ -244,14 +244,13 @@ private List<Questionariodisponivel> porProfessorEporStatus(Usuario usuario, Sta
 
 	@Override
 	public List<Questionariodisponivel> porUsuarioEPorPerfil(Perfil perfil) {
-		List<Questionariodisponivel> retorno = null;
+		List<Questionariodisponivel> retorno = new ArrayList<Questionariodisponivel>();
 		Usuario usuario = login.getUsuario();
 		
 		//verificando perfil de usuario
 		if(perfil.equals(new Perfil("ADMINISTRADOR"))){
 			retorno = todosRespondidos();
 		}
-		
 		
 		return retorno;
 	}
