@@ -45,7 +45,7 @@
 			</div> 
 			<br> 
 			<fieldset ng-if="isAluno || alunoNew">
-				<legend>Dados de usuário:</legend>
+				<legend>Dados de usu�rio:</legend>
 				<div class="row">
 					<div class="col-xs-6">
 						<label>Login:</label> 
@@ -54,8 +54,8 @@
 						<!-- não é possivel usar a diretiva "validate-msg-for", porque por algum motivo o erro assincrono nao é passado para a diretiva -->
 						<div ng-if="mainForm.login.$dirty" ng-messages="mainForm.login.$error" class="messages">
 							<div ng-message="required">Campo Obrigatório</div>
-						    <div ng-message="minlength">Necessário mais caracteres</div>
-						    <div ng-message="userAvailability">Nome de usuário não está disponível</div>
+						    <div ng-message="minlength">Necess�rio mais caracteres</div>
+						    <div ng-message="userAvailability">Nome de usu�rio não est� dispon�vel</div>
 						</div>
 					</div>
 				</div>
