@@ -7,7 +7,8 @@
 App.factory('authService', ['$q', '$http', '$timeout',
   function($q, $http, $timeout) {
     var _identity = undefined,
-      _authenticated = false;
+      _authenticated = false,
+      _hasAdmin = false;
 
     return {
       isIdentityResolved: function() {
@@ -15,6 +16,9 @@ App.factory('authService', ['$q', '$http', '$timeout',
       },
       isAuthenticated: function() {
         return _authenticated;
+      },
+      hasAdmin: function() {
+    	  return _hasAdmin;
       },
       isInRole: function(role) {
         if (!_authenticated || !_identity.roles) return false;
@@ -38,7 +42,6 @@ App.factory('authService', ['$q', '$http', '$timeout',
         else localStorage.removeItem("questionarioacademico.identity");
       },
       getUsuario: function(){
-    	  console.log(_identity);
     	return  _identity.usuario; 
       },
       identity: function(force) {
@@ -78,12 +81,14 @@ App.factory('authService', ['$q', '$http', '$timeout',
         $http.get(baseUrl + 'authentication/identity', { ignoreErrors: true })
                                 .success(function(data) {
                                     _identity = data;
-                                    _authenticated = true;
+                                    _authenticated = data.authenticated;
+                                    _hasAdmin = data.hasAdmin;
                                    deferred.resolve(_identity);
                                 })
                                 .error(function () {
                                     _identity = null;
                                     _authenticated = false;
+                                    _hasAdmin = true;
                                     deferred.resolve(_identity);
                                }); 
 
@@ -99,21 +104,25 @@ App.factory('authService', ['$q', '$http', '$timeout',
 // route, the app resolves your identity before it does an authorize check. after that,
 // authorize is called from $stateChangeStart to make sure the authService is allowed to change to
 // the desired state
-.factory('authorization', ['$rootScope', '$state', 'authService', '$location',
+.factory('authorization', ['$rootScope', '$state', 'authService', '$location', 
   function($rootScope, $state, authService, $location) {
     return {
       authorize: function() {
-        return authService.identity()
+    	return authService.identity()
           .then(function() {
             var isAuthenticated = authService.isAuthenticated();
-
-            if ($rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !authService.isInAnyRole($rootScope.toState.data.roles)) {
+            var hasAdmin = authService.hasAdmin();
+            var stateData = $rootScope.toState.data;
+            console.log(hasAdmin);
+            if(!hasAdmin){
+            	$state.go('cadastro-admin');
+            } else if (stateData.roles && stateData.roles.length > 0 && !authService.isInAnyRole(stateData.roles)) {
               if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
               else {
                 // user is not authenticated. stow the state they wanted before you
                 // send them to the signin state, so you can return them when you're done, but only if the user 
             	// had permissions for that
-            	 if(authService.isInAnyRole($rootScope.toState.data.roles)){
+            	 if(authService.isInAnyRole(stateData.roles)){
             		 $rootScope.returnToState = $rootScope.toState;
             		 $rootScope.returnToStateParams = $rootScope.toStateParams;
             	 }
@@ -126,4 +135,4 @@ App.factory('authService', ['$q', '$http', '$timeout',
       }
     };
   }
-])
+]);

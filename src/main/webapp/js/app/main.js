@@ -11,13 +11,13 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 					controller: "MenuController",
 				}
 			},
-			resolve: { 
-	          authorize: function(authorization) {
-                        return authorization.authorize();
-	          },
-	          identity: function(authService){
-	        	  return authService.identity();
-	          }
+			resolve: {
+				authorize: function(authorization) {
+					return authorization.authorize();
+				},
+				identity: function(authService){
+					return authService.identity();
+				}
 			}
 		})
 		.state("home", {
@@ -96,6 +96,18 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 			},
 			data: {
 				roles: ["PROFESSOR", "COORDENADOR"]
+			}
+		})
+		.state("cadastro-admin" , {
+			url: '/cadastro/admin',
+			views:{
+				'content@':{
+					templateUrl:'view/admin/formCadastro.html', 
+					controller: 'teste'
+				}
+			},
+			data: {
+				roles: []
 			}
 		})
 		.state("categoriaquestionarioNew" , {
@@ -579,7 +591,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 	      
 	      //console.log('$stateChangeStart to '+toState.to+'- fired when the transition begins. toState,toParams : \n',toState, toStateParams);
 	      
-	      if (authService.isIdentityResolved()) authorization.authorize();
+	      //if (authService.isIdentityResolved()) authorization.authorize();
     });
       
       /*$rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams){

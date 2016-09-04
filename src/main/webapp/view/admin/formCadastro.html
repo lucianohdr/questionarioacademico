@@ -1,0 +1,35 @@
+<h2>Meu Cadastro</h2>
+<form name="mainForm" ng-submit="save()">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Nome</label><input type="text" class="form-control" name="nome" ng-model="model.professor.pessoa.nome" required>
+					<validate-msg-for field="mainForm.nome"></validate-msg-for>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<label>E-mail</label> <input type="email" class="form-control"  name="email" ng-model="model.professor.pessoa.email" ng-required="true">
+					<validate-msg-for field="mainForm.email"></validate-msg-for>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Matrícula</label> <input type="text" class="form-control"  name="matricula" ng-model="model.professor.matricula" ng-maxlength="10"></input>
+					<validate-msg-for field="mainForm.matricula"></validate-msg-for>
+				</div>
+			</div>
+			<br> 
+				<legend>Dados de usuário:</legend>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>Login:</label> <input type="text" class="form-control"  name="login" ng-model="model.professor.pessoa.usuario.login" ng-required="true">
+						<validate-msg-for field="mainForm.login"></validate-msg-for>
+					</div>
+				</div>
+			<br> 
+			<button type="submit" class="btn btn-primary">Salvar</button>
+			<button ng-click="alterarSenha()" class="btn btn-primary">Alterar Senha</button>
+		</div>
+</form>

@@ -17,6 +17,15 @@ public class SecurityResponse {
 	private Usuario  usuario;
 	private List<String> roles;
 	private List<Tela> telas;
+	private boolean hasAdmin;
+	
+	public SecurityResponse(boolean authenticated, Usuario  usuario, List<String> roles, List<Tela> telas, boolean hasAdmin) {
+		this.authenticated = authenticated;
+		this.usuario = usuario;
+		this.roles = roles;
+		this.telas = telas;
+		this.hasAdmin = hasAdmin;
+	}
 	
 	public SecurityResponse(boolean authenticated, Usuario  usuario, List<String> roles, List<Tela> telas) {
 		this.authenticated = authenticated;
@@ -65,5 +74,29 @@ public class SecurityResponse {
 
 	public void setTelas(List<Tela> telas) {
 		this.telas = telas;
+	}
+
+	public boolean isHasAdmin() {
+		return hasAdmin;
+	}
+
+	public void setHasAdmin(boolean hasAdmin) {
+		this.hasAdmin = hasAdmin;
+	}
+
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

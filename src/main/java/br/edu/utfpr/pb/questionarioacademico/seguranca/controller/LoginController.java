@@ -49,24 +49,23 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 	@Consumes("application/json")
 	public void login(Usuario usuario) {
 		boolean authenticated = false; 
-		String message = "";
+		boolean hasAdmin = repository.hasAdmin();
 		Usuario u = repository.getByUsernameAndPassword(
 			usuario.getLogin(), 
 			Hasher.get(usuario.getSenha()
 		));
+		
 		List<String> roles = null;
 		List<Tela> telas = null;
 		if (u != null) {
 			login.setUsuario(u);
 			authenticated = true;
-			message = "AUTHENTICATED";
 			roles = repository.getRoles(login.getUsuario());
 			telas = repository.getTelas(login.getUsuario());
 		} else {
 			authenticated = false;
-			message = "NOT_AUTHENTICATED";
 		}
-		serializer(new SecurityResponse(authenticated, u, roles, telas)).exclude("usuario.senha", "usuario.perfis").serialize();
+		serializer(new SecurityResponse(authenticated, u, roles, telas, hasAdmin)).exclude("usuario.senha", "usuario.perfis").serialize();
 	}
 
 	@Get
@@ -79,15 +78,23 @@ public class LoginController extends br.edu.utfpr.pb.questionarioacademico.contr
 	@Get
 	@Path("/identity")
 	public void identity(){
-		if(login.getUsuario() != null){
+		boolean authenticated = false; 
+		boolean hasAdmin = repository.hasAdmin();
+		Usuario usuario = login.getUsuario();
+		
+		if(usuario != null){
+			authenticated = true;
+			
 			List<String> roles = repository.getRoles(login.getUsuario());
 			List<Tela> telas = repository.getTelas(login.getUsuario());
-			serializer(new SecurityResponse(true, 
+			
+			serializer(new SecurityResponse(authenticated, 
 											login.getUsuario(),
 											roles,
-											telas)).exclude("usuario.senha", "usuario.perfis").serialize();
+											telas,
+											hasAdmin)).exclude("usuario.senha", "usuario.perfis").serialize();
 		} else {
-			result.use(Results.status()).forbidden("Not Authorized");
+			serializer(new SecurityResponse(authenticated, usuario, null, null, hasAdmin)).exclude("usuario.senha", "usuario.perfis").serialize();
 		}
 	}
 }

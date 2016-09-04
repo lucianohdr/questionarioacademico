@@ -15,4 +15,7 @@ public interface UsuarioRepository extends Repository<Usuario, Long>{
 	List<String> getRoles(Usuario usuario);
 
 	List<Tela> getTelas(Usuario usuario);
+	
+	boolean hasAdmin();
+	
 }

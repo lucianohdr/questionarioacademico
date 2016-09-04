@@ -6,16 +6,11 @@ var configUrl = function(model) {
 
 var params = function() {
 	return {'param1': '', 'param2': ''};
-}
+};
 
 var values = function() {
 	return {'update': {'method': 'PUT'}};
-}
-
-questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($resource) {
-	var api = $resource(configUrl('usuarios'), params(), values());
-    return api;
-}]);
+};
 
 questionarioAcademicoServices.factory('PerfilResource', ['$resource',function($resource) {
 	var api = $resource(configUrl('perfis'), params(), values());
@@ -44,6 +39,12 @@ questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($
 			isArray: false
 	};
 	
+	var hasAdmin = {
+			'url': baseUrl + 'usuarios/hasAdmin',
+			'method': 'GET', 
+			isArray: false
+	};
+	
 	var perfis = {
 			'url': baseUrl + 'usuarios/perfis',
 			'method': 'GET', 
@@ -53,6 +54,7 @@ questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($
 	var api = $resource(configUrl('usuarios'), params(), {
 		'update': {'method': 'PUT'},
 		loginDisponivel : loginDisponivel,
+		hasAdmin : hasAdmin,
 		'perfis' : perfis
 	});
 	return api;

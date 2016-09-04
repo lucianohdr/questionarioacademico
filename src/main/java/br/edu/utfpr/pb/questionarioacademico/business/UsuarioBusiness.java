@@ -94,4 +94,17 @@ public class UsuarioBusiness extends RepositoryImpl<Usuario, Long> implements Us
 		}
 		return retorno;
 	}
+
+	@Override
+	public boolean hasAdmin() {
+		String hql = "from Usuario usuario "
+				+ "join usuario.perfis perfil "
+				+ "where perfil.nome = 'Administrador'";
+		
+		Query query = entityManager.createQuery(hql);
+
+		List resultList = query.getResultList();
+		
+		return !resultList.isEmpty();
+	}
 }

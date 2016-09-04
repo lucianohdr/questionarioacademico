@@ -108,4 +108,12 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 		
 		serializer(perfis).exclude("telas").serialize();
 	}
+	
+	@Get
+	@Path("/hasAdmin")
+	public void hasAdmin(){
+		boolean hasAdmin = repository.hasAdmin();
+		
+		serializer(hasAdmin).serialize();
+	}
 }	
