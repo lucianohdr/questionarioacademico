@@ -113,9 +113,9 @@ App.factory('authService', ['$q', '$http', '$timeout',
             var isAuthenticated = authService.isAuthenticated();
             var hasAdmin = authService.hasAdmin();
             var stateData = $rootScope.toState.data;
-            console.log(hasAdmin);
+            
             if(!hasAdmin){
-            	$state.go('cadastro-admin');
+            	$state.go('adminNew');
             } else if (stateData.roles && stateData.roles.length > 0 && !authService.isInAnyRole(stateData.roles)) {
               if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
               else {

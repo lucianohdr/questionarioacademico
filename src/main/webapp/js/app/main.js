@@ -98,12 +98,12 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 				roles: ["PROFESSOR", "COORDENADOR"]
 			}
 		})
-		.state("cadastro-admin" , {
-			url: '/cadastro/admin',
+		.state("adminNew" , {
+			url: '/admin/new',
 			views:{
 				'content@':{
-					templateUrl:'view/admin/formCadastro.html', 
-					controller: 'teste'
+					templateUrl:'view/admin/form.html', 
+					controller: 'AdminControllerNew'
 				}
 			},
 			data: {

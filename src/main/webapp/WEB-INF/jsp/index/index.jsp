@@ -2,7 +2,8 @@
 <html ng-app="QuestionarioAcademico" id="ng-app">
 <head>
 
-	<meta charset="utf-8">
+	<!-- <meta charset="utf-8"> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="description" content="QuestionarioAcademico">
 	<meta name="author" content="Luciano Heleno da Rosa">
@@ -75,6 +76,7 @@
 	<script src="js/app/controller/questionariorespostaController.js"></script>
 	<script src="js/app/controller/respostaController.js"></script>
 	<script src="js/app/controller/resultadoController.js"></script>
+	<script src="js/app/controller/adminController.js"></script>
 
 	<title>Questionário Acadêmico</title>
 
@@ -84,6 +86,5 @@
 	<!-- Aqui é rederizada as views menu e o conteudo requisitado-->
 	<div ui-view="menu"></div>
 	<div ui-view="content" class="container"></div>
-	
 </body>
 </html>

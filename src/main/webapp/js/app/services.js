@@ -2,7 +2,7 @@ var questionarioAcademicoServices = angular.module('rest.service', ['ngResource'
 
 var configUrl = function(model) {
 	return baseUrl + model + '/:param1/:param2';
-}
+};
 
 var params = function() {
 	return {'param1': '', 'param2': ''};
