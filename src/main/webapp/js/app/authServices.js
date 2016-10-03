@@ -104,34 +104,32 @@ App.factory('authService', ['$q', '$http', '$timeout',
 // route, the app resolves your identity before it does an authorize check. after that,
 // authorize is called from $stateChangeStart to make sure the authService is allowed to change to
 // the desired state
-.factory('authorization', ['$rootScope', '$state', 'authService', '$location', 
-  function($rootScope, $state, authService, $location) {
+.factory('authorization', ['$rootScope', '$state', 'authService',
+  function($rootScope, $state, authService) {
     return {
       authorize: function() {
     	return authService.identity()
-          .then(function() {
-            var isAuthenticated = authService.isAuthenticated();
-            var hasAdmin = authService.hasAdmin();
-            var stateData = $rootScope.toState.data;
-            
-            if(!hasAdmin){
-            	$state.go('adminNew');
-            } else if (stateData.roles && stateData.roles.length > 0 && !authService.isInAnyRole(stateData.roles)) {
-              if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
-              else {
-                // user is not authenticated. stow the state they wanted before you
-                // send them to the signin state, so you can return them when you're done, but only if the user 
-            	// had permissions for that
-            	 if(authService.isInAnyRole(stateData.roles)){
-            		 $rootScope.returnToState = $rootScope.toState;
-            		 $rootScope.returnToStateParams = $rootScope.toStateParams;
-            	 }
-
-                // now, send them to the signin state so they can log in
-                $state.go('login'); 
-              }
-            }
-          });
+          .then(function(){
+		    var isAuthenticated = authService.isAuthenticated();
+		    
+		    var stateData = $rootScope.toState.data;
+		    
+		    if (stateData.roles && stateData.roles.length > 0 && !authService.isInAnyRole(stateData.roles)) {
+		      if (isAuthenticated) $state.go('acessonegado'); // user is signed in but not authorized for desired state
+		      else {
+		        // user is not authenticated. stow the state they wanted before you
+		        // send them to the signin state, so you can return them when you're done, but only if the user 
+		    	// had permissions for that
+		    	 if(authService.isInAnyRole(stateData.roles)){
+		    		 $rootScope.returnToState = $rootScope.toState;
+		    		 $rootScope.returnToStateParams = $rootScope.toStateParams;
+		    	 }
+		    	
+		        // now, send them to the signin state so they can log in
+		        $state.go('login'); 
+		      }
+		    }
+		  });
       }
     };
   }

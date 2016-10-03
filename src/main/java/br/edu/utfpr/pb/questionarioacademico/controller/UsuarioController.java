@@ -111,6 +111,7 @@ public class UsuarioController extends br.edu.utfpr.pb.questionarioacademico.con
 	
 	@Get
 	@Path("/hasAdmin")
+	@Public
 	public void hasAdmin(){
 		boolean hasAdmin = repository.hasAdmin();
 		

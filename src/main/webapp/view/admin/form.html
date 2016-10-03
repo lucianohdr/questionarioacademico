@@ -5,6 +5,7 @@
 	<div class="panel-body">O sistema ainda não possui um Administrador cadastrado. Antes de iniciar o uso é necessário o cadastro de um Administrador para que as atividades possam ser executadas.
 	</div>
 </div>
+{{hasAdmin}}
 <h2>Cadastro de Administrador</h2>
 <form name="mainForm" ng-submit="save()">
 	<div class="form-group">
@@ -31,7 +32,7 @@
 			<legend>Dados de usuário:</legend>
 			<div class="row">
 				<div class="col-xs-6">
-					<label>Login:</label> <input type="text" class="form-control"  name="login" ng-model="model.professor.pessoa.usuario.login" ng-required="true">
+					<label>Login:</label> <input type="text" class="form-control" user-availability name="login" ng-model="model.professor.pessoa.usuario.login" ng-required="true">
 					<validate-msg-for field="mainForm.login"></validate-msg-for>
 				</div>
 			</div>

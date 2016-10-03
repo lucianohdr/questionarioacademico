@@ -589,9 +589,7 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 	      $rootScope.toState = toState;
 	      $rootScope.toStateParams = toStateParams;
 	      
-	      //console.log('$stateChangeStart to '+toState.to+'- fired when the transition begins. toState,toParams : \n',toState, toStateParams);
-	      
-	      //if (authService.isIdentityResolved()) authorization.authorize();
+	      if (authService.isIdentityResolved()) authorization.authorize();
     });
       
       /*$rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams){
@@ -613,24 +611,3 @@ App.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
     	});*/
   }
 ]);
-
-/*App.factory('httpInterceptor', ['$q','$window', function ($q, $window) {
-	return function (promise) {
-		return promise.then(function (response) {
-			try {
-				console.log("authenticated");
-				if (response.data.authenticated == false) {
-					console.log("false");
-					return $q.reject(response);
-				} else {
-					console.log("true");
-					return response;
-				}
-			} catch (e) {
-				alert(e.message);
-			}
-		}, function (response) {
-			return $q.reject(response);
-		});
-	};
-}]);*/

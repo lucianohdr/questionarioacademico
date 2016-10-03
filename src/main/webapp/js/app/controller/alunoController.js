@@ -61,9 +61,9 @@ App.controller("AlunoControllerEdit", ['$scope', '$location', 'AlunoResource',
 		$scope.save = function() {
 			
 			$scope.model.$save(function(res) {
-				$state.go('login')
+				$state.go('login');
 			});
-		}
+		};
  	}
 
 ]).controller("AlunoControllerList", ['$scope', '$location', 'AlunoResource',

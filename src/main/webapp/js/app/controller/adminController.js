@@ -1,6 +1,6 @@
-App.controller("AdminControllerNew", ['$scope', '$location', 'ProfessorResource', 'PerfilResource', '$window', '$stateParams',
+App.controller("AdminControllerNew", ['$scope', '$location', '$state', 'AdminResource', 'PerfilResource', 'UsuarioResource', '$window', '$stateParams',
                                              
-     function($scope, $location, ProfessorResource, PerfilResource, $window, $stateParams){
+     function($scope, $location, $state, AdminResource, PerfilResource, UsuarioResource, $window, $stateParams){
 
 		var root = '/admin/';
 		var emptyObj = {professor: {
@@ -17,6 +17,20 @@ App.controller("AdminControllerNew", ['$scope', '$location', 'ProfessorResource'
 			}
 		}};
 		
-		masterCreate($scope, $location, ProfessorResource, root, emptyObj);
+		$scope.model = new AdminResource(emptyObj);
+		$scope.save = function() {
+			$scope.model.$save(function(res) {
+				$state.go('login');
+			});
+		};
+		
+		$scope.checkAdmin = function(){
+			UsuarioResource.hasAdmin(function(res){
+				console.log(res);
+				$scope.hasAdmin = res;
+			});
+		};
+		
+		$scope.checkAdmin();
 	 }
 ]);
