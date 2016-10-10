@@ -59,6 +59,7 @@ public class Controller implements Serializable{
 		if (!withRoot) {
 			json = (JSONSerialization) json.withoutRoot();
 		}
+		
 		Serializer serializer = json.from(object).recursive();
 		String[] excludeProps = excludeProps();
 		if (excludeProps != null && excludeProps.length > 0) {

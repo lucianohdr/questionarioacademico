@@ -37,15 +37,9 @@ questionarioAcademicoServices.factory('AdminResource', ['$resource',function($re
 	return api;
 }]);
 
-questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($resource) {
+questionarioAcademicoServices.factory('UsuarioResource', ['$resource', '$http', function($resource, $http) {
 	var loginDisponivel = {
 			'url': baseUrl + 'usuarios/loginDisponivel',
-			'method': 'GET', 
-			isArray: false
-	};
-	
-	var hasAdmin = {
-			'url': baseUrl + 'usuarios/hasAdmin',
 			'method': 'GET', 
 			isArray: false
 	};
@@ -59,7 +53,6 @@ questionarioAcademicoServices.factory('UsuarioResource', ['$resource',function($
 	var api = $resource(configUrl('usuarios'), params(), {
 		'update': {'method': 'PUT'},
 		loginDisponivel : loginDisponivel,
-		hasAdmin : hasAdmin,
 		'perfis' : perfis
 	});
 	return api;
